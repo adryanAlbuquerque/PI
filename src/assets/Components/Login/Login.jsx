@@ -2,7 +2,7 @@ import { FaUser, FaLock } from 'react-icons/fa';
 
 import { useState } from 'react';
 
-import "./Login.css";
+import './Login.css';
 
 // Componente de login com React Hooks
 const Login = () => {
@@ -20,8 +20,7 @@ const Login = () => {
     <div className="Container">
       <form onSubmit={handleSubmit}>
         <h1>Login</h1>
-
-        <div>
+        <div className='input-field'>
           <input type="email" 
           placeholder="E-mail" 
           onChange={(e) => setUsername(e.target.value)} 
@@ -29,7 +28,7 @@ const Login = () => {
           <FaUser className="icon"></FaUser>
         </div>
 
-        <div>
+        <div className='input-field'>
           <input type="password" 
           placeholder="Senha" 
           onChange={(e) => setPassword (e.target.value)}

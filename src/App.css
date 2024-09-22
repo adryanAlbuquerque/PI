@@ -1,0 +1,20 @@
+* {
+    margin:0;
+    padding:0;
+    font-family: Helvetica;
+    box-sizing: border-box;
+    
+}
+
+.App {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f2f2f2;
+    /*background-image: url("");
+    background-size: cover;
+    background-position: center;*/
+
+}
