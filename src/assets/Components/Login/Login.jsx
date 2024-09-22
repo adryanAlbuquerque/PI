@@ -6,16 +6,34 @@ import "./Login.css";
 
 // Componente de login com React Hooks
 const Login = () => {
+
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    
+    alert ("Enviando os dados:" + username + "-" + password);
+  };
+
   return (
     <div className="Container">
-      <form>
+      <form onSubmit={handleSubmit}>
         <h1>Login</h1>
+
         <div>
-          <input type="email" placeholder="E-mail" />
+          <input type="email" 
+          placeholder="E-mail" 
+          onChange={(e) => setUsername(e.target.value)} 
+          />
           <FaUser className="icon"></FaUser>
         </div>
+
         <div>
-          <input type="password" placeholder="Senha" />
+          <input type="password" 
+          placeholder="Senha" 
+          onChange={(e) => setPassword (e.target.value)}
+          />
           <FaLock className="icon"></FaLock>
         </div>
         
