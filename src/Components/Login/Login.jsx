@@ -19,10 +19,10 @@ const Login = () => {
   return (
     <div className="Container">
       <form onSubmit={handleSubmit}>
-        <h1>Login</h1>
+        <h1 id="MedioTec">MedioTec</h1>
         <div className='input-field'>
           <input type="email" 
-          placeholder="E-mail" 
+          placeholder="Digite seu Email" 
           onChange={(e) => setUsername(e.target.value)} 
           />
           <FaUser className="icon"></FaUser>
@@ -30,22 +30,22 @@ const Login = () => {
 
         <div className='input-field'>
           <input type="password" 
-          placeholder="Senha" 
+          placeholder="Digite sua senha" 
           onChange={(e) => setPassword (e.target.value)}
           />
           <FaLock className="icon"></FaLock>
         </div>
         
         {/* Elemento de lembar de mim */}
-        <div className="recall-forget"> 
-          <label>
-            <input type="checkbox" /> 
-            Lembre-me de mim
+        <div id="recal-forget"> 
+          <label id="label">
+          <input id="Checkbox" type="checkbox"/> 
+            <p id="Lembre">Lembre-me de mim</p>
           </label>
-          <a href="#">Esqueceu a senha?</a>
+          <a href="#" id="Esqueceu">Esqueci minha senha</a>
         </div>
           
-        <button>Entrar</button>
+        <button id="button">LOGIN</button>
         
         <div className='signup-link'>
           <p>
