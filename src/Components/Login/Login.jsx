@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 import { FaUser, FaLock } from 'react-icons/fa';
 
 import { useState } from 'react';
@@ -49,10 +51,10 @@ const Login = () => {
         
         <div className='signup-link'>
           <p>
-            Não possui uma conta? <a href="#" onClick={ ()=> window.location.href = '/src/Components/Cadastro'}>Crie uma agora</a>
+            Não possui uma conta? <Link to="/cadastro">Crie uma agora</Link>
           </p>
-      
         </div>
+
       </form>
     </div>
   );
