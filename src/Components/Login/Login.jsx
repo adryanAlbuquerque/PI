@@ -49,7 +49,7 @@ const Login = () => {
         
         <div className='signup-link'>
           <p>
-            Não possui uma conta? <a href="#">Crie uma agora</a>
+            Não possui uma conta? <a href="#" onClick={ ()=> window.location.href = '/src/Components/Cadastro'}>Crie uma agora</a>
           </p>
       
         </div>

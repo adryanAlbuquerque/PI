@@ -1,4 +1,4 @@
-import { FaUser, FaLock } from 'react-icons/fa';
+import { FaUser, FaLock, FaEnvelope } from 'react-icons/fa';
 
 import { useState } from 'react';
 
@@ -24,8 +24,16 @@ const Cadastro = () => {
             placeholder="Digite seu Email" 
             onChange={(e) => setUsername(e.target.value)} 
             />
-            <FaUser className="icon"></FaUser>
+            <FaEnvelope className="icon"></FaEnvelope>
           </div>
+
+          <div className='input-field'>
+            <input type="text" 
+            placeholder="Digite seu nome de usuário" 
+            onChange={(e) => setUsername(e.target.value)} 
+            />
+            <FaUser className="icon" />
+        </div>
   
           <div className='input-field'>
             <input type="password" 
@@ -35,23 +43,14 @@ const Cadastro = () => {
             <FaLock className="icon"></FaLock>
           </div>
           
-          {/* Elemento de lembar de mim */}
-          <div id="recal-forget"> 
-            <label id="label">
-            <input id="Checkbox" type="checkbox"/> 
-              <p id="Lembre">Lembre-me de mim</p>
-            </label>
-            <a href="#" id="Esqueceu">Esqueci minha senha</a>
-          </div>
-            
-          <button id="button">LOGIN</button>
+          <button id="button">CADASTRAR</button>
           
-          <div className='signup-link'>
+          <div className='login-link'>
             <p>
-              Já possui uma conta? <a href="#">Entre agora</a>
+              Já possui uma conta? <a href="#" onClick={() => window.location.href = '/src/Components/Login'}>Entre agora</a>
             </p>
-        
           </div>
+          
         </form>
       </div>
     );

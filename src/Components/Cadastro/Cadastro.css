@@ -38,31 +38,6 @@
     color: blueviolet;
 }
 
-#recal-forget {
-    display: flex;
-    justify-content: space-between;
-    font-size: 10.5px;
-    margin: -15px 0 25px;
-    margin-top: -25px;
-    margin-right: 5px;
-}
-
-#label {
-    color: blueviolet;
-}
-
-#label input {
-    margin-right: 5px;
-}
-
-#Esqueceu {
-    color: blueviolet;
-    text-decoration: none;
-}
-#Esqueceu:hover {
-    color: rgb(71, 32, 108);
-}
-
 #button {
     width: 100%;
     height: 40px;
@@ -75,26 +50,21 @@
     color: white;
 }
 
-.signup-link {
-    font-size: 15px;
-    text-align: center;
-    margin: 20px 0 10px;    
+#button:hover {
+    background-color: rgb(71, 32, 108);
 }
 
-.signup-link p a {
+.login-link {
+    font-size: 15px;
+    text-align: center;
+    margin: 20px 0 10px;
+}
+
+.login-link p a {
     color: blueviolet;
     text-decoration: none;
 }
-.signup-link p a:hover {
-color: rgb(49, 18, 79);
-}
 
-#Lembre {
-    margin-left: 20px;
-    margin-top: -14.5px;
-}
-
-#Checkbox {
-    margin-left: 5px;
-    cursor: pointer;
+.login-link p a:hover {
+    color: rgb(49, 18, 79);
 }
