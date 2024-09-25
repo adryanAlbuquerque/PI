@@ -1,94 +1,147 @@
-.container {
-    text-align: center;
-    margin-top: 100px;
-    color: blueviolet;
+.Container {
+  text-align: center;
+  margin-top: 100px;
+  color: blueviolet;
+  padding: 0 20px;
 }
-
+  
 #MedioTec {
-    text-align: center;
-    font-size: 30px;
-    color: blueviolet;
+  font-size: 30px;
+  color: blueviolet;
 }
 
 .input-field {
-    position: relative;
-    width: 100%;
-    height: 50px;
-    margin: 30px auto;
-
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  height: 50px;
+  margin: 30px auto;
 }
 
 .input-field input {
-    width: 100%;
-    height: 100%;
-    background-color: white;
-    outline: none;
-    border: 1.5px solid blueviolet;
-    border-radius: 10px;
-    color: black;
-    padding: 20px 20px;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  outline: none;
+  border: 1.5px solid blueviolet;
+  border-radius: 10px;
+  color: black;
+  padding: 15px 20px;
 }
 
 .input-field input::placeholder {
-    color: rgb(145, 128, 160)
+  color: rgb(145, 128, 160);
 }
 
 .input-field .icon {
-    position: absolute;
-    right: 15px;
-    top: 35%;
-    transform: translate(-50%);
-    font-size: 14px;
-    color: blueviolet;
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: blueviolet;
 }
 
+/* Ajustes para centralizar */
 #recal-forget {
-    display: flex;
-    justify-content: space-between;
-    font-size: 10.5px;
-    margin: -15px 0 25px;
-    margin-top: -25px;
-    margin-right: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  margin: -10px auto 25px;
+  max-width: 400px;
+  width: 100%;
 }
 
 #label {
-    color: blueviolet;
+  display: flex;
+  align-items: center;
+  color: blueviolet;
 }
 
 #label input {
-    margin-right: 5px;
-}
-
-#Esqueceu {
-    color: blueviolet;
-    text-decoration: none;
-}
-#Esqueceu:hover {
-    color: rgb(71, 32, 108);
-}
-
-#button {
-    width: 100%;
-    height: 40px;
-    background-color: blueviolet;
-    border: none;
-    outline: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 13px;
-    color: white;
-}
-
-#button:hover {
-    background-color: rgb(71, 32, 108); 
+  margin-right: 5px;
 }
 
 #Lembre {
-    margin-left: 20px;
-    margin-top: -14.5px;
+  margin-left: 20px;
+  margin-top: -14.5px;
+}
+
+#Esqueceu {
+  color: blueviolet;
+  text-decoration: none;
+}
+
+#Esqueceu:hover {
+  color: rgb(71, 32, 108);
+}
+
+#button {
+  width: 100%;
+  max-width: 400px;
+  height: 40px;
+  background-color: blueviolet;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  color: white;
+  margin-top: 10px;
+}
+
+#button:hover {
+  background-color: rgb(71, 32, 108);
 }
 
 #Checkbox {
-    margin-left: 5px;
-    cursor: pointer;
+  margin-left: 5px;
+  cursor: pointer;
 }
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .Container {
+    margin-top: 50px;
+  }
+
+  .input-field input {
+    padding: 10px 15px;
+  }
+
+  .input-field .icon {
+    font-size: 18px;
+  }
+
+  #button {
+    height: 35px;
+    font-size: 14px;
+  }
+
+  #recal-forget {
+    font-size: 10px;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  #Esqueceu {
+    margin-top: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  #MedioTec {
+    font-size: 24px;
+  }
+
+  .input-field {
+    margin: 20px auto;
+  }
+
+  #button {
+    font-size: 12px;
+  }
+}
+  
