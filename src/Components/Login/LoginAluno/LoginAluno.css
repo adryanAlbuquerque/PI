@@ -1,0 +1,99 @@
+#MedioTec {
+    text-align: center;
+    font-size: 30px;
+    color: blueviolet;
+}
+
+.input-field {
+
+    position: relative;
+    width: 100%;
+    height: 50px;
+    margin: 30px auto;
+
+}
+
+.input-field input {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    outline: none;
+    border: 1.5px solid blueviolet;
+    border-radius: 10px;
+    color: black;
+    padding: 20px 20px;
+}
+
+.input-field input::placeholder {
+    color: rgb(145, 128, 160)
+}
+
+.input-field .icon {
+    position: absolute;
+    right: 15px;
+    top: 35%;
+    transform: translate(-50%);
+    font-size: 14px;
+    color: blueviolet;
+}
+
+#recal-forget {
+    display: flex;
+    justify-content: space-between;
+    font-size: 10.5px;
+    margin: -15px 0 25px;
+    margin-top: -25px;
+    margin-right: 5px;
+}
+
+#label {
+    color: blueviolet;
+}
+
+#label input {
+    margin-right: 5px;
+}
+
+#Esqueceu {
+    color: blueviolet;
+    text-decoration: none;
+}
+#Esqueceu:hover {
+    color: rgb(71, 32, 108);
+}
+
+#button {
+    width: 100%;
+    height: 40px;
+    background-color: blueviolet;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 13px;
+    color: white;
+}
+
+.signup-link {
+    font-size: 15px;
+    text-align: center;
+    margin: 20px 0 10px;    
+}
+
+.signup-link p a {
+    color: blueviolet;
+    text-decoration: none;
+}
+.signup-link p a:hover {
+color: rgb(49, 18, 79);
+}
+
+#Lembre {
+    margin-left: 20px;
+    margin-top: -14.5px;
+}
+
+#Checkbox {
+    margin-left: 5px;
+    cursor: pointer;
+}
