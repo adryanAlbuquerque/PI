@@ -11,11 +11,17 @@ const LoginAluno = () => {
     // Aqui você pode adicionar lógica para autenticar alunos
     alert ("Login Aluno: " + username + "-" + password);
   };
-
+  
   return (
+    
     <div className="Container">
+
+        <div id="LogoAluno">
+         <img src="/img/logo.png" alt="Logo"/>
+        </div>
+        
       <form onSubmit={handleSubmit}>
-        <h1 id="MedioTec">Login Aluno</h1>
+        <h1 id="MedioTec">LOGIN DO ALUNO</h1>
         <div className='input-field'>
           <input type="email" 
           placeholder="Digite seu Email" 
@@ -35,7 +41,7 @@ const LoginAluno = () => {
         <div id="recal-forget"> 
           <label id="label">
           <input id="Checkbox" type="checkbox"/> 
-            <p id="Lembre">Lembre-me de mim</p>
+            <p id="Lembre">Lembre-se de mim</p>
           </label>
           <a href="#" id="Esqueceu">Esqueci minha senha</a>
         </div>
