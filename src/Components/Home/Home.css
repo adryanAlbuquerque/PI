@@ -1,25 +1,30 @@
 .home-container {
     text-align: center;
     margin-top: 100px;
-  }
+    color: blueviolet;
+}
+#tipo-login{
+  color: rgb(71, 32, 108);
+  margin-bottom: 20px;
+  margin-top: 15px;
+}
   
-  .login-options {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 20px;
-  }
-  
-  .login-button {
-    padding: 10px 20px;
-    text-decoration: none;
-    background-color: #4CAF50;
-    color: white;
-    border-radius: 5px;
-    font-size: 16px;
-  }
-  
-  .login-button:hover {
-    background-color: #45a049;
-  }
-  
+.login-options {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.login-button {
+  padding: 10px 20px;
+  text-decoration: none;
+  background-color: blueviolet;
+  color: white;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.login-button:hover {
+  background-color: rgb(71, 32, 108);
+}

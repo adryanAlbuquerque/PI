@@ -74,18 +74,8 @@
     color: white;
 }
 
-.signup-link {
-    font-size: 15px;
-    text-align: center;
-    margin: 20px 0 10px;    
-}
-
-.signup-link p a {
-    color: blueviolet;
-    text-decoration: none;
-}
-.signup-link p a:hover {
-color: rgb(49, 18, 79);
+#button:hover {
+    background-color: rgb(71, 32, 108); 
 }
 
 #Lembre {

@@ -31,6 +31,15 @@ const LoginCoordenador = () => {
           />
           <FaLock className="icon"></FaLock>
         </div>
+
+        {/* Elemento de lembar de mim */}
+        <div id="recal-forget"> 
+          <label id="label">
+          <input id="Checkbox" type="checkbox"/> 
+            <p id="Lembre">Lembre-me de mim</p>
+          </label>
+          <a href="#" id="Esqueceu">Esqueci minha senha</a>
+        </div>
         
         <button id="button">LOGIN</button>
       </form>
