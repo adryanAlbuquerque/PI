@@ -9,6 +9,12 @@ const Home = () => {
   return (
     <div className="home-page">
       {/* Navbar */}
+
+      <nav class="Barra">
+        <p id="FaleConosco">Fale conosco</p>
+
+      </nav>
+
       <nav className="navbar">
         <div className="logo">
           <img src="/img/logo.png" alt="Logo" />

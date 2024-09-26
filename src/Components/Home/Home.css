@@ -5,12 +5,23 @@
   min-height: 100vh;
 }
 
+.Barra {
+  height: 25px;
+  background-color: #825CFF;
+}
+
+#FaleConosco {
+  font-size: 12px;
+  color: white;
+  margin-left: 40px;
+  margin-top: 6px;
+}
 /* Navbar */
 .navbar {
   display: flex;
   justify-content: space-between;
   padding: 20px;
-  background-color: rgba(71, 32, 108, 0.8);
+  background-color: rgba(255, 255, 255, 0.8);
   position: relative;
   z-index: 1;
 }
