@@ -3,6 +3,7 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+  width: 100%;
 }
 
 .Barra {
@@ -13,7 +14,7 @@
 #FaleConosco {
   font-size: 12px;
   color: white;
-  margin-left: 40px;
+  margin-left: 93px;
   margin-top: 6px;
 }
 /* Navbar */
@@ -24,21 +25,26 @@
   background-color: rgba(255, 255, 255, 0.8);
   position: relative;
   z-index: 1;
+  height: 85px;
 }
 
 .logo img {
+  margin-left: 50px;
   max-width: 120px;
   height: auto;
 }
 
 .menu-button {
+  margin-top: 8px;
+  margin-right: 60px;
   padding: 10px 20px;
   text-decoration: none;
   background-color: blueviolet;
   color: white;
-  border-radius: 5px;
+  border: #825CFF;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 15px;
+  height: 36px;
 }
 
 .menu-button:hover {
@@ -69,14 +75,15 @@
 }
 
 /* Contêiner principal com imagem de fundo */
-.home-container {
+#Fundo {
   flex: 1;
-  background-image: url('/img/image.png');
-  background-size: cover;
   background-position: center;
+  background-repeat: no-repeat; 
+  background-size: 100px; 
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  width: 100%;
 }
 
 .home-content {
@@ -91,3 +98,53 @@
     max-width: 120px;
   }
 }
+
+/* Barra Informações */
+#Infos {
+  display: flex;              
+  list-style-type: none;      
+  margin-left: 400px; 
+  padding: 17px;
+  justify-content: center;     
+  gap: 50px; 
+  color: #BEAAFF;
+}
+
+#Home:hover {
+  color: #825CFF;
+  cursor: pointer;
+}
+
+#Inst:hover {
+  color: #825CFF;
+  cursor: pointer;
+}
+
+#Sobre:hover {
+  color: #825CFF;
+  cursor: pointer;
+}
+
+#Contato:hover {
+  color: #825CFF;
+  cursor: pointer;
+}
+
+.quadro-inferior {
+  background-color: white;
+  margin-bottom: -20px;
+  padding: 70px;
+  text-align: center;
+  position: absolute;
+  bottom: -190px;
+  left: 50%; 
+  transform: translateX(-50%); 
+  z-index: 1;
+  box-shadow: 0px 10px 5px 4px rgba(0, 0, 0, 0.2);
+}
+
+#Legenda {
+  color: #825CFF;
+  margin-left: -70px;
+}
+

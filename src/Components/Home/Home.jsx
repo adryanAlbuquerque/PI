@@ -9,15 +9,22 @@ const Home = () => {
   return (
     <div className="home-page">
       {/* Navbar */}
-
-      <nav class="Barra">
+      <nav className="Barra">
         <p id="FaleConosco">Fale conosco</p>
-
       </nav>
 
       <nav className="navbar">
         <div className="logo">
           <img src="/img/logo.png" alt="Logo" />
+        </div>
+
+        <div>
+          <ul id="Infos">
+            <li id="Home">Home</li>
+            <li id="Inst">Institucional</li>
+            <li id="Sobre">Sobre</li>
+            <li id="Contato">Contato</li>
+          </ul>
         </div>
 
         <div className="menu">
@@ -31,9 +38,17 @@ const Home = () => {
           )}
         </div>
       </nav>
-
+      
       {/* Main content with background image */}
       <div className="home-container">
+      <img id="Fundo" src="/img/image.png" alt="Logo"/>
+      </div>
+
+      {/* Quadro na parte inferior */}
+      <div className="quadro-inferior">
+        <p id="Legenda">Inicie hoje a sua Transforme seu futuro:
+            faça o Ensino Médio com curso técnico e saia preparado para o 
+            Enem e o mercado de trabalho!</p>
       </div>
     </div>
   );
