@@ -20,7 +20,7 @@ const Home = () => {
           <li><Link to="">Alunos</Link></li>
           <li><Link to="/Principal/Coordenacao/Professores">Professores</Link></li>
           <li><Link to="/Principal/Coordenacao/Turmas">Turmas</Link></li>
-          <li><Link to="">Relatórios</Link></li>
+          <li><Link to="/Principal/Coordenacao/Relatorios">Relatórios</Link></li>
           <li><Link to="">Configurações</Link></li>
         </ul>
         <button id="Sair"> Sair </button>

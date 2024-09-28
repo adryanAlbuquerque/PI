@@ -6,15 +6,12 @@ const LoginAluno = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Aqui você pode adicionar lógica para autenticar alunos
-    alert("Login Aluno: " + username + " - " + password);
+  const handleGoHome = () => {
+    window.location.href = '/';  
   };
 
-  const handleGoHome = () => {
-    // Lógica para redirecionar para a página inicial
-    window.location.href = '/';  // Redireciona para a página inicial
+  const handleLogin = () => {
+    window.location.href = '/Home/AlunoHome';  
   };
 
   return (
@@ -27,7 +24,7 @@ const LoginAluno = () => {
           <img src="/img/logo.png" alt="Logo" />
         </div>
 
-        <form onSubmit={handleSubmit}>
+        <form>
           <h1 id="MedioTec">LOGIN DO ALUNO</h1>
 
           <div className="input-field">
@@ -58,7 +55,10 @@ const LoginAluno = () => {
             </a>
           </div>
 
-          <button id="button">LOGIN</button>
+          {/* Transformar o botão de login em um link para outra aba */}
+          <button type="button" id="button" onClick={handleLogin}>
+            LOGIN
+          </button>
 
           {/* Botão para voltar à Home */}
           <button type="button" id="homeButton" onClick={handleGoHome}>

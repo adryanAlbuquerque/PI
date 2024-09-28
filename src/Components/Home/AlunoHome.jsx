@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import './CoordHome.css'; // Certifique-se que o arquivo CSS está no caminho correto
+import './AlunoHome.css';
 import { useState } from 'react';
 
 const Home = () => {
@@ -12,31 +12,33 @@ const Home = () => {
   return (
     <div className="home-page">
       {/* Texto de boas-vindas */}
-      <h1 className="welcome-text">Olá, Bem-vindo!</h1>
+      <h1 className="BemVindo">Olá, Bem-vindo!</h1>
 
       <div className="header-image">
         <img id="Fundo" src="/img/Horizonte.png" alt="Fundo" />
       </div>
 
       {/* Quadrados abaixo da imagem */}
-      <div className="squares-container">
-        {Array.from({ length: 6 }).map((_, index) => (
-          <div className="square" key={index}></div>
-        ))}
+      <div className="squares">
+        <div className="Bloco">Acessar Conceitos</div>
+        <div className="Bloco">Acessar Disciplinas</div>
+        <div className="Bloco">Acessar Documentos</div>
+        <div className="Bloco">Acessar Biblioteca</div>
       </div>
 
       {/* Sidebar */}
-      <div className={`sidebar ${isSidebarOpen ? 'open' : 'closed'}`}>
-        <img id="MedioTec" src="/img/logo.png" alt="Logo" />
+      <div className={`side ${isSidebarOpen ? 'open' : 'closed'}`}>
+        <img id="MedioTec" src="/img/LogoAluno.png" alt="Logo" />
         <ul>
           <li><Link to="">Home</Link></li>
-          <li><Link to="/Principal/Coordenacao/Alunos">Alunos</Link></li>
-          <li><Link to="/Principal/Coordenacao/Professores">Professores</Link></li>
-          <li><Link to="/Principal/Coordenacao/Turmas">Turmas</Link></li>
-          <li><Link to="/Principal/Coordenacao/Relatorios">Relatórios</Link></li>
+          <li><Link to="/Principal/Alunos/ConceitoAluno">Conceitos</Link></li>
+          <li><Link to="">Disciplinas</Link></li>
+          <li><Link to="">Documentos</Link></li>
+          <li><Link to="">Requerimentos</Link></li>
+          <li><Link to="">Biblioteca Digital</Link></li>
           <li><Link to="">Configurações</Link></li>
         </ul>
-        <button id="Sair"> Sair </button>
+        <button id="Voltar">Sair</button>
       </div>
     </div>
   );

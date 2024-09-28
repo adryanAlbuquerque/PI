@@ -54,35 +54,6 @@
     color: #825CFF; /* Cor ao passar o mouse */
 }
 
-
-.header-image {
-    position: relative; /* Posiciona a imagem em relação ao container */
-    width: 60%; /* Largura total */
-    height: auto; /* Altura automática */
-    margin-bottom: 20px; /* Espaçamento inferior */
-    margin-top: 100px;
-    margin-left: 30%;
-}
-
-/* Estilos para os quadrados abaixo da imagem */
-.squares-container {
-    display: grid; /* Usar grid para layout */
-    grid-template-columns: repeat(3, 1fr); /* 3 colunas */
-    gap: 20px; /* Espaço entre os quadrados */
-    padding: 20px; /* Espaço ao redor da grid */
-    margin-top: 20px; /* Espaço superior para distanciar dos itens acima */
-    margin-left: 30%; /* Centraliza em relação à sidebar */
-}
-
-.square {
-    width: 80%; 
-    height: 100px; /* Altura fixa dos quadrados */
-    background-color: #E0E0E0; /* Cor de fundo dos quadrados */
-    border: 1px solid #ccc; /* Borda opcional */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra opcional */
-    margin-left: -40px;
-}
-
 #Sair {
     width: 100%;
     max-width: 100px;
@@ -95,20 +66,8 @@
     font-size: 15px;
     color: #825cff;
     margin-top: 90px;
-    margin-left: 55px;
-    justify-content: center;
+    margin-left: 45px;
     transition: background-color 0.3s ease;
-}
-
-
-.welcome-text {
-    text-align: center; 
-    font-size: 30px; 
-    color: #825CFF; 
-    margin-top: 60px; 
-    margin-bottom: -80px; 
-    margin-left: -280px;
-    font-weight: bold; 
 }
 
 
