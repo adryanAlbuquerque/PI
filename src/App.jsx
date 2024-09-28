@@ -13,6 +13,7 @@ import LoginCoord from './Components/Login/LoginCoord/LoginCoord';
 import CoordHome from './Components/Home/CoordHome';
 import Alunos from './Components/Principal/Coordenacao/Alunos';
 import Professores from './Components/Principal/Coordenacao/Professores';
+import Turmas from './Components/Principal/Coordenacao/Turmas';
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
         <Route path="/Home/CoordHome" element={<CoordHome />} />
         <Route path="/Principal/Coordenacao/Alunos" element={<Alunos />} />
         <Route path="/Principal/Coordenacao/Professores" element={<Professores />} />
+        <Route path="/Principal/Coordenacao/Turmas" element={<Turmas />} />
       </Routes>
     </Router>
   );

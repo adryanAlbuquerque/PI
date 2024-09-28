@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import './Professores.css'; // Certifique-se que o arquivo CSS está no caminho correto
+import './Turmas.css'; // Certifique-se que o arquivo CSS está no caminho correto
 import { useState } from 'react';
 
 const Home = () => {
@@ -18,8 +18,8 @@ const Home = () => {
         <ul>
           <li><Link to="/Home/CoordHome">Home</Link></li>
           <li><Link to="/Principal/Coordenacao/Alunos">Alunos</Link></li>
-          <li><Link to="">Professores</Link></li>
-          <li><Link to="/Principal/Coordenacao/Turmas">Turmas</Link></li>
+          <li><Link to="/Principal/Coordenacao/Professores">Professores</Link></li>
+          <li><Link to="">Turmas</Link></li>
           <li><Link to="">Relatórios</Link></li>
           <li><Link to="">Configurações</Link></li>
         </ul>

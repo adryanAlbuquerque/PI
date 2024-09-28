@@ -19,7 +19,7 @@ const Home = () => {
           <li><Link to="/Home/CoordHome">Home</Link></li>
           <li><Link to="">Alunos</Link></li>
           <li><Link to="/Principal/Coordenacao/Professores">Professores</Link></li>
-          <li><Link to="">Turmas</Link></li>
+          <li><Link to="/Principal/Coordenacao/Turmas">Turmas</Link></li>
           <li><Link to="">Relatórios</Link></li>
           <li><Link to="">Configurações</Link></li>
         </ul>
