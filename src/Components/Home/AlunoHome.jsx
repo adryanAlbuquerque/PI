@@ -20,10 +20,10 @@ const Home = () => {
 
       {/* Quadrados abaixo da imagem */}
       <div className="squares">
-        <div className="Bloco">Acessar Conceitos</div>
-        <div className="Bloco">Acessar Disciplinas</div>
-        <div className="Bloco">Acessar Documentos</div>
-        <div className="Bloco">Acessar Biblioteca</div>
+        <Link to="/Principal/Alunos/ConceitoAluno" className="Bloco">Acessar Conceitos</Link>
+        <Link to="/Principal/Alunos/DisciplinaAluno" className="Bloco">Acessar Disciplinas</Link>
+        <Link to="/Principal/Alunos/DocAluno" className="Bloco">Acessar Documentos</Link>
+        <Link to="/Principal/Alunos/BiblioAluno" className="Bloco">Acessar Biblioteca</Link>
       </div>
 
       {/* Sidebar */}
@@ -32,10 +32,10 @@ const Home = () => {
         <ul>
           <li><Link to="">Home</Link></li>
           <li><Link to="/Principal/Alunos/ConceitoAluno">Conceitos</Link></li>
-          <li><Link to="">Disciplinas</Link></li>
-          <li><Link to="">Documentos</Link></li>
-          <li><Link to="">Requerimentos</Link></li>
-          <li><Link to="">Biblioteca Digital</Link></li>
+          <li><Link to="/Principal/Alunos/DisciplinaAluno">Disciplinas</Link></li>
+          <li><Link to="/Principal/Alunos/DocAluno">Documentos</Link></li>
+          <li><Link to="/Principal/Alunos/RequeAluno">Requerimentos</Link></li>
+          <li><Link to="/Principal/Alunos/BiblioAluno">Biblioteca Digital</Link></li>
           <li><Link to="">Configurações</Link></li>
         </ul>
         <button id="Voltar">Sair</button>

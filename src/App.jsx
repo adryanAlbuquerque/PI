@@ -17,6 +17,10 @@ import Professores from './Components/Principal/Coordenacao/Professores';
 import Turmas from './Components/Principal/Coordenacao/Turmas';
 import Relatorios from './Components/Principal/Coordenacao/Relatorios';
 import ConceitoAluno from './Components/Principal/Alunos/ConceitoAluno';
+import DisciplinaAluno from './Components/Principal/Alunos/DisciplinaAluno';
+import DocAluno from './Components/Principal/Alunos/DocAluno';
+import RequeAluno from './Components/Principal/Alunos/RequeAluno';
+import BiblioAluno from './Components/Principal/Alunos/BiblioAluno';
 
 
 function App() {
@@ -35,6 +39,10 @@ function App() {
         <Route path="/Principal/Coordenacao/Turmas" element={<Turmas />} />
         <Route path="/Principal/Coordenacao/Relatorios" element={<Relatorios />} />
         <Route path="/Principal/Alunos/ConceitoAluno" element={<ConceitoAluno />} />
+        <Route path="/Principal/Alunos/DisciplinaAluno" element={<DisciplinaAluno />} />
+        <Route path="/Principal/Alunos/DocAluno" element={<DocAluno />} />
+        <Route path="/Principal/Alunos/RequeAluno" element={<RequeAluno />} />
+        <Route path="/Principal/Alunos/BiblioAluno" element={<BiblioAluno />} />
       </Routes>
     </Router>
   );
