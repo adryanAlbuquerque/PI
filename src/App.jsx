@@ -12,6 +12,7 @@ import LoginProf from './Components/Login/LoginProf/LoginProf';
 import LoginCoord from './Components/Login/LoginCoord/LoginCoord';
 import CoordHome from './Components/Home/CoordHome';
 import Alunos from './Components/Principal/Coordenacao/Alunos';
+import Professores from './Components/Principal/Coordenacao/Professores';
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
         <Route path="/Cadastro/Cadastro" element={<Cadastro />} />
         <Route path="/Home/CoordHome" element={<CoordHome />} />
         <Route path="/Principal/Coordenacao/Alunos" element={<Alunos />} />
+        <Route path="/Principal/Coordenacao/Professores" element={<Professores />} />
       </Routes>
     </Router>
   );
