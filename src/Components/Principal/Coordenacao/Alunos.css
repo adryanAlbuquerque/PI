@@ -1,0 +1,76 @@
+.home-page {
+    display: flex;
+    height: 100vh; /* Ocupa toda a altura da tela */
+    background-color: #F5F5FB;
+}
+
+/* Sidebar */
+.sidebar {
+    position: fixed; /* Fica fixa na tela */
+    top: 0;
+    left: 0;
+    width: 250px; /* Largura da sidebar */
+    height: 100%; /* Altura total */
+    background-color: #ffffff; /* Cor de fundo da sidebar */
+    transition: transform 0.3s ease; /* Transição suave */
+    transform: translateX(-100%); /* Esconde a sidebar inicialmente */
+    padding: 20px; /* Espaçamento interno */
+    overflow-y: auto; /* Permite rolagem vertical se necessário */
+    
+}
+
+#MedioTec {
+    height: 50px;
+    margin-left: 40px;
+}
+
+.sidebar.open {
+    transform: translateX(0); /* Mostra a sidebar quando aberta */
+}
+
+.sidebar ul {
+    list-style: none; /* Remove marcadores da lista */
+    margin-left: 25px;
+}
+
+.sidebar ul li:first-child {
+    margin-top: 50px; /* Adiciona espaçamento acima do primeiro item */
+}
+
+.sidebar li {
+    margin: 10px 0; /* Espaço entre os itens */
+    padding: 10px;
+    margin-bottom: 10px;
+    display: flex;
+}
+
+.sidebar a {
+    color: rgba(0, 0, 0, 0.5); /* Cor dos links */
+    text-decoration: none; /* Remove sublinhado */
+    transition: color 0.3s; /* Transição suave para a cor */
+}
+
+.sidebar a:hover {
+    color: #825CFF; /* Cor ao passar o mouse */
+}
+
+#Sair {
+    width: 100%;
+    max-width: 100px;
+    height: 35px;
+    background-color: #f4f4f9;
+    border: 1.5px solid #825cff;
+    outline: none;
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 15px;
+    color: #825cff;
+    margin-top: 90px;
+    margin-left: 45px;
+    transition: background-color 0.3s ease;
+}
+
+
+
+
+
