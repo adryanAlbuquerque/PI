@@ -1,5 +1,6 @@
 import { FaUser, FaLock, FaTimes } from 'react-icons/fa'; // Importando FaTimes para o ícone de X
 import { useState } from 'react';
+import { Link } from 'react-router-dom'; // Certifique-se de importar Link
 import './LoginCoord.css';
 
 const LoginProfessor = () => {
@@ -14,7 +15,7 @@ const LoginProfessor = () => {
 
   const handleGoHome = () => {
     // Lógica para redirecionar para a página inicial
-    window.location.href = '/';  // Redireciona para a página inicial
+    window.location.href = '/'; // Redireciona para a página inicial
   };
 
   return (
@@ -35,6 +36,7 @@ const LoginProfessor = () => {
               type="email"
               placeholder="Digite seu Email"
               onChange={(e) => setUsername(e.target.value)}
+              required // Adicionei required para validar o campo
             />
             <FaUser className="icon" />
           </div>
@@ -44,6 +46,7 @@ const LoginProfessor = () => {
               type="password"
               placeholder="Digite sua senha"
               onChange={(e) => setPassword(e.target.value)}
+              required // Adicionei required para validar o campo
             />
             <FaLock className="icon" />
           </div>
@@ -58,7 +61,10 @@ const LoginProfessor = () => {
             </a>
           </div>
 
-          <button id="button">LOGIN</button>
+          {/* Usando Link para redirecionar */}
+          <Link to="/Home/CoordHome">
+            <button type="submit" id="button">LOGIN</button>
+          </Link>
 
           {/* Botão para voltar à Home */}
           <button type="button" id="homeButton" onClick={handleGoHome}>

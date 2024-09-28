@@ -46,8 +46,8 @@ const Home = () => {
 
       {/* Quadro na parte inferior */}
       <div className="quadro-inferior">
-        <p id="Legenda">Inicie hoje a sua Transforme seu futuro:
-            faça o Ensino Médio com curso técnico e saia preparado para o 
+        <p id="Legenda1">Inicie hoje a sua jornada e transforme seu futuro:</p>
+        <p id="Legenda2">Faça o Ensino Médio com curso técnico e saia preparado para o 
             Enem e o mercado de trabalho!</p>
       </div>
     </div>
