@@ -10,7 +10,8 @@ const Home = () => {
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen); // Função para alternar a sidebar
 
   return (
-    <div className="home-page">
+    <body>
+      <div className="home-page">
       {/* Texto de boas-vindas */}
       <h1 className="BemVindo">Olá, Bem-vindo!</h1>
 
@@ -41,6 +42,8 @@ const Home = () => {
         <button id="Voltar">Sair</button>
       </div>
     </div>
+    </body>
+    
   );
 };
 
