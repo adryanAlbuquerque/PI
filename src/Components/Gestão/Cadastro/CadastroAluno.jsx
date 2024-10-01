@@ -1,67 +1,167 @@
-import { FaUser, FaLock, FaTimes, FaEnvelope  } from 'react-icons/fa'; // Importando FaTimes para o ícone de X
+import {FaTimes } from 'react-icons/fa';
 import { useState } from 'react';
 import './CadastroAluno.css';
 
 const CadastroAluno = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [email, setEmail] = useState("");
+  // Estados para os campos do formulário
+  const [nomeCompleto, setNomeCompleto] = useState("");
+  const [turma, setTurma] = useState("");
+  const [dataNascimento, setDataNascimento] = useState("");
+  const [telefone, setTelefone] = useState("");
+  const [cep, setCep] = useState("");
+  const [numero, setNumero] = useState("");
+  const [rua, setRua] = useState("");
+  const [bairro, setBairro] = useState("");
+  const [uf, setUf] = useState("");
+  const [cpf, setCpf] = useState("");
+  const [nomeResponsavel, setNomeResponsavel] = useState("");
+  const [emailResponsavel, setEmailResponsavel] = useState("");
+  const [cpfResponsavel, setCpfResponsavel] = useState("");
+  const [telefoneResponsavel, setTelefoneResponsavel] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    // Aqui você pode adicionar lógica para autenticar alunos
-    alert ("Enviando os dados:" + email + "-" + username + "-" + password);
+    // Aqui você pode adicionar lógica para enviar os dados do aluno
+    alert("Dados enviados!");
   };
 
-  const handleGoHome = () => {
-    // Lógica para redirecionar para a página inicial
-    window.location.href = '/';  // Redireciona para a página inicial
+  const handleGoAlunos = () => {
+    window.location.href = '/Principal/Coordenacao/Alunos';  // Redireciona para a página inicial
   };
 
   return (
     <div className="Container">
       <div id="CadAlunoBox">
-        {/* Ícone X no canto superior direito */}
-        <FaTimes className="closeIcon" onClick={handleGoHome} />
+        {/* Botão para voltar à página inicial */}
+        <FaTimes className="closeIcon" onClick={handleGoAlunos} />
 
         <div id="LogoCadAluno">
           <img src="/img/logo.png" alt="Logo" />
         </div>
 
         <form onSubmit={handleSubmit}>
-          <h1 id="MedioTec">CADASTRO</h1>
+          <h1 id="MedioTec">CADASTRO ALUNO</h1>
+
+          {/* Campos de dados do aluno */}
+          <div className="input-field">
+            <input
+              type="text"
+              placeholder="Nome Completo"
+              onChange={(e) => setNomeCompleto(e.target.value)}
+            />
+          </div>
 
           <div className="input-field">
             <input
-              type="username"
-              placeholder="Nome Completo"
-              onChange={(e) => setUsername(e.target.value)}
+              type="text"
+              placeholder="Turma"
+              onChange={(e) => setTurma(e.target.value)}
             />
-            <FaUser className="icon" />
           </div>
-          
+
+          <div className="input-field">
+            <input
+              type="date"
+              placeholder="Data de Nascimento"
+              onChange={(e) => setDataNascimento(e.target.value)}
+            />
+          </div>
+
+          <div className="input-field">
+            <input
+              type="tel"
+              placeholder="Telefone"
+              onChange={(e) => setTelefone(e.target.value)}
+            />
+          </div>
+
+          <div className="input-field">
+            <input
+              type="text"
+              placeholder="CEP"
+              onChange={(e) => setCep(e.target.value)}
+            />
+          </div>
+
+          <div className="input-field">
+            <input
+              type="text"
+              placeholder="Número"
+              onChange={(e) => setNumero(e.target.value)}
+            />
+          </div>
+
+          <div className="input-field">
+            <input
+              type="text"
+              placeholder="Rua"
+              onChange={(e) => setRua(e.target.value)}
+            />
+          </div>
+
+          <div className="input-field">
+            <input
+              type="text"
+              placeholder="Bairro"
+              onChange={(e) => setBairro(e.target.value)}
+            />
+          </div>
+
+          <div className="input-field">
+            <input
+              type="text"
+              placeholder="UF"
+              onChange={(e) => setUf(e.target.value)}
+            />
+          </div>
+
+          <div className="input-field">
+            <input
+              type="text"
+              placeholder="CPF"
+              onChange={(e) => setCpf(e.target.value)}
+            />
+          </div>
+
+          {/* Campos de dados do responsável */}
+          <h2>Dados do Responsável</h2>
+
+          <div className="input-field">
+            <input
+              type="text"
+              placeholder="Nome do Responsável"
+              onChange={(e) => setNomeResponsavel(e.target.value)}
+            />
+          </div>
+
           <div className="input-field">
             <input
               type="email"
-              placeholder="Email"
-              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Email do Responsável"
+              onChange={(e) => setEmailResponsavel(e.target.value)}
             />
-            <FaEnvelope  className="icon" />
           </div>
 
           <div className="input-field">
             <input
-              type="password"
-              placeholder="Matrícula"
-              onChange={(e) => setPassword(e.target.value)}
+              type="text"
+              placeholder="CPF do Responsável"
+              onChange={(e) => setCpfResponsavel(e.target.value)}
             />
-            <FaLock className="icon" />
+          </div>
+
+          <div className="input-field">
+            <input
+              type="tel"
+              placeholder="Telefone do Responsável"
+              onChange={(e) => setTelefoneResponsavel(e.target.value)}
+            />
           </div>
 
           <button id="button">CADASTRAR</button>
-
+          
           {/* Botão para voltar à Home */}
-          <button type="button" id="homeButton" onClick={handleGoHome}>
+          <button type="button" id="homeButton" onClick={handleGoAlunos}>
             Voltar
           </button>
         </form>

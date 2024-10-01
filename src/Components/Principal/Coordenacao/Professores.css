@@ -1,4 +1,4 @@
-.home-page {
+.home-Professor {
     display: flex;
     height: 100vh; /* Ocupa toda a altura da tela */
     background-color: #F5F5FB;
@@ -70,7 +70,65 @@
     transition: background-color 0.3s ease;
 }
 
+#CadastroProfessor {
+    background-color: #f4f4f9;
+    border: 1.5px solid #825cff;
+    outline: none;
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 15px;
+    color: #825cff;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    max-width: 100px;
+    height: 35px;
+    margin-top: 10px;
+}
+
+#DashboardProfessor{
+  background-color: #f8f6ff;
+  padding: 40px 20px;
+  box-shadow: 0 7px 12px rgba(0, 0, 0, 0.1);
+  max-width: 450px;
+  width: 100%;
+
+}
 
 
+.main-content {
+    margin-left: 250px; /* Espaço ao lado da sidebar */
+    padding: 20px;
+    width: calc(100% - 250px); /* Para ocupar o espaço restante */
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+  
+@media (max-width: 500px) {
+    #DashboardProfessor {
+        padding: 20px 10px;
+    }
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+    }
+}
 
-
+#CadastroButton {
+    width: 100%;
+    max-width: 400px;
+    height: 45px;
+    background-color: #4F20EC;
+    border: none;
+    outline: none;
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 16px;
+    color: white;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+  }
+  
+  #CadastroButton:hover {
+    background-color: #3F18C0;
+  }

@@ -12,6 +12,9 @@ const Alunos = () => {
   const handleCadastro = () => {
     window.location.href = '/Cadastro/CadastroAluno';  
   };
+  const handleSair = () => {
+    window.location.href = '/Home/Home.jsx';  
+  };
 
   return (
     <body className="home-aluno">    
@@ -28,7 +31,9 @@ const Alunos = () => {
           <li><Link to="/Principal/Coordenacao/Relatorios">Relatórios</Link></li>
           <li><Link to="">Configurações</Link></li>
         </ul>
-        <button id="Sair"> Sair </button>
+        <div>
+          <button type="button" id="SairButton" onClick={handleSair}>Sair</button>
+        </div>
     </nav>
 
     {/* Conteúdo principal (falta o conteúdo aqui) */}
