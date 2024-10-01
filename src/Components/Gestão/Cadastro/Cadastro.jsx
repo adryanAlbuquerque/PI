@@ -2,7 +2,7 @@ import { FaTimes } from 'react-icons/fa';
 import { useState } from 'react';
 import './Cadastro.css';
 
-const CadastroGeral = () => {
+const Cadastro = () => {
   // Estados para os campos do formulário
   const [nomeCompleto, setNomeCompleto] = useState("");
   const [cpf, setCpf] = useState("");
@@ -95,4 +95,4 @@ const CadastroGeral = () => {
   );
 };
 
-export default CadastroGeral;
+export default Cadastro;

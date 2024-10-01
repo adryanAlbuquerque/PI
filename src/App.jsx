@@ -1,6 +1,6 @@
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import CadastroAluno from './Components/Gestão/Cadastro/Cadastro';
+import Cadastro from './Components/Gestão/Cadastro/Cadastro';
 //import Comunicados from './Components/Comunicados/Comunicados';
 import Home from './Components/Home/Home';
 import LoginAluno from './Components/Login/LoginAluno/LoginAluno';
@@ -27,7 +27,7 @@ function App() {
         <Route path="/login/aluno" element={<LoginAluno />} />
         <Route path="/login/prof" element={<LoginProf />} />
         <Route path="/login/coord" element={<LoginCoord />} />
-        <Route path="/Cadastro/CadastroAluno" element={<CadastroAluno />} />
+        <Route path="/Cadastro/Cadastro" element={<Cadastro />} />
         <Route path="/Home/CoordHome" element={<CoordHome />} />
         <Route path="/Home/AlunoHome" element={<AlunoHome />} />
         <Route path="/Principal/Coordenacao/Alunos" element={<Alunos />} />

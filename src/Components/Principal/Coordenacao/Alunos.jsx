@@ -15,7 +15,7 @@ const Alunos = () => {
   ];
 
   const handleCadastro = () => {
-    window.location.href = '/Cadastro/CadastroAluno';
+    window.location.href = '/Cadastro/Cadastro';
   };
 
   const handleSair = () => {
