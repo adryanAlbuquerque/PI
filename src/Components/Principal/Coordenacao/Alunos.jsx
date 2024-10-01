@@ -10,7 +10,7 @@ const Alunos = () => {
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen); // Função para alternar a sidebar
 
   const handleCadastro = () => {
-    window.location.href = 'Gestão/Cadastro/CadastroAluno';  
+    window.location.href = '/Cadastro/CadastroAluno';  
   };
 
   return (

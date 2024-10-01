@@ -1,8 +1,8 @@
 import { FaUser, FaLock, FaTimes, FaEnvelope  } from 'react-icons/fa'; // Importando FaTimes para o ícone de X
 import { useState } from 'react';
-import './Cadastro.css';
+import './CadastroAluno.css';
 
-const Cadastro = () => {
+const CadastroAluno = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
@@ -20,11 +20,11 @@ const Cadastro = () => {
 
   return (
     <div className="Container">
-      <div id="LoginBox">
+      <div id="CadAlunoBox">
         {/* Ícone X no canto superior direito */}
         <FaTimes className="closeIcon" onClick={handleGoHome} />
 
-        <div id="LogoAluno">
+        <div id="LogoCadAluno">
           <img src="/img/logo.png" alt="Logo" />
         </div>
 
@@ -70,4 +70,4 @@ const Cadastro = () => {
   );
 };
 
-export default Cadastro;
+export default CadastroAluno;
