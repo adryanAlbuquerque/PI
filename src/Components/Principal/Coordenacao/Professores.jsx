@@ -11,7 +11,7 @@ const Professores = () => {
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen); // Função para alternar a sidebar
 
   const handleCadastro = () => {
-    window.location.href = '/Cadastro/CadastroProfessor';  
+    window.location.href = '/Cadastro/CadastroAluno';  
   };
 
   const handleSair = () => {
