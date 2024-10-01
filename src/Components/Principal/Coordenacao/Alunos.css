@@ -3,57 +3,54 @@
     height: 100vh; /* Ocupa toda a altura da tela */
     background-color: #F5F5FB;
 }
-
-/* Sidebar */
+  
+  /* Sidebar */
 .sidebar {
-    position: fixed; /* Fica fixa na tela */
+    position: fixed;
     top: 0;
     left: 0;
     width: 250px; /* Largura da sidebar */
     height: 100%; /* Altura total */
-    background-color: #ffffff; /* Cor de fundo da sidebar */
-    transition: transform 0.3s ease; /* Transição suave */
-    transform: translateX(-100%); /* Esconde a sidebar inicialmente */
-    padding: 20px; /* Espaçamento interno */
-    overflow-y: auto; /* Permite rolagem vertical se necessário */
-    
+    background-color: #ffffff;
+    transition: transform 0.3s ease;
+    transform: translateX(-100%);
+    padding: 20px;
+    overflow-y: auto;
 }
-
+  
 #MedioTec {
     height: 50px;
     margin-left: 40px;
 }
-
+  
 .sidebar.open {
     transform: translateX(0); /* Mostra a sidebar quando aberta */
 }
-
+  
 .sidebar ul {
-    list-style: none; /* Remove marcadores da lista */
+    list-style: none;
     margin-left: 25px;
 }
-
+  
 .sidebar ul li:first-child {
-    margin-top: 50px; /* Adiciona espaçamento acima do primeiro item */
+    margin-top: 50px;
 }
-
+  
 .sidebar li {
-    margin: 10px 0; /* Espaço entre os itens */
+    margin: 10px 0;
     padding: 10px;
-    margin-bottom: 10px;
-    display: flex;
 }
-
+  
 .sidebar a {
-    color: rgba(0, 0, 0, 0.5); /* Cor dos links */
-    text-decoration: none; /* Remove sublinhado */
-    transition: color 0.3s; /* Transição suave para a cor */
+    color: rgba(0, 0, 0, 0.5);
+    text-decoration: none;
+    transition: color 0.3s;
 }
-
+  
 .sidebar a:hover {
-    color: #825CFF; /* Cor ao passar o mouse */
+    color: #825CFF;
 }
-
+  
 #SairButton {
     width: 100%;
     max-width: 100px;
@@ -69,7 +66,7 @@
     margin-left: 45px;
     transition: background-color 0.3s ease;
 }
-
+  
 #CadastroAluno {
     background-color: #f4f4f9;
     border: 1.5px solid #825cff;
@@ -85,50 +82,133 @@
     margin-top: 10px;
 }
 
-#DashboardAluno{
+#DashboardAluno {
   background-color: #f8f6ff;
-  padding: 40px 20px;
+  padding: 20px;
   box-shadow: 0 7px 12px rgba(0, 0, 0, 0.1);
-  max-width: 450px;
+  max-width: 1200px; /* Tamanho máximo para telas grandes */
+  min-width: 300px;  /* Tamanho mínimo para telas pequenas */
   width: 100%;
-
+  margin: 0 auto;  /* Centraliza o painel */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
-
 
 .main-content {
-    margin-left: 250px; /* Espaço ao lado da sidebar */
-    padding: 20px;
-    width: calc(100% - 250px); /* Para ocupar o espaço restante */
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-}
-  
-@media (max-width: 500px) {
-    #DashboardAluno {
-        padding: 20px 10px;
-    }
-    .main-content {
-        margin-left: 0;
-        width: 100%;
-    }
+  margin-left: 250px; /* Espaço ao lado da sidebar */
+  padding: 20px;
+  width: calc(100% - 250px); /* Para ocupar o espaço restante */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
 }
 
-#CadastroButton {
+@media (max-width: 500px) {
+  #DashboardAluno {
+    padding: 20px 10px;
+    min-width: 100%; /* Para telas muito pequenas */
+  }
+  .main-content {
+    margin-left: 0;
     width: 100%;
-    max-width: 400px;
-    height: 45px;
+  }
+}
+  
+#CadastroButton {
+    width: 150px;  /* Largura reduzida */
+    height: 40px;  /* Mesma altura das caixas de pesquisa e filtro */
     background-color: #4F20EC;
     border: none;
     outline: none;
     border-radius: 7px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 14px;  /* Tamanho de fonte ligeiramente reduzido */
     color: white;
-    margin-top: 10px;
+    margin-bottom: 20px; /* Espaço inferior ao botão */
     transition: background-color 0.3s ease;
-  }
+}
   
-  #CadastroButton:hover {
+#CadastroButton:hover {
     background-color: #3F18C0;
-  }
+}
+  
+/* Estilos da barra de pesquisa e filtro */
+  .search-filter {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
+}
+  
+.search-input {
+    width: 60%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1.5px solid #825cff;
+    height: 40px;
+}
+  
+.filter-select {
+    width: 35%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1.5px solid #825cff;
+    height: 40px;
+}
+  
+/* Estilos da tabela */
+.alunos-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #fff; /* Fundo branco para a tabela */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+  
+.alunos-table th, .alunos-table td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+  
+.alunos-table th {
+    background-color: #f4f4f9;
+    font-weight: bold;
+}
+  
+.alunos-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+  
+.alunos-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+  
+.edit-button, .delete-button {
+    padding: 5px 10px;
+    margin-right: 5px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+  
+.edit-button {
+    background-color: #4F20EC;
+    color: white;
+}
+  
+.delete-button {
+    background-color: #E53935;
+    color: white;
+}
+  
+.edit-button:hover {
+    background-color: #3F18C0;
+}
+  
+.delete-button:hover {
+    background-color: #C62828;
+}
+  
