@@ -6,6 +6,7 @@ const CadastroAluno = () => {
   // Estados para os campos do formulário
   const [nomeCompleto, setNomeCompleto] = useState("");
   const [turma, setTurma] = useState("");
+  const [turno, setTurno] = useState("");
   const [dataNascimento, setDataNascimento] = useState("");
   const [telefone, setTelefone] = useState("");
   const [cep, setCep] = useState("");
@@ -56,6 +57,14 @@ const CadastroAluno = () => {
               type="text"
               placeholder="Turma"
               onChange={(e) => setTurma(e.target.value)}
+            />
+          </div>
+
+          <div className="input-field">
+            <input
+              type="text"
+              placeholder="Turno"
+              onChange={(e) => setTurno(e.target.value)}
             />
           </div>
 
