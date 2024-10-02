@@ -211,4 +211,80 @@
 .delete-button:hover {
     background-color: #C62828;
 }
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo escurecido */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modal-content {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    width: 400px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+  }
+  
+  .modal-content h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #4F20EC;
+  }
+  
+  .modal-content label {
+    display: block;
+    margin-bottom: 10px;
+    text-align: left;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .modal-content input, .modal-content select {
+    width: 100%;
+    padding: 10px;
+    border: 1.5px solid #825cff;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    outline: none;
+  }
+  
+  .modal-buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .cancel-button, .save-button {
+    width: 45%;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .cancel-button {
+    background-color: #E53935;
+    color: white;
+  }
+  
+  .save-button {
+    background-color: #4F20EC;
+    color: white;
+  }
+  
+  .cancel-button:hover {
+    background-color: #C62828;
+  }
+  
+  .save-button:hover {
+    background-color: #3F18C0;
+  }
   

@@ -7,7 +7,9 @@ const Alunos = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [filtroTurma, setFiltroTurma] = useState('');
-  
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedAluno, setSelectedAluno] = useState(null);
+
   const alunos = [
     { matricula: '2021001', nome: 'Ana Souza', turma: 'Turma A', turno: 'Manhã', status: 'Ativo' },
     { matricula: '2021002', nome: 'João Silva', turma: 'Turma B', turno: 'Tarde', status: 'Inativo' },
@@ -28,6 +30,16 @@ const Alunos = () => {
 
   const handleFiltroTurma = (event) => {
     setFiltroTurma(event.target.value);
+  };
+
+  const handleEdit = (aluno) => {
+    setSelectedAluno(aluno);
+    setIsModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+    setSelectedAluno(null);
   };
 
   const filteredAlunos = alunos.filter((aluno) =>
@@ -95,7 +107,7 @@ const Alunos = () => {
                   <td>{aluno.turno}</td>
                   <td>{aluno.status}</td>
                   <td>
-                    <button onClick={() => window.location.href = `/EdicaoAluno/${aluno.matricula}`} className="edit-button">Editar</button>
+                    <button onClick={() => handleEdit(aluno)} className="edit-button">Editar</button>
                     <button onClick={() => alert(`Aluno ${aluno.nome} excluído.`)} className="delete-button">Excluir</button>
                   </td>
                 </tr>
@@ -104,6 +116,34 @@ const Alunos = () => {
           </table>
         </div>
       </main>
+
+      {/* Modal de Edição */}
+      {isModalOpen && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <h2>Editar Aluno</h2>
+            <form>
+              <label>Matrícula</label>
+              <input type="text" value={selectedAluno?.matricula} readOnly />
+              <label>Nome</label>
+              <input type="text" value={selectedAluno?.nome} readOnly />
+              <label>Turma</label>
+              <input type="text" value={selectedAluno?.turma} readOnly />
+              <label>Turno</label>
+              <input type="text" value={selectedAluno?.turno} readOnly />
+              <label>Status</label>
+              <select value={selectedAluno?.status}>
+                <option value="Ativo">Ativo</option>
+                <option value="Inativo">Inativo</option>
+              </select>
+              <div className="modal-buttons">
+                <button type="button" onClick={handleModalClose} className="cancel-button">Cancelar</button>
+                <button type="submit" className="save-button">Salvar</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </body>
   );
 };
