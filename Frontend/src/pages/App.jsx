@@ -1,22 +1,22 @@
 import './App.css';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Cadastro from './Components/Gestão/Cadastro/Cadastro';
+import Cadastro from '../Components/Gestão/Cadastro/Cadastro';
 //import Comunicados from './Components/Comunicados/Comunicados';
-import Home from './Components/Home/Home';
-import LoginAluno from './Components/Login/LoginAluno/LoginAluno';
-import LoginProf from './Components/Login/LoginProf/LoginProf';
-import LoginCoord from './Components/Login/LoginCoord/LoginCoord';
-import CoordHome from './Components/Home/CoordHome';
-import AlunoHome from './Components/Home/AlunoHome';
-import Alunos from './Components/Principal/Coordenacao/Alunos';
-import Professores from './Components/Principal/Coordenacao/Professores';
-import Turmas from './Components/Principal/Coordenacao/Turmas';
-import Relatorios from './Components/Principal/Coordenacao/Relatorios';
-import ConceitoAluno from './Components/Principal/Alunos/ConceitoAluno';
-import DisciplinaAluno from './Components/Principal/Alunos/DisciplinaAluno';
-import DocAluno from './Components/Principal/Alunos/DocAluno';
-import RequeAluno from './Components/Principal/Alunos/RequeAluno';
-import BiblioAluno from './Components/Principal/Alunos/BiblioAluno';
+import Home from '../Components/Home/Home';
+import LoginAluno from '../Components/Login/LoginAluno/LoginAluno';
+import LoginProf from '../Components/Login/LoginProf/LoginProf';
+import LoginCoord from '../Components/Login/LoginCoord/LoginCoord';
+import CoordHome from '../Components/Home/CoordHome';
+import AlunoHome from '../Components/Home/AlunoHome';
+import Alunos from '../Components/Principal/Coordenacao/Alunos';
+import Professores from '../Components/Principal/Coordenacao/Professores';
+import Turmas from '../Components/Principal/Coordenacao/Turmas';
+import Relatorios from '../Components/Principal/Coordenacao/Relatorios';
+import ConceitoAluno from '../Components/Principal/Alunos/ConceitoAluno';
+import DisciplinaAluno from '../Components/Principal/Alunos/DisciplinaAluno';
+import DocAluno from '../Components/Principal/Alunos/DocAluno';
+import RequeAluno from '../Components/Principal/Alunos/RequeAluno';
+import BiblioAluno from '../Components/Principal/Alunos/BiblioAluno';
 
 
 function App() {
