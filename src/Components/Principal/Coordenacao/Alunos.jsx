@@ -33,13 +33,28 @@ const Alunos = () => {
   };
 
   const handleEdit = (aluno) => {
-    setSelectedAluno(aluno);
+    setSelectedAluno({ ...aluno });
     setIsModalOpen(true);
   };
 
   const handleModalClose = () => {
     setIsModalOpen(false);
     setSelectedAluno(null);
+  };
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setSelectedAluno((prevAluno) => ({
+      ...prevAluno,
+      [name]: value,
+    }));
+  };
+
+  const handleSave = (event) => {
+    event.preventDefault();
+    console.log('Dados salvos:', selectedAluno);
+    // Aqui você pode adicionar a lógica para salvar os dados editados
+    setIsModalOpen(false);
   };
 
   const filteredAlunos = alunos.filter((aluno) =>
@@ -122,17 +137,41 @@ const Alunos = () => {
         <div className="modal-overlay">
           <div className="modal-content">
             <h2>Editar Aluno</h2>
-            <form>
+            <form onSubmit={handleSave}>
               <label>Matrícula</label>
-              <input type="text" value={selectedAluno?.matricula} readOnly />
+              <input
+                type="text"
+                name="matricula"
+                value={selectedAluno?.matricula || ''}
+                onChange={handleInputChange}
+              />
               <label>Nome</label>
-              <input type="text" value={selectedAluno?.nome} readOnly />
+              <input
+                type="text"
+                name="nome"
+                value={selectedAluno?.nome || ''}
+                onChange={handleInputChange}
+              />
               <label>Turma</label>
-              <input type="text" value={selectedAluno?.turma} readOnly />
+              <input
+                type="text"
+                name="turma"
+                value={selectedAluno?.turma || ''}
+                onChange={handleInputChange}
+              />
               <label>Turno</label>
-              <input type="text" value={selectedAluno?.turno} readOnly />
+              <input
+                type="text"
+                name="turno"
+                value={selectedAluno?.turno || ''}
+                onChange={handleInputChange}
+              />
               <label>Status</label>
-              <select value={selectedAluno?.status}>
+              <select
+                name="status"
+                value={selectedAluno?.status || ''}
+                onChange={handleInputChange}
+              >
                 <option value="Ativo">Ativo</option>
                 <option value="Inativo">Inativo</option>
               </select>
