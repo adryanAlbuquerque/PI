@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import './Alunos.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+//import { getAlunos, createAluno, updateAluno, deleteAluno } from '../../../../src/Service/APIServices';
 
 const Alunos = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -9,19 +10,58 @@ const Alunos = () => {
   const [filtroTurma, setFiltroTurma] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedAluno, setSelectedAluno] = useState(null);
+  const [alunos, setAlunos] = useState([]);
 
-  const alunos = [
-    { matricula: '2021001', nome: 'Ana Souza', turma: 'Turma A', turno: 'Manhã', status: 'Ativo' },
-    { matricula: '2021002', nome: 'João Silva', turma: 'Turma B', turno: 'Tarde', status: 'Inativo' },
-    // Adicione mais alunos aqui
-  ];
+  // Obter todos os alunos ao carregar a página
+  useEffect(() => {
+    getAlunos()
+      .then(response => {
+        setAlunos(response.data);
+      })
+      .catch(error => {
+        console.error('Erro ao buscar alunos:', error);
+      });
+  }, []);
 
-  const handleCadastro = () => {
-    window.location.href = '/Cadastro/Cadastro';
+  // Função para cadastrar um novo aluno
+  const handleCadastro = (novoAluno) => {
+    createAluno(novoAluno)
+      .then(response => {
+        setAlunos([...alunos, response.data]);
+        console.log('Aluno cadastrado:', response.data);
+      })
+      .catch(error => {
+        console.error('Erro ao cadastrar aluno:', error);
+      });
   };
 
-  const handleSair = () => {
-    window.location.href = '/Home/Home.jsx';
+  // Função para editar um aluno
+  const handleSave = (event) => {
+    event.preventDefault();
+    updateAluno(selectedAluno.id, selectedAluno)
+      .then(response => {
+        const updatedAlunos = alunos.map(aluno =>
+          aluno.id === selectedAluno.id ? response.data : aluno
+        );
+        setAlunos(updatedAlunos);
+        setIsModalOpen(false);
+        console.log('Aluno atualizado:', response.data);
+      })
+      .catch(error => {
+        console.error('Erro ao atualizar aluno:', error);
+      });
+  };
+
+  // Função para excluir um aluno
+  const handleDelete = (id) => {
+    deleteAluno(id)
+      .then(() => {
+        setAlunos(alunos.filter(aluno => aluno.id !== id));
+        console.log('Aluno excluído');
+      })
+      .catch(error => {
+        console.error('Erro ao excluir aluno:', error);
+      });
   };
 
   const handleSearch = (event) => {
@@ -50,16 +90,9 @@ const Alunos = () => {
     }));
   };
 
-  const handleSave = (event) => {
-    event.preventDefault();
-    console.log('Dados salvos:', selectedAluno);
-    // Aqui você pode adicionar a lógica para salvar os dados editados
-    setIsModalOpen(false);
-  };
-
   const filteredAlunos = alunos.filter((aluno) =>
     (aluno.nome.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    aluno.matricula.includes(searchTerm)) &&
+      aluno.matricula.includes(searchTerm)) &&
     (filtroTurma === '' || aluno.turma === filtroTurma)
   );
 
@@ -77,14 +110,20 @@ const Alunos = () => {
           <li><Link to="">Configurações</Link></li>
         </ul>
         <div>
-          <button type="button" id="SairButton" onClick={handleSair}>Sair</button>
+          <button type="button" id="SairButton" onClick={() => window.location.href = '/Home/Home.jsx'}>
+            Sair
+          </button>
         </div>
       </nav>
 
       {/* Conteúdo principal */}
       <main className="main-content">
         <div id="DashboardAluno">
-          <button type="button" id="CadastroButton" onClick={handleCadastro}>Cadastro</button>
+          <button type="button" id="CadastroButton" onClick={() => handleCadastro({
+            matricula: '2021003', nome: 'Novo Aluno', turma: 'Turma A', turno: 'Manhã', status: 'Ativo'
+          })}>
+            Cadastro
+          </button>
           <div className="search-filter">
             <input
               type="text"
@@ -115,7 +154,7 @@ const Alunos = () => {
             </thead>
             <tbody>
               {filteredAlunos.map((aluno) => (
-                <tr key={aluno.matricula}>
+                <tr key={aluno.id}>
                   <td>{aluno.matricula}</td>
                   <td>{aluno.nome}</td>
                   <td>{aluno.turma}</td>
@@ -123,7 +162,7 @@ const Alunos = () => {
                   <td>{aluno.status}</td>
                   <td>
                     <button onClick={() => handleEdit(aluno)} className="edit-button">Editar</button>
-                    <button onClick={() => alert(`Aluno ${aluno.nome} excluído.`)} className="delete-button">Excluir</button>
+                    <button onClick={() => handleDelete(aluno.id)} className="delete-button">Excluir</button>
                   </td>
                 </tr>
               ))}
