@@ -273,11 +273,13 @@
   .cancel-button {
     background-color: #E53935;
     color: white;
+    border: transparent;
   }
   
   .save-button {
     background-color: #4F20EC;
     color: white;
+    border: transparent;
   }
   
   .cancel-button:hover {
