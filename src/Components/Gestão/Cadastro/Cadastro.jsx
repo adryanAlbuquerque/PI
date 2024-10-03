@@ -10,6 +10,10 @@ const Cadastro = () => {
   const [senha, setSenha] = useState("");
   const [grupo, setGrupo] = useState(""); // Deixa vazio inicialmente para o placeholder
 
+  // Estado adicional para armazenar informações específicas dos usuários
+  const [turma, setTurma] = useState("");
+  const [turno, setTurno] = useState("");
+
   const handleSubmit = (event) => {
     event.preventDefault();
     // Lógica para enviar os dados do formulário
@@ -17,11 +21,24 @@ const Cadastro = () => {
       alert("Por favor, selecione um tipo de usuário.");
       return;
     }
+    
+    const dadosUsuario = {
+      nomeCompleto,
+      cpf,
+      email,
+      senha,
+      grupo,
+      turma: grupo === 'aluno' ? turma : undefined,
+      turno: grupo === 'aluno' ? turno : undefined,
+    };
+
+    // Aqui você pode adicionar a lógica para enviar dados para a API
+    console.log(dadosUsuario);
     alert("Dados enviados!");
   };
 
   const handleGoBack = () => {
-    window.location.href = '/Home/CoordHome';  // Redireciona para a página principal
+    window.location.href = '/Home/CoordHome'; // Redireciona para a página principal
   };
 
   return (
@@ -41,7 +58,11 @@ const Cadastro = () => {
           <div className="input-field">
             <select
               value={grupo}
-              onChange={(e) => setGrupo(e.target.value)}
+              onChange={(e) => {
+                setGrupo(e.target.value);
+                setTurma(""); // Resetando turma e turno ao mudar o grupo
+                setTurno("");
+              }}
             >
               <option value="" disabled>Usuário</option>
               <option value="aluno">Aluno</option>
@@ -55,7 +76,9 @@ const Cadastro = () => {
             <input
               type="text"
               placeholder="Nome Completo"
+              value={nomeCompleto}
               onChange={(e) => setNomeCompleto(e.target.value)}
+              required
             />
           </div>
 
@@ -63,7 +86,9 @@ const Cadastro = () => {
             <input
               type="text"
               placeholder="CPF"
+              value={cpf}
               onChange={(e) => setCpf(e.target.value)}
+              required
             />
           </div>
 
@@ -71,7 +96,9 @@ const Cadastro = () => {
             <input
               type="email"
               placeholder="Email"
+              value={email}
               onChange={(e) => setEmail(e.target.value)}
+              required
             />
           </div>
 
@@ -79,9 +106,39 @@ const Cadastro = () => {
             <input
               type="password"
               placeholder="Senha"
+              value={senha}
               onChange={(e) => setSenha(e.target.value)}
+              required
             />
           </div>
+
+          {/* Campos específicos para Alunos */}
+          {grupo === 'aluno' && (
+            <>
+              <div className="input-field">
+                <input
+                  type="text"
+                  placeholder="Turma"
+                  value={turma}
+                  onChange={(e) => setTurma(e.target.value)}
+                  required
+                />
+              </div>
+
+              <div className="input-field">
+                <select
+                  value={turno}
+                  onChange={(e) => setTurno(e.target.value)}
+                  required
+                >
+                  <option value="" disabled>Turno</option>
+                  <option value="Manhã">Manhã</option>
+                  <option value="Tarde">Tarde</option>
+                  <option value="Noite">Noite</option>
+                </select>
+              </div>
+            </>
+          )}
 
           <button id="button">CADASTRAR</button>
 
