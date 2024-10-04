@@ -1,19 +1,16 @@
 import { Link } from 'react-router-dom';
 import './Alunos.css';
 import { useState, useEffect } from 'react';
-//import { getAlunos, createAluno, updateAluno, deleteAluno } from '../../../Service/APIServices';
+import { getAlunos, updateAluno, deleteAluno } from '../../../Service/APIServices';
 
 const Alunos = () => {
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [filtroTurma, setFiltroTurma] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedAluno, setSelectedAluno] = useState(null);
-  //const [alunos, setAlunos] = useState([]);
+  const [alunos, setAlunos] = useState([]);
 
-  // Obter todos os alunos ao carregar a página
-  /*useEffect(() => {
+  useEffect(() => {
     getAlunos()
       .then(response => {
         setAlunos(response.data);
@@ -21,21 +18,8 @@ const Alunos = () => {
       .catch(error => {
         console.error('Erro ao buscar alunos:', error);
       });
-  }, []); */
+  }, []);
 
-  // Função para cadastrar um novo aluno
-  const handleCadastro = (novoAluno) => {
-    createAluno(novoAluno)
-      .then(response => {
-        setAlunos([...alunos, response.data]);
-        console.log('Aluno cadastrado:', response.data);
-      })
-      .catch(error => {
-        console.error('Erro ao cadastrar aluno:', error);
-      });
-  };
-
-  // Função para editar um aluno
   const handleSave = (event) => {
     event.preventDefault();
     updateAluno(selectedAluno.id, selectedAluno)
@@ -52,7 +36,6 @@ const Alunos = () => {
       });
   };
 
-  // Função para excluir um aluno
   const handleDelete = (id) => {
     deleteAluno(id)
       .then(() => {
@@ -99,7 +82,7 @@ const Alunos = () => {
   return (
     <body className="home-aluno">
       {/* Sidebar */}
-      <nav className={`sidebar ${isSidebarOpen ? 'open' : 'closed'}`}>
+      <nav className="sidebar">
         <img id="MedioTec" src="/img/logo.png" alt="Logo" />
         <ul>
           <li><Link to="/Home/CoordHome">Home</Link></li>
@@ -116,14 +99,12 @@ const Alunos = () => {
         </div>
       </nav>
 
-      {/* Conteúdo principal */}
+      {/* Main content */}
       <main className="main-content">
         <div id="DashboardAluno">
-          <button type="button" id="CadastroButton" onClick={() => handleCadastro({
-            matricula: '2021003', nome: 'Novo Aluno', turma: 'Turma A', turno: 'Manhã', status: 'Ativo'
-          })}>
+          <Link to="/Cadastro/Cadastro" id="CadastroButton">
             Cadastro
-          </button>
+          </Link>
           <div className="search-filter">
             <input
               type="text"
@@ -136,11 +117,10 @@ const Alunos = () => {
               <option value="">Filtrar por turma</option>
               <option value="Turma A">Turma A</option>
               <option value="Turma B">Turma B</option>
-              {/* Adicione mais opções de turma conforme necessário */}
             </select>
           </div>
-          
-          {/* Tabela de alunos */}
+
+          {/* Students table */}
           <table className="alunos-table">
             <thead>
               <tr>
@@ -171,7 +151,7 @@ const Alunos = () => {
         </div>
       </main>
 
-      {/* Modal de Edição */}
+      {/* Modal for Editing */}
       {isModalOpen && (
         <div className="modal-overlay">
           <div className="modal-content">

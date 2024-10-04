@@ -1,21 +1,18 @@
 import { FaTimes } from 'react-icons/fa';
 import { useState } from 'react';
+import { createAluno } from '../../../Service/APIServices'; // Import the createAluno function
 import './Cadastro.css';
 
 const Cadastro = () => {
   // Estados para os campos do formulário
   const [nomeCompleto, setNomeCompleto] = useState("");
-  const [cpf, setCpf] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
   const [grupo, setGrupo] = useState(""); // Deixa vazio inicialmente para o placeholder
 
-  // Estado adicional para armazenar informações específicas dos usuários
-  const [turma, setTurma] = useState("");
-  const [turno, setTurno] = useState("");
-
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    
     // Lógica para enviar os dados do formulário
     if (!grupo) {
       alert("Por favor, selecione um tipo de usuário.");
@@ -23,18 +20,21 @@ const Cadastro = () => {
     }
     
     const dadosUsuario = {
-      nomeCompleto,
-      cpf,
+      nome: nomeCompleto,
       email,
       senha,
-      grupo,
-      turma: grupo === 'aluno' ? turma : undefined,
-      turno: grupo === 'aluno' ? turno : undefined,
+      tipoUsuario: grupo.toUpperCase(), // Transforma para uppercase para corresponder ao seu formato
     };
 
-    // Aqui você pode adicionar a lógica para enviar dados para a API
-    console.log(dadosUsuario);
-    alert("Dados enviados!");
+    try {
+      // Chama a função createAluno para enviar os dados do aluno
+      const response = await createAluno(dadosUsuario);
+      console.log('Usuário cadastrado:', response.data);
+      alert("Dados enviados!");
+    } catch (error) {
+      console.error('Erro ao cadastrar usuário:', error);
+      alert("Ocorreu um erro ao cadastrar. Tente novamente.");
+    }
   };
 
   const handleGoBack = () => {
@@ -58,11 +58,7 @@ const Cadastro = () => {
           <div className="input-field">
             <select
               value={grupo}
-              onChange={(e) => {
-                setGrupo(e.target.value);
-                setTurma(""); // Resetando turma e turno ao mudar o grupo
-                setTurno("");
-              }}
+              onChange={(e) => setGrupo(e.target.value)}
             >
               <option value="" disabled>Usuário</option>
               <option value="aluno">Aluno</option>
@@ -78,16 +74,6 @@ const Cadastro = () => {
               placeholder="Nome Completo"
               value={nomeCompleto}
               onChange={(e) => setNomeCompleto(e.target.value)}
-              required
-            />
-          </div>
-
-          <div className="input-field">
-            <input
-              type="text"
-              placeholder="CPF"
-              value={cpf}
-              onChange={(e) => setCpf(e.target.value)}
               required
             />
           </div>
@@ -111,34 +97,6 @@ const Cadastro = () => {
               required
             />
           </div>
-
-          {/* Campos específicos para Alunos */}
-          {grupo === 'aluno' && (
-            <>
-              <div className="input-field">
-                <input
-                  type="text"
-                  placeholder="Turma"
-                  value={turma}
-                  onChange={(e) => setTurma(e.target.value)}
-                  required
-                />
-              </div>
-
-              <div className="input-field">
-                <select
-                  value={turno}
-                  onChange={(e) => setTurno(e.target.value)}
-                  required
-                >
-                  <option value="" disabled>Turno</option>
-                  <option value="Manhã">Manhã</option>
-                  <option value="Tarde">Tarde</option>
-                  <option value="Noite">Noite</option>
-                </select>
-              </div>
-            </>
-          )}
 
           <button id="button">CADASTRAR</button>
 
