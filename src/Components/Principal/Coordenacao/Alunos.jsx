@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import './Alunos.css';
 import { useState, useEffect } from 'react';
-//import { getAlunos, createAluno, updateAluno, deleteAluno } from '../../../../src/Service/APIServices';
+//import { getAlunos, createAluno, updateAluno, deleteAluno } from '../../../Service/APIServices';
 
 const Alunos = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -10,10 +10,10 @@ const Alunos = () => {
   const [filtroTurma, setFiltroTurma] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedAluno, setSelectedAluno] = useState(null);
-  const [alunos, setAlunos] = useState([]);
+  //const [alunos, setAlunos] = useState([]);
 
   // Obter todos os alunos ao carregar a página
-  useEffect(() => {
+  /*useEffect(() => {
     getAlunos()
       .then(response => {
         setAlunos(response.data);
@@ -21,7 +21,7 @@ const Alunos = () => {
       .catch(error => {
         console.error('Erro ao buscar alunos:', error);
       });
-  }, []);
+  }, []); */
 
   // Função para cadastrar um novo aluno
   const handleCadastro = (novoAluno) => {
