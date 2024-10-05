@@ -13,7 +13,7 @@ const Home = () => {
     <body>
       <div className="home-page">
       {/* Texto de boas-vindas */}
-      <h1 className="BemVindo">Olá, Bem-vindo!</h1>
+      <h1 className="BemVindo">Olá, Bem-vinde!</h1>
 
       <div className="header-image">
         <img id="Fundo" src="/img/Horizonte.png" alt="Fundo" />
