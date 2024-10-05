@@ -80,7 +80,7 @@ const Alunos = () => {
   );
 
   return (
-    <body className="home-aluno">
+    <div className="home-aluno">
       {/* Sidebar */}
       <nav className="sidebar">
         <img id="MedioTec" src="/img/logo.png" alt="Logo" />
@@ -202,7 +202,7 @@ const Alunos = () => {
           </div>
         </div>
       )}
-    </body>
+    </div>
   );
 };
 
