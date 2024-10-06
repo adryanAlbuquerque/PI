@@ -1,4 +1,4 @@
-.sidebar-container {
+.sidebar-container-aluno {
     display: flex;
     height: 100vh; /* Ocupa toda a altura da tela */
     background-color: #F5F5FB;
@@ -54,7 +54,7 @@
 }
 
 /* Botão para abrir/fechar a sidebar */
-.sidebar-toggle {
+.sidebar-toggle-aluno {
     position: absolute;
     top: 20px;
     left: 20px;
@@ -66,7 +66,7 @@
     color: #FF8A00; /* Cor do ícone */
 }
 
-.sidebar-toggle:focus {
+.sidebar-toggle-aluno:focus {
     outline: none; /* Remove o outline ao focar */
 }
 
@@ -94,7 +94,7 @@
         width: 100%; /* Sidebar ocupa toda a largura da tela em dispositivos móveis */
     }
 
-    .sidebar-toggle {
+    .sidebar-toggle-aluno {
         top: 10px;
         left: 10px;
     }

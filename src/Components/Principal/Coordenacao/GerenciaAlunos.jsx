@@ -1,8 +1,8 @@
-import { FaTimes } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import './GerenciaAlunos.css';
 import { useState, useEffect } from 'react';
 import { getAlunos, updateAluno, deleteAluno } from '../../../Service/APIServices';
+import SidebarCoord from '../../sidebar/sidebarCoord';
 
 const GerenciaAlunos = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -76,10 +76,6 @@ const GerenciaAlunos = () => {
     }));
   };
 
-  const handleGoBack = () => {
-    window.location.href = 'HomeCoordenacao'; // Redireciona para a página principal
-  };
-
   const filteredAlunos = alunos.filter((aluno) => {
     const nome = aluno.nome ? aluno.nome.toLowerCase() : '';
     const matricula = aluno.matricula ? aluno.matricula : '';
@@ -93,9 +89,10 @@ const GerenciaAlunos = () => {
   console.log('Alunos filtrados:', filteredAlunos);
 
   return (
-    <div className="home-aluno">
-      {/* Botão de sair */}
-      <FaTimes className= "close-button" onClick={handleGoBack} />
+    <div className="gerencia-aluno">
+
+      {/* Sidebar */}
+      <SidebarCoord />
 
       {/* Main content */}
       <div id="DashboardAluno">

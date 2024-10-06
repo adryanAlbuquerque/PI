@@ -10,9 +10,9 @@ const SidebarAluno = () => {
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen); // Alterna a sidebar
 
   return (
-    <div className="sidebar-container">
+    <div className="sidebar-container-aluno">
       {/* Botão para abrir/fechar a sidebar */}
-      <button className="sidebar-toggle" onClick={toggleSidebar}>
+      <button className="sidebar-toggle-aluno" onClick={toggleSidebar}>
       {isSidebarOpen ? <FaTimes /> : <FaBars />}
       </button>
 

@@ -1,83 +1,8 @@
-.home-aluno {
+.gerencia-aluno {
   display: flex;
   flex-direction: column; /* Adicionado para permitir que o botão e o conteúdo fiquem em colunas */
   height: 100vh; /* Ocupa toda a altura da tela */
   background-color: #F5F5FB;
-}
-
-/* Botão de sair */
-.close-button {
-    position: absolute;               
-    top: 15px;                        
-    right: 30px;                      
-    font-size: 24px;                
-    color: #825cff;                  
-    cursor: pointer;     
-}
-
-.close-button:hover {
-  color: #3f18c0;                  /* Cor ao passar o mouse */
-}
-
-#MedioTec {
-  height: 50px;
-  margin-left: 40px;
-}
-
-/* Sidebar */
-.sidebar {
-  position: relative; /* Alterado para relative */
-  width: 250px; /* Largura da sidebar */
-  height: calc(100% - 50px); /* Altura total menos o espaço do botão de sair */
-  background-color: #ffffff;
-  transition: transform 0.3s ease;
-  transform: translateX(0); /* Mantém a sidebar visível */
-  padding: 20px;
-  overflow-y: auto;
-}
-
-.sidebar.open {
-  transform: translateX(0); /* Mostra a sidebar quando aberta */
-}
-
-.sidebar ul {
-  list-style: none;
-  margin-left: 25px;
-}
-
-.sidebar ul li:first-child {
-  margin-top: 50px;
-}
-
-.sidebar li {
-  margin: 10px 0;
-  padding: 10px;
-}
-
-.sidebar a {
-  color: rgba(0, 0, 0, 0.5);
-  text-decoration: none;
-  transition: color 0.3s;
-}
-
-.sidebar a:hover {
-  color: #825CFF;
-}
-
-#SairButton {
-  width: 100%;
-  max-width: 100px;
-  height: 35px;
-  background-color: #f4f4f9;
-  border: 1.5px solid #825cff;
-  outline: none;
-  border-radius: 7px;
-  cursor: pointer;
-  font-size: 15px;
-  color: #825cff;
-  margin-top: 90px;
-  margin-left: 45px;
-  transition: background-color 0.3s ease;
 }
 
 #CadastroAluno {

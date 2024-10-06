@@ -38,7 +38,7 @@ const CadastroGeral = () => {
   };
 
   const handleGoBack = () => {
-    window.location.href = '/GerenciamentoAlunos'; // Redireciona para a página principal
+    window.location.href = '/HomeCoordenacao'; // Redireciona para a página principal
   };
 
   return (

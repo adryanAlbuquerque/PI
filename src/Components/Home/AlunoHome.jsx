@@ -5,19 +5,20 @@ import SidebarAluno from '../sidebar/sidebarALuno';
 const AlunoHome = () => {
   return (
     <div className="home-aluno-container">
+
       <SidebarAluno />
 
       {/* Conteúdo Principal */}
-      <div className="home-page">
+      <div className="home-page-aluno">
         <h1 className="BemVindo">Olá, Bem-vindo!</h1>
 
         {/* Imagem no cabeçalho */}
-        <div className="header-image">
-          <img id="Fundo" src="/img/Horizonte.png" alt="Fundo" />
+        <div className="header-image-aluno">
+          <img id="FundoAluno" src="/img/Horizonte.png" alt="Fundo" />
         </div>
 
         {/* Quadrados abaixo da imagem */}
-        <div className="squares">
+        <div className="squaresaluno">
           <Link to="/HomeAluno" className="Bloco">Acessar Conceitos</Link>
           <Link to="/DisciplinaAluno" className="Bloco">Acessar Disciplinas</Link>
           <Link to="/DocAluno" className="Bloco">Acessar Documentos</Link>

@@ -1,42 +1,29 @@
-import { Link } from 'react-router-dom';
+//import { Link } from 'react-router-dom';
 import './CoordHome.css'; // Certifique-se que o arquivo CSS está no caminho correto
-import { useState } from 'react';
+import SidebarCoord from '../sidebar/sidebarCoord';
 
 const CoordHome = () => {
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true); // Estado para a sidebar
-
-  const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
-  const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen); // Função para alternar a sidebar
-
+  
   return (
-    <div className="home-page">
-      {/* Texto de boas-vindas */}
-      <h1 className="welcome-text">Olá, Bem-vindo!</h1>
+    <div className="home-coord-container">
 
-      <div className="header-image">
-        <img id="Fundo" src="/img/Horizonte.png" alt="Fundo" />
-      </div>
+      <SidebarCoord />
 
-      {/* Quadrados abaixo da imagem */}
-      <div className="squares-container">
-        {Array.from({ length: 6 }).map((_, index) => (
-          <div className="square" key={index}></div>
-        ))}
-      </div>
+      {/* Conteúdo Principal */}
+      <div className='home-page-coord'>
+        <h1 className="welcome-text">Olá, Bem-vindo!</h1>
 
-      {/* Sidebar */}
-      <div className={`sidebar ${isSidebarOpen ? 'open' : 'closed'}`}>
-        <img id="MedioTec" src="/img/logo.png" alt="Logo" />
-        <ul>
-          <li><Link to="">Home</Link></li>
-          <li><Link to="/GerenciamentoAlunos">Alunos</Link></li>
-          <li><Link to="/GerenciamentoProfessores">Professores</Link></li>
-          <li><Link to="/GerenciamentoTurmas">Turmas</Link></li>
-          <li><Link to="/Relatorios">Relatórios</Link></li>
-          <li><Link to="">Configurações</Link></li>
-        </ul>
-        <button id="Sair"> Sair </button>
+        <div className="header-image-coord">
+          <img id="Fundocoord" src="/img/Horizonte.png" alt="Fundo" />
+        </div>
+
+        {/* Quadrados abaixo da imagem */}
+        <div className="squares-container-coord">
+          {Array.from({ length: 6 }).map((_, index) => (
+            <div className="squarecoord" key={index}></div>
+          ))}
+        </div>
+
       </div>
     </div>
   );

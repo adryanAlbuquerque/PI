@@ -4,12 +4,7 @@
     background-color: #F5F5FB;
 }
 
-#MedioTec {
-    height: 50px;
-    margin-left: 40px;
-}
-
-.header-image {
+.header-image-aluno {
     position: relative; /* Posiciona a imagem em relação ao container */
     width: 60%; /* Largura total */
     height: auto; /* Altura automática */
@@ -19,7 +14,7 @@
 }
 
 
-.squares {
+.squaresaluno {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;

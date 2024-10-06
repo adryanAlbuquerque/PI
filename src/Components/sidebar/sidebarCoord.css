@@ -1,0 +1,101 @@
+.sidebar-container-Coord {
+    display: flex;
+    height: 100vh; /* Ocupa toda a altura da tela */
+    background-color: #F5F5FB;
+    position: relative; /* Garantindo que o botão flutue corretamente */
+}
+  
+/* Sidebar */
+.sidebar-Coord {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px; /* Largura da sidebar */
+    height: 100%; /* Altura total */
+    background-color: #ffffff;
+    transition: transform 0.3s ease;
+    transform: translateX(-100%); /* Escondida por padrão */
+    padding: 20px;
+    overflow-y: auto;
+    z-index: 999; /* Garante que a sidebar fique acima do conteúdo */
+}
+
+.sidebar-Coord.open {
+    transform: translateX(0); /* Mostra a sidebar quando aberta */
+}
+
+#MedioTecCoord {
+    height: 50px;
+    margin-left: 40px;
+}
+
+.sidebar-Coord ul {
+    list-style: none;
+    margin-left: 25px;
+}
+
+.sidebar-Coord ul li:first-child {
+    margin-top: 50px;
+}
+
+.sidebar-Coord li {
+    margin: 10px 0;
+    padding: 10px;
+}
+
+.sidebar-Coord a {
+    color: rgba(0, 0, 0, 0.5);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.sidebar-Coord a:hover {
+    color: #825cff; 
+}
+
+/* Botão para abrir/fechar a sidebar */
+.sidebar-toggle-coord {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1000; /* Coloca o botão acima da sidebar */
+    color: #825cff; /* Cor do ícone */
+}
+
+.sidebar-toggle-coord:focus {
+    outline: none; /* Remove o outline ao focar */
+}
+
+/* Estilos para o botão "Sair" */
+.SairCoord {
+    width: 100%;
+    max-width: 100px;
+    height: 35px;
+    background-color: #f4f4f9;
+    border: 1.5px solid #825cff;
+    outline: none;
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 15px;
+    color: #825cff;
+    margin-top: 90px;
+    margin-left: 55px;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+
+/* Responsividade */
+@media (max-width: 641px) {
+    .sidebar-Coord {
+        width: 100%; /* Sidebar ocupa toda a largura da tela em dispositivos móveis */
+    }
+
+    .sidebar-toggle-coord {
+        top: 10px;
+        left: 10px;
+    }
+}
