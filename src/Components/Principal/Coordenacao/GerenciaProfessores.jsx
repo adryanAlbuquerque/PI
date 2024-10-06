@@ -1,14 +1,9 @@
 import { Link } from 'react-router-dom';
-import './Professores.css'; // Certifique-se que o arquivo CSS está no caminho correto
-import { useState } from 'react';
+import './GerenciaProfessores.css'; // Certifique-se que o arquivo CSS está no caminho correto
 
-const Professores = () => {
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true); // Estado para a sidebar
-  
-
-  const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
-  const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen); // Função para alternar a sidebar
+const GerenciaProfessores = () => {
+ 
+  // Função para alternar a sidebar
 
   const handleCadastro = () => {
     window.location.href = '/Cadastro/CadastroAluno';  
@@ -23,7 +18,7 @@ const Professores = () => {
 
     {/* Sidebar */}
 
-    <nav className={`sidebar ${isSidebarOpen ? 'open' : 'closed'}`} >
+    <nav className={`sidebar}`} >
       <img id="MedioTec" src="/img/logo.png" alt="Logo" />
         <ul>
           <li><Link to="/Home/CoordHome">Home</Link></li>
@@ -51,4 +46,4 @@ const Professores = () => {
   );
 };
 
-export default Professores;
+export default GerenciaProfessores;

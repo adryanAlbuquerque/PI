@@ -1,9 +1,9 @@
 import { FaTimes } from 'react-icons/fa';
 import { useState } from 'react';
 import { createAluno } from '../../../Service/APIServices'; // Import the createAluno function
-import './Cadastro.css';
+import './CadastroGeral.css';
 
-const Cadastro = () => {
+const CadastroGeral = () => {
   // Estados para os campos do formulário
   const [nomeCompleto, setNomeCompleto] = useState("");
   const [email, setEmail] = useState("");
@@ -110,4 +110,4 @@ const Cadastro = () => {
   );
 };
 
-export default Cadastro;
+export default CadastroGeral;

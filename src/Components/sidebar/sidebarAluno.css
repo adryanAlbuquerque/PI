@@ -5,7 +5,7 @@
 }
   
   /* Sidebar */
-.sidebar {
+.sidebar-Aluno {
     position: fixed;
     top: 0;
     left: 0;
@@ -18,40 +18,40 @@
     overflow-y: auto;
 }
   
-#MedioTec {
+#MedioTecAluno {
     height: 50px;
     margin-left: 40px;
 }
   
-.sidebar.open {
-    transform: translateX(0); /* Mostra a sidebar quando aberta */
+.sidebar-Aluno.open {
+    transform: translateX(0); /* Mostra a sidebar-Aluno quando aberta */
 }
   
-.sidebar ul {
+.sidebar-Aluno ul {
     list-style: none;
     margin-left: 25px;
 }
   
-.sidebar ul li:first-child {
+.sidebar-Aluno ul li:first-child {
     margin-top: 50px;
 }
   
-.sidebar li {
+.sidebar-Aluno li {
     margin: 10px 0;
     padding: 10px;
 }
   
-.sidebar a {
+.sidebar-Aluno a {
     color: rgba(0, 0, 0, 0.5);
     text-decoration: none;
     transition: color 0.3s;
 }
   
-side a:hover {
+.sidebar-Aluno a:hover {
     color:#FF8A00; 
 }
 
-#Voltar {
+.SairAluno {
     width: 100%;
     max-width: 100px;
     height: 35px;

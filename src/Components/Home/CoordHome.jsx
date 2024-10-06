@@ -2,7 +2,8 @@ import { Link } from 'react-router-dom';
 import './CoordHome.css'; // Certifique-se que o arquivo CSS está no caminho correto
 import { useState } from 'react';
 
-const Home = () => {
+const CoordHome
+ = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true); // Estado para a sidebar
 
@@ -30,10 +31,10 @@ const Home = () => {
         <img id="MedioTec" src="/img/logo.png" alt="Logo" />
         <ul>
           <li><Link to="">Home</Link></li>
-          <li><Link to="/Principal/Coordenacao/Alunos">Alunos</Link></li>
-          <li><Link to="/Principal/Coordenacao/Professores">Professores</Link></li>
-          <li><Link to="/Principal/Coordenacao/Turmas">Turmas</Link></li>
-          <li><Link to="/Principal/Coordenacao/Relatorios">Relatórios</Link></li>
+          <li><Link to="/GerenciamentoAlunos">Alunos</Link></li>
+          <li><Link to="/GerenciamentoProfessores">Professores</Link></li>
+          <li><Link to="/GerenciamentoTurmas">Turmas</Link></li>
+          <li><Link to="/Relatorios">Relatórios</Link></li>
           <li><Link to="">Configurações</Link></li>
         </ul>
         <button id="Sair"> Sair </button>
@@ -42,4 +43,5 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default CoordHome
+;

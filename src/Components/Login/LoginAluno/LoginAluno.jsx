@@ -11,7 +11,7 @@ const LoginAluno = () => {
   };
 
   const handleLogin = () => {
-    window.location.href = '/Home/AlunoHome';  
+    window.location.href = '/HomeAluno';  
   };
 
   return (

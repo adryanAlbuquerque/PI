@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
-import './Alunos.css';
+import './GerenciaAlunos.css';
 import { useState, useEffect } from 'react';
 import { getAlunos, updateAluno, deleteAluno } from '../../../Service/APIServices';
 
-const Alunos = () => {
+const GerenciaAlunos = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filtroTurma, setFiltroTurma] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -206,4 +206,4 @@ const Alunos = () => {
   );
 };
 
-export default Alunos;
+export default GerenciaAlunos;

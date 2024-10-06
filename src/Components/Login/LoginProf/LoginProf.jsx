@@ -2,7 +2,7 @@ import { FaUser, FaLock, FaTimes } from 'react-icons/fa'; // Importando FaTimes 
 import { useState } from 'react';
 import './LoginProf.css';
 
-const LoginProfessor = () => {
+const LoginProf = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -70,4 +70,4 @@ const LoginProfessor = () => {
   );
 };
 
-export default LoginProfessor;
+export default LoginProf;

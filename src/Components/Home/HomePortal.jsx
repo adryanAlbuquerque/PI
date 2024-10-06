@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
-import './Home.css';
+import './HomePortal.css';
 import { useState } from 'react';
 
-const Home = () => {
+const HomePortal = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
 
@@ -31,9 +31,9 @@ const Home = () => {
           <button className="menu-button" onClick={toggleDropdown}>Portais</button>
           {dropdownOpen && (
             <div className="dropdown-menu">
-              <Link to="/login/aluno">Portal do Aluno</Link>
-              <Link to="/login/prof">Portal do Professor</Link>
-              <Link to="/login/coord">Portal do Coordenador</Link>
+              <Link to="/loginAluno">Portal do Aluno</Link>
+              <Link to="/loginProf">Portal do Professor</Link>
+              <Link to="/loginCoord">Portal do Coordenador</Link>
             </div>
           )}
         </div>
@@ -54,4 +54,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomePortal;

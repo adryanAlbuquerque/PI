@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom'; // Certifique-se de importar Link
 import './LoginCoord.css';
 
-const LoginProfessor = () => {
+const LoginCoordenador = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -62,7 +62,7 @@ const LoginProfessor = () => {
           </div>
 
           {/* Usando Link para redirecionar */}
-          <Link to="/Home/CoordHome">
+          <Link to="/HomeCoordenacao">
             <button type="submit" id="button">LOGIN</button>
           </Link>
 
@@ -76,4 +76,4 @@ const LoginProfessor = () => {
   );
 };
 
-export default LoginProfessor;
+export default LoginCoordenador;

@@ -13,10 +13,10 @@ const SidebarAluno = () => {
     <div className="sidebar-container">
     
       {/* Sidebar */}
-      <nav className={`sidebar ${isSidebarOpen ? 'open' : 'closed'}`}>
-        <img id="MedioTec" src="/img/logo.png" alt="Logo" />
+      <div className={`sidebar-Aluno ${isSidebarOpen ? 'open' : 'closed'}`}>
+        <img id="MedioTecAluno" src="/img/LogoAluno.png" alt="Logo" />
         <ul>
-          <li><Link to="/Home/AlunoHome">Home</Link></li>
+          <li><Link to="/HomeAluno">Home</Link></li>
           <li><Link to="/Principal/Alunos/ConceitoAluno">Conceitos</Link></li>
           <li><Link to="/Principal/Alunos/DisciplinaAluno">Disciplinas</Link></li>
           <li><Link to="/Principal/Alunos/DocAluno">Documentos</Link></li>
@@ -25,12 +25,12 @@ const SidebarAluno = () => {
           <li><Link to="/Principal/Alunos/ConfigAluno">Configurações</Link></li>
         </ul>
         <div>
-          <button type="button" id="SairButton" onClick={() => window.location.href = '/Home/Home.jsx'}>
+          <button type="button" className ="SairAluno" onClick={() => window.location.href = '/'}>
             Sair
           </button>
         </div>
 
-      </nav>
+      </div>
     </div>
   );
 };

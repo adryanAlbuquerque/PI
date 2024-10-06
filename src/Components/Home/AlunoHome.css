@@ -1,59 +1,13 @@
-.home-page {
+.home-aluno-container {
     display: flex;
     height: 100vh; /* Ocupa toda a altura da tela */
     background-color: #F5F5FB;
-}
-
-/* Sidebar */
-.side {
-    position: fixed; /* Fica fixa na tela */
-    top: 0;
-    left: 0;
-    width: 250px; /* Largura da sidebar */
-    height: 100%; /* Altura total */
-    background-color: #ffffff; /* Cor de fundo da sidebar */
-    transition: transform 0.3s ease; /* Transição suave */
-    transform: translateX(-100%); /* Esconde a sidebar inicialmente */
-    padding: 20px; /* Espaçamento interno */
-    overflow-y: auto; /* Permite rolagem vertical se necessário */
-    
 }
 
 #MedioTec {
     height: 50px;
     margin-left: 40px;
 }
-
-.side.open {
-    transform: translateX(0); /* Mostra a sidebar quando aberta */
-}
-
-.side ul {
-    list-style: none; /* Remove marcadores da lista */
-    margin-left: 25px;
-}
-
-.side ul li:first-child {
-    margin-top: 50px; /* Adiciona espaçamento acima do primeiro item */
-}
-
-.side li {
-    margin: 10px 0; /* Espaço entre os itens */
-    padding: 10px;
-    margin-bottom: 10px;
-    display: flex;
-}
-
-.side a {
-    color: rgba(0, 0, 0, 0.5); /* Cor dos links */
-    text-decoration: none; /* Remove sublinhado */
-    transition: color 0.3s; /* Transição suave para a cor */
-}
-
-.side a:hover {
-    color:#FF8A00; /* Cor ao passar o mouse */
-}
-
 
 .header-image {
     position: relative; /* Posiciona a imagem em relação ao container */
@@ -127,23 +81,6 @@
     top: 10px; /* Distância do topo */
     left: 10px; /* Distância da esquerda */
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-}
-
-#Voltar {
-    width: 100%;
-    max-width: 100px;
-    height: 35px;
-    background-color: #f4f4f9;
-    border: 1.5px solid #FF8A00;
-    outline: none;
-    border-radius: 7px;
-    cursor: pointer;
-    font-size: 15px;
-    color: #FF8A00;
-    margin-top: 90px;
-    margin-left: 55px;
-    justify-content: center;
-    transition: background-color 0.3s ease;
 }
 
 
