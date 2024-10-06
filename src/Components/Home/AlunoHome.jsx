@@ -10,7 +10,7 @@ const AlunoHome = () => {
 
       {/* Conteúdo Principal */}
       <div className="home-page-aluno">
-        <h1 className="BemVindo">Olá, Bem-vindo!</h1>
+        <h1 className="BemVindo">Olá, Bem-vindo ao portal Aluno!</h1>
 
         {/* Imagem no cabeçalho */}
         <div className="header-image-aluno">

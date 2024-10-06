@@ -14,33 +14,82 @@
 }
 
 /* Estilos para os quadrados abaixo da imagem */
-.squares-container-coord {
-    display: grid; /* Usar grid para layout */
-    grid-template-columns: repeat(3, 1fr); /* 3 colunas */
-    gap: 20px; /* Espaço entre os quadrados */
-    padding: 20px; /* Espaço ao redor da grid */
-    margin-top: 20px; /* Espaço superior para distanciar dos itens acima */
-    margin-left: 30%; /* Centraliza em relação à sidebar */
+.Square {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 20px;
+    margin-top: 20px;
+    margin-left: 33%;
+    margin-right: -40%;
 }
 
-.squarecoord {
+.Squares {
     width: 80%; 
-    height: 100px; /* Altura fixa dos quadrados */
-    background-color: #E0E0E0; /* Cor de fundo dos quadrados */
-    border: 1px solid #ccc; /* Borda opcional */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra opcional */
+    height: 100px; 
+    background-color: #FF8A00;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     margin-left: -40px;
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    font-size: 16px; 
+    color: white; 
+    font-weight: bold; 
+    text-align: center;
+    position: relative; 
+    border-radius: 10px;
+    text-decoration: none;
 }
 
-.welcome-text {
+.Squares:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+
+
+.Squares:nth-child(1) {
+    background: linear-gradient(135deg, #ff7676, #b00000); 
+}
+
+.Squares:nth-child(2) {
+    background: linear-gradient(135deg, #efe684, #947e00); 
+}
+
+.Squares:nth-child(3) {
+    background: linear-gradient(135deg, #3F58D9, #001065); 
+}
+
+.Squares:nth-child(4) {
+    background: linear-gradient(135deg, #ff00e6, #ff5ce7); 
+}
+
+
+.Squares::before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    top: 10px; /* Distância do topo */
+    left: 10px; /* Distância da esquerda */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+
+.BemvindoCoord {
     text-align: center; 
     font-size: 30px; 
     color: #825CFF; 
     margin-top: 60px; 
     margin-bottom: -80px; 
-    margin-left: -280px;
+    margin-left: 270px;
     font-weight: bold; 
 }
+
 
 
 
