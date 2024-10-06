@@ -2,8 +2,7 @@ import { Link } from 'react-router-dom';
 import './CoordHome.css'; // Certifique-se que o arquivo CSS está no caminho correto
 import { useState } from 'react';
 
-const CoordHome
- = () => {
+const CoordHome = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(true); // Estado para a sidebar
 
@@ -43,5 +42,4 @@ const CoordHome
   );
 };
 
-export default CoordHome
-;
+export default CoordHome;
