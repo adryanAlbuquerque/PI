@@ -1,3 +1,4 @@
+import { FaTimes } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import './GerenciaAlunos.css';
 import { useState, useEffect } from 'react';
@@ -13,6 +14,7 @@ const GerenciaAlunos = () => {
   useEffect(() => {
     getAlunos()
       .then(response => {
+        console.log('Alunos recebidos:', response.data);
         setAlunos(response.data);
       })
       .catch(error => {
@@ -56,6 +58,7 @@ const GerenciaAlunos = () => {
   };
 
   const handleEdit = (aluno) => {
+    console.log('Aluno selecionado para edição:', aluno);
     setSelectedAluno({ ...aluno });
     setIsModalOpen(true);
   };
@@ -73,69 +76,64 @@ const GerenciaAlunos = () => {
     }));
   };
 
-  const filteredAlunos = alunos.filter((aluno) =>
-    (aluno.nome.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      aluno.matricula.includes(searchTerm)) &&
-    (filtroTurma === '' || aluno.turma === filtroTurma)
-  );
+  const handleGoBack = () => {
+    window.location.href = 'HomeCoordenacao'; // Redireciona para a página principal
+  };
+
+  const filteredAlunos = alunos.filter((aluno) => {
+    const nome = aluno.nome ? aluno.nome.toLowerCase() : '';
+    const matricula = aluno.matricula ? aluno.matricula : '';
+
+    return (
+      (nome.includes(searchTerm.toLowerCase()) || matricula.includes(searchTerm)) &&
+      (filtroTurma === '' || aluno.turma === filtroTurma)
+    );
+  });
+
+  console.log('Alunos filtrados:', filteredAlunos);
 
   return (
     <div className="home-aluno">
-      {/* Sidebar */}
-      <nav className="sidebar">
-        <img id="MedioTec" src="/img/logo.png" alt="Logo" />
-        <ul>
-          <li><Link to="/Home/CoordHome">Home</Link></li>
-          <li><Link to="">Alunos</Link></li>
-          <li><Link to="/Principal/Coordenacao/Professores">Professores</Link></li>
-          <li><Link to="/Principal/Coordenacao/Turmas">Turmas</Link></li>
-          <li><Link to="/Principal/Coordenacao/Relatorios">Relatórios</Link></li>
-          <li><Link to="">Configurações</Link></li>
-        </ul>
-        <div>
-          <button type="button" id="SairButton" onClick={() => window.location.href = '/'}>
-            Sair
-          </button>
-        </div>
-      </nav>
+      {/* Botão de sair */}
+      <FaTimes className= "close-button" onClick={handleGoBack} />
 
       {/* Main content */}
-      <main className="main-content">
-        <div id="DashboardAluno">
-          <Link to="/CadastroGeral" id="CadastroButton">
-            Cadastro
-          </Link>
-          <div className="search-filter">
-            <input
-              type="text"
-              placeholder="Pesquisar por nome ou matrícula"
-              value={searchTerm}
-              onChange={handleSearch}
-              className="search-input"
-            />
-            <select value={filtroTurma} onChange={handleFiltroTurma} className="filter-select">
-              <option value="">Filtrar por turma</option>
-              <option value="Turma A">Turma A</option>
-              <option value="Turma B">Turma B</option>
-            </select>
-          </div>
+      <div id="DashboardAluno">
+        <Link to="/CadastroGeral" id="Cadastrar">
+          CADASTRO
+        </Link>
+        <div className="search-filter">
+          <input
+            type="text"
+            placeholder="Pesquisar por nome"
+            value={searchTerm}
+            onChange={handleSearch}
+            className="search-input"
+          />
+          <select value={filtroTurma} onChange={handleFiltroTurma} className="filter-select">
+            <option value="">Filtrar por turma</option>
+            <option value="Turma A">Turma A</option>
+            <option value="Turma B">Turma B</option>
+          </select>
+        </div>
 
-          {/* Students table */}
-          <table className="alunos-table">
-            <thead>
-              <tr>
-                <th>Matrícula</th>
-                <th>Nome</th>
-                <th>Turma</th>
-                <th>Turno</th>
-                <th>Status</th>
-                <th>Ações</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredAlunos.map((aluno) => (
+        {/* Students table */}
+        <table className="alunos-table">
+          <thead>
+            <tr>
+              <th>Matrícula</th>
+              <th>Nome</th>
+              <th>Turma</th>
+              <th>Turno</th>
+              <th>Status</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody>
+            {filteredAlunos.length > 0 ? (
+              filteredAlunos.map((aluno) => (
                 <tr key={aluno.id}>
-                  <td>{aluno.matricula}</td>
+                  <td>{aluno.matricula || aluno.id}</td>
                   <td>{aluno.nome}</td>
                   <td>{aluno.turma}</td>
                   <td>{aluno.turno}</td>
@@ -145,11 +143,15 @@ const GerenciaAlunos = () => {
                     <button onClick={() => handleDelete(aluno.id)} className="delete-button">Excluir</button>
                   </td>
                 </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </main>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="6" className="no-results">Nenhum aluno encontrado.</td>
+              </tr>
+            )}
+          </tbody>
+        </table>
+      </div>
 
       {/* Modal for Editing */}
       {isModalOpen && (
@@ -161,8 +163,9 @@ const GerenciaAlunos = () => {
               <input
                 type="text"
                 name="matricula"
-                value={selectedAluno?.matricula || ''}
+                value={selectedAluno?.matricula || selectedAluno?.id || ''}
                 onChange={handleInputChange}
+                readOnly // Se desejar que o ID não seja editável
               />
               <label>Nome</label>
               <input

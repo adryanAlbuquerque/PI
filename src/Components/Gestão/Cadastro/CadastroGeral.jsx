@@ -52,7 +52,7 @@ const CadastroGeral = () => {
         </div>
 
         <form onSubmit={handleSubmit}>
-          <h1 id="MedioTec">CADASTRO GERAL</h1>
+          <h1 id="NomeCadastro">CADASTRO GERAL</h1>
 
           {/* Dropdown com placeholder "Usuário" */}
           <div className="input-field">
