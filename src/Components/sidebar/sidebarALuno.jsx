@@ -1,17 +1,21 @@
 import { Link } from 'react-router-dom';
 import './sidebarAluno.css';
 import { useState } from 'react';
+import { FaBars, FaTimes } from 'react-icons/fa'; // Ícones para abrir/fechar
+
 
 const SidebarAluno = () => {
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true); // Estado para a sidebar
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Sidebar fechada por padrão
 
-  const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
-  const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen); // Função para alternar a sidebar
+  const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen); // Alterna a sidebar
 
   return (
     <div className="sidebar-container">
-    
+      {/* Botão para abrir/fechar a sidebar */}
+      <button className="sidebar-toggle" onClick={toggleSidebar}>
+      {isSidebarOpen ? <FaTimes /> : <FaBars />}
+      </button>
+
       {/* Sidebar */}
       <div className={`sidebar-Aluno ${isSidebarOpen ? 'open' : 'closed'}`}>
         <img id="MedioTecAluno" src="/img/LogoAluno.png" alt="Logo" />
@@ -25,11 +29,10 @@ const SidebarAluno = () => {
           <li><Link to="/Principal/Alunos/ConfigAluno">Configurações</Link></li>
         </ul>
         <div>
-          <button type="button" className ="SairAluno" onClick={() => window.location.href = '/'}>
+          <button type="button" className="SairAluno" onClick={() => window.location.href = '/'}>
             Sair
           </button>
         </div>
-
       </div>
     </div>
   );
