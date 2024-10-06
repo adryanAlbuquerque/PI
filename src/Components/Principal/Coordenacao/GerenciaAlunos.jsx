@@ -93,7 +93,7 @@ const GerenciaAlunos = () => {
           <li><Link to="">Configurações</Link></li>
         </ul>
         <div>
-          <button type="button" id="SairButton" onClick={() => window.location.href = '/Home/Home.jsx'}>
+          <button type="button" id="SairButton" onClick={() => window.location.href = '/'}>
             Sair
           </button>
         </div>
@@ -102,7 +102,7 @@ const GerenciaAlunos = () => {
       {/* Main content */}
       <main className="main-content">
         <div id="DashboardAluno">
-          <Link to="/Cadastro/Cadastro" id="CadastroButton">
+          <Link to="/CadastroGeral" id="CadastroButton">
             Cadastro
           </Link>
           <div className="search-filter">
