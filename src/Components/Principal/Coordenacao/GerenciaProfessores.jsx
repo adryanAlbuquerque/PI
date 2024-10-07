@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import './GerenciaProfessores.css'; // Renomeie também o CSS se necessário
 import { useState, useEffect } from 'react';
-import { getProfessores, getDisciplina, updateProfessor, deleteProfessor } from '../../../Service/APIServices';
+import { getProfessores, updateProfessor, deleteProfessor, getDisciplina } from '../../../Service/APIServices';
 import SidebarCoord from '../../sidebar/sidebarCoord';
 
 const GerenciaProfessores = () => {
@@ -11,8 +11,9 @@ const GerenciaProfessores = () => {
   const [selectedProfessor, setSelectedProfessor] = useState(null);
   const [isEditable, setIsEditable] = useState(false); // Controla se os campos podem ser editados
   const [professores, setProfessores] = useState([]);
-  const [disciplinas, setDisciplina] = useState([]);
+  const [disciplina, setDisciplina] = useState([]); // Estado para armazenar disciplinas
 
+  // Carrega professores e disciplinas ao montar o componente
   useEffect(() => {
     getProfessores()
       .then(response => {
@@ -23,10 +24,11 @@ const GerenciaProfessores = () => {
         console.error('Erro ao buscar professores:', error);
       });
 
+    // Busca disciplinas para exibição e associação
     getDisciplina()
       .then(response => {
         console.log('Disciplinas recebidas:', response.data);
-        setDisciplina(response.data);
+        setDisciplina(response.data); // Armazena disciplinas
       })
       .catch(error => {
         console.error('Erro ao buscar disciplinas:', error);
@@ -35,7 +37,11 @@ const GerenciaProfessores = () => {
 
   const handleSave = (event) => {
     event.preventDefault();
-    updateProfessor(selectedProfessor.id, selectedProfessor)
+    const professorData = {
+      ...selectedProfessor,
+      disciplina: selectedProfessor.disciplina, // Associa disciplinas selecionadas
+    };
+    updateProfessor(selectedProfessor.id, professorData)
       .then(response => {
         const updatedProfessores = professores.map(professor =>
           professor.id === selectedProfessor.id ? response.data : professor
@@ -96,11 +102,12 @@ const GerenciaProfessores = () => {
     }));
   };
 
-  const handleDisciplinasChange = (event) => {
-    const selectedOptions = [...event.target.options].filter(option => option.selected).map(option => option.value);
+  // Função para lidar com a seleção de disciplinas
+  const handleDisciplinaChange = (event) => {
+    const selectedDisciplina = Array.from(event.target.selectedOptions, option => option.value);
     setSelectedProfessor((prevProfessor) => ({
       ...prevProfessor,
-      disciplinas: selectedOptions,
+      disciplina: selectedDisciplina,
     }));
   };
 
@@ -113,6 +120,8 @@ const GerenciaProfessores = () => {
       (filtroTurma === '' || professor.turma === filtroTurma)
     );
   });
+
+  console.log('Professores filtrados:', filteredProfessores);
 
   return (
     <div className="gerencia-professor">
@@ -146,8 +155,8 @@ const GerenciaProfessores = () => {
             <tr>
               <th>ID</th>
               <th>Nome</th>
+              <th>Disciplina</th>
               <th>Turma</th>
-              <th>Turno</th>
               <th>Status</th>
               <th>Ações</th>
             </tr>
@@ -179,7 +188,7 @@ const GerenciaProfessores = () => {
       {isModalOpen && (
         <div className="modal-overlay">
           <div className="modal-content">
-            <h2>{isEditable ? 'Editar Professor' : 'Visualizar Professor'}</h2>
+            <h2>Visualizar Professor</h2>
             <form onSubmit={handleSave}>
               <label>Matrícula</label>
               <input
@@ -223,28 +232,27 @@ const GerenciaProfessores = () => {
                 <option value="Ativo">Ativo</option>
                 <option value="Inativo">Inativo</option>
               </select>
-
-              {/* Campo de disciplinas */}
-              <label>Disciplinas</label>
+              <label>Disciplina</label>
               <select
-                name="disciplinas"
-                value={selectedProfessor?.disciplinas || []}
-                onChange={handleDisciplinasChange}
+                name="disciplina"
+                value={selectedProfessor?.disciplina || []}
+                onChange={handleDisciplinaChange}
                 multiple
                 disabled={!isEditable}
               >
-                {disciplinas.map((disciplina) => (
-                  <option key={disciplina.id} value={disciplina.id}>{disciplina.nome}</option>
+                {disciplina.map(disciplina => (
+                  <option key={disciplina.disciplina_id} value={disciplina.disciplina_id}>
+                    {disciplina.nome}
+                  </option>
                 ))}
               </select>
-
               <div className="modal-buttons">
                 {isEditable ? (
                   <button type="submit" className="save-button">Salvar</button>
                 ) : (
                   <button type="button" onClick={enableEdit} className="edit-button">Editar</button>
                 )}
-                <button type="button" onClick={handleDelete} className="apagar-button">Excluir</button>
+                <button type="button" onClick={handleDelete} className="delete-button">Excluir</button>
                 <button type="button" onClick={handleModalClose} className="cancel-button">Fechar</button>
               </div>
             </form>
