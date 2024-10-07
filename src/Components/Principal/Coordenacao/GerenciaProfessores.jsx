@@ -213,7 +213,7 @@ const GerenciaProfessores = () => {
                 ) : (
                   <button type="button" onClick={enableEdit} className="edit-button">Editar</button>
                 )}
-                <button type="button" onClick={handleDelete} className="delete-button">Excluir</button>
+                <button type="button" onClick={handleDelete} className="apagar-button">Excluir</button>
                 <button type="button" onClick={handleModalClose} className="cancel-button">Fechar</button>
               </div>
             </form>

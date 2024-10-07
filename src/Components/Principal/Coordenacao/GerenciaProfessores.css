@@ -196,7 +196,7 @@
   justify-content: space-between;
 }
 
-.cancel-button, .save-button, .delete-button {
+.cancel-button, .save-button, .apagar-button {
   width: 30%;
   padding: 10px;
   border-radius: 5px;
@@ -215,12 +215,12 @@
   color: white;
 }
 
-.delete-button {
+.apagar-button {
   background-color: #E53935;
   color: white;
 }
 
-.cancel-button:hover, .delete-button:hover {
+.cancel-button:hover, .apagar-button:hover {
   background-color: #C62828;
 }
 
