@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import './GerenciaProfessores.css'; // Renomeie também o CSS se necessário
 import { useState, useEffect } from 'react';
-import { getProfessores, updateProfessor, deleteProfessor } from '../../../Service/APIServices';
+import { getProfessores, getDisciplina, updateProfessor, deleteProfessor } from '../../../Service/APIServices';
 import SidebarCoord from '../../sidebar/sidebarCoord';
 
 const GerenciaProfessores = () => {
@@ -11,6 +11,7 @@ const GerenciaProfessores = () => {
   const [selectedProfessor, setSelectedProfessor] = useState(null);
   const [isEditable, setIsEditable] = useState(false); // Controla se os campos podem ser editados
   const [professores, setProfessores] = useState([]);
+  const [disciplinas, setDisciplina] = useState([]);
 
   useEffect(() => {
     getProfessores()
@@ -20,6 +21,15 @@ const GerenciaProfessores = () => {
       })
       .catch(error => {
         console.error('Erro ao buscar professores:', error);
+      });
+
+    getDisciplina()
+      .then(response => {
+        console.log('Disciplinas recebidas:', response.data);
+        setDisciplina(response.data);
+      })
+      .catch(error => {
+        console.error('Erro ao buscar disciplinas:', error);
       });
   }, []);
 
@@ -86,6 +96,14 @@ const GerenciaProfessores = () => {
     }));
   };
 
+  const handleDisciplinasChange = (event) => {
+    const selectedOptions = [...event.target.options].filter(option => option.selected).map(option => option.value);
+    setSelectedProfessor((prevProfessor) => ({
+      ...prevProfessor,
+      disciplinas: selectedOptions,
+    }));
+  };
+
   const filteredProfessores = professores.filter((professor) => {
     const nome = professor.nome ? professor.nome.toLowerCase() : '';
     const matricula = professor.matricula ? professor.matricula : '';
@@ -95,8 +113,6 @@ const GerenciaProfessores = () => {
       (filtroTurma === '' || professor.turma === filtroTurma)
     );
   });
-
-  console.log('Professores filtrados:', filteredProfessores);
 
   return (
     <div className="gerencia-professor">
@@ -130,8 +146,8 @@ const GerenciaProfessores = () => {
             <tr>
               <th>ID</th>
               <th>Nome</th>
-              <th>Disciplina</th>
               <th>Turma</th>
+              <th>Turno</th>
               <th>Status</th>
               <th>Ações</th>
             </tr>
@@ -163,7 +179,7 @@ const GerenciaProfessores = () => {
       {isModalOpen && (
         <div className="modal-overlay">
           <div className="modal-content">
-            <h2>Visualizar Professor</h2>
+            <h2>{isEditable ? 'Editar Professor' : 'Visualizar Professor'}</h2>
             <form onSubmit={handleSave}>
               <label>Matrícula</label>
               <input
@@ -207,6 +223,21 @@ const GerenciaProfessores = () => {
                 <option value="Ativo">Ativo</option>
                 <option value="Inativo">Inativo</option>
               </select>
+
+              {/* Campo de disciplinas */}
+              <label>Disciplinas</label>
+              <select
+                name="disciplinas"
+                value={selectedProfessor?.disciplinas || []}
+                onChange={handleDisciplinasChange}
+                multiple
+                disabled={!isEditable}
+              >
+                {disciplinas.map((disciplina) => (
+                  <option key={disciplina.id} value={disciplina.id}>{disciplina.nome}</option>
+                ))}
+              </select>
+
               <div className="modal-buttons">
                 {isEditable ? (
                   <button type="submit" className="save-button">Salvar</button>

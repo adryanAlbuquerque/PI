@@ -44,7 +44,7 @@ export const deleteProfessor = (id) => {
 };
 
 // Função para obter todas as disciplinas
-export const getDisciplinas = () => {
+export const getDisciplina = () => {
   return axios.get(API_URL);
 };
 
