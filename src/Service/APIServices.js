@@ -23,3 +23,22 @@ export const updateAluno = (id, aluno) => {
 export const deleteAluno = (id) => {
   return axios.delete(`${API_URL}/${id}`);
 };
+
+export const getProfessores = () => {
+  return axios.get(API_URL);
+};
+
+
+export const createProfessor = (aluno) => {
+  return axios.post(API_URL, aluno);
+};
+
+
+export const updateProfessor = (id, aluno) => {
+  return axios.put(`${API_URL}/${id}`, aluno);
+};
+
+
+export const deleteProfessor = (id) => {
+  return axios.delete(`${API_URL}/${id}`);
+};
