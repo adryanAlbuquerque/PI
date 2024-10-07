@@ -42,3 +42,23 @@ export const updateProfessor = (id, aluno) => {
 export const deleteProfessor = (id) => {
   return axios.delete(`${API_URL}/${id}`);
 };
+
+// Função para obter todas as disciplinas
+export const getDisciplinas = () => {
+  return axios.get(API_URL);
+};
+
+// Função para criar uma nova disciplina
+export const createDisciplina = (disciplina) => {
+  return axios.post(API_URL, disciplina);
+};
+
+// Função para atualizar uma disciplina existente
+export const updateDisciplina = (id, disciplina) => {
+  return axios.put(`${API_URL}/${id}`, disciplina);
+};
+
+// Função para deletar uma disciplina
+export const deleteDisciplina = (id) => {
+  return axios.delete(`${API_URL}/${id}`);
+};
