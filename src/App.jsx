@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import CadastroGeral from './Components/Gestão/Cadastro/CadastroGeral'; //
 import HomePortal from './Components/Home/HomePortal';
 import AlunoHome from './Components/Home/AlunoHome';
+import ProfHome from './Components/Home/ProfHome';
 import CoordHome from './Components/Home/CoordHome';
 import LoginAluno from './Components/Login/LoginAluno/LoginAluno';
 import LoginProf from './Components/Login/LoginProf/LoginProf';
@@ -21,6 +22,7 @@ function App() {
         <Route path="/CadastroGeral" element={<CadastroGeral />} /> 
         <Route path="/HomeCoordenacao" element={<CoordHome />} />
         <Route path="/HomeAluno" element={<AlunoHome/>} />
+        <Route path="/HomeProf" element={<ProfHome/>} />
         <Route path="/GerenciamentoAlunos" element={<GerenciaAlunos />} />
         <Route path="/GerenciamentoProfessores" element={<GerenciaProfessores />} />
         

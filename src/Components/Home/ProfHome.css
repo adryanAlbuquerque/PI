@@ -1,0 +1,97 @@
+.home-prof-container {
+    display: flex;
+    height: 100vh; /* Ocupa toda a altura da tela */
+    background-color: #F5F5FB;
+}
+
+.header-image-Prof {
+    position: relative; /* Posiciona a imagem em relação ao container */
+    width: 60%; /* Largura total */
+    height: auto; /* Altura automática */
+    margin-bottom: 20px; /* Espaçamento inferior */
+    margin-top: 100px;
+    margin-left: 30%;
+}
+
+/* Estilos para os quadrados abaixo da imagem */
+.Quadro {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    padding: 20px;
+    margin-top: 20px;
+    margin-left: 33%;
+    margin-right: -47%;
+}
+
+.Quadros {
+    width: 80%; 
+    height: 100px; 
+    background-color: #0B429D;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-left: -40px;
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    font-size: 16px; 
+    color: white; 
+    font-weight: bold; 
+    text-align: center;
+    position: relative; 
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+.Quadros:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+
+
+.Quadros:nth-child(1) {
+    background: linear-gradient(135deg, #76ff88, #00b00c); 
+}
+
+.Quadros:nth-child(2) {
+    background: linear-gradient(135deg, #84a6ef, #002394); 
+}
+
+.Quadros:nth-child(3) {
+    background: linear-gradient(135deg, #d9513f, #9d0022); 
+}
+
+.Quadros:nth-child(4) {
+    background: linear-gradient(135deg, #9900ff, #d15cff); 
+}
+
+
+.Quadros::before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    top: 10px; /* Distância do topo */
+    left: 10px; /* Distância da esquerda */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+
+.BemvindoProf {
+    text-align: center; 
+    font-size: 30px; 
+    color: #0B429D; 
+    margin-top: 60px; 
+    margin-bottom: -80px; 
+    margin-left: 230px;
+    font-weight: bold; 
+}
+
+
+
+
+
+

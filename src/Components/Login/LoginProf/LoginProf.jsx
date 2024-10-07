@@ -58,7 +58,7 @@ const LoginProf = () => {
             </a>
           </div>
 
-          <button id="button">LOGIN</button>
+          <button id="button" onClick={() => window.location.href = '/HomeProf'}>LOGIN</button>
 
           {/* Botão para voltar à Home */}
           <button type="button" id="homeButton" onClick={handleGoHome}>
