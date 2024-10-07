@@ -1,236 +1,242 @@
 .gerencia-professor {
-    display: flex;
-    flex-direction: column; /* Adicionado para permitir que o botão e o conteúdo fiquem em colunas */
-    height: 100vh; /* Ocupa toda a altura da tela */
-    background-color: #F5F5FB;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #F5F5FB;
+}
+
+#CadastrarProfessor {
+  background-color: #f4f4f9;
+  border: 1.5px solid #825cff;
+  outline: none;
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 15px;
+  color: #825cff;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  max-width: 100px;
+  height: 35px;
+  margin-top: 10px;
+}
+
+.TabelasProf {
+  margin-top: 40px;
+  margin-left: 35px;
+  background-color: #f4f4f9;
+  padding: 20px;
+  max-width: 1200px;
+  min-width: 300px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 1000px;
+}
+
+.main-content {
+  margin-left: 250px;
+  padding: 20px;
+  width: calc(100% - 250px);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+@media (max-width: 500px) {
+  #DashboardProfessor {
+    padding: 20px 10px;
+    min-width: 100%;
   }
-  
-  #CadastroProfessor {
-    background-color: #f4f4f9;
-    border: 1.5px solid #825cff;
-    outline: none;
-    border-radius: 7px;
-    cursor: pointer;
-    font-size: 15px;
-    color: #825cff;
-    transition: background-color 0.3s ease;
-    width: 100%;
-    max-width: 100px;
-    height: 35px;
-    margin-top: 10px;
-  }
-  
-  #TabelasProf {
-    margin-top: 40px;
-    margin-left: 35px;
-    background-color: #f4f4f9;
-    padding: 20px;
-    max-width: 1200px; /* Tamanho máximo para telas grandes */
-    min-width: 300px; /* Tamanho mínimo para telas pequenas */
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    
-  }
-  
   .main-content {
-    margin-left: 250px; /* Espaço ao lado da sidebar */
-    padding: 20px;
-    width: calc(100% - 250px); /* Para ocupar o espaço restante */
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    flex-direction: column;
-  }
-  
-  @media (max-width: 500px) {
-    #DashboardProfessor {
-      padding: 20px 10px;
-      min-width: 100%; /* Para telas muito pequenas */
-    }
-    .main-content {
-      margin-left: 0;
-      width: 100%;
-    }
-  }
-  
-  #CadastrarProfessor {
-    width: 40%;
-    height: 40px;
-    background-color: #4F20EC;
-    border: none;
-    outline: none;
-    border-radius: 7px;
-    cursor: pointer;  
-    color: white;
-    margin-bottom: 20px; 
-    transition: background-color 0.3s ease;
-    font-size: 17px; 
-    text-align: center;
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    text-decoration: none;
-  }
-  
-  #CadastroButton:hover {
-    background-color: #3F18C0;
-  }
-  
-  /* Estilos da barra de pesquisa e filtro */
-  .search-filter {
-    display: flex;
-    justify-content: space-between;
+    margin-left: 0;
     width: 100%;
-    margin-bottom: 20px;
   }
-  
-  .search-input {
-    width: 60%;
-    padding: 8px;
-    border-radius: 5px;
-    border: 1.5px solid #825cff;
-    height: 40px;
-  }
-  
-  .filter-select {
-    width: 35%;
-    padding: 8px;
-    border-radius: 5px;
-    border: 1.5px solid #825cff;
-    height: 40px;
-  }
-  
-  /* Estilos da tabela */
-  .professores-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    background-color: #fff; /* Fundo branco para a tabela */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .professores-table th, .professores-table td {
-    padding: 12px 15px;
-    border: 1px solid #ddd;
-    text-align: left;
-  }
-  
-  .professores-table th {
-    background-color: #f4f4f9;
-    font-weight: bold;
-  }
-  
-  .professores-table tbody tr:nth-child(even) {
-    background-color: #f9f9f9;
-  }
-  
-  .professores-table tbody tr:hover {
-    background-color: #f1f1f1;
-  }
-  
-  .edit-button, .delete-button {
-    padding: 5px 10px;
-    margin-right: 5px;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .edit-button {
-    background-color: #4F20EC;
-    color: white;
-  }
-  
-  .delete-button {
-    background-color: #E53935;
-    color: white;
-  }
-  
-  .edit-button:hover {
-    background-color: #3F18C0;
-  }
-  
-  .delete-button:hover {
-    background-color: #C62828;
-  }
-  
-  .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5); /* Fundo escurecido */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-  }
-  
-  .modal-content {
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 10px;
-    width: 400px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    text-align: center;
-  }
-  
-  .modal-content h2 {
-    margin-bottom: 20px;
-    font-size: 24px;
-    color: #4F20EC;
-  }
-  
-  .modal-content label {
-    display: block;
-    margin-bottom: 10px;
-    text-align: left;
-    font-size: 14px;
-    color: #333;
-  }
-  
-  .modal-content input, .modal-content select {
-    width: 100%;
-    padding: 10px;
-    border: 1.5px solid #825cff;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    outline: none;
-  }
-  
-  .modal-buttons {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .cancel-button, .save-button {
-    width: 45%;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-  }
-  
-  .cancel-button {
-    background-color: #E53935;
-    color: white;
-    border: transparent;
-  }
-  
-  .save-button {
-    background-color: #4F20EC;
-    color: white;
-    border: transparent;
-  }
-  
-  .cancel-button:hover {
-    background-color: #C62828;
-  }
-  
-  .save-button:hover {
-    background-color: #3F18C0;
-  }
-  
+}
+
+#CadastrarProfessor {
+  width: 40%;
+  height: 40px;
+  background-color: #4F20EC;
+  border: none;
+  outline: none;
+  border-radius: 7px;
+  cursor: pointer;
+  color: white;
+  margin-bottom: 20px;
+  transition: background-color 0.3s ease;
+  font-size: 17px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+}
+
+#CadastroButton:hover {
+  background-color: #3F18C0;
+}
+
+/* Estilos da barra de pesquisa e filtro */
+.search-filter {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.search-input {
+  width: 60%;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1.5px solid #825cff;
+  height: 40px;
+}
+
+.filter-select {
+  width: 35%;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1.5px solid #825cff;
+  height: 40px;
+}
+
+/* Estilos da tabela */
+.professores-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.professores-table th, .professores-table td {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.professores-table th {
+  background-color: #f4f4f9;
+  font-weight: bold;
+}
+
+.professores-table tbody tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.professores-table tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+.view-button {
+  padding: 5px 10px;
+  margin-right: 5px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  background-color: #4F20EC;
+  color: white;
+}
+
+.view-button:hover {
+  background-color: #3F18C0;
+}
+
+/* Estilos do modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  width: 400px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+
+.modal-content h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #4F20EC;
+}
+
+.modal-content label {
+  display: block;
+  margin-bottom: 10px;
+  text-align: left;
+  font-size: 14px;
+  color: #333;
+}
+
+.modal-content input, .modal-content select {
+  width: 100%;
+  padding: 10px;
+  border: 1.5px solid #825cff;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  outline: none;
+}
+
+/* Botões no modal */
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cancel-button, .save-button, .delete-button {
+  width: 30%;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  border: transparent;
+}
+
+.cancel-button {
+  background-color: #E53935;
+  color: white;
+}
+
+.save-button {
+  background-color: #4F20EC;
+  color: white;
+}
+
+.delete-button {
+  background-color: #E53935;
+  color: white;
+}
+
+.cancel-button:hover, .delete-button:hover {
+  background-color: #C62828;
+}
+
+.save-button:hover {
+  background-color: #3F18C0;
+}
+
+.edit-mode input, .edit-mode select {
+  background-color: #f0f0f0; /* Cor de fundo diferente para modo visualização */
+  border: none;
+}
+
+.edit-mode .save-button {
+  display: none; /* Esconde o botão de salvar no modo visualização */
+}
+
+.edit-mode .edit-button {
+  display: inline-block;
+}

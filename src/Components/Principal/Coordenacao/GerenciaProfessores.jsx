@@ -9,10 +9,11 @@ const GerenciaProfessores = () => {
   const [filtroTurma, setFiltroTurma] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProfessor, setSelectedProfessor] = useState(null);
+  const [isEditable, setIsEditable] = useState(false); // Controla se os campos podem ser editados
   const [professores, setProfessores] = useState([]);
 
   useEffect(() => {
-    getProfessores() // Atualize para a função correta para obter professores
+    getProfessores()
       .then(response => {
         console.log('Professores recebidos:', response.data);
         setProfessores(response.data);
@@ -24,13 +25,14 @@ const GerenciaProfessores = () => {
 
   const handleSave = (event) => {
     event.preventDefault();
-    updateProfessor(selectedProfessor.id, selectedProfessor) // Atualize para a função correta
+    updateProfessor(selectedProfessor.id, selectedProfessor)
       .then(response => {
         const updatedProfessores = professores.map(professor =>
           professor.id === selectedProfessor.id ? response.data : professor
         );
         setProfessores(updatedProfessores);
         setIsModalOpen(false);
+        setIsEditable(false); // Desabilita a edição após salvar
         console.log('Professor atualizado:', response.data);
       })
       .catch(error => {
@@ -38,10 +40,11 @@ const GerenciaProfessores = () => {
       });
   };
 
-  const handleDelete = (id) => {
-    deleteProfessor(id) // Atualize para a função correta
+  const handleDelete = () => {
+    deleteProfessor(selectedProfessor.id)
       .then(() => {
-        setProfessores(professores.filter(professor => professor.id !== id));
+        setProfessores(professores.filter(professor => professor.id !== selectedProfessor.id));
+        setIsModalOpen(false);
         console.log('Professor excluído');
       })
       .catch(error => {
@@ -57,15 +60,22 @@ const GerenciaProfessores = () => {
     setFiltroTurma(event.target.value);
   };
 
-  const handleEdit = (professor) => {
-    console.log('Professor selecionado para edição:', professor);
+  const handleView = (professor) => {
+    console.log('Professor selecionado para visualização:', professor);
     setSelectedProfessor({ ...professor });
+    setIsEditable(false); // Inicia o modal em modo não editável
     setIsModalOpen(true);
+  };
+
+  const enableEdit = (event) => {
+    event.preventDefault(); // Previne o comportamento padrão de submissão
+    setIsEditable(true);
   };
 
   const handleModalClose = () => {
     setIsModalOpen(false);
     setSelectedProfessor(null);
+    setIsEditable(false); // Reseta o estado de edição ao fechar
   };
 
   const handleInputChange = (event) => {
@@ -118,10 +128,10 @@ const GerenciaProfessores = () => {
         <table className="professores-table">
           <thead>
             <tr>
-              <th>Matrícula</th>
+              <th>ID</th>
               <th>Nome</th>
+              <th>Disciplina</th>
               <th>Turma</th>
-              <th>Turno</th>
               <th>Status</th>
               <th>Ações</th>
             </tr>
@@ -136,8 +146,7 @@ const GerenciaProfessores = () => {
                   <td>{professor.turno}</td>
                   <td>{professor.status}</td>
                   <td>
-                    <button onClick={() => handleEdit(professor)} className="edit-button">Editar</button>
-                    <button onClick={() => handleDelete(professor.id)} className="delete-button">Excluir</button>
+                    <button onClick={() => handleView(professor)} className="view-button">Visualizar</button>
                   </td>
                 </tr>
               ))
@@ -150,11 +159,11 @@ const GerenciaProfessores = () => {
         </table>
       </div>
 
-      {/* Modal for Editing */}
+      {/* Modal for Viewing/Editing */}
       {isModalOpen && (
         <div className="modal-overlay">
           <div className="modal-content">
-            <h2>Editar Professor</h2>
+            <h2>Visualizar Professor</h2>
             <form onSubmit={handleSave}>
               <label>Matrícula</label>
               <input
@@ -162,7 +171,7 @@ const GerenciaProfessores = () => {
                 name="matricula"
                 value={selectedProfessor?.matricula || selectedProfessor?.id || ''}
                 onChange={handleInputChange}
-                readOnly // Se desejar que o ID não seja editável
+                readOnly
               />
               <label>Nome</label>
               <input
@@ -170,6 +179,7 @@ const GerenciaProfessores = () => {
                 name="nome"
                 value={selectedProfessor?.nome || ''}
                 onChange={handleInputChange}
+                readOnly={!isEditable}
               />
               <label>Turma</label>
               <input
@@ -177,6 +187,7 @@ const GerenciaProfessores = () => {
                 name="turma"
                 value={selectedProfessor?.turma || ''}
                 onChange={handleInputChange}
+                readOnly={!isEditable}
               />
               <label>Turno</label>
               <input
@@ -184,19 +195,26 @@ const GerenciaProfessores = () => {
                 name="turno"
                 value={selectedProfessor?.turno || ''}
                 onChange={handleInputChange}
+                readOnly={!isEditable}
               />
               <label>Status</label>
               <select
                 name="status"
                 value={selectedProfessor?.status || ''}
                 onChange={handleInputChange}
+                disabled={!isEditable}
               >
                 <option value="Ativo">Ativo</option>
                 <option value="Inativo">Inativo</option>
               </select>
               <div className="modal-buttons">
-                <button type="button" onClick={handleModalClose} className="cancel-button">Cancelar</button>
-                <button type="submit" className="save-button">Salvar</button>
+                {isEditable ? (
+                  <button type="submit" className="save-button">Salvar</button>
+                ) : (
+                  <button type="button" onClick={enableEdit} className="edit-button">Editar</button>
+                )}
+                <button type="button" onClick={handleDelete} className="delete-button">Excluir</button>
+                <button type="button" onClick={handleModalClose} className="cancel-button">Fechar</button>
               </div>
             </form>
           </div>
