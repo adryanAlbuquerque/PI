@@ -4,6 +4,7 @@ import axios from 'axios';
 //const API_URL = `${process.env.REACT_APP_API_URL}/usuarios`;
 const API_URL = 'http://localhost:8080/usuarios';
 const API_URL_disciplina = 'http://localhost:8080/disciplinas';
+const API_URL_TURMAS = 'http://localhost:8080/turmas'; // URL para a rota de turmas
 
 export const getAlunos = () => {
   return axios.get(API_URL);
@@ -78,4 +79,21 @@ export const updateCoordenador = (id, coordenador) => {
 
 export const deleteCoordenador = (id) => {
   return axios.delete(`${API_URL}/${id}`);
+};
+
+// Funções de CRUD para turmas
+export const getTurmas = () => {
+  return axios.get(API_URL_TURMAS);
+};
+
+export const createTurma = (turma) => {
+  return axios.post(API_URL_TURMAS, turma);
+};
+
+export const updateTurma = (id, turma) => {
+  return axios.put(`${API_URL_TURMAS}/${id}`, turma);
+};
+
+export const deleteTurma = (id) => {
+  return axios.delete(`${API_URL_TURMAS}/${id}`);
 };
