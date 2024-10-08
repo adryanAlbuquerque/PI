@@ -12,6 +12,7 @@ const GerenciaProfessores = () => {
   const [isEditable, setIsEditable] = useState(false); // Controla se os campos podem ser editados
   const [professores, setProfessores] = useState([]);
 
+  // Carrega professores e disciplinas ao montar o componente
   useEffect(() => {
     getProfessores()
       .then(response => {
@@ -25,7 +26,11 @@ const GerenciaProfessores = () => {
 
   const handleSave = (event) => {
     event.preventDefault();
-    updateProfessor(selectedProfessor.id, selectedProfessor)
+    const professorData = {
+      ...selectedProfessor,
+      disciplina: selectedProfessor.disciplina, // Associa disciplinas selecionadas
+    };
+    updateProfessor(selectedProfessor.id, professorData)
       .then(response => {
         const updatedProfessores = professores.map(professor =>
           professor.id === selectedProfessor.id ? response.data : professor
@@ -131,6 +136,7 @@ const GerenciaProfessores = () => {
               <th>ID</th>
               <th>Nome</th>
               <th>Disciplina</th>
+              <th>Disciplina</th>
               <th>Turma</th>
               <th>Status</th>
               <th>Ações</th>
@@ -163,6 +169,7 @@ const GerenciaProfessores = () => {
       {isModalOpen && (
         <div className="modal-overlay">
           <div className="modal-content">
+            <h2>Visualizar Professor</h2>
             <h2>Visualizar Professor</h2>
             <form onSubmit={handleSave}>
               <label>Matrícula</label>
@@ -213,7 +220,7 @@ const GerenciaProfessores = () => {
                 ) : (
                   <button type="button" onClick={enableEdit} className="edit-button">Editar</button>
                 )}
-                <button type="button" onClick={handleDelete} className="apagar-button">Excluir</button>
+                <button type="button" onClick={handleDelete} className="delete-button">Excluir</button>
                 <button type="button" onClick={handleModalClose} className="cancel-button">Fechar</button>
               </div>
             </form>
