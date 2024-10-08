@@ -1,6 +1,6 @@
 import { FaTimes } from 'react-icons/fa';
 import { useState } from 'react';
-import { createUsuario } from '../../../Service/APIServices'; // Função genérica para criar qualquer usuário
+import { createUsuario } from '../../../Service/APIServices'; // Import the new createUsuario function
 import './CadastroGeral.css';
 
 const CadastroGeral = () => {
@@ -8,13 +8,12 @@ const CadastroGeral = () => {
   const [nomeCompleto, setNomeCompleto] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
-  const [grupo, setGrupo] = useState(""); // Define o tipo de usuário selecionado
+  const [grupo, setGrupo] = useState(""); // Deixa vazio inicialmente para o placeholder
 
-  // Função para enviar os dados do formulário
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // Verifica se o tipo de usuário foi selecionado
+    // Lógica para enviar os dados do formulário
     if (!grupo) {
       alert("Por favor, selecione um tipo de usuário.");
       return;
@@ -24,40 +23,38 @@ const CadastroGeral = () => {
       nome: nomeCompleto,
       email,
       senha,
-      tipoUsuario: grupo.toUpperCase(), // Formato exigido pelo backend
+      tipoUsuario: grupo.toUpperCase(), // Transforma para uppercase para corresponder ao seu formato
     };
 
     try {
-      // Chama a função createUsuario para enviar os dados para o backend
+      // Chama a função createUsuario para enviar os dados
       const response = await createUsuario(dadosUsuario);
-      console.log('Usuário cadastrado com sucesso:', response.data);
-      alert("Usuário cadastrado com sucesso!");
+      console.log('Usuário cadastrado:', response.data);
+      alert("Dados enviados com sucesso!");
     } catch (error) {
       console.error('Erro ao cadastrar usuário:', error);
-      alert("Erro ao cadastrar o usuário. Tente novamente.");
+      alert("Ocorreu um erro ao cadastrar. Tente novamente.");
     }
   };
 
-  // Função para voltar à página anterior
   const handleGoBack = () => {
-    window.location.href = '/GerenciamentoAlunos'; // Redireciona para uma página específica
+    window.location.href = '/GerenciamentoAlunos'; // Redireciona para a página principal
   };
 
   return (
     <div className="Container">
       <div id="CadGeralBox">
-        {/* Botão para fechar a tela */}
+        {/* Botão para voltar à página inicial */}
         <FaTimes className="closeIcon" onClick={handleGoBack} />
 
         <div id="LogoCadGeral">
           <img src="/img/logo.png" alt="Logo" />
         </div>
 
-        {/* Formulário de cadastro */}
         <form onSubmit={handleSubmit}>
           <h1 id="NomeCadastro">CADASTRO GERAL</h1>
 
-          {/* Dropdown para selecionar o tipo de usuário */}
+          {/* Dropdown com placeholder "Usuário" */}
           <div className="input-field">
             <select
               value={grupo}
@@ -70,7 +67,7 @@ const CadastroGeral = () => {
             </select>
           </div>
 
-          {/* Campos para nome, email e senha */}
+          {/* Campos de dados gerais */}
           <div className="input-field">
             <input
               type="text"
