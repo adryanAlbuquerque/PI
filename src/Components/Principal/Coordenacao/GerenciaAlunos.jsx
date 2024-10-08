@@ -15,7 +15,9 @@ const GerenciaAlunos = () => {
     getAlunos()
       .then(response => {
         console.log('Alunos recebidos:', response.data);
-        setAlunos(response.data);
+        // Filtra apenas os usuários que são alunos
+        const filteredAlunos = response.data.filter(aluno => aluno.tipoUsuario === 'ALUNO');
+        setAlunos(filteredAlunos);
       })
       .catch(error => {
         console.error('Erro ao buscar alunos:', error);

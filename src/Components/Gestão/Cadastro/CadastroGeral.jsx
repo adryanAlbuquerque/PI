@@ -1,6 +1,6 @@
 import { FaTimes } from 'react-icons/fa';
 import { useState } from 'react';
-import { createAluno, createProfessor } from '../../../Service/APIServices'; // Import the original API services
+import { createAluno, createProfessor, createCoordenador } from '../../../Service/APIServices'; // Importar funções de criação
 import './CadastroGeral.css';
 
 const CadastroGeral = () => {
@@ -12,35 +12,36 @@ const CadastroGeral = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+    
     // Lógica para enviar os dados do formulário
     if (!grupo) {
       alert("Por favor, selecione um tipo de usuário.");
       return;
     }
-
+    
     const dadosUsuario = {
       nome: nomeCompleto,
       email,
       senha,
+      tipoUsuario: grupo.toUpperCase(), // Transforma para uppercase para corresponder ao seu formato
     };
 
     try {
       let response;
+      // Chama a função correspondente ao tipo de usuário selecionado
       if (grupo === "aluno") {
-        // Chama a função createAluno para enviar os dados do aluno
         response = await createAluno(dadosUsuario);
       } else if (grupo === "professor") {
-        // Chama a função createProfessor para enviar os dados do professor
         response = await createProfessor(dadosUsuario);
+      } else if (grupo === "coordenador") {
+        response = await createCoordenador(dadosUsuario);
       } else {
-        // Para coordenadores ou outros tipos de usuário, você pode adicionar a lógica correspondente aqui
-        alert("Por favor, selecione aluno ou professor para este cadastro.");
+        alert("Tipo de usuário inválido.");
         return;
       }
-
+      
       console.log('Usuário cadastrado:', response.data);
-      alert("Usuário cadastrado com sucesso!");
+      alert("Dados enviados com sucesso!");
     } catch (error) {
       console.error('Erro ao cadastrar usuário:', error);
       alert("Ocorreu um erro ao cadastrar. Tente novamente.");
@@ -73,8 +74,7 @@ const CadastroGeral = () => {
               <option value="" disabled>Usuário</option>
               <option value="aluno">Aluno</option>
               <option value="professor">Professor</option>
-              {/* Se precisar adicionar coordenador no futuro */}
-              <option value="coordenador" disabled>Coordenador</option> 
+              <option value="coordenador">Coordenador</option>
             </select>
           </div>
 

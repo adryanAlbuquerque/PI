@@ -196,7 +196,7 @@
   justify-content: space-between;
 }
 
-.cancel-button, .save-button, .delete-button {
+.cancel-button, .save-button, .apagar-button {
   width: 30%;
   padding: 10px;
   border-radius: 5px;

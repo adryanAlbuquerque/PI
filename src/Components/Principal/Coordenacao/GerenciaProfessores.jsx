@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import './GerenciaProfessores.css'; // Renomeie também o CSS se necessário
 import { useState, useEffect } from 'react';
-import { getProfessores, updateProfessor, deleteProfessor, getDisciplinas } from '../../../Service/APIServices';
+import { getProfessores, updateProfessor, deleteProfessor, getDisciplina } from '../../../Service/APIServices';
 import SidebarCoord from '../../sidebar/sidebarCoord';
 
 const GerenciaProfessores = () => {
@@ -11,24 +11,26 @@ const GerenciaProfessores = () => {
   const [selectedProfessor, setSelectedProfessor] = useState(null);
   const [isEditable, setIsEditable] = useState(false); // Controla se os campos podem ser editados
   const [professores, setProfessores] = useState([]);
-  const [disciplinas, setDisciplinas] = useState([]); // Estado para armazenar disciplinas
+  const [disciplina, setDisciplina] = useState([]); // Estado para armazenar disciplinas
 
   // Carrega professores e disciplinas ao montar o componente
   useEffect(() => {
     getProfessores()
       .then(response => {
         console.log('Professores recebidos:', response.data);
-        setProfessores(response.data);
+        // Filtra apenas os usuários que são professores
+        const filteredProfessores = response.data.filter(professor => professor.tipoUsuario === 'PROFESSOR');
+        setProfessores(filteredProfessores);
       })
       .catch(error => {
         console.error('Erro ao buscar professores:', error);
       });
 
     // Busca disciplinas para exibição e associação
-    getDisciplinas()
+    getDisciplina()
       .then(response => {
         console.log('Disciplinas recebidas:', response.data);
-        setDisciplinas(response.data); // Armazena disciplinas
+        setDisciplina(response.data); // Armazena disciplinas
       })
       .catch(error => {
         console.error('Erro ao buscar disciplinas:', error);
@@ -39,7 +41,7 @@ const GerenciaProfessores = () => {
     event.preventDefault();
     const professorData = {
       ...selectedProfessor,
-      disciplinas: selectedProfessor.disciplinas, // Associa disciplinas selecionadas
+      disciplina: selectedProfessor.disciplina, // Associa disciplinas selecionadas
     };
     updateProfessor(selectedProfessor.id, professorData)
       .then(response => {
@@ -103,11 +105,11 @@ const GerenciaProfessores = () => {
   };
 
   // Função para lidar com a seleção de disciplinas
-  const handleDisciplinasChange = (event) => {
-    const selectedDisciplinas = Array.from(event.target.selectedOptions, option => option.value);
+  const handleDisciplinaChange = (event) => {
+    const selectedDisciplina = Array.from(event.target.selectedOptions, option => option.value);
     setSelectedProfessor((prevProfessor) => ({
       ...prevProfessor,
-      disciplinas: selectedDisciplinas,
+      disciplina: selectedDisciplina,
     }));
   };
 
@@ -234,13 +236,13 @@ const GerenciaProfessores = () => {
               </select>
               <label>Disciplinas</label>
               <select
-                name="disciplinas"
-                value={selectedProfessor?.disciplinas || []}
-                onChange={handleDisciplinasChange}
+                name="disciplina"
+                value={selectedProfessor?.disciplina || []}
+                onChange={handleDisciplinaChange}
                 multiple
                 disabled={!isEditable}
               >
-                {disciplinas.map(disciplina => (
+                {disciplina.map(disciplina => (
                   <option key={disciplina.disciplina_id} value={disciplina.disciplina_id}>
                     {disciplina.nome}
                   </option>
@@ -253,7 +255,7 @@ const GerenciaProfessores = () => {
                   <button type="button" onClick={enableEdit} className="edit-button">Editar</button>
                 )}
                 <button type="button" onClick={handleDelete} className="delete-button">Excluir</button>
-                <button type="button" onClick={handleModalClose} className="cancel-button">Fechar</button>
+                <button type="button" onClick={handleModalClose} className="close-button">Fechar</button>
               </div>
             </form>
           </div>
