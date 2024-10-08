@@ -1,6 +1,6 @@
 import { FaTimes } from 'react-icons/fa';
 import { useState } from 'react';
-import { createAluno } from '../../../Service/APIServices'; // Import the createAluno function
+import { createUsuario } from '../../../Service/APIServices'; // Função genérica para criar qualquer usuário
 import './CadastroGeral.css';
 
 const CadastroGeral = () => {
@@ -8,53 +8,56 @@ const CadastroGeral = () => {
   const [nomeCompleto, setNomeCompleto] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
-  const [grupo, setGrupo] = useState(""); // Deixa vazio inicialmente para o placeholder
+  const [grupo, setGrupo] = useState(""); // Define o tipo de usuário selecionado
 
+  // Função para enviar os dados do formulário
   const handleSubmit = async (event) => {
     event.preventDefault();
-    
-    // Lógica para enviar os dados do formulário
+
+    // Verifica se o tipo de usuário foi selecionado
     if (!grupo) {
       alert("Por favor, selecione um tipo de usuário.");
       return;
     }
-    
+
     const dadosUsuario = {
       nome: nomeCompleto,
       email,
       senha,
-      tipoUsuario: grupo.toUpperCase(), // Transforma para uppercase para corresponder ao seu formato
+      tipoUsuario: grupo.toUpperCase(), // Formato exigido pelo backend
     };
 
     try {
-      // Chama a função createAluno para enviar os dados do aluno
-      const response = await createAluno(dadosUsuario);
-      console.log('Usuário cadastrado:', response.data);
-      alert("Dados enviados!");
+      // Chama a função createUsuario para enviar os dados para o backend
+      const response = await createUsuario(dadosUsuario);
+      console.log('Usuário cadastrado com sucesso:', response.data);
+      alert("Usuário cadastrado com sucesso!");
     } catch (error) {
       console.error('Erro ao cadastrar usuário:', error);
-      alert("Ocorreu um erro ao cadastrar. Tente novamente.");
+      alert("Erro ao cadastrar o usuário. Tente novamente.");
     }
   };
 
+  // Função para voltar à página anterior
   const handleGoBack = () => {
-    window.location.href = '/GerenciamentoAlunos'; // Redireciona para a página principal
+    window.location.href = '/GerenciamentoAlunos'; // Redireciona para uma página específica
   };
 
   return (
     <div className="Container">
       <div id="CadGeralBox">
-        {/* Botão para voltar à página inicial */}
+        {/* Botão para fechar a tela */}
         <FaTimes className="closeIcon" onClick={handleGoBack} />
 
         <div id="LogoCadGeral">
           <img src="/img/logo.png" alt="Logo" />
         </div>
 
+        {/* Formulário de cadastro */}
         <form onSubmit={handleSubmit}>
           <h1 id="NomeCadastro">CADASTRO GERAL</h1>
 
-          {/* Dropdown com placeholder "Usuário" */}
+          {/* Dropdown para selecionar o tipo de usuário */}
           <div className="input-field">
             <select
               value={grupo}
@@ -67,7 +70,7 @@ const CadastroGeral = () => {
             </select>
           </div>
 
-          {/* Campos de dados gerais */}
+          {/* Campos para nome, email e senha */}
           <div className="input-field">
             <input
               type="text"
