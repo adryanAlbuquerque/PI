@@ -1,64 +1,35 @@
 import axios from 'axios';
 
-
 //const API_URL = `${process.env.REACT_APP_API_URL}/usuarios`;
 const API_URL = 'http://localhost:8080/usuarios';
 
+// Função genérica para criar qualquer tipo de usuário
+export const createUsuario = (usuario) => {
+  return axios.post(API_URL, usuario);
+};
 
+// Funções para lidar com alunos
 export const getAlunos = () => {
-  return axios.get(API_URL);
+  return axios.get(`${API_URL}/alunos`);
 };
-
-
-export const createAluno = (aluno) => {
-  return axios.post(API_URL, aluno);
-};
-
 
 export const updateAluno = (id, aluno) => {
-  return axios.put(`${API_URL}/${id}`, aluno);
+  return axios.put(`${API_URL}/alunos/${id}`, aluno);
 };
-
 
 export const deleteAluno = (id) => {
-  return axios.delete(`${API_URL}/${id}`);
+  return axios.delete(`${API_URL}/alunos/${id}`);
 };
 
+// Funções para lidar com professores
 export const getProfessores = () => {
-  return axios.get(API_URL);
+  return axios.get(`${API_URL}/professores`);
 };
 
-
-export const createProfessor = (aluno) => {
-  return axios.post(API_URL, aluno);
+export const updateProfessor = (id, professor) => {
+  return axios.put(`${API_URL}/professores/${id}`, professor);
 };
-
-
-export const updateProfessor = (id, aluno) => {
-  return axios.put(`${API_URL}/${id}`, aluno);
-};
-
 
 export const deleteProfessor = (id) => {
-  return axios.delete(`${API_URL}/${id}`);
-};
-
-// Função para obter todas as disciplinas
-export const getDisciplinas = () => {
-  return axios.get(API_URL);
-};
-
-// Função para criar uma nova disciplina
-export const createDisciplina = (disciplina) => {
-  return axios.post(API_URL, disciplina);
-};
-
-// Função para atualizar uma disciplina existente
-export const updateDisciplina = (id, disciplina) => {
-  return axios.put(`${API_URL}/${id}`, disciplina);
-};
-
-// Função para deletar uma disciplina
-export const deleteDisciplina = (id) => {
-  return axios.delete(`${API_URL}/${id}`);
+  return axios.delete(`${API_URL}/professores/${id}`);
 };
