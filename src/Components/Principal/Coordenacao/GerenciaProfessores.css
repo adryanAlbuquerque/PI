@@ -34,47 +34,33 @@
   margin-bottom: 1000px;
 }
 
-.main-content {
-  margin-left: 250px;
-  padding: 20px;
-  width: calc(100% - 250px);
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  flex-direction: column;
-}
-
 @media (max-width: 500px) {
   #DashboardProfessor {
     padding: 20px 10px;
     min-width: 100%;
   }
-  .main-content {
-    margin-left: 0;
-    width: 100%;
-  }
 }
 
-#CadastrarProfessor {
-  width: 40%;
+#Cadastrar {
+  width: 40%;  
   height: 40px;
   background-color: #4F20EC;
   border: none;
   outline: none;
   border-radius: 7px;
-  cursor: pointer;
+  cursor: pointer;  
   color: white;
-  margin-bottom: 20px;
+  margin-bottom: 20px; 
   transition: background-color 0.3s ease;
-  font-size: 17px;
+  font-size: 17px; 
   text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
   text-decoration: none;
 }
 
-#CadastroButton:hover {
+#Cadastrar:hover {
   background-color: #3F18C0;
 }
 

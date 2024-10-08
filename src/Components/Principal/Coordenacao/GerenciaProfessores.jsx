@@ -133,7 +133,7 @@ const GerenciaProfessores = () => {
 
       {/* Main content */}
       <div className="TabelasProf">
-        <Link to="/CadastroGeral" id="Cadastrar">
+        <Link to="/CadastroGeral" id="CadastrarProf">
           CADASTRO
         </Link>
         <div className="search-filter">

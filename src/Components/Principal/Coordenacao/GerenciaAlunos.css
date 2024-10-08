@@ -5,22 +5,6 @@
   background-color: #F5F5FB;
 }
 
-#CadastroAluno {
-  background-color: #f4f4f9;
-  border: 1.5px solid #825cff;
-  outline: none;
-  border-radius: 7px;
-  cursor: pointer;
-  font-size: 15px;
-  color: #825cff;
-  transition: background-color 0.3s ease;
-  width: 100%;
-  max-width: 100px;
-  height: 35px;
-  margin-top: 10px;
-  
-}
-
 #DashboardAluno {
   margin-top: 40px;
   margin-left: 35px;
@@ -35,28 +19,14 @@
   margin-bottom: 1000px;
 }
 
-.main-content {
-  margin-left: 250px; /* Espaço ao lado da sidebar */
-  padding: 20px;
-  width: calc(100% - 250px); /* Para ocupar o espaço restante */
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  flex-direction: column;
-}
-
 @media (max-width: 500px) {
   #DashboardAluno {
       padding: 20px 10px;
       min-width: 100%; /* Para telas muito pequenas */
   }
-  .main-content {
-      margin-left: 0;
-      width: 100%;
-  }
 }
 
-#Cadastrar {
+#CadastrarProf {
   width: 40%;  
   height: 40px;
   background-color: #4F20EC;
@@ -75,7 +45,7 @@
   text-decoration: none;
 }
 
-#CadastroButton:hover {
+#CadastrarProf:hover {
   background-color: #3F18C0;
 }
 
