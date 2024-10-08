@@ -19,7 +19,7 @@ const CoordHome = () => {
         <div className="Square">
           <a href="/GerenciamentoAlunos" className="Squares">Acessar Alunos</a>
           <a href="/GerenciamentoProfessores" className="Squares">Acessar Professores</a>
-          <a href="/" className="Squares">Acessar Turmas</a>
+          <a href="/GerenciamentoTurmas" className="Squares">Acessar Turmas</a>
           <a href="/" className="Squares">Acessar Relatórios</a>
         </div>
 

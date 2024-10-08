@@ -1,0 +1,90 @@
+.gerencia-turma {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #F5F5FB;
+}
+
+#CadastrarTurma {
+  background-color: #f4f4f9;
+  border: 1.5px solid #825cff;
+  outline: none;
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 15px;
+  color: #825cff;
+  transition: background-color 0.3s ease;
+  width: 100%;
+  max-width: 100px;
+  height: 35px;
+  margin-top: 10px;
+}
+
+.TabelasTurm {
+  margin-top: 40px;
+  margin-left: 35px;
+  background-color: #f4f4f9;
+  padding: 20px;
+  max-width: 1200px;
+  min-width: 300px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.search-input {
+  width: 60%;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1.5px solid #825cff;
+  height: 40px;
+}
+
+.turmas-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.turmas-table th,
+.turmas-table td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+
+.view-button {
+  background-color: #825cff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.modal-buttons {
+  display: flex;
+  justify-content: space-between;
+}
