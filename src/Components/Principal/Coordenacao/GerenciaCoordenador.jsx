@@ -1,29 +1,29 @@
 import { Link } from 'react-router-dom';
-import './GerenciaProfessores.css'; // Renomeie também o CSS se necessário
+import './GerenciaCoordenador.css'; // Renomeie também o CSS se necessário
 import { useState, useEffect } from 'react';
-import { getProfessores, updateProfessor, deleteProfessor, getDisciplina } from '../../../Service/APIServices';
+import { getCoordenadores, updateCoordenador, deleteCoordenador, getDisciplina } from '../../../Service/APIServices';
 import SidebarCoord from '../../sidebar/sidebarCoord';
 
-const GerenciaProfessores = () => {
+const GerenciaCoordenadores = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filtroTurma, setFiltroTurma] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedProfessor, setSelectedProfessor] = useState(null);
+  const [selectedCoordenador, setSelectedCoordenador] = useState(null);
   const [isEditable, setIsEditable] = useState(false); // Controla se os campos podem ser editados
-  const [professores, setProfessores] = useState([]);
+  const [coordenadores, setCoordenadores] = useState([]);
   const [disciplina, setDisciplina] = useState([]); // Estado para armazenar disciplinas
 
-  // Carrega professores e disciplinas ao montar o componente
+  // Carrega coordenadores e disciplinas ao montar o componente
   useEffect(() => {
-    getProfessores()
+    getCoordenadores()
       .then(response => {
-        console.log('Professores recebidos:', response.data);
-        // Filtra apenas os usuários que são professores
-        const filteredProfessores = response.data.filter(professor => professor.tipoUsuario === 'PROFESSOR');
-        setProfessores(filteredProfessores);
+        console.log('Coordenadores recebidos:', response.data);
+        // Filtra apenas os usuários que são coordenadores
+        const filteredCoordenadores = response.data.filter(coordenador => coordenador.tipoUsuario === 'COORDENADOR');
+        setCoordenadores(filteredCoordenadores);
       })
       .catch(error => {
-        console.error('Erro ao buscar professores:', error);
+        console.error('Erro ao buscar coordenadores:', error);
       });
 
     // Busca disciplinas para exibição e associação
@@ -39,34 +39,34 @@ const GerenciaProfessores = () => {
 
   const handleSave = (event) => {
     event.preventDefault();
-    const professorData = {
-      ...selectedProfessor,
-      disciplina: selectedProfessor.disciplina, // Associa disciplinas selecionadas
+    const coordenadorData = {
+      ...selectedCoordenador,
+      disciplina: selectedCoordenador.disciplina, // Associa disciplinas selecionadas
     };
-    updateProfessor(selectedProfessor.id, professorData)
+    updateCoordenador(selectedCoordenador.id, coordenadorData)
       .then(response => {
-        const updatedProfessores = professores.map(professor =>
-          professor.id === selectedProfessor.id ? response.data : professor
+        const updatedCoordenadores = coordenadores.map(coordenador =>
+          coordenador.id === selectedCoordenador.id ? response.data : coordenador
         );
-        setProfessores(updatedProfessores);
+        setCoordenadores(updatedCoordenadores);
         setIsModalOpen(false);
         setIsEditable(false); // Desabilita a edição após salvar
-        console.log('Professor atualizado:', response.data);
+        console.log('Coordenador atualizado:', response.data);
       })
       .catch(error => {
-        console.error('Erro ao atualizar professor:', error);
+        console.error('Erro ao atualizar coordenador:', error);
       });
   };
 
   const handleDelete = () => {
-    deleteProfessor(selectedProfessor.id)
+    deleteCoordenador(selectedCoordenador.id)
       .then(() => {
-        setProfessores(professores.filter(professor => professor.id !== selectedProfessor.id));
+        setCoordenadores(coordenadores.filter(coordenador => coordenador.id !== selectedCoordenador.id));
         setIsModalOpen(false);
-        console.log('Professor excluído');
+        console.log('Coordenador excluído');
       })
       .catch(error => {
-        console.error('Erro ao excluir professor:', error);
+        console.error('Erro ao excluir coordenador:', error);
       });
   };
 
@@ -78,9 +78,9 @@ const GerenciaProfessores = () => {
     setFiltroTurma(event.target.value);
   };
 
-  const handleView = (professor) => {
-    console.log('Professor selecionado para visualização:', professor);
-    setSelectedProfessor({ ...professor });
+  const handleView = (coordenador) => {
+    console.log('Coordenador selecionado para visualização:', coordenador);
+    setSelectedCoordenador({ ...coordenador });
     setIsEditable(false); // Inicia o modal em modo não editável
     setIsModalOpen(true);
   };
@@ -92,14 +92,14 @@ const GerenciaProfessores = () => {
 
   const handleModalClose = () => {
     setIsModalOpen(false);
-    setSelectedProfessor(null);
+    setSelectedCoordenador(null);
     setIsEditable(false); // Reseta o estado de edição ao fechar
   };
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setSelectedProfessor((prevProfessor) => ({
-      ...prevProfessor,
+    setSelectedCoordenador((prevCoordenador) => ({
+      ...prevCoordenador,
       [name]: value,
     }));
   };
@@ -107,36 +107,36 @@ const GerenciaProfessores = () => {
   // Função para lidar com a seleção de disciplinas
   const handleDisciplinaChange = (event) => {
     const selectedDisciplina = Array.from(event.target.selectedOptions, option => option.value);
-    setSelectedProfessor((prevProfessor) => ({
-      ...prevProfessor,
+    setSelectedCoordenador((prevCoordenador) => ({
+      ...prevCoordenador,
       disciplina: selectedDisciplina,
     }));
   };
 
-  const filteredProfessores = professores.filter((professor) => {
-    const nome = professor.nome ? professor.nome.toLowerCase() : '';
-    const matricula = professor.matricula ? professor.matricula : '';
+  const filteredCoordenadores = coordenadores.filter((coordenador) => {
+    const nome = coordenador.nome ? coordenador.nome.toLowerCase() : '';
+    const matricula = coordenador.matricula ? coordenador.matricula : '';
 
     return (
       (nome.includes(searchTerm.toLowerCase()) || matricula.includes(searchTerm)) &&
-      (filtroTurma === '' || professor.turma === filtroTurma)
+      (filtroTurma === '' || coordenador.turma === filtroTurma)
     );
   });
 
-  console.log('Professores filtrados:', filteredProfessores);
+  console.log('Coordenadores filtrados:', filteredCoordenadores);
 
   return (
-    <div className="gerencia-professor">
+    <div className="gerencia-coordenador">
 
       {/* Sidebar */}
       <SidebarCoord />
 
       {/* Main content */}
-      <div className="TabelasProf">
-        <Link to="/CadastroGeral" id="Cadastrar">
+      <div className="RegistroCoord">
+        <Link to="/CadastroGeral" id="Cadastro">
           CADASTRO
         </Link>
-        <div className="search-filter">
+        <div className="search">
           <input
             type="text"
             placeholder="Pesquisar por nome"
@@ -151,35 +151,35 @@ const GerenciaProfessores = () => {
           </select>
         </div>
 
-        {/* Professores table */}
-        <table className="professores-table">
+        {/* Coordenadores table */}
+        <table className="coordenadores-table">
           <thead>
             <tr>
               <th>ID</th>
               <th>Nome</th>
-              <th>Disciplina</th>
-              <th>Turma</th>
+              <th>Área</th>
+              <th>Nível</th>
               <th>Status</th>
               <th>Ações</th>
             </tr>
           </thead>
           <tbody>
-            {filteredProfessores.length > 0 ? (
-              filteredProfessores.map((professor) => (
-                <tr key={professor.id}>
-                  <td>{professor.matricula || professor.id}</td>
-                  <td>{professor.nome}</td>
-                  <td>{professor.turma}</td>
-                  <td>{professor.turno}</td>
-                  <td>{professor.status}</td>
+            {filteredCoordenadores.length > 0 ? (
+              filteredCoordenadores.map((coordenador) => (
+                <tr key={coordenador.id}>
+                  <td>{coordenador.matricula || coordenador.id}</td>
+                  <td>{coordenador.nome}</td>
+                  <td>{coordenador.turma}</td>
+                  <td>{coordenador.turno}</td>
+                  <td>{coordenador.status}</td>
                   <td>
-                    <button onClick={() => handleView(professor)} className="view-button">Visualizar</button>
+                    <button onClick={() => handleView(coordenador)} className="view-button">Visualizar</button>
                   </td>
                 </tr>
               ))
             ) : (
               <tr>
-                <td colSpan="6" className="no-results">Nenhum professor encontrado.</td>
+                <td colSpan="6" className="no-results">Nenhum coordenador encontrado.</td>
               </tr>
             )}
           </tbody>
@@ -190,13 +190,13 @@ const GerenciaProfessores = () => {
       {isModalOpen && (
         <div className="modal-overlay">
           <div className="modal-content">
-            <h2>Visualizar Professor</h2>
+            <h2>Visualizar Coordenador</h2>
             <form onSubmit={handleSave}>
-              <label>Matrícula</label>
+              <label>ID</label>
               <input
                 type="text"
                 name="matricula"
-                value={selectedProfessor?.matricula || selectedProfessor?.id || ''}
+                value={selectedCoordenador?.matricula || selectedCoordenador?.id || ''}
                 onChange={handleInputChange}
                 readOnly
               />
@@ -204,30 +204,30 @@ const GerenciaProfessores = () => {
               <input
                 type="text"
                 name="nome"
-                value={selectedProfessor?.nome || ''}
+                value={selectedCoordenador?.nome || ''}
                 onChange={handleInputChange}
                 readOnly={!isEditable}
               />
-              <label>Turma</label>
+              <label>Área</label>
               <input
                 type="text"
-                name="turma"
-                value={selectedProfessor?.turma || ''}
+                name="area"
+                value={selectedCoordenador?.area || ''}
                 onChange={handleInputChange}
                 readOnly={!isEditable}
               />
-              <label>Turno</label>
+              <label>Nível</label>
               <input
                 type="text"
-                name="turno"
-                value={selectedProfessor?.turno || ''}
+                name="nivel"
+                value={selectedCoordenador?.nivel || ''}
                 onChange={handleInputChange}
                 readOnly={!isEditable}
               />
               <label>Status</label>
               <select
                 name="status"
-                value={selectedProfessor?.status || ''}
+                value={selectedCoordenador?.status || ''}
                 onChange={handleInputChange}
                 disabled={!isEditable}
               >
@@ -237,7 +237,7 @@ const GerenciaProfessores = () => {
               <label>Disciplinas</label>
               <select
                 name="disciplina"
-                value={selectedProfessor?.disciplina || []}
+                value={selectedCoordenador?.disciplina || []}
                 onChange={handleDisciplinaChange}
                 multiple
                 disabled={!isEditable}
@@ -248,14 +248,14 @@ const GerenciaProfessores = () => {
                   </option>
                 ))}
               </select>
-              <div className="modal-buttons">
-                {isEditable ? (
-                  <button type="submit" className="save-button">Salvar</button>
+              <div className="modalbt">
+                {!isEditable ? (
+                  <button onClick={enableEdit} className="edicao">Editar</button>
                 ) : (
-                  <button type="button" onClick={enableEdit} className="edit-button">Editar</button>
+                  <button type="submit" className="salvar">Salvar</button>
                 )}
-                <button type="button" onClick={handleDelete} className="delete-button">Excluir</button>
-                <button type="button" onClick={handleModalClose} className="cancelar-button">Fechar</button>
+                <button onClick={handleModalClose} className="fechar">Fechar</button>
+                <button onClick={handleDelete} className="delete">Excluir</button>
               </div>
             </form>
           </div>
@@ -265,4 +265,4 @@ const GerenciaProfessores = () => {
   );
 };
 
-export default GerenciaProfessores;
+export default GerenciaCoordenadores;

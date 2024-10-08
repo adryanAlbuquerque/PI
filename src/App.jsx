@@ -10,6 +10,7 @@ import LoginProf from './Components/Login/LoginProf/LoginProf';
 import LoginCoord from './Components/Login/LoginCoord/LoginCoord';
 import GerenciaAlunos from './Components/Principal/Coordenacao/GerenciaAlunos';
 import GerenciaProfessores from './Components/Principal/Coordenacao/GerenciaProfessores';
+import GerenciaCoordenador from './Components/Principal/Coordenacao/GerenciaCoordenador';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/HomeProf" element={<ProfHome/>} />
         <Route path="/GerenciamentoAlunos" element={<GerenciaAlunos />} />
         <Route path="/GerenciamentoProfessores" element={<GerenciaProfessores />} />
+        <Route path="/GerenciamentoCoordenador" element={<GerenciaCoordenador />} />
         
       </Routes>
     </Router>
