@@ -1,6 +1,6 @@
 import { FaTimes } from 'react-icons/fa';
 import { useState } from 'react';
-import { createUsuario } from '../../../Service/APIServices'; // Import the new createUsuario function
+import { createAluno, createProfessor } from '../../../Service/APIServices'; // Import the original API services
 import './CadastroGeral.css';
 
 const CadastroGeral = () => {
@@ -23,14 +23,24 @@ const CadastroGeral = () => {
       nome: nomeCompleto,
       email,
       senha,
-      tipoUsuario: grupo.toUpperCase(), // Transforma para uppercase para corresponder ao seu formato
     };
 
     try {
-      // Chama a função createUsuario para enviar os dados
-      const response = await createUsuario(dadosUsuario);
+      let response;
+      if (grupo === "aluno") {
+        // Chama a função createAluno para enviar os dados do aluno
+        response = await createAluno(dadosUsuario);
+      } else if (grupo === "professor") {
+        // Chama a função createProfessor para enviar os dados do professor
+        response = await createProfessor(dadosUsuario);
+      } else {
+        // Para coordenadores ou outros tipos de usuário, você pode adicionar a lógica correspondente aqui
+        alert("Por favor, selecione aluno ou professor para este cadastro.");
+        return;
+      }
+
       console.log('Usuário cadastrado:', response.data);
-      alert("Dados enviados com sucesso!");
+      alert("Usuário cadastrado com sucesso!");
     } catch (error) {
       console.error('Erro ao cadastrar usuário:', error);
       alert("Ocorreu um erro ao cadastrar. Tente novamente.");
@@ -63,7 +73,8 @@ const CadastroGeral = () => {
               <option value="" disabled>Usuário</option>
               <option value="aluno">Aluno</option>
               <option value="professor">Professor</option>
-              <option value="coordenador">Coordenador</option>
+              {/* Se precisar adicionar coordenador no futuro */}
+              <option value="coordenador" disabled>Coordenador</option> 
             </select>
           </div>
 
