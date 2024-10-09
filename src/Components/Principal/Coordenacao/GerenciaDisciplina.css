@@ -1,0 +1,185 @@
+.gerencia-disciplina {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background-color: #F5F5FB;
+  }
+  
+  .RegistroDisciplina {
+    margin-top: 40px;
+    margin-left: 35px;
+    background-color: #f4f4f9;
+    padding: 20px;
+    max-width: 1200px;
+    min-width: 300px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  #Cadastro {
+    width: 40%;
+    height: 40px;
+    background-color: #4F20EC;
+    border: none;
+    outline: none;
+    border-radius: 7px;
+    cursor: pointer;
+    color: white;
+    margin-bottom: 20px;
+    transition: background-color 0.3s ease;
+    font-size: 17px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+  }
+  
+  #Cadastro:hover {
+    background-color: #3F18C0;
+  }
+  
+  /* Estilos da barra de pesquisa */
+  .search {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .search-input {
+    width: 60%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1.5px solid #825cff;
+    height: 40px;
+  }
+  
+  /* Estilos da tabela de disciplinas */
+  .disciplinas-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .disciplinas-table th, .disciplinas-table td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  
+  .disciplinas-table th {
+    background-color: #f4f4f9;
+    font-weight: bold;
+  }
+  
+  .disciplinas-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .disciplinas-table tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .view-button {
+    padding: 5px 10px;
+    margin-right: 5px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    background-color: #4F20EC;
+    color: white;
+  }
+  
+  .view-button:hover {
+    background-color: #3F18C0;
+  }
+  
+  /* Estilos do modal */
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modal-content {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    width: 400px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    text-align: center;
+  }
+  
+  .modal-content h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #4F20EC;
+  }
+  
+  .modal-content label {
+    display: block;
+    margin-bottom: 10px;
+    text-align: left;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .modal-content input {
+    width: 100%;
+    padding: 10px;
+    border: 1.5px solid #825cff;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    outline: none;
+  }
+  
+  /* Botões no modal */
+  .modalbt {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .fechar, .salvar, .delete {
+    width: 30%;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    border: transparent;
+  }
+  
+  .fechar {
+    background-color: #E53935;
+    color: white;
+  }
+  
+  .salvar {
+    background-color: #4F20EC;
+    color: white;
+  }
+  
+  .delete {
+    background-color: #E53935;
+    color: white;
+  }
+  
+  .fechar:hover, .delete:hover {
+    background-color: #C62828;
+  }
+  
+  .salvar:hover {
+    background-color: #3F18C0;
+  }
+  

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import './GerenciaTurmas.css';
 import { useState, useEffect } from 'react';
-import { getTurmas, updateTurma, deleteTurma, getDisciplinas } from '../../../Service/APIServices';
+import { getTurmas, updateTurma, deleteTurma, getDisciplina } from '../../../Service/APIServices';
 import SidebarCoord from '../../sidebar/sidebarCoord';
 
 const GerenciaTurmas = () => {
@@ -24,7 +24,7 @@ const GerenciaTurmas = () => {
       });
 
     // Busca disciplinas para exibição e associação
-    getDisciplinas()
+    getDisciplina()
       .then(response => {
         console.log('Disciplinas recebidas:', response.data);
         setDisciplinas(response.data);

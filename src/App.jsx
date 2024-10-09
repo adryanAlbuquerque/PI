@@ -12,6 +12,7 @@ import GerenciaAlunos from './Components/Principal/Coordenacao/GerenciaAlunos';
 import GerenciaProfessores from './Components/Principal/Coordenacao/GerenciaProfessores';
 import GerenciaCoordenador from './Components/Principal/Coordenacao/GerenciaCoordenador';
 import GerenciaTurmas from './Components/Principal/Coordenacao/GerenciaTurmas';
+import GerenciaDisciplina from './Components/Principal/Coordenacao/GerenciaDisciplina';
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
         <Route path="/GerenciamentoProfessores" element={<GerenciaProfessores />} />
         <Route path="/GerenciamentoCoordenador" element={<GerenciaCoordenador />} />
         <Route path="/GerenciamentoTurmas" element={<GerenciaTurmas />} />
+        <Route path="/GerenciamentoDisciplina" element={<GerenciaDisciplina />} />
         
       </Routes>
     </Router>
