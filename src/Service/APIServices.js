@@ -5,6 +5,7 @@ const API_URL = 'http://localhost:8080/usuarios';
 const API_URL_DISCIPLINA = 'http://localhost:8080/disciplinas';
 const API_URL_TURMAS = 'http://localhost:8080/turmas'; 
 const API_URL_CONCEITOS = 'http://localhost:8080/conceitos'; // URL para a rota de conceitos
+const API_URL_COMUNICADOS = 'http://localhost:8080/comunicados'
 
 // Funções para gerenciar alunos
 export const getAlunos = () => {
@@ -106,4 +107,21 @@ export const updateConceito = (id, conceito) => {
 
 export const deleteConceito = (id) => {
   return axios.delete(`${API_URL_CONCEITOS}/${id}`);
+};
+
+// Funções para gerenciar comunicados
+export const getComunicados = () => {
+  return axios.get(API_URL_COMUNICADOS);
+};
+
+export const createComunicado = (comunicado) => {
+  return axios.post(API_URL_COMUNICADOS, comunicado);
+};
+
+export const updateComunicado = (id, comunicado) => {
+  return axios.put(`${API_URL_COMUNICADOS}/${id}`, comunicado);
+};
+
+export const deleteComunicado = (id) => {
+  return axios.delete(`${API_URL_COMUNICADOS}/${id}`);
 };

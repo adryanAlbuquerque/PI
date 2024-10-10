@@ -28,14 +28,46 @@
     object-fit: cover; /* Corta a imagem para manter a proporção */
 }
 
-.conceitos {
-    text-align: center; 
+.comunicados {
     font-size: 20px; 
     color: #FF8A00; 
-    font-weight: bold; 
-    margin: 20px 0; /* Adiciona espaçamento ao redor do h2 */
-    
+    font-weight: bold;     
 }
+
+.comunicados-container {
+    width: 80%;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.comunicado-item {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.comunicado-item h3 {
+    color: #FF8A00;
+    margin-bottom: 5px;
+    font-size: 18px;
+}
+
+.comunicado-item p {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.comunicado-data {
+    font-size: 12px;
+    color: #777;
+}
+
+.comunicado-item:last-child {
+    border-bottom: none;
+}
+
 .BemVindo {
     text-align: center; 
     font-size: 30px; 
@@ -46,31 +78,31 @@
 
 .squaresaluno {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Ajuste responsivo */
     gap: 20px;
     padding: 20px;
-    margin: 20px auto; /* Centraliza horizontalmente */
-    width: 80%; /* Define um tamanho responsivo */
+    margin: 20px auto;
+    width: 80%;
 }
 
 .Bloco {
-    width: 100%; /* Ajuste para caber na grid */
-    max-width: 400px; /* Limite de largura */
+    width: 100%;
+    max-width: 400px;
     height: 100px;
     background-color: #FF8A00;
     border: 1px solid #ccc;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     display: flex; 
     justify-content: center; 
-    align-items: center; 
-    font-size: 16px; 
-    color: white; 
-    font-weight: bold; 
+    align-items: center;
+    font-size: 16px;
+    color: white;
+    font-weight: bold;
     text-align: center;
-    position: relative; 
+    position: relative;
     border-radius: 10px;
     text-decoration: none;
-    margin: auto; /* Centraliza os blocos */
+    margin: auto;
 }
 
 .Bloco:hover {
