@@ -1,16 +1,90 @@
 .home-coord-container {
     display: flex;
-    height: 100vh; /* Ocupa toda a altura da tela */
+    height: 100vh; 
     background-color: #F5F5FB;
+    overflow-x: hidden; /* Evita que o conteúdo ultrapasse o container */
+    padding: 25px; /* Espaçamento interno */
+}
+
+.novo-comunicado-button {
+    display: flex;
+    background-color: #4F20EC; /* Cor do botão */
+    color: white; /* Cor do texto */
+    padding: 10px 40px; /* Espaçamento interno */
+    border: none; /* Remove a borda */
+    border-radius: 5px; /* Cantos arredondados */
+    text-decoration: none; /* Remove sublinhado */
+    text-align: center;
+    font-size: 14px; 
+    margin: 10px 70% 10px 0;
+    cursor: pointer; /* Adiciona o cursor pointer */
+}
+  
+/* Adicionando hover para o botão */
+.novo-comunicado-button:hover {
+    background-color: #3D1ABF; /* Cor de fundo ao passar o mouse */
+    transition: background-color 0.3s; /* Transição suave */
+}
+
+.BemvindoCoord {
+    text-align: center;
+    font-size: 30px;
+    color: #825CFF;
+    margin: 60px 0;
+    font-weight: bold;
+}
+
+.modal-overlay {
+    position: fixed; /* Mantém a sobreposição fixa na tela */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7); /* Cor do fundo escuro */
+    display: flex;
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* Centraliza verticalmente */
+    z-index: 1000; /* Garante que o modal fique acima do conteúdo */
+}
+
+.modal-content {
+    background: white; /* Fundo do modal */
+    border-radius: 8px;
+    padding: 20px;
+    width: 500px; /* Largura do modal */
+    position: relative; /* Posição relativa para o botão de fechar */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra para o modal */
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: none;
+    background: transparent;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.home-page-coord {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Mantém itens centralizados horizontalmente */
+    width: 100%; /* Define largura total */
+    max-width: 800px; /* Limita a largura máxima */
+    margin: 0 auto; /* Centraliza horizontalmente */
 }
 
 .header-image-coord {
-    position: relative; /* Posiciona a imagem em relação ao container */
-    width: 60%; /* Largura total */
-    height: auto; /* Altura automática */
-    margin-bottom: 20px; /* Espaçamento inferior */
-    margin-top: 100px;
-    margin-left: 30%;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+}
+
+.header-image-coord img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
 }
 
 /* Estilos para os quadrados abaixo da imagem */
@@ -19,28 +93,29 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
     padding: 20px;
-    margin-top: 20px;
-    margin-left: 33%;
-    margin-right: -40%;
+    margin: 20px auto; /* Centraliza horizontalmente */
+    width: 100%; /* Ajuste para caber no contêiner */
+    max-width: 800px; /* Limite de largura */
 }
 
 .Squares {
-    width: 80%; 
-    height: 100px; 
+    width: 100%; /* Ajuste para caber na grid */
+    max-width: 400px; /* Limite de largura */
+    height: 100px;
     background-color: #FF8A00;
     border: 1px solid #ccc;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    margin-left: -40px;
-    display: flex; 
-    justify-content: center; 
-    align-items: center; 
-    font-size: 16px; 
-    color: white; 
-    font-weight: bold; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+    color: white;
+    font-weight: bold;
     text-align: center;
-    position: relative; 
+    position: relative;
     border-radius: 10px;
     text-decoration: none;
+    margin: auto;
 }
 
 .Squares:hover {
@@ -49,23 +124,21 @@
     cursor: pointer;
 }
 
-
 .Squares:nth-child(1) {
-    background: linear-gradient(135deg, #ff7676, #b00000); 
+    background: linear-gradient(135deg, #3F58D9, #001065);
 }
 
 .Squares:nth-child(2) {
-    background: linear-gradient(135deg, #efe684, #947e00); 
+    background: linear-gradient(135deg, #EF84D8, #940074);
 }
 
 .Squares:nth-child(3) {
-    background: linear-gradient(135deg, #3F58D9, #001065); 
+    background: linear-gradient(135deg, #76FF9C, #00B01C);
 }
 
 .Squares:nth-child(4) {
-    background: linear-gradient(135deg, #ff00e6, #ff5ce7); 
+    background: linear-gradient(135deg, #FF8A00, #ffb35c);
 }
-
 
 .Squares::before {
     content: '';
@@ -74,24 +147,30 @@
     height: 20px;
     border-radius: 50%;
     background-color: #ffffff;
-    top: 10px; /* Distância do topo */
-    left: 10px; /* Distância da esquerda */
+    top: 10px;
+    left: 10px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
+@media (max-width: 768px) {
+    .Square {
+        grid-template-columns: 1fr; /* Alinhar os blocos em uma coluna */
+        justify-items: center; /* Centraliza os blocos dentro da grid */
+    }
 
-.BemvindoCoord {
-    text-align: center; 
-    font-size: 30px; 
-    color: #825CFF; 
-    margin-top: 60px; 
-    margin-bottom: -80px; 
-    margin-left: 270px;
-    font-weight: bold; 
+    #Fundocoord {
+        width: 100%; /* Mantido conforme solicitado */
+        height: auto;
+    }
+
+    .BemvindoCoord {
+        font-size: 24px; /* Reduz o tamanho da fonte para telas pequenas */
+    }
+
+    .novo-comunicado-button {
+        margin: 10px auto; /* Centraliza o botão */
+        display: block; /* Faz o botão ocupar toda a largura disponível */
+        width: 80%; /* Ajusta a largura do botão */
+        max-width: 300px; /* Limita a largura máxima */
+    }
 }
-
-
-
-
-
-
