@@ -61,7 +61,7 @@ export const updateDisciplina = (id, disciplina) => {
 
 // Função para deletar uma disciplina
 export const deleteDisciplina = (id) => {
-  return axios.delete(`${API_URL_disciplina}/${id}`);
+  return axios.delete(`${API_URL_disciplina}/${id}`, disciplina);
 };
 
 // Funções para gerenciar coordenadores

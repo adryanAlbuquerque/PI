@@ -1,55 +1,82 @@
 import { Link } from 'react-router-dom';
-import './GerenciaDisciplina.css'; // Renomeie também o CSS se necessário
+import './GerenciaDisciplina.css';
 import { useState, useEffect } from 'react';
-import { getDisciplina, updateDisciplina, deleteDisciplina } from '../../../Service/APIServices';
+import { getDisciplina, updateDisciplina, deleteDisciplina, createDisciplina } from '../../../Service/APIServices';
 import SidebarCoord from '../../sidebar/sidebarCoord';
 
 const GerenciaDisciplinas = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false); 
   const [selectedDisciplina, setSelectedDisciplina] = useState(null);
-  const [isEditable, setIsEditable] = useState(false); // Controla se os campos podem ser editados
+  const [newDisciplina, setNewDisciplina] = useState({ nome: '', descricao: '' });
+  const [isEditable, setIsEditable] = useState(false);
   const [disciplinas, setDisciplinas] = useState([]);
 
-  // Carrega disciplinas ao montar o componente
   useEffect(() => {
-    getDisciplina()
-      .then(response => {
-        console.log('Disciplinas recebidas:', response.data);
-        setDisciplinas(response.data);
-      })
-      .catch(error => {
-        console.error('Erro ao buscar disciplinas:', error);
-      });
+    fetchDisciplinas();
   }, []);
 
-  const handleSave = (event) => {
-    event.preventDefault();
-    updateDisciplina(selectedDisciplina.id, selectedDisciplina)
-      .then(response => {
-        const updatedDisciplinas = disciplinas.map(disciplina =>
-          disciplina.id === selectedDisciplina.id ? response.data : disciplina
-        );
-        setDisciplinas(updatedDisciplinas);
-        setIsModalOpen(false);
-        setIsEditable(false); // Desabilita a edição após salvar
-        console.log('Disciplina atualizada:', response.data);
-      })
-      .catch(error => {
-        console.error('Erro ao atualizar disciplina:', error);
-      });
+  const fetchDisciplinas = async () => {
+    try {
+      const response = await getDisciplina();
+      console.log('Disciplinas recebidas:', response.data);
+      setDisciplinas(response.data);
+    } catch (error) {
+      console.error('Erro ao buscar disciplinas:', error);
+    }
   };
 
-  const handleDelete = () => {
-    deleteDisciplina(selectedDisciplina.id)
-      .then(() => {
-        setDisciplinas(disciplinas.filter(disciplina => disciplina.id !== selectedDisciplina.id));
-        setIsModalOpen(false);
-        console.log('Disciplina excluída');
-      })
-      .catch(error => {
-        console.error('Erro ao excluir disciplina:', error);
-      });
+  const handleSave = async (event) => {
+    event.preventDefault();
+
+    if (!selectedDisciplina.nome || !selectedDisciplina.descricao) {
+      console.error('Os campos nome e descrição são obrigatórios');
+      return;
+    }
+
+    try {
+      const response = await updateDisciplina(selectedDisciplina.id, selectedDisciplina);
+      const updatedDisciplinas = disciplinas.map(disciplina =>
+        disciplina.id === selectedDisciplina.id ? response.data : disciplina
+      );
+      setDisciplinas(updatedDisciplinas);
+      setIsModalOpen(false);
+      setIsEditable(false);
+      console.log('Disciplina atualizada:', response.data);
+    } catch (error) {
+      console.error('Erro ao atualizar disciplina:', error);
+    }
+  };
+
+  const handleDelete = async () => {
+    try {
+      await deleteDisciplina(selectedDisciplina.id);
+      setDisciplinas(disciplinas.filter(disciplina => disciplina.id !== selectedDisciplina.id));
+      setIsModalOpen(false);
+      console.log('Disciplina excluída');
+    } catch (error) {
+      console.error('Erro ao excluir disciplina:', error);
+    }
+  };
+
+  const handleAddDisciplina = async (event) => {
+    event.preventDefault();
+    
+    if (!newDisciplina.nome || !newDisciplina.descricao) {
+      console.error('Os campos nome e descrição são obrigatórios para a nova disciplina.');
+      return;
+    }
+
+    try {
+      const response = await createDisciplina(newDisciplina);
+      setDisciplinas([...disciplinas, response.data]);
+      setIsAddModalOpen(false);
+      setNewDisciplina({ nome: '', descricao: '' });
+      console.log('Nova disciplina adicionada:', response.data);
+    } catch (error) {
+      console.error('Erro ao adicionar disciplina:', error);
+    }
   };
 
   const handleSearch = (event) => {
@@ -57,21 +84,20 @@ const GerenciaDisciplinas = () => {
   };
 
   const handleView = (disciplina) => {
-    console.log('Disciplina selecionada para visualização:', disciplina);
     setSelectedDisciplina({ ...disciplina });
-    setIsEditable(false); // Inicia o modal em modo não editável
+    setIsEditable(false);
     setIsModalOpen(true);
   };
 
   const enableEdit = (event) => {
-    event.preventDefault(); // Previne o comportamento padrão de submissão
+    event.preventDefault();
     setIsEditable(true);
   };
 
   const handleModalClose = () => {
     setIsModalOpen(false);
     setSelectedDisciplina(null);
-    setIsEditable(false); // Reseta o estado de edição ao fechar
+    setIsEditable(false);
   };
 
   const handleInputChange = (event) => {
@@ -82,25 +108,33 @@ const GerenciaDisciplinas = () => {
     }));
   };
 
+  const handleAddModalClose = () => {
+    setIsAddModalOpen(false);
+    setNewDisciplina({ nome: '', descricao: '' });
+  };
+
+  const handleNewInputChange = (event) => {
+    const { name, value } = event.target;
+    setNewDisciplina((prevDisciplina) => ({
+      ...prevDisciplina,
+      [name]: value,
+    }));
+  };
+
   const filteredDisciplinas = disciplinas.filter((disciplina) => {
     const nome = disciplina.nome ? disciplina.nome.toLowerCase() : '';
     return nome.includes(searchTerm.toLowerCase());
   });
 
-  console.log('Disciplinas filtradas:', filteredDisciplinas);
-
   return (
     <div className="gerencia-disciplina">
-
-      {/* Sidebar */}
       <SidebarCoord />
 
-      {/* Main content */}
       <div className="RegistroDisciplina">
-        <Link to="/CadastroGeral" id="Cadastro">
-          CADASTRO
-        </Link>
-        <div className="search">
+        <button onClick={() => setIsAddModalOpen(true)} id="AddDisciplina">
+          ADICIONAR DISCIPLINA
+        </button>
+        <div className="pesquisa">
           <input
             type="text"
             placeholder="Pesquisar por nome"
@@ -110,8 +144,7 @@ const GerenciaDisciplinas = () => {
           />
         </div>
 
-        {/* Disciplinas table */}
-        <table className="disciplinas-table">
+        <table className="disciplinas">
           <thead>
             <tr>
               <th>ID</th>
@@ -128,7 +161,7 @@ const GerenciaDisciplinas = () => {
                   <td>{disciplina.nome}</td>
                   <td>{disciplina.descricao}</td>
                   <td>
-                    <button onClick={() => handleView(disciplina)} className="view-button">Visualizar</button>
+                    <button onClick={() => handleView(disciplina)} className="visualizar">Visualizar</button>
                   </td>
                 </tr>
               ))
@@ -141,10 +174,9 @@ const GerenciaDisciplinas = () => {
         </table>
       </div>
 
-      {/* Modal for Viewing/Editing */}
       {isModalOpen && (
-        <div className="modal-overlay">
-          <div className="modal-content">
+        <div className="caixa-overlay">
+          <div className="caixa-content">
             <h2>Visualizar Disciplina</h2>
             <form onSubmit={handleSave}>
               <label>ID</label>
@@ -162,6 +194,7 @@ const GerenciaDisciplinas = () => {
                 value={selectedDisciplina?.nome || ''}
                 onChange={handleInputChange}
                 readOnly={!isEditable}
+                required
               />
               <label>Descrição</label>
               <input
@@ -170,15 +203,46 @@ const GerenciaDisciplinas = () => {
                 value={selectedDisciplina?.descricao || ''}
                 onChange={handleInputChange}
                 readOnly={!isEditable}
+                required
               />
-              <div className="modalbt">
+              <div className="botoes">
                 {!isEditable ? (
-                  <button onClick={enableEdit} className="edicao">Editar</button>
+                  <button onClick={enableEdit} className="mudar">Editar</button>
                 ) : (
                   <button type="submit" className="salvar">Salvar</button>
                 )}
                 <button onClick={handleModalClose} className="fechar">Fechar</button>
                 <button onClick={handleDelete} className="delete">Excluir</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
+
+      {isAddModalOpen && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <h2>Adicionar Nova Disciplina</h2>
+            <form onSubmit={handleAddDisciplina}>
+              <label>Matéria</label>
+              <input
+                type="text"
+                name="nome"
+                value={newDisciplina.nome}
+                onChange={handleNewInputChange}
+                required
+              />
+              <label>Descrição</label>
+              <input
+                type="text"
+                name="descricao"
+                value={newDisciplina.descricao}
+                onChange={handleNewInputChange}
+                required
+              />
+              <div className="modalbt">
+                <button type="submit" className="salvar">Adicionar</button>
+                <button onClick={handleAddModalClose} className="fechar">Fechar</button>
               </div>
             </form>
           </div>

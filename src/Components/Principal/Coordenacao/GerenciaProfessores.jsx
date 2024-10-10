@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import './GerenciaProfessores.css'; // Renomeie também o CSS se necessário
+import './GerenciaProfessores.css'; 
 import { useState, useEffect } from 'react';
 import { getProfessores, updateProfessor, deleteProfessor, getDisciplina } from '../../../Service/APIServices';
 import SidebarCoord from '../../sidebar/sidebarCoord';
@@ -9,16 +9,14 @@ const GerenciaProfessores = () => {
   const [filtroTurma, setFiltroTurma] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProfessor, setSelectedProfessor] = useState(null);
-  const [isEditable, setIsEditable] = useState(false); // Controla se os campos podem ser editados
+  const [isEditable, setIsEditable] = useState(false); 
   const [professores, setProfessores] = useState([]);
-  const [disciplina, setDisciplina] = useState([]); // Estado para armazenar disciplinas
+  const [disciplina, setDisciplina] = useState([]); 
+  const [selectedDisciplinaIds, setSelectedDisciplinaIds] = useState([]); 
 
-  // Carrega professores e disciplinas ao montar o componente
   useEffect(() => {
     getProfessores()
       .then(response => {
-        console.log('Professores recebidos:', response.data);
-        // Filtra apenas os usuários que são professores
         const filteredProfessores = response.data.filter(professor => professor.tipoUsuario === 'PROFESSOR');
         setProfessores(filteredProfessores);
       })
@@ -26,11 +24,9 @@ const GerenciaProfessores = () => {
         console.error('Erro ao buscar professores:', error);
       });
 
-    // Busca disciplinas para exibição e associação
     getDisciplina()
       .then(response => {
-        console.log('Disciplinas recebidas:', response.data);
-        setDisciplina(response.data); // Armazena disciplinas
+        setDisciplina(response.data); 
       })
       .catch(error => {
         console.error('Erro ao buscar disciplinas:', error);
@@ -39,10 +35,12 @@ const GerenciaProfessores = () => {
 
   const handleSave = (event) => {
     event.preventDefault();
+
     const professorData = {
       ...selectedProfessor,
-      disciplina: selectedProfessor.disciplina, // Associa disciplinas selecionadas
+      disciplina: selectedDisciplinaIds.map(id => ({ id })), // Mapeia os IDs selecionados para o formato esperado
     };
+
     updateProfessor(selectedProfessor.id, professorData)
       .then(response => {
         const updatedProfessores = professores.map(professor =>
@@ -50,7 +48,7 @@ const GerenciaProfessores = () => {
         );
         setProfessores(updatedProfessores);
         setIsModalOpen(false);
-        setIsEditable(false); // Desabilita a edição após salvar
+        setIsEditable(false); 
         console.log('Professor atualizado:', response.data);
       })
       .catch(error => {
@@ -79,21 +77,21 @@ const GerenciaProfessores = () => {
   };
 
   const handleView = (professor) => {
-    console.log('Professor selecionado para visualização:', professor);
     setSelectedProfessor({ ...professor });
-    setIsEditable(false); // Inicia o modal em modo não editável
+    setSelectedDisciplinaIds(professor.disciplina ? professor.disciplina.map(d => d.id) : []); // Define disciplinas selecionadas
+    setIsEditable(false); 
     setIsModalOpen(true);
   };
 
   const enableEdit = (event) => {
-    event.preventDefault(); // Previne o comportamento padrão de submissão
+    event.preventDefault();
     setIsEditable(true);
   };
 
   const handleModalClose = () => {
     setIsModalOpen(false);
     setSelectedProfessor(null);
-    setIsEditable(false); // Reseta o estado de edição ao fechar
+    setIsEditable(false);
   };
 
   const handleInputChange = (event) => {
@@ -104,12 +102,14 @@ const GerenciaProfessores = () => {
     }));
   };
 
-  // Função para lidar com a seleção de disciplinas
   const handleDisciplinaChange = (event) => {
     const selectedDisciplina = Array.from(event.target.selectedOptions, option => option.value);
+    setSelectedDisciplinaIds(selectedDisciplina); // Atualiza o estado das disciplinas selecionadas
+
+    // Atualiza o objeto selectedProfessor com as disciplinas selecionadas
     setSelectedProfessor((prevProfessor) => ({
       ...prevProfessor,
-      disciplina: selectedDisciplina,
+      disciplina: selectedDisciplina.map(id => ({ id })), // Cria um array de objetos disciplina
     }));
   };
 
@@ -127,11 +127,8 @@ const GerenciaProfessores = () => {
 
   return (
     <div className="gerencia-professor">
-
-      {/* Sidebar */}
       <SidebarCoord />
 
-      {/* Main content */}
       <div className="TabelasProf">
         <Link to="/CadastroGeral" id="CadastrarProf">
           CADASTRO
@@ -151,7 +148,6 @@ const GerenciaProfessores = () => {
           </select>
         </div>
 
-        {/* Professores table */}
         <table className="professores-table">
           <thead>
             <tr>
@@ -169,8 +165,8 @@ const GerenciaProfessores = () => {
                 <tr key={professor.id}>
                   <td>{professor.matricula || professor.id}</td>
                   <td>{professor.nome}</td>
+                  <td>{professor.disciplina ? professor.disciplina.map(d => d.nome).join(', ') : 'Nenhuma'}</td>
                   <td>{professor.turma}</td>
-                  <td>{professor.turno}</td>
                   <td>{professor.status}</td>
                   <td>
                     <button onClick={() => handleView(professor)} className="view-button">Visualizar</button>
@@ -186,20 +182,11 @@ const GerenciaProfessores = () => {
         </table>
       </div>
 
-      {/* Modal for Viewing/Editing */}
       {isModalOpen && (
         <div className="modal-overlay">
           <div className="modal-content">
             <h2>Visualizar Professor</h2>
             <form onSubmit={handleSave}>
-              <label>Matrícula</label>
-              <input
-                type="text"
-                name="matricula"
-                value={selectedProfessor?.matricula || selectedProfessor?.id || ''}
-                onChange={handleInputChange}
-                readOnly
-              />
               <label>Nome</label>
               <input
                 type="text"
@@ -237,7 +224,7 @@ const GerenciaProfessores = () => {
               <label>Disciplinas</label>
               <select
                 name="disciplina"
-                value={selectedProfessor?.disciplina || []}
+                value={selectedDisciplinaIds} // Atualiza para o estado de disciplinas selecionadas
                 onChange={handleDisciplinaChange}
                 multiple
                 disabled={!isEditable}
@@ -255,7 +242,7 @@ const GerenciaProfessores = () => {
                   <button type="button" onClick={enableEdit} className="edit-button">Editar</button>
                 )}
                 <button type="button" onClick={handleDelete} className="delete-button">Excluir</button>
-                <button type="button" onClick={handleModalClose} className="cancelar-button">Fechar</button>
+                <button type="button" onClick={handleModalClose} className="cancelar-button">Cancelar</button>
               </div>
             </form>
           </div>

@@ -5,19 +5,23 @@
   background-color: #F5F5FB;
 }
 
-#CadastrarProfessor {
-  background-color: #f4f4f9;
-  border: 1.5px solid #825cff;
+#CadastrarProf {
+  width: 40%;  
+  height: 40px;
+  background-color: #4F20EC;
+  border: none;
   outline: none;
   border-radius: 7px;
-  cursor: pointer;
-  font-size: 15px;
-  color: #825cff;
+  cursor: pointer;  
+  color: white;
+  margin-bottom: 20px; 
   transition: background-color 0.3s ease;
-  width: 100%;
-  max-width: 100px;
-  height: 35px;
-  margin-top: 10px;
+  font-size: 17px; 
+  text-align: center;
+  display: flex; 
+  justify-content: center; 
+  align-items: center; 
+  text-decoration: none;
 }
 
 .TabelasProf {
@@ -41,7 +45,7 @@
   }
 }
 
-#Cadastrar {
+#AddDisciplina {
   width: 40%;  
   height: 40px;
   background-color: #4F20EC;
@@ -146,22 +150,23 @@
 
 .modal-content {
   background-color: #fff;
-  padding: 30px;
+  padding: 20px; /* Reduzido para menos espaço interno */
   border-radius: 10px;
-  width: 400px;
+  width: 600px; /* Aumentado para mais largura */
+  max-width: 90%; /* Adicionado para responsividade */
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   text-align: center;
 }
 
 .modal-content h2 {
-  margin-bottom: 20px;
+  margin-bottom: 15px; /* Ajustado para menos espaço abaixo do título */
   font-size: 24px;
   color: #4F20EC;
 }
 
 .modal-content label {
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: 8px; /* Ajustado para menos espaço abaixo dos rótulos */
   text-align: left;
   font-size: 14px;
   color: #333;
@@ -169,10 +174,10 @@
 
 .modal-content input, .modal-content select {
   width: 100%;
-  padding: 10px;
+  padding: 8px; /* Ajustado para menos espaço interno nos campos */
   border: 1.5px solid #825cff;
   border-radius: 5px;
-  margin-bottom: 20px;
+  margin-bottom: 15px; /* Ajustado para menos espaço abaixo dos campos */
   outline: none;
 }
 
