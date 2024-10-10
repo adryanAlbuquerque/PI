@@ -8,9 +8,11 @@ const HomePortal = () => {
 
   return (
     <div className="home-page">
+      {/* Navbar */}
       <nav className="Barra">
         <p id="FaleConosco">Fale conosco</p>
       </nav>
+
       <nav className="navbar">
         <div className="logo">
           <img src="/img/logo.png" alt="Logo" />
@@ -38,6 +40,7 @@ const HomePortal = () => {
           )}
         </div>
       </nav>
+
       {/* Main content with background image */}
       <div className="home-container">
         <img id="Fundo" src="/img/image.png" alt="Logo" />

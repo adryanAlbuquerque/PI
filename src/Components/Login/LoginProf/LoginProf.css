@@ -1,163 +1,161 @@
-.Container {
-    text-align: center;
-    margin-top: 30px;
-    color: #825CFF;
-    padding: 0 20px;
-    display: flex;
-    justify-content: center;
-  }
-  
-  #LoginBox {
-    background-color: #f8f6ff;
-    padding: 40px 20px;
-    box-shadow: 0 7px 12px rgba(0, 0, 0, 0.1);
-    max-width: 450px;
-    width: 100%;
-  }
-  
-  .closeIcon {
-    position: absolute;
-    top: 15px;
-    right: 15px;
-    font-size: 24px;
-    color: #825cff;
-    cursor: pointer;
-  }
-  
-  .closeIcon:hover {
-    color: #3f18c0;
-  }
-  
-  #LogoProf img {
-    width: 170px;
-    margin-bottom: 20px;
-  }
-  
-  
-  #MedioTec {
-    text-align: center;
-    margin-top: 10px;
-    margin-bottom: -20px;
-    font-size: 20px;
-    color: #4F20EC;
-    letter-spacing: 1px;
-    font-weight: 700;
-  }
-  
-  .input-field {
-    position: relative;
-    width: 100%;
-    max-width: 400px;
-    height: 50px;
-    margin: 30px auto;
-  }
-  
-  .input-field input {
-    width: 100%;
-    height: 100%;
-    background-color: white;
-    outline: none;
-    border: 1px solid #825CFF;
-    border-radius: 7px;
-    color: black;
-    padding: 15px 20px;
-  }
-  
-  .input-field input::placeholder {
-    color: rgb(145, 128, 160);
-  }
-  
-  .input-field .icon {
-    position: absolute;
-    right: 15px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 17px;
-    color: #825CFF;
-  }
-  
-  #recal-forget {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 12px;
-    margin: -10px auto 25px;
-    max-width: 400px;
-    width: 100%;
-  }
-  
-  #label {
-    display: flex;
-    align-items: center;
-    color: #825CFF;
-  }
-  
-  #label input {
-    margin-right: 5px;
-  }
-  
-  #Lembre {
-    margin-top: -12px;
-  }
-  
-  #Esqueceu {
-    margin-top: -13px;
-    color: #825CFF;
-    text-decoration: none;
-  }
-  
-  #Esqueceu:hover {
-    color: rgb(71, 32, 108);
-  }
-  
-  #button {
-    width: 100%;
-    max-width: 400px;
-    height: 45px;
-    background-color: #4F20EC;
-    border: none;
-    outline: none;
-    border-radius: 7px;
-    cursor: pointer;
-    font-size: 16px;
-    color: white;
-    margin-top: 10px;
-    transition: background-color 0.3s ease;
-  }
-  
-  #button:hover {
-    background-color: #3F18C0;
-  }
-  
-  #homeButton {
-    width: 100%;
-    max-width: 100px;
-    height: 35px;
-    background-color: #f4f4f9;
-    border: 1.5px solid #825cff;
-    outline: none;
-    border-radius: 7px;
-    cursor: pointer;
-    font-size: 15px;
-    color: #825cff;
-    margin-top: 20px;
-    margin-bottom: -10px;
-    transition: background-color 0.3s ease;
-  }
-  
-  #homeButton:hover {
-    background-color: #d9d4e8;
-    color: #4f20ec;}
-  
-  #Checkbox {
-    margin-left: 5px;
-    cursor: pointer;
-    margin-top: -12px;
-  }
-  
-  @media (max-width: 500px) {
-    #LoginBox {
+.loginPROF-container {
+  text-align: center;
+  color: #825CFF;
+  padding: 0 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.login-box {
+  background-color: #f8f6ff;
+  padding: 40px 20px;
+  box-shadow: 0 7px 12px rgba(0, 0, 0, 0.1);
+  max-width: 450px;
+  width: 100%;
+}
+
+.close-icon {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 24px;
+  color: #825cff;
+  cursor: pointer;
+}
+
+.close-icon:hover {
+  color: #3f18c0;
+}
+
+.logo-container img {
+  width: 170px;
+  margin-bottom: 20px;
+}
+
+.login-title {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: -20px;
+  font-size: 20px;
+  color: #4F20EC;
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+.input-field {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  height: 50px;
+  margin: 30px auto;
+}
+
+.input-field input {
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  outline: none;
+  border: 1px solid #825CFF;
+  border-radius: 7px;
+  color: black;
+  padding: 15px 20px;
+}
+
+.input-field input::placeholder {
+  color: rgb(145, 128, 160);
+}
+
+.input-icon {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 17px;
+  color: #825CFF;
+}
+
+.remember-forget {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  margin: -10px auto 25px;
+  max-width: 400px;
+  width: 100%;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  color: #825CFF;
+}
+
+.checkbox-input {
+  margin-right: 5px;
+}
+
+.remember-text {
+  margin-top: -12px;
+}
+
+.forget-password-link {
+  margin-top: -13px;
+  color: #825CFF;
+  text-decoration: none;
+}
+
+.forget-password-link:hover {
+  color: rgb(71, 32, 108);
+}
+
+.login-button {
+  width: 100%;
+  max-width: 400px;
+  height: 45px;
+  background-color: #4F20EC;
+  border: none;
+  outline: none;
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 16px;
+  color: white;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.login-button:hover {
+  background-color: #3F18C0;
+}
+
+.home-button {
+  width: 100%;
+  max-width: 100px;
+  height: 35px;
+  background-color: #f4f4f9;
+  border: 1.5px solid #825cff;
+  outline: none;
+  border-radius: 7px;
+  cursor: pointer;
+  font-size: 15px;
+  color: #825cff;
+  margin-top: 20px;
+  margin-bottom: -10px;
+  transition: background-color 0.3s ease;
+}
+
+.home-button:hover {
+  background-color: #d9d4e8;
+  color: #4f20ec;
+}
+
+.checkbox-input {
+  margin-left: 5px;
+  cursor: pointer;
+  margin-top: -12px;
+}
+
+@media (max-width: 500px) {
+  .login-box {
       padding: 20px 10px;
-    }
   }
-  
+}
