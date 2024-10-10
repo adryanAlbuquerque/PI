@@ -17,7 +17,7 @@ const AlunoHome = () => {
           <img id="FundoAluno" src="/img/Horizonte.png" alt="Fundo" />
         </div>
 
-        <h2 className="conceitos">Conceitos</h2>
+        <h2 className="conceitos">Disciplinas</h2>
 
         {/* Quadrados abaixo da imagem */}
         <div className="squaresaluno">
