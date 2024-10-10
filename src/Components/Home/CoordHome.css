@@ -16,7 +16,7 @@
     text-decoration: none; /* Remove sublinhado */
     text-align: center;
     font-size: 14px; 
-    margin: 10px 70% 10px 0;
+    margin: 30px 63% 10px 0;
     cursor: pointer; /* Adiciona o cursor pointer */
 }
   
@@ -70,17 +70,16 @@
 }
 .home-page-coord {
     display: flex;
-    flex-direction: column;
-    align-items: center; /* Mantém itens centralizados horizontalmente */
-    width: 100%; /* Define largura total */
-    max-width: 800px; /* Limita a largura máxima */
-    margin: 0 auto; /* Centraliza horizontalmente */
+    flex-direction: column; /* Alinha os itens verticalmente */
+    flex: 1; /* Permite que este elemento preencha o espaço restante */
+    align-items: center; /* Centraliza horizontalmente */
+    justify-content: flex-start; /* Alinha os itens no topo */
 }
 
 .header-image-coord {
     width: 100%;
-    max-width: 100%;
-    height: auto;
+    max-width: 800px;
+    height: 0 auto;
 }
 
 .header-image-coord img {
@@ -92,12 +91,11 @@
 /* Estilos para os quadrados abaixo da imagem */
 .Square {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Ajuste responsivo */
     gap: 20px;
     padding: 20px;
-    margin: 20px auto; /* Centraliza horizontalmente */
-    width: 100%; /* Ajuste para caber no contêiner */
-    max-width: 800px; /* Limite de largura */
+    margin: 20px auto;
+    width: 80%;
 }
 
 .Squares {

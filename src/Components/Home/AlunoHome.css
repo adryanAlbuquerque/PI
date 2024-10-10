@@ -3,7 +3,7 @@
     height: 100vh; 
     background-color: #F5F5FB;
     overflow-x: hidden; /* Evita que o conteúdo ultrapasse o container */
-    padding: 20px; /* Espaçamento interno */
+    padding: 25px; /* Espaçamento interno */
 }
 
 .home-page-aluno {
@@ -144,6 +144,7 @@
 @media (max-width: 768px) {
     .squaresaluno {
         grid-template-columns: 1fr; /* Alinhar os blocos em uma coluna */
+        justify-items: center; /* Centraliza os blocos dentro da grid */
     }
 
     .header-image-aluno {
