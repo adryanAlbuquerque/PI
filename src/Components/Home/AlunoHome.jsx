@@ -1,29 +1,43 @@
-import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './AlunoHome.css';
 import SidebarAluno from '../sidebar/sidebarALuno';
-import { getComunicados } from '../../Service/APIServices'; // Importa a função de obter comunicados
+import { useState, useEffect } from 'react';
 
 const AlunoHome = () => {
+  // Simulação de comunicados
   const [comunicados, setComunicados] = useState([]);
 
-  // Função para buscar os comunicados ao carregar a página
+  // Simulação de carregamento de comunicados
   useEffect(() => {
-    const fetchComunicados = async () => {
-      try {
-        const response = await getComunicados();
-        setComunicados(response.data);
-      } catch (error) {
-        console.error("Erro ao buscar comunicados:", error);
-      }
-    };
+    const comunicadosSimulados = [
+      {
+        id: 1,
+        titulo: 'Reunião com a coordenação',
+        mensagem: 'Haverá uma reunião com a coordenação na próxima sexta-feira, às 14h.',
+        data: '2024-10-12',
+      },
+      {
+        id: 2,
+        titulo: 'Entrega de projetos finais',
+        mensagem: 'Os projetos finais devem ser entregues até o dia 20 de outubro.',
+        data: '2024-10-15',
+      },
+      {
+        id: 3,
+        titulo: 'Aula de revisão',
+        mensagem: 'A aula de revisão será realizada no dia 18 de outubro, às 10h.',
+        data: '2024-10-18',
+      },
+    ];
 
-    fetchComunicados();
+    // Simulação de atraso no carregamento
+    setTimeout(() => {
+      setComunicados(comunicadosSimulados);
+    }, 1000); // Carrega os comunicados depois de 1 segundo
   }, []);
 
   return (
     <div className="home-aluno-container">
-
       <SidebarAluno />
 
       {/* Conteúdo Principal */}
@@ -43,22 +57,20 @@ const AlunoHome = () => {
           <Link to="/BiblioAluno" className="Bloco">Acessar Biblioteca</Link>
         </div>
 
-        {/* Título da seção de comunicados */}
+        {/* Área de comunicados */}
         
-
-        {/* Lista de Comunicados */}
         <div className="comunicados-container">
           <h2 className="comunicados">Comunicados</h2>
-          {comunicados.length > 0 ? (
+          {comunicados.length === 0 ? (
+            <p>Carregando comunicados...</p>
+          ) : (
             comunicados.map((comunicado) => (
               <div key={comunicado.id} className="comunicado-item">
                 <h3>{comunicado.titulo}</h3>
-                <p>{comunicado.descricao}</p>
-                <span className="comunicado-data">{new Date(comunicado.dataEnvio).toLocaleDateString()}</span>
+                <p>{comunicado.mensagem}</p>
+                <span>Data: {comunicado.data}</span>
               </div>
             ))
-          ) : (
-            <p>Nenhum comunicado encontrado.</p>
           )}
         </div>
       </div>
