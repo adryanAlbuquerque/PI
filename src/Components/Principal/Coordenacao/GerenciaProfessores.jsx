@@ -12,8 +12,9 @@ const GerenciaProfessores = () => {
   const [isEditable, setIsEditable] = useState(false); 
   const [professores, setProfessores] = useState([]);
   const [disciplina, setDisciplina] = useState([]); 
-  const [selectedDisciplinaIds, setSelectedDisciplinaIds] = useState([]); 
+  const [selectedDisciplinaIds, setSelectedDisciplinaIds] = useState([]); // Estado para armazenar disciplinas selecionadas
 
+  // Carrega professores e disciplinas ao montar o componente
   useEffect(() => {
     getProfessores()
       .then(response => {
@@ -35,12 +36,10 @@ const GerenciaProfessores = () => {
 
   const handleSave = (event) => {
     event.preventDefault();
-
     const professorData = {
       ...selectedProfessor,
-      disciplina: selectedDisciplinaIds.map(id => ({ id })), // Mapeia os IDs selecionados para o formato esperado
+      disciplina: selectedDisciplinaIds, // Associa disciplinas selecionadas
     };
-
     updateProfessor(selectedProfessor.id, professorData)
       .then(response => {
         const updatedProfessores = professores.map(professor =>
@@ -78,7 +77,7 @@ const GerenciaProfessores = () => {
 
   const handleView = (professor) => {
     setSelectedProfessor({ ...professor });
-    setSelectedDisciplinaIds(professor.disciplina ? professor.disciplina.map(d => d.id) : []); // Define disciplinas selecionadas
+    setSelectedDisciplinaIds(professor.disciplina || []); // Define disciplinas selecionadas
     setIsEditable(false); 
     setIsModalOpen(true);
   };
@@ -105,12 +104,6 @@ const GerenciaProfessores = () => {
   const handleDisciplinaChange = (event) => {
     const selectedDisciplina = Array.from(event.target.selectedOptions, option => option.value);
     setSelectedDisciplinaIds(selectedDisciplina); // Atualiza o estado das disciplinas selecionadas
-
-    // Atualiza o objeto selectedProfessor com as disciplinas selecionadas
-    setSelectedProfessor((prevProfessor) => ({
-      ...prevProfessor,
-      disciplina: selectedDisciplina.map(id => ({ id })), // Cria um array de objetos disciplina
-    }));
   };
 
   const filteredProfessores = professores.filter((professor) => {
@@ -127,6 +120,7 @@ const GerenciaProfessores = () => {
 
   return (
     <div className="gerencia-professor">
+
       <SidebarCoord />
 
       <div className="TabelasProf">
@@ -165,7 +159,7 @@ const GerenciaProfessores = () => {
                 <tr key={professor.id}>
                   <td>{professor.matricula || professor.id}</td>
                   <td>{professor.nome}</td>
-                  <td>{professor.disciplina ? professor.disciplina.map(d => d.nome).join(', ') : 'Nenhuma'}</td>
+                  <td>{professor.disciplina ? professor.disciplina.join(', ') : 'Nenhuma'}</td> {/* Atualizado para exibir disciplinas */}
                   <td>{professor.turma}</td>
                   <td>{professor.status}</td>
                   <td>
@@ -242,7 +236,7 @@ const GerenciaProfessores = () => {
                   <button type="button" onClick={enableEdit} className="edit-button">Editar</button>
                 )}
                 <button type="button" onClick={handleDelete} className="delete-button">Excluir</button>
-                <button type="button" onClick={handleModalClose} className="cancelar-button">Cancelar</button>
+                <button type="button" onClick={handleModalClose} className="cancelar-button">Fechar</button>
               </div>
             </form>
           </div>
