@@ -91,7 +91,7 @@
 /* Responsividade */
 @media (max-width: 641px) {
     .sidebar-Aluno {
-        width: 100%; /* Sidebar ocupa toda a largura da tela em dispositivos móveis */
+        width: 80%; /* Sidebar ocupa toda a largura da tela em dispositivos móveis */
     }
 
     .sidebar-toggle-aluno {
@@ -99,3 +99,5 @@
         left: 10px;
     }
 }
+
+

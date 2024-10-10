@@ -2,35 +2,64 @@
     display: flex;
     height: 100vh; 
     background-color: #F5F5FB;
+    overflow-x: hidden; /* Evita que o conteúdo ultrapasse o container */
+    padding: 20px; /* Espaçamento interno */
+}
+
+.home-page-aluno {
+    display: flex;
+    flex-direction: column; /* Alinha os itens verticalmente */
+    flex: 1; /* Permite que este elemento preencha o espaço restante */
+    align-items: center; /* Centraliza horizontalmente */
+    justify-content: flex-start; /* Alinha os itens no topo */
+    
 }
 
 .header-image-aluno {
-    position: relative; 
-    width: 60%; 
+    width: 100%;
+    max-width: 600px; /* Define um limite máximo */
     height: auto;
-    margin-bottom: 20px; 
-    margin-top: 100px;
-    margin-left: 30%;
+    margin: 20px 0; /* Espaçamento em cima e embaixo */
 }
 
+.header-image-aluno img {
+    width: 100%;
+    height: auto; /* Mantém a proporção da imagem */
+    object-fit: cover; /* Corta a imagem para manter a proporção */
+}
+
+.conceitos {
+    text-align: center; 
+    font-size: 20px; 
+    color: #FF8A00; 
+    font-weight: bold; 
+    margin: 20px 0; /* Adiciona espaçamento ao redor do h2 */
+    
+}
+.BemVindo {
+    text-align: center; 
+    font-size: 30px; 
+    color: #FF8A00; 
+    margin: 60px 0; /* Ajusta a margem para melhorar o espaçamento */
+    font-weight: bold; 
+}
 
 .squaresaluno {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
     padding: 20px;
-    margin-top: 20px;
-    margin-left: 33%;
-    margin-right: -48%;
+    margin: 20px auto; /* Centraliza horizontalmente */
+    width: 80%; /* Define um tamanho responsivo */
 }
 
 .Bloco {
-    width: 80%; 
-    height: 100px; 
+    width: 100%; /* Ajuste para caber na grid */
+    max-width: 400px; /* Limite de largura */
+    height: 100px;
     background-color: #FF8A00;
     border: 1px solid #ccc;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    margin-left: -40px;
     display: flex; 
     justify-content: center; 
     align-items: center; 
@@ -41,6 +70,7 @@
     position: relative; 
     border-radius: 10px;
     text-decoration: none;
+    margin: auto; /* Centraliza os blocos */
 }
 
 .Bloco:hover {
@@ -48,7 +78,6 @@
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     cursor: pointer;
 }
-
 
 .Bloco:nth-child(1) {
     background: linear-gradient(135deg, #3F58D9, #001065); 
@@ -66,7 +95,6 @@
     background: linear-gradient(135deg, #FF8A00, #ffb35c); 
 }
 
-
 .Bloco::before {
     content: '';
     position: absolute;
@@ -80,17 +108,18 @@
 }
 
 
-.BemVindo {
-    text-align: center; 
-    font-size: 30px; 
-    color: #FF8A00; 
-    margin-top: 60px; 
-    margin-bottom: -80px; 
-    margin-left: 170px;
-    font-weight: bold; 
+@media (max-width: 768px) {
+    .squaresaluno {
+        grid-template-columns: 1fr; /* Alinhar os blocos em uma coluna */
+    }
+
+    .header-image-aluno {
+        width: 100%;
+        max-width: 100%;
+        height: 200px; /* Ajuste para telas pequenas, se necessário */
+    }
+
+    .BemVindo {
+        font-size: 24px; /* Reduz o tamanho da fonte para telas pequenas */
+    }
 }
-
-
-
-
-

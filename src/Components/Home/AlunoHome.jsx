@@ -10,12 +10,14 @@ const AlunoHome = () => {
 
       {/* Conteúdo Principal */}
       <div className="home-page-aluno">
-        <h1 className="BemVindo">Olá, Bem-vindo ao portal Aluno!</h1>
+        <h1 className="BemVindo">Olá, Bem-vindo ao portal do Aluno!</h1>
 
         {/* Imagem no cabeçalho */}
         <div className="header-image-aluno">
           <img id="FundoAluno" src="/img/Horizonte.png" alt="Fundo" />
         </div>
+
+        <h2 className="conceitos">Conceitos</h2>
 
         {/* Quadrados abaixo da imagem */}
         <div className="squaresaluno">
