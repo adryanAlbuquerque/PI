@@ -21,12 +21,12 @@ const SidebarAluno = () => {
         <img id="MedioTecAluno" src="/img/LogoAluno.png" alt="Logo" />
         <ul>
           <li><Link to="/HomeAluno">Home</Link></li>
-          <li><Link to="/ConceitoAluno">Conceitos</Link></li>
-          <li><Link to="/FaltasAluno">Faltas</Link></li>
-          <li><Link to="/DocAluno">Documentos</Link></li>
-          <li><Link to="/RequeAluno">Requerimentos</Link></li>
-          <li><Link to="/BiblioAluno">Biblioteca Digital</Link></li>
-          <li><Link to="/ConfigAluno">Configurações</Link></li>
+          <li><Link to="/Principal/Alunos/ConceitoAluno">Conceitos</Link></li>
+          <li><Link to="/Principal/Alunos/DisciplinaAluno">Disciplinas</Link></li>
+          <li><Link to="/Principal/Alunos/DocAluno">Documentos</Link></li>
+          <li><Link to="/Principal/Alunos/RequeAluno">Requerimentos</Link></li>
+          <li><Link to="/Principal/Alunos/BiblioAluno">Biblioteca Digital</Link></li>
+          <li><Link to="/Principal/Alunos/ConfigAluno">Configurações</Link></li>
         </ul>
         <div>
           <button type="button" className="SairAluno" onClick={() => window.location.href = '/'}>

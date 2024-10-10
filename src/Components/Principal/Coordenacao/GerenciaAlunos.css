@@ -1,26 +1,31 @@
-/* Estilo Geral */
 .gerencia-aluno {
   display: flex;
-  justify-content: center;
-  align-items: center; /* Centraliza verticalmente */
-  height: 100vh;
+  flex-direction: column; /* Adicionado para permitir que o botão e o conteúdo fiquem em colunas */
+  height: 100vh; /* Ocupa toda a altura da tela */
   background-color: #F5F5FB;
 }
 
-/* Dashboard do Aluno */
 #DashboardAluno {
+  margin-top: 40px;
+  margin-left: 35px;
   background-color: #f4f4f9;
   padding: 20px;
   max-width: 1200px; /* Tamanho máximo para telas grandes */
   min-width: 300px;  /* Tamanho mínimo para telas pequenas */
+  width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center; 
-  height: auto; /* Ajusta a altura ao conteúdo */
-  overflow: auto; /* Permite o scroll se o conteúdo for maior que a tela */
+  align-items: flex-start;
+  margin-bottom: 1000px;
 }
 
-/* Botão Cadastrar */
+@media (max-width: 500px) {
+  #DashboardAluno {
+      padding: 20px 10px;
+      min-width: 100%; /* Para telas muito pequenas */
+  }
+}
+
 #Cadastrar {
   width: 40%;  
   height: 40px;
@@ -28,7 +33,6 @@
   border: none;
   outline: none;
   border-radius: 7px;
-  margin-right: 60%;
   cursor: pointer;  
   color: white;
   margin-bottom: 20px; 
@@ -41,7 +45,7 @@
   text-decoration: none;
 }
 
-#Cadastrar:hover {
+#CadastrarProf:hover {
   background-color: #3F18C0;
 }
 
@@ -49,6 +53,7 @@
 .search-filter {
   display: flex;
   justify-content: space-between;
+  width: 100%;
   margin-bottom: 20px;
 }
 
@@ -57,6 +62,7 @@
   padding: 8px;
   border-radius: 5px;
   border: 1.5px solid #825cff;
+  height: 40px;
 }
 
 .filter-select {
@@ -64,6 +70,7 @@
   padding: 8px;
   border-radius: 5px;
   border: 1.5px solid #825cff;
+  height: 40px;
 }
 
 /* Estilos da tabela */
@@ -76,7 +83,7 @@
 }
 
 .alunos-table th, .alunos-table td {
-  padding: 22px 30px;
+  padding: 12px 15px;
   border: 1px solid #ddd;
   text-align: left;
 }
@@ -94,7 +101,6 @@
   background-color: #f1f1f1;
 }
 
-/* Estilos dos Botões de Editar e Deletar */
 .edit-button, .delete-button {
   padding: 5px 10px;
   margin-right: 5px;
@@ -121,7 +127,6 @@
   background-color: #C62828;
 }
 
-/* Estilos do Modal */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -167,7 +172,6 @@
   outline: none;
 }
 
-/* Botões do Modal */
 .modal-buttons {
   display: flex;
   justify-content: space-between;
@@ -200,57 +204,3 @@
 .save-button:hover {
   background-color: #3F18C0;
 }
-
-/* Responsividade */
-@media (max-width: 375px) {
-  .gerencia-aluno {
-    height: auto; /* Ajusta a altura para o conteúdo em telas pequenas */
-    padding: 10px; /* Adiciona um pouco de padding */
-  }
-
-  #DashboardAluno {
-    padding: 15px; /* Reduz o padding do dashboard */
-    min-width: 100%; /* Para telas muito pequenas */
-    align-items: flex-start; /* Alinha itens no início */
-  }
-
-  #Cadastrar {
-    width: 100%;  /* Botão ocupa 100% da largura */
-    margin-right: 0; /* Remove margem direita */
-    margin-bottom: 15px; /* Espaçamento inferior */
-  }
-
-  .search-filter {
-    flex-direction: column; /* Coloca elementos em coluna */
-    align-items: flex-start; /* Alinha à esquerda */
-  }
-
-  .search-input, .filter-select {
-    width: 100%; /* Ambos os inputs ocupam 100% da largura */
-    margin-bottom: 10px; /* Espaçamento inferior */
-  }
-
-  .alunos-table th, .alunos-table td {
-    padding: 15px; /* Reduz padding nas células da tabela */
-    font-size: 14px; /* Diminui o tamanho da fonte */
-  }
-
-  .modal-content {
-    width: 90%; /* Modal ocupa 90% da largura da tela */
-    padding: 20px; /* Ajusta padding do modal */
-  }
-
-  .modal-content h2 {
-    font-size: 20px; /* Diminui o tamanho da fonte do título do modal */
-  }
-
-  .modal-buttons {
-    flex-direction: column; /* Botões empilhados em coluna */
-  }
-
-  .cancel-button, .save-button {
-    width: 100%; /* Botões ocupam 100% da largura */
-    margin-bottom: 10px; /* Espaçamento inferior */
-  }
-}
-

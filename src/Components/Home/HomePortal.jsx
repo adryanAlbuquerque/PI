@@ -28,9 +28,7 @@ const HomePortal = () => {
         </div>
 
         <div className="menu">
-          <button className="menu-button" onClick={toggleDropdown}>
-            Portais
-          </button>
+          <button className="menu-button" onClick={toggleDropdown}>Portais</button>
           {dropdownOpen && (
             <div className="dropdown-menu">
               <Link to="/loginAluno">Portal do Aluno</Link>
@@ -40,10 +38,17 @@ const HomePortal = () => {
           )}
         </div>
       </nav>
-
+      
       {/* Main content with background image */}
       <div className="home-container">
-        <img id="Fundo" src="/img/image.png" alt="Logo" />
+      <img id="Fundo" src="/img/image.png" alt="Logo"/>
+      </div>
+
+      {/* Quadro na parte inferior */}
+      <div className="quadro-inferior">
+        <p id="Legenda1">Inicie hoje a sua jornada e transforme seu futuro:</p>
+        <p id="Legenda2">Faça o Ensino Médio com curso técnico e saia preparado para o 
+            Enem e o mercado de trabalho!</p>
       </div>
     </div>
   );

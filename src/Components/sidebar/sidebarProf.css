@@ -91,7 +91,7 @@
 /* Responsividade */
 @media (max-width: 641px) {
     .sidebar-prof {
-        width: 80%; /* Sidebar ocupa toda a largura da tela em dispositivos móveis */
+        width: 100%; /* Sidebar ocupa toda a largura da tela em dispositivos móveis */
     }
 
     .sidebar-toggle-prof {

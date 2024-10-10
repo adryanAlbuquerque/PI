@@ -1,81 +1,73 @@
 import { FaUser, FaLock, FaTimes } from 'react-icons/fa'; // Importando FaTimes para o ícone de X
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // Importando useNavigate para redirecionamento
+import { Link } from 'react-router-dom'; // Certifique-se de importar Link
 import './LoginCoord.css';
 
 const LoginCoordenador = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const navigate = useNavigate(); // Inicializando useNavigate
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = (event) => {
     event.preventDefault();
     // Lógica para autenticar
-    alert('Login Coordenador: ' + username + ' - ' + password);
-
-    // Se a autenticação for bem-sucedida, redireciona
-    navigate('/HomeCoordenacao');
+    alert("Login Professor: " + username + " - " + password);
   };
 
   const handleGoHome = () => {
     // Lógica para redirecionar para a página inicial
-    navigate('/'); // Usando useNavigate para redirecionar
+    window.location.href = '/'; // Redireciona para a página inicial
   };
 
   return (
-    <div className="coord-container">
-      <div className="coord-login-box">
+    <div className="Container">
+      <div id="LoginBox">
         {/* Ícone X no canto superior direito */}
-        <FaTimes className="coord-close-icon" onClick={handleGoHome} />
+        <FaTimes className="closeIcon" onClick={handleGoHome} />
 
-        <div className="coord-logo">
+        <div id="LogoCoord">
           <img src="/img/logo.png" alt="Logo" />
         </div>
 
         <form onSubmit={handleSubmit}>
-          <h1 className="coord-title">LOGIN DO COORDENADOR</h1>
+          <h1 id="MedioTec">LOGIN DO COORDENADOR</h1>
 
-          <div className="coord-input-field">
+          <div className="input-field">
             <input
               type="email"
               placeholder="Digite seu Email"
               onChange={(e) => setUsername(e.target.value)}
-              required // Adicionando required para validar o campo
+              required // Adicionei required para validar o campo
             />
-            <FaUser className="coord-icon" />
+            <FaUser className="icon" />
           </div>
 
-          <div className="coord-input-field">
+          <div className="input-field">
             <input
               type="password"
               placeholder="Digite sua senha"
               onChange={(e) => setPassword(e.target.value)}
-              required // Adicionando required para validar o campo
+              required // Adicionei required para validar o campo
             />
-            <FaLock className="coord-icon" />
+            <FaLock className="icon" />
           </div>
 
-          <div className="coord-recall-forget">
-            <label className="coord-label">
-              <input className="coord-checkbox" type="checkbox" />
-              <p className="coord-remember">Lembre-se de mim</p>
+          <div id="recal-forget">
+            <label id="label">
+              <input id="Checkbox" type="checkbox" />
+              <p id="Lembre">Lembre-se de mim</p>
             </label>
-            <a href="#" className="coord-forgot">
+            <a href="#" id="Esqueceu">
               Esqueci minha senha
             </a>
           </div>
 
-          {/* Botão de login */}
-          <button type="submit" className="coord-button">
-            LOGIN
-          </button>
+          {/* Usando Link para redirecionar */}
+          <Link to="/HomeCoordenacao">
+            <button type="submit" id="button">LOGIN</button>
+          </Link>
 
           {/* Botão para voltar à Home */}
-          <button
-            type="button"
-            className="coord-home-button"
-            onClick={handleGoHome}
-          >
+          <button type="button" id="homeButton" onClick={handleGoHome}>
             Voltar
           </button>
         </form>

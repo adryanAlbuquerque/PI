@@ -1,67 +1,46 @@
 .home-prof-container {
     display: flex;
-    height: 100vh; 
+    height: 100vh; /* Ocupa toda a altura da tela */
     background-color: #F5F5FB;
-    overflow-x: hidden; /* Evita que o conteúdo ultrapasse o container */
-    padding: 25px; /* Espaçamento interno */
-}
-.home-page-prof {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Mantém itens centralizados horizontalmente */
-    width: 100%; /* Define largura total */
-    max-width: 800px; /* Limita a largura máxima */
-    margin: 0 auto; /* Centraliza horizontalmente */
-}
-.header-image-prof {
-    width: 100%;
-    max-width: 600px;
-    height: auto;
-    margin: 20px 0;
 }
 
-.header-image-prof img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
+.header-image-Prof {
+    position: relative; /* Posiciona a imagem em relação ao container */
+    width: 60%; /* Largura total */
+    height: auto; /* Altura automática */
+    margin-bottom: 20px; /* Espaçamento inferior */
+    margin-top: 100px;
+    margin-left: 30%;
 }
 
-.BemvindoProf {
-    text-align: center;
-    font-size: 30px;
-    color: #0B429D;
-    margin: 60px 0;
-    font-weight: bold;
-}
-
+/* Estilos para os quadrados abaixo da imagem */
 .Quadro {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
     padding: 20px;
-    margin: 20px auto; /* Centraliza horizontalmente */
-    width: 100%; /* Ajuste para caber no contêiner */
-    max-width: 800px; /* Limite de largura */
+    margin-top: 20px;
+    margin-left: 33%;
+    margin-right: -47%;
 }
 
 .Quadros {
-    width: 100%; /* Ajuste para caber na grid */
-    max-width: 400px; /* Limite de largura */
-    height: 100px;
-    background-color: #FF8A00;
+    width: 80%; 
+    height: 100px; 
+    background-color: #0B429D;
     border: 1px solid #ccc;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 16px;
-    color: white;
-    font-weight: bold;
+    margin-left: -40px;
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    font-size: 16px; 
+    color: white; 
+    font-weight: bold; 
     text-align: center;
-    position: relative;
+    position: relative; 
     border-radius: 10px;
     text-decoration: none;
-    margin: auto;
 }
 
 .Quadros:hover {
@@ -70,21 +49,23 @@
     cursor: pointer;
 }
 
+
 .Quadros:nth-child(1) {
-    background: linear-gradient(135deg, #3F58D9, #001065);
+    background: linear-gradient(135deg, #76ff88, #00b00c); 
 }
 
 .Quadros:nth-child(2) {
-    background: linear-gradient(135deg, #EF84D8, #940074);
+    background: linear-gradient(135deg, #84a6ef, #002394); 
 }
 
 .Quadros:nth-child(3) {
-    background: linear-gradient(135deg, #76FF9C, #00B01C);
+    background: linear-gradient(135deg, #d9513f, #9d0022); 
 }
 
 .Quadros:nth-child(4) {
-    background: linear-gradient(135deg, #FF8A00, #ffb35c);
+    background: linear-gradient(135deg, #9900ff, #d15cff); 
 }
+
 
 .Quadros::before {
     content: '';
@@ -93,25 +74,24 @@
     height: 20px;
     border-radius: 50%;
     background-color: #ffffff;
-    top: 10px;
-    left: 10px;
+    top: 10px; /* Distância do topo */
+    left: 10px; /* Distância da esquerda */
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
-@media (max-width: 768px) {
-    .Quadro {
-        grid-template-columns: 1fr; /* Alinhar os blocos em uma coluna */
-        justify-items: center; /* Centraliza os blocos dentro da grid */
-    }
 
-
-    #Fundocoord {
-        width: 100%; /* Mantido conforme solicitado */
-        height: auto;
-    }
-
-    .BemvindoProf {
-        font-size: 24px;
-    }
-
+.BemvindoProf {
+    text-align: center; 
+    font-size: 30px; 
+    color: #0B429D; 
+    margin-top: 60px; 
+    margin-bottom: -80px; 
+    margin-left: 230px;
+    font-weight: bold; 
 }
+
+
+
+
+
+
