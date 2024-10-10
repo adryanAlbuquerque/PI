@@ -56,8 +56,8 @@
 /* Botão para abrir/fechar a sidebar */
 .sidebar-toggle-aluno {
     position: absolute;
-    top: 20px;
-    left: 20px;
+    top: 10px;
+    left: 10px;
     background: none;
     border: none;
     font-size: 24px;
