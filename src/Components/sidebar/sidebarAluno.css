@@ -56,8 +56,8 @@
 /* Botão para abrir/fechar a sidebar */
 .sidebar-toggle-aluno {
     position: absolute;
-    top: 20px;
-    left: 20px;
+    top: 10px;
+    left: 10px;
     background: none;
     border: none;
     font-size: 24px;
@@ -91,7 +91,7 @@
 /* Responsividade */
 @media (max-width: 641px) {
     .sidebar-Aluno {
-        width: 100%; /* Sidebar ocupa toda a largura da tela em dispositivos móveis */
+        width: 80%; /* Sidebar ocupa toda a largura da tela em dispositivos móveis */
     }
 
     .sidebar-toggle-aluno {
@@ -99,3 +99,5 @@
         left: 10px;
     }
 }
+
+

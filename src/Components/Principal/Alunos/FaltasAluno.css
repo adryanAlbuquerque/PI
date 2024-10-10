@@ -1,10 +1,9 @@
-.conceitos-aluno {
+.faltas-aluno {
     display: flex;
     height: 100vh; /* Altura total da viewport */
     background-color: #F5F5FB; /* Cor de fundo */
     overflow-x: hidden; /* Evita que o conteúdo ultrapasse o container */
     padding: 20px; /* Espaçamento interno */
-    
 }
   
 .RegistroAluno {
@@ -33,27 +32,26 @@ h2 {
     margin: 20px 0; /* Margem acima e abaixo */
 }
 
-.conceitos-table {
+.faltas-table {
     width: 100%; /* Define a largura da tabela como 100% do contêiner pai */
     max-width: 1200px; /* Define um valor máximo para a largura da tabela */
     margin: 0 auto; /* Centraliza a tabela horizontalmente */
     border-collapse: collapse; /* Colapsa as bordas da tabela */
 }
 
-.conceitos-table th, .conceitos-table td {
+.faltas-table th, .faltas-table td {
     padding: 10px; /* Espaçamento interno nas células */
     text-align: left; /* Alinhamento do texto à esquerda */
     border: 1px solid #ccc; /* Adiciona uma borda às células */
 }
 
-.conceitos-table th {
+.faltas-table th {
     background-color: #FF8A00; /* Cor de fundo do cabeçalho */
     color: white; /* Cor do texto do cabeçalho */
     font-weight: bold; /* Deixa o texto do cabeçalho em negrito */
-
 }
 
-.conceitos-table tr:hover {
+.faltas-table tr:hover {
     background-color: #f1f1f1; /* Cor de fundo ao passar o mouse */
 }
 
@@ -89,7 +87,7 @@ a:hover {
       font-size: 18px; /* Ajusta o tamanho do subtítulo */
     }
   
-    .notas-table th, .notas-table td {
+    .faltas-table th, .faltas-table td {
       padding: 8px; /* Reduz o padding das células em telas menores */
     }
 }
