@@ -140,6 +140,65 @@
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
+.profile-container {
+    position: absolute;
+    top: 30px;
+    right: 60px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1000; 
+}
+  
+.profile-icon {
+    font-size: 30px;
+    color: #FF8A00;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+  
+.profile-icon:hover {
+    transform: scale(1.1);
+}
+  
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+  
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    text-align: center;
+    position: relative;
+}
+  
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: #999;
+}
+  
+.close-button:hover {
+    color: #333;
+}
+  
+
 
 @media (max-width: 768px) {
     .squaresaluno {
