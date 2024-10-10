@@ -3,32 +3,32 @@ import { useState } from 'react';
 import './LoginProf.css';
 
 const LoginProf = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
   const handleSubmit = (event) => {
     event.preventDefault();
     // Lógica para autenticar professores
-    alert("Login Professor: " + username + " - " + password);
+    alert('Login Professor: ' + username + ' - ' + password);
   };
 
   const handleGoHome = () => {
     // Lógica para redirecionar para a página inicial
-    window.location.href = '/';  // Redireciona para a página inicial
+    window.location.href = '/'; // Redireciona para a página inicial
   };
 
   return (
-    <div className="Container">
-      <div id="LoginBox">
+    <div className="loginPROF-container">
+      <div className="login-box">
         {/* Ícone X no canto superior direito */}
-        <FaTimes className="closeIcon" onClick={handleGoHome} />
+        <FaTimes className="profclose-icon" onClick={handleGoHome} />
 
-        <div id="LogoProf">
+        <div className="logo-container">
           <img src="/img/logo.png" alt="Logo" />
         </div>
 
         <form onSubmit={handleSubmit}>
-          <h1 id="MedioTec">LOGIN DO PROFESSOR</h1>
+          <h1 className="login-title">LOGIN DO PROFESSOR</h1>
 
           <div className="input-field">
             <input
@@ -36,7 +36,7 @@ const LoginProf = () => {
               placeholder="Digite seu Email"
               onChange={(e) => setUsername(e.target.value)}
             />
-            <FaUser className="icon" />
+            <FaUser className="input-icon" />
           </div>
 
           <div className="input-field">
@@ -45,23 +45,28 @@ const LoginProf = () => {
               placeholder="Digite sua senha"
               onChange={(e) => setPassword(e.target.value)}
             />
-            <FaLock className="icon" />
+            <FaLock className="input-icon" />
           </div>
 
-          <div id="recal-forget">
-            <label id="label">
-              <input id="Checkbox" type="checkbox" />
-              <p id="Lembre">Lembre-se de mim</p>
+          <div className="remember-forget">
+            <label className="checkbox-label">
+              <input type="checkbox" className="checkbox-input" />
+              <p className="remember-text">Lembre-se de mim</p>
             </label>
-            <a href="#" id="Esqueceu">
+            <a href="#" className="forget-password-link">
               Esqueci minha senha
             </a>
           </div>
 
-          <button id="button" onClick={() => window.location.href = '/HomeProf'}>LOGIN</button>
+          <button
+            className="login-button"
+            onClick={() => (window.location.href = '/HomeProf')}
+          >
+            LOGIN
+          </button>
 
           {/* Botão para voltar à Home */}
-          <button type="button" id="homeButton" onClick={handleGoHome}>
+          <button type="button" className="home-button" onClick={handleGoHome}>
             Voltar
           </button>
         </form>

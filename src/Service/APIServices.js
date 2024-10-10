@@ -1,44 +1,41 @@
 import axios from 'axios';
 
-
-//const API_URL = `${process.env.REACT_APP_API_URL}/usuarios`;
+// URLs das APIs
 const API_URL = 'http://localhost:8080/usuarios';
-const API_URL_disciplina = 'http://localhost:8080/disciplinas';
-const API_URL_TURMAS = 'http://localhost:8080/turmas'; // URL para a rota de turmas
+const API_URL_DISCIPLINA = 'http://localhost:8080/disciplinas';
+const API_URL_TURMAS = 'http://localhost:8080/turmas'; 
+const API_URL_CONCEITOS = 'http://localhost:8080/conceitos'; // URL para a rota de conceitos
+const API_URL_COMUNICADOS = 'http://localhost:8080/comunicados'
 
+// Funções para gerenciar alunos
 export const getAlunos = () => {
   return axios.get(API_URL);
 };
-
 
 export const createAluno = (aluno) => {
   return axios.post(API_URL, aluno);
 };
 
-
 export const updateAluno = (id, aluno) => {
   return axios.put(`${API_URL}/${id}`, aluno);
 };
-
 
 export const deleteAluno = (id) => {
   return axios.delete(`${API_URL}/${id}`);
 };
 
+// Funções para gerenciar professores
 export const getProfessores = () => {
   return axios.get(API_URL);
 };
 
-
-export const createProfessor = (aluno) => {
-  return axios.post(API_URL, aluno);
+export const createProfessor = (professor) => {
+  return axios.post(API_URL, professor);
 };
 
-
-export const updateProfessor = (id, aluno) => {
-  return axios.put(`${API_URL}/${id}`, aluno);
+export const updateProfessor = (id, professor) => {
+  return axios.put(`${API_URL}/${id}`, professor);
 };
-
 
 export const deleteProfessor = (id) => {
   return axios.delete(`${API_URL}/${id}`);
@@ -46,22 +43,19 @@ export const deleteProfessor = (id) => {
 
 // Função para obter todas as disciplinas
 export const getDisciplina = () => {
-  return axios.get(API_URL_disciplina);
+  return axios.get(API_URL_DISCIPLINA);
 };
 
-// Função para criar uma nova disciplina
 export const createDisciplina = (disciplina) => {
-  return axios.post(API_URL_disciplina, disciplina);
+  return axios.post(API_URL_DISCIPLINA, disciplina);
 };
 
-// Função para atualizar uma disciplina existente
 export const updateDisciplina = (id, disciplina) => {
-  return axios.put(`${API_URL_disciplina}/${id}`, disciplina);
+  return axios.put(`${API_URL_DISCIPLINA}/${id}`, disciplina);
 };
 
-// Função para deletar uma disciplina
 export const deleteDisciplina = (id) => {
-  return axios.delete(`${API_URL_disciplina}/${id}`, disciplina);
+  return axios.delete(`${API_URL_DISCIPLINA}/${id}`);
 };
 
 // Funções para gerenciar coordenadores
@@ -81,7 +75,7 @@ export const deleteCoordenador = (id) => {
   return axios.delete(`${API_URL}/${id}`);
 };
 
-// Funções de CRUD para turmas
+// Funções para gerenciar turmas
 export const getTurmas = () => {
   return axios.get(API_URL_TURMAS);
 };
@@ -96,4 +90,38 @@ export const updateTurma = (id, turma) => {
 
 export const deleteTurma = (id) => {
   return axios.delete(`${API_URL_TURMAS}/${id}`);
+};
+
+// Funções para gerenciar conceitos
+export const getConceitos = () => {
+  return axios.get(API_URL_CONCEITOS);
+};
+
+export const createConceito = (conceito) => {
+  return axios.post(API_URL_CONCEITOS, conceito);
+};
+
+export const updateConceito = (id, conceito) => {
+  return axios.put(`${API_URL_CONCEITOS}/${id}`, conceito);
+};
+
+export const deleteConceito = (id) => {
+  return axios.delete(`${API_URL_CONCEITOS}/${id}`);
+};
+
+// Funções para gerenciar comunicados
+export const getComunicados = () => {
+  return axios.get(API_URL_COMUNICADOS);
+};
+
+export const createComunicado = (comunicado) => {
+  return axios.post(API_URL_COMUNICADOS, comunicado);
+};
+
+export const updateComunicado = (id, comunicado) => {
+  return axios.put(`${API_URL_COMUNICADOS}/${id}`, comunicado);
+};
+
+export const deleteComunicado = (id) => {
+  return axios.delete(`${API_URL_COMUNICADOS}/${id}`);
 };
