@@ -4,6 +4,7 @@ import SidebarCoord from '../sidebar/sidebarCoord';
 
 const CoordHome = () => {
   const [isModalOpen, setModalOpen] = useState(false);
+  const [fileName, setFileName] = useState('Nenhum arquivo selecionado');
 
   const handleModalOpen = () => {
     setModalOpen(true);
@@ -11,12 +12,20 @@ const CoordHome = () => {
 
   const handleModalClose = () => {
     setModalOpen(false);
+    setFileName('Nenhum arquivo selecionado'); // Resetar o nome do arquivo ao fechar o modal
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     // Aqui você pode adicionar a lógica para enviar o formulário
     handleModalClose(); // Fechar o modal após enviar
+  };
+
+  const handleFileChange = (event) => {
+    const selectedFile = event.target.files[0];
+    setFileName(
+      selectedFile ? selectedFile.name : 'Nenhum arquivo selecionado',
+    );
   };
 
   return (
@@ -98,7 +107,23 @@ const CoordHome = () => {
                   required
                   className="form-textarea"
                 />
-                <input type="file" id="attachment" className="form-input" />
+              </div>
+
+              {/* Campo de arquivo personalizado */}
+              <div className="form-group">
+                <label htmlFor="attachment" className="custom-file-label">
+                  Anexar Arquivo
+                </label>
+                <span id="file-chosen" className="file-chosen">
+                  {fileName}
+                </span>
+                <input
+                  type="file"
+                  id="attachment"
+                  className="custom-file-input"
+                  style={{ display: 'none' }}
+                  onChange={handleFileChange}
+                />
               </div>
 
               <button type="submit" className="send-button">

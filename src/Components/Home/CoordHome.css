@@ -35,37 +35,39 @@
 }
 
 .modal-overlay {
-    position: fixed; /* Mantém a sobreposição fixa na tela */
+    position: fixed; /* Posiciona o modal fixamente */
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 0, 0, 0.7); /* Cor do fundo escuro */
-    display: flex;
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+    display: flex; /* Flexbox para centralizar o conteúdo */
     justify-content: center; /* Centraliza horizontalmente */
     align-items: center; /* Centraliza verticalmente */
-    z-index: 1000; /* Garante que o modal fique acima do conteúdo */
+    z-index: 1000; /* Garante que o modal esteja acima de outros elementos */
 }
 
+/* Conteúdo do modal */
 .modal-content {
-    background: white; /* Fundo do modal */
-    border-radius: 8px;
-    padding: 20px;
-    width: 500px; /* Largura do modal */
-    position: relative; /* Posição relativa para o botão de fechar */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Sombra para o modal */
+    background-color: white; /* Fundo branco */
+    padding: 20px; /* Espaço interno */
+    border-radius: 10px; /* Cantos arredondados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra */
+    width: 90%; /* Largura padrão do modal */
+    max-width: 500px; /* Largura máxima do modal */
+    margin: 20px; /* Margem para evitar que o modal encoste nas bordas da tela */
 }
 
+/* Botão de fechar */
 .close-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    border: none;
-    background: transparent;
-    font-size: 20px;
-    cursor: pointer;
+    background: none; /* Fundo transparente */
+    border: none; /* Sem borda */
+    font-size: 24px; /* Tamanho do ícone de fechar */
+    cursor: pointer; /* Cursor pointer */
+    position: absolute; /* Posicionamento absoluto */
+    top: 10px; /* Distância do topo */
+    right: 10px; /* Distância da direita */
 }
-
 .home-page-coord {
     display: flex;
     flex-direction: column;
@@ -152,6 +154,24 @@
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
+/* Estilização do input */
+
+.custom-file-label {
+    background-color: #825CFF;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+    width: 30%; /* Define uma largura fixa */
+    margin: 0 auto; /* Centraliza o botão */
+}
+
+.custom-file-label:hover {
+    background-color: #3D1ABF; /* Cor de fundo ao passar o mouse */
+}
+
 @media (max-width: 768px) {
     .Square {
         grid-template-columns: 1fr; /* Alinhar os blocos em uma coluna */
@@ -172,5 +192,28 @@
         display: block; /* Faz o botão ocupar toda a largura disponível */
         width: 80%; /* Ajusta a largura do botão */
         max-width: 300px; /* Limita a largura máxima */
+    }
+
+    .modal-content {
+        width: 90%; /* Reduz a largura do modal em telas menores */
+        max-width: 90%; /* Largura máxima para garantir que caiba na tela */
+        margin: 10px; /* Margem menor */
+        padding: 15px; /* Espaçamento interno menor */
+    }
+
+    .form-group {
+        margin-bottom: 15px; /* Espaçamento entre os grupos de formulário */
+    }
+
+    .form-input,
+    .form-textarea {
+        width: 100%; /* Largura total para os campos de entrada */
+        font-size: 16px; /* Tamanho da fonte ajustado */
+    }
+
+    .send-button {
+        width: 100%; /* Botão ocupa toda a largura disponível */
+        padding: 10px; /* Espaçamento interno do botão */
+        font-size: 16px; /* Ajusta o tamanho da fonte do botão */
     }
 }
