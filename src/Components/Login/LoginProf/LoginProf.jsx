@@ -21,7 +21,7 @@ const LoginProf = () => {
     <div className="loginPROF-container">
       <div className="login-box">
         {/* Ícone X no canto superior direito */}
-        <FaTimes className="close-icon" onClick={handleGoHome} />
+        <FaTimes className="profclose-icon" onClick={handleGoHome} />
 
         <div className="logo-container">
           <img src="/img/logo.png" alt="Logo" />

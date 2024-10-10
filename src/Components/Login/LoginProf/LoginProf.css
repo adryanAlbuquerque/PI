@@ -1,9 +1,11 @@
 .loginPROF-container {
-  text-align: center;
-  color: #825CFF;
-  padding: 0 20px;
   display: flex;
-  justify-content: center;
+  align-items: center; /* Centraliza verticalmente */
+  justify-content: center; /* Centraliza horizontalmente */
+  min-height: 100vh; /* Define a altura mínima como 100% da altura da viewport */
+  margin: 0; /* Remove margens externas */
+  padding: 0 20px; /* Pode ajustar conforme necessário */
+  color: #825CFF;
 }
 
 .login-box {
@@ -14,22 +16,30 @@
   width: 100%;
 }
 
-.close-icon {
+.profclose-icon {
   position: absolute;
-  top: 15px;
-  right: 15px;
+  top: 212px;
+  right: 750px;
   font-size: 24px;
   color: #825cff;
   cursor: pointer;
 }
 
-.close-icon:hover {
+.profclose-icon:hover {
   color: #3f18c0;
+}
+
+.logo-container {
+  display: flex; /* Usar flexbox para centralizar */
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center; /* Centraliza verticalmente se o contêiner tiver altura definida */
+  margin: 0 auto; /* Garante que o contêiner também esteja centralizado */
 }
 
 .logo-container img {
   width: 170px;
-  margin-bottom: 20px;
+  margin-bottom: 30PX;
+  display: block; /* Faz a imagem ser um bloco */
 }
 
 .login-title {
