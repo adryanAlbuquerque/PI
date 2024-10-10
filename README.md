@@ -1,8 +1,20 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Projeto de PI
 
-Currently, two official plugins are available:
+Este projeto utiliza React com Vite para criar uma interface rápida e moderna. Inclui configuração mínima com suporte para Hot Module Replacement (HMR) e ESLint para manter boas práticas de código.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Autores
+
+- [@adryanAlbuquerque](https://github.com/adryanAlbuquerque)]
+- [@GuusRodrigues](https://github.com/GuusRodrigues)
+- [@Carlos-Rochaa](https://github.com/Carlos-Rochaa)
+- [@SenaaMatheus](https://github.com/SenaaMatheus)
+- [@Ichinosanji](https://github.com/Ichinosanji)
+
+
+## Tecnologias Utilizadas
+
+
+Front-End: React | Vite | ESlint
+
+Back-End: Java | Spring
