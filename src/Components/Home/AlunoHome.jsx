@@ -22,7 +22,7 @@ const AlunoHome = () => {
         {/* Quadrados abaixo da imagem */}
         <div className="squaresaluno">
           <Link to="/HomeAluno" className="Bloco">Acessar Conceitos</Link>
-          <Link to="/DisciplinaAluno" className="Bloco">Acessar Disciplinas</Link>
+          <Link to="/ConceitosAluno" className="Bloco">Acessar Disciplinas</Link>
           <Link to="/DocAluno" className="Bloco">Acessar Documentos</Link>
           <Link to="/BiblioAluno" className="Bloco">Acessar Biblioteca</Link>
         </div>
