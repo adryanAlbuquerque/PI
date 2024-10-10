@@ -28,14 +28,46 @@
     object-fit: cover; /* Corta a imagem para manter a proporção */
 }
 
-.conceitos {
-    text-align: center; 
+.comunicados {
     font-size: 20px; 
     color: #FF8A00; 
-    font-weight: bold; 
-    margin: 20px 0; /* Adiciona espaçamento ao redor do h2 */
-    
+    font-weight: bold;     
 }
+
+.comunicados-container {
+    width: 80%;
+    margin: 20px auto;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.comunicado-item {
+    padding: 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.comunicado-item h3 {
+    color: #FF8A00;
+    margin-bottom: 5px;
+    font-size: 18px;
+}
+
+.comunicado-item p {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.comunicado-data {
+    font-size: 12px;
+    color: #777;
+}
+
+.comunicado-item:last-child {
+    border-bottom: none;
+}
+
 .BemVindo {
     text-align: center; 
     font-size: 30px; 
