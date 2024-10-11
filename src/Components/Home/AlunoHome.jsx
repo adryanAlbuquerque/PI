@@ -2,8 +2,31 @@ import { Link } from 'react-router-dom';
 import './AlunoHome.css';
 import SidebarAluno from '../sidebar/sidebarALuno';
 import { useState, useEffect } from 'react';
+import { FaUserCircle } from 'react-icons/fa'; // Importa o ícone de perfil
 
 const AlunoHome = () => {
+  // Estados para abrir/fechar o modal e armazenar dados do aluno
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [alunoData, setAlunoData] = useState({ nome: '', email: '', turma: '' });
+
+  // Função para abrir o modal e buscar dados do aluno via CRUD
+  const handleModalOpen = () => {
+    // Simulação de dados (poderia ser uma chamada API)
+    const dadosSimulados = {
+      nome: 'João da Silva',
+      email: 'joao.silva@gmail.com',
+      turma: 'Turma A',
+    };
+    
+    setAlunoData(dadosSimulados);
+    setModalOpen(true);
+  };
+
+  // Função para fechar o modal
+  const handleModalClose = () => {
+    setModalOpen(false);
+  };
+
   // Simulação de comunicados
   const [comunicados, setComunicados] = useState([]);
 
@@ -44,7 +67,11 @@ const AlunoHome = () => {
       <div className="home-page-aluno">
         <h1 className="BemVindo">Olá, Bem-vindo ao portal do Aluno!</h1>
 
-        {/* Imagem no cabeçalho */}
+        {/* Ícone de perfil no cabeçalho */}
+        <div className="profile-container">
+          <FaUserCircle onClick={handleModalOpen} className="profile-icon" />
+        </div>
+
         <div className="header-image-aluno">
           <img id="FundoAluno" src="/img/Horizonte.png" alt="Fundo" />
         </div>
@@ -58,7 +85,6 @@ const AlunoHome = () => {
         </div>
 
         {/* Área de comunicados */}
-        
         <div className="comunicados-container">
           <h2 className="comunicados">Comunicados</h2>
           {comunicados.length === 0 ? (
@@ -74,6 +100,21 @@ const AlunoHome = () => {
           )}
         </div>
       </div>
+
+      {/* Modal para exibir os dados do aluno */}
+      {isModalOpen && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <button className="close-button" onClick={handleModalClose}>
+              &times;
+            </button>
+            <h2>Dados do Aluno</h2>
+            <p><strong>Nome Completo:</strong> {alunoData.nome}</p>
+            <p><strong>Email:</strong> {alunoData.email}</p>
+            <p><strong>Turma:</strong> {alunoData.turma}</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
