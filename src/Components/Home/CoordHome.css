@@ -33,6 +33,28 @@
     margin: 60px 0;
     font-weight: bold;
 }
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+    color: #825CFF;
+  }
+  
+
+  .send-button {
+    display: flex;
+    background-color: #825CFF;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+    color: white;
+    width: fit-content; 
+    padding: 10px 20px; 
+    border: none;
+    border-radius: 5px; 
+    cursor: pointer;
+}
+
 
 .modal-overlay {
     position: fixed; /* Posiciona o modal fixamente */
