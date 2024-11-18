@@ -40,7 +40,7 @@ const GerenciaDisciplinas = () => {
       const updatedDisciplinas = disciplinas.map(disciplina =>
         disciplina.id === selectedDisciplina.id ? response.data : disciplina
       );
-      setDisciplinas(updatedDisciplinas);
+      setDisciplinas(updatedDisciplinas); // Atualiza o estado das disciplinas para refletir a edição
       setIsModalOpen(false);
       setIsEditable(false);
       console.log('Disciplina atualizada:', response.data);
