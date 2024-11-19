@@ -35,18 +35,26 @@ const GerenciaTurmas = () => {
 
   const handleSave = (event) => {
     event.preventDefault();
+  
+    // Preparando os dados da turma com as disciplinas atualizadas
     const turmaData = {
       ...selectedTurma,
-      disciplinas: selectedTurma.disciplinas,
+      disciplinas: selectedTurma.disciplinas, // Certificando-se de que estamos enviando as disciplinas selecionadas
     };
+  
+    // Enviando os dados para a API para atualizar a turma
     updateTurma(selectedTurma.turma_id, turmaData)
       .then(response => {
+        // Atualizando a lista de turmas com os dados atualizados
         const updatedTurmas = turmas.map(turma =>
           turma.turma_id === selectedTurma.turma_id ? response.data : turma
         );
         setTurmas(updatedTurmas);
+  
+        // Fechando o modal e desabilitando a edição
         setIsModalOpen(false);
         setIsEditable(false);
+  
         console.log('Turma atualizada:', response.data);
       })
       .catch(error => {
@@ -182,7 +190,7 @@ const GerenciaTurmas = () => {
       {isModalOpen && (
         <div className="modal-overlay">
           <div className="modal-content">
-            <h2>Visualizar Turma</h2>
+            <h2>{isEditable ? 'Editar Turma' : 'Visualizar Turma'}</h2>
             <form onSubmit={handleSave}>
               <label>ID</label>
               <input

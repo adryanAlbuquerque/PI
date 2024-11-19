@@ -40,19 +40,27 @@ const GerenciaProfessores = () => {
       ...selectedProfessor,
       disciplina: selectedDisciplinaIds,
     };
-    updateProfessor(selectedProfessor.id, professorData)
-      .then(response => {
-        const updatedProfessores = professores.map(professor =>
-          professor.id === selectedProfessor.id ? response.data : professor
-        );
-        setProfessores(updatedProfessores);
-        setIsModalOpen(false);
-        setIsEditable(false); 
-      })
-      .catch(error => {
-        console.error('Erro ao atualizar professor:', error);
-      });
-  };
+
+updateProfessor(selectedProfessor.id, professorData)
+  .then(response => {
+    const updatedDisciplinaNomes = disciplina
+      .filter(disc => selectedDisciplinaIds.includes(disc.id))
+      .map(d => d.nome); // Garante que estamos obtendo os nomes das disciplinas corretas
+
+    const updatedProfessores = professores.map(professor =>
+      professor.id === selectedProfessor.id
+        ? { ...response.data, disciplina: updatedDisciplinaNomes }
+        : professor
+    );
+
+    setProfessores(updatedProfessores);
+    setIsModalOpen(false);
+    setIsEditable(false); 
+  })
+  .catch(error => {
+    console.error('Erro ao atualizar professor:', error);
+  });
+}
 
   const handleDelete = () => {
     deleteProfessor(selectedProfessor.id)
@@ -75,7 +83,7 @@ const GerenciaProfessores = () => {
 
   const handleView = (professor) => {
     setSelectedProfessor({ ...professor });
-    setSelectedDisciplinaIds(professor.disciplina || []);
+    setSelectedDisciplinaIds(professor.disciplina?.map(d => d.id) || []);
     setIsEditable(false); 
     setIsModalOpen(true);
   };

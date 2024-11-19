@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import './CoordHome.css';
 import SidebarCoord from '../sidebar/sidebarCoord';
-import { createComunicado, getUsuariosPorTipo, getComunicados } from '../../Service/APIServices'; // Importando as funções de API
+import { createComunicado, getUsuariosPorTipo, getComunicados, updateComunicado, deleteComunicado } from '../../Service/APIServices'; // Importando as funções de API
 
 const CoordHome = () => {
   const [isModalOpen, setModalOpen] = useState(false);
+  const [isEditMode, setEditMode] = useState(false); // Para gerenciar se está editando um comunicado
+  const [selectedComunicado, setSelectedComunicado] = useState(null); // Para armazenar o comunicado selecionado para edição
   const [fileName, setFileName] = useState('Nenhum arquivo selecionado');
   const [formData, setFormData] = useState({
     destinatario: '',
@@ -30,10 +32,27 @@ const CoordHome = () => {
     fetchComunicados();
   }, []);
 
-  const handleModalOpen = () => setModalOpen(true);
+  const handleModalOpen = (comunicado = null) => {
+    if (comunicado) {
+      setEditMode(true); // Entrando no modo de edição
+      setSelectedComunicado(comunicado);
+      setFormData({
+        destinatario: comunicado.destinatarios[0].tipo, // Tipo do destinatário (exemplo: 'alunos')
+        descricao: comunicado.conteudo,
+        arquivo: null, // Se for necessário editar o arquivo, pode ser ajustado
+      });
+    } else {
+      setEditMode(false); // Modo de criação
+      setSelectedComunicado(null);
+      setFormData({ destinatario: '', descricao: '', arquivo: null });
+    }
+    setModalOpen(true);
+  };
+
   const handleModalClose = () => {
     setModalOpen(false);
     setFileName('Nenhum arquivo selecionado');
+    setSelectedComunicado(null);
   };
 
   const handleFileChange = (event) => {
@@ -51,30 +70,62 @@ const CoordHome = () => {
     event.preventDefault();
     try {
       setLoading(true);
-      // Buscar os destinatários
       const destinatarios = await getUsuariosPorTipo(formData.destinatario);
       const destinatariosIds = destinatarios.map((d) => d.id);
 
       const comunicadoData = {
-        titulo: formData.descricao.substring(0, 50), // Título a partir da descrição
+        titulo: formData.descricao.substring(0, 50),
         conteudo: formData.descricao,
-        autorId: 1, // Usar o ID do coordenador ou usuário logado
+        autorId: 1, // ID do coordenador ou usuário logado
         destinatariosIds: destinatariosIds,
         arquivo: formData.arquivo,
       };
 
-      const response = await createComunicado(comunicadoData);
+      let response;
+      if (isEditMode && selectedComunicado) {
+        // Atualizar comunicado
+        response = await updateComunicado(selectedComunicado.id, comunicadoData);
+      } else {
+        // Criar novo comunicado
+        response = await createComunicado(comunicadoData);
+      }
+
       if (response.status === 200 || response.status === 201) {
-        setComunicados([...comunicados, response.data]);
+        setComunicados(prevComunicados => {
+          if (isEditMode) {
+            return prevComunicados.map(comunicado => 
+              comunicado.id === selectedComunicado.id ? response.data : comunicado
+            );
+          } else {
+            return [...prevComunicados, response.data];
+          }
+        });
         handleModalClose();
-        setFormData({ destinatario: '', descricao: '', arquivo: null });
-        alert('Comunicado enviado com sucesso!');
+        alert(isEditMode ? 'Comunicado atualizado com sucesso!' : 'Comunicado enviado com sucesso!');
       }
     } catch (error) {
       console.error('Erro ao enviar comunicado:', error);
       alert('Erro ao enviar comunicado. Por favor, tente novamente.');
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleDelete = async (id) => {
+    if (window.confirm('Tem certeza de que deseja excluir este comunicado?')) {
+      try {
+        setLoading(true);
+        const response = await deleteComunicado(id);
+        if (response.status === 204) {
+          setComunicados(comunicados.filter(comunicado => comunicado.id !== id));
+          alert('Comunicado excluído com sucesso!');
+        }
+      } catch (error) {
+        console.error('Erro ao excluir comunicado:', error);
+        alert('Erro ao excluir comunicado. Por favor, tente novamente.');
+      } finally {
+        setLoading(false);
+      }
     }
   };
 
@@ -88,7 +139,7 @@ const CoordHome = () => {
           <img id="Fundocoord" src="/img/Horizonte.png" alt="Fundo" />
         </div>
 
-        <button onClick={handleModalOpen} className="novo-comunicado-button">
+        <button onClick={() => handleModalOpen()} className="novo-comunicado-button">
           Novo Comunicado
         </button>
 
@@ -103,10 +154,12 @@ const CoordHome = () => {
           <h2>Comunicados Enviados</h2>
           {loading ? <p>Carregando...</p> : (
             <ul>
-              {comunicados.map((comunicado, index) => (
-                <li key={index}>
+              {comunicados.map((comunicado) => (
+                <li key={comunicado.id}>
                   <h3>{comunicado.titulo}</h3>
                   <p>{comunicado.conteudo}</p>
+                  <button onClick={() => handleModalOpen(comunicado)} className="edit-button">Editar</button>
+                  <button onClick={() => handleDelete(comunicado.id)} className="delete-button">Excluir</button>
                 </li>
               ))}
             </ul>
@@ -121,7 +174,7 @@ const CoordHome = () => {
             <button className="close-button" onClick={handleModalClose} aria-label="Fechar modal">
               &times;
             </button>
-            <h2>Criar Novo Comunicado</h2>
+            <h2>{isEditMode ? 'Editar Comunicado' : 'Criar Novo Comunicado'}</h2>
 
             <form onSubmit={handleSubmit}>
               <div className="form-group">
@@ -173,7 +226,7 @@ const CoordHome = () => {
               </div>
 
               <button type="submit" className="send-button" disabled={loading}>
-                {loading ? 'Enviando...' : 'Enviar'}
+                {loading ? 'Enviando...' : isEditMode ? 'Atualizar' : 'Enviar'}
               </button>
             </form>
           </div>

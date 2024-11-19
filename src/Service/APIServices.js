@@ -153,7 +153,7 @@ export const getUsuariosPorTipo = async (tipo) => {
 // Função para buscar comunicados (caso precise)
 export const getComunicados = async () => {
   try {
-    const response = await axios.get('http://localhost:8080/API/comunicados');
+    const response = await axios.get('http://localhost:8080/comunicados');
     return response.data;
   } catch (error) {
     console.error('Erro ao buscar comunicados:', error);
