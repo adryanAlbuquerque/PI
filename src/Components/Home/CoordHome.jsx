@@ -34,7 +34,7 @@ const CoordHome = () => {
 
       {/* Conteúdo Principal */}
       <div className="home-page-coord">
-        <h1 className="BemvindoCoord">Olá, Bem-vindo ao Portal Coordenador!</h1>
+        <h1 className="BemvindoCoord">Olá, Bem-vindo ao Portal do Coordenador!</h1>
 
         <div className="header-image-coord">
           <img id="Fundocoord" src="/img/Horizonte.png" alt="Fundo" />
