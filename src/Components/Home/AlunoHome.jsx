@@ -1,23 +1,27 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import './AlunoHome.css';
 import SidebarAluno from '../sidebar/sidebarALuno';
-import { useState, useEffect } from 'react';
-import { FaUserCircle } from 'react-icons/fa'; // Importa o ícone de perfil
+import { FaUserCircle } from 'react-icons/fa';
+import { getAlunos } from '../../Service/APIServices'; // A função para buscar dados do aluno
+import axios from 'axios';
 
 const AlunoHome = () => {
   // Estados para abrir/fechar o modal e armazenar dados do aluno
   const [isModalOpen, setModalOpen] = useState(false);
   const [alunoData, setAlunoData] = useState({ nome: '', email: '', turma: '' });
+  const [comunicados, setComunicados] = useState([]);
+  const [loading, setLoading] = useState(true); // Estado de carregamento
 
   // Função para abrir o modal e buscar dados do aluno via CRUD
   const handleModalOpen = () => {
-    // Simulação de dados (poderia ser uma chamada API)
+    // Dados simulados (poderia ser uma chamada API)
     const dadosSimulados = {
       nome: 'João da Silva',
       email: 'joao.silva@gmail.com',
       turma: 'Turma A',
     };
-    
+
     setAlunoData(dadosSimulados);
     setModalOpen(true);
   };
@@ -27,36 +31,21 @@ const AlunoHome = () => {
     setModalOpen(false);
   };
 
-  // Simulação de comunicados
-  const [comunicados, setComunicados] = useState([]);
-
-  // Simulação de carregamento de comunicados
+  // Carregar os comunicados do backend
   useEffect(() => {
-    const comunicadosSimulados = [
-      {
-        id: 1,
-        titulo: 'Reunião com a coordenação',
-        mensagem: 'Haverá uma reunião com a coordenação na próxima sexta-feira, às 14h.',
-        data: '2024-10-12',
-      },
-      {
-        id: 2,
-        titulo: 'Entrega de projetos finais',
-        mensagem: 'Os projetos finais devem ser entregues até o dia 20 de outubro.',
-        data: '2024-10-15',
-      },
-      {
-        id: 3,
-        titulo: 'Aula de revisão',
-        mensagem: 'A aula de revisão será realizada no dia 18 de outubro, às 10h.',
-        data: '2024-10-18',
-      },
-    ];
+    // Faz a requisição para o endpoint de comunicados
+    const fetchComunicados = async () => {
+      try {
+        const response = await axios.get('http://localhost:8080/api/comunicados'); // Ajuste a URL conforme o backend
+        setComunicados(response.data);
+        setLoading(false); // Quando os dados forem carregados, definimos como não carregando
+      } catch (error) {
+        console.error('Erro ao carregar os comunicados:', error);
+        setLoading(false);
+      }
+    };
 
-    // Simulação de atraso no carregamento
-    setTimeout(() => {
-      setComunicados(comunicadosSimulados);
-    }, 1000); // Carrega os comunicados depois de 1 segundo
+    fetchComunicados();
   }, []);
 
   return (
@@ -87,14 +76,14 @@ const AlunoHome = () => {
         {/* Área de comunicados */}
         <div className="comunicados-container">
           <h2 className="comunicados">Comunicados</h2>
-          {comunicados.length === 0 ? (
+          {loading ? (
             <p>Carregando comunicados...</p>
           ) : (
             comunicados.map((comunicado) => (
               <div key={comunicado.id} className="comunicado-item">
                 <h3>{comunicado.titulo}</h3>
-                <p>{comunicado.mensagem}</p>
-                <span>Data: {comunicado.data}</span>
+                <p>{comunicado.conteudo}</p>
+                <span>Data: {new Date(comunicado.dataCriacao).toLocaleDateString()}</span>
               </div>
             ))
           )}

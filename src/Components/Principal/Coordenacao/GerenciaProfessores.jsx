@@ -12,9 +12,8 @@ const GerenciaProfessores = () => {
   const [isEditable, setIsEditable] = useState(false); 
   const [professores, setProfessores] = useState([]);
   const [disciplina, setDisciplina] = useState([]); 
-  const [selectedDisciplinaIds, setSelectedDisciplinaIds] = useState([]); // Estado para armazenar disciplinas selecionadas
+  const [selectedDisciplinaIds, setSelectedDisciplinaIds] = useState([]);
 
-  // Carrega professores e disciplinas ao montar o componente
   useEffect(() => {
     getProfessores()
       .then(response => {
@@ -28,6 +27,7 @@ const GerenciaProfessores = () => {
     getDisciplina()
       .then(response => {
         setDisciplina(response.data); 
+        console.log('Disciplinas carregadas:', response.data);
       })
       .catch(error => {
         console.error('Erro ao buscar disciplinas:', error);
@@ -38,29 +38,35 @@ const GerenciaProfessores = () => {
     event.preventDefault();
     const professorData = {
       ...selectedProfessor,
-      disciplina: selectedDisciplinaIds, // Associa disciplinas selecionadas
+      disciplina: selectedDisciplinaIds,
     };
-    updateProfessor(selectedProfessor.id, professorData)
-      .then(response => {
-        const updatedProfessores = professores.map(professor =>
-          professor.id === selectedProfessor.id ? response.data : professor
-        );
-        setProfessores(updatedProfessores);
-        setIsModalOpen(false);
-        setIsEditable(false); 
-        console.log('Professor atualizado:', response.data);
-      })
-      .catch(error => {
-        console.error('Erro ao atualizar professor:', error);
-      });
-  };
+
+updateProfessor(selectedProfessor.id, professorData)
+  .then(response => {
+    const updatedDisciplinaNomes = disciplina
+      .filter(disc => selectedDisciplinaIds.includes(disc.id))
+      .map(d => d.nome); // Garante que estamos obtendo os nomes das disciplinas corretas
+
+    const updatedProfessores = professores.map(professor =>
+      professor.id === selectedProfessor.id
+        ? { ...response.data, disciplina: updatedDisciplinaNomes }
+        : professor
+    );
+
+    setProfessores(updatedProfessores);
+    setIsModalOpen(false);
+    setIsEditable(false); 
+  })
+  .catch(error => {
+    console.error('Erro ao atualizar professor:', error);
+  });
+}
 
   const handleDelete = () => {
     deleteProfessor(selectedProfessor.id)
       .then(() => {
         setProfessores(professores.filter(professor => professor.id !== selectedProfessor.id));
         setIsModalOpen(false);
-        console.log('Professor excluído');
       })
       .catch(error => {
         console.error('Erro ao excluir professor:', error);
@@ -77,7 +83,7 @@ const GerenciaProfessores = () => {
 
   const handleView = (professor) => {
     setSelectedProfessor({ ...professor });
-    setSelectedDisciplinaIds(professor.disciplina || []); // Define disciplinas selecionadas
+    setSelectedDisciplinaIds(professor.disciplina?.map(d => d.id) || []);
     setIsEditable(false); 
     setIsModalOpen(true);
   };
@@ -103,7 +109,7 @@ const GerenciaProfessores = () => {
 
   const handleDisciplinaChange = (event) => {
     const selectedDisciplina = Array.from(event.target.selectedOptions, option => option.value);
-    setSelectedDisciplinaIds(selectedDisciplina); // Atualiza o estado das disciplinas selecionadas
+    setSelectedDisciplinaIds(selectedDisciplina);
   };
 
   const filteredProfessores = professores.filter((professor) => {
@@ -116,13 +122,9 @@ const GerenciaProfessores = () => {
     );
   });
 
-  console.log('Professores filtrados:', filteredProfessores);
-
   return (
     <div className="gerencia-professor">
-
       <SidebarCoord />
-
       <div className="TabelasProf">
         <Link to="/CadastroGeral" id="CadastrarProf">
           CADASTRO
@@ -159,7 +161,7 @@ const GerenciaProfessores = () => {
                 <tr key={professor.id}>
                   <td>{professor.matricula || professor.id}</td>
                   <td>{professor.nome}</td>
-                  <td>{professor.disciplina ? professor.disciplina.join(', ') : 'Nenhuma'}</td> {/* Atualizado para exibir disciplinas */}
+                  <td>{professor.disciplina ? professor.disciplina.join(', ') : 'Nenhuma'}</td>
                   <td>{professor.turma}</td>
                   <td>{professor.status}</td>
                   <td>
@@ -218,14 +220,14 @@ const GerenciaProfessores = () => {
               <label>Disciplinas</label>
               <select
                 name="disciplina"
-                value={selectedDisciplinaIds} // Atualiza para o estado de disciplinas selecionadas
+                value={selectedDisciplinaIds}
                 onChange={handleDisciplinaChange}
                 multiple
                 disabled={!isEditable}
               >
-                {disciplina.map(disciplina => (
-                  <option key={disciplina.disciplina_id} value={disciplina.disciplina_id}>
-                    {disciplina.nome}
+                {disciplina.map(disc => (
+                  <option key={disc.id} value={disc.id}>
+                    {disc.nome}
                   </option>
                 ))}
               </select>
