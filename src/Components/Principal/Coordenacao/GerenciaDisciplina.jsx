@@ -7,8 +7,8 @@ import SidebarCoord from '../../sidebar/sidebarCoord';
 const GerenciaDisciplinas = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isAddModalOpen, setIsAddModalOpen] = useState(false); 
-  const [selectedDisciplina, setSelectedDisciplina] = useState(null);
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [selectedDisciplina, setSelectedDisciplina] = useState({ nome: '', descricao: '' }); // Inicialização segura
   const [newDisciplina, setNewDisciplina] = useState({ nome: '', descricao: '' });
   const [isEditable, setIsEditable] = useState(false);
   const [disciplinas, setDisciplinas] = useState([]);
@@ -40,7 +40,7 @@ const GerenciaDisciplinas = () => {
       const updatedDisciplinas = disciplinas.map(disciplina =>
         disciplina.id === selectedDisciplina.id ? response.data : disciplina
       );
-      setDisciplinas(updatedDisciplinas); // Atualiza o estado das disciplinas para refletir a edição
+      setDisciplinas(updatedDisciplinas);
       setIsModalOpen(false);
       setIsEditable(false);
       console.log('Disciplina atualizada:', response.data);
@@ -62,7 +62,7 @@ const GerenciaDisciplinas = () => {
 
   const handleAddDisciplina = async (event) => {
     event.preventDefault();
-    
+
     if (!newDisciplina.nome || !newDisciplina.descricao) {
       console.error('Os campos nome e descrição são obrigatórios para a nova disciplina.');
       return;
@@ -96,7 +96,7 @@ const GerenciaDisciplinas = () => {
 
   const handleModalClose = () => {
     setIsModalOpen(false);
-    setSelectedDisciplina(null);
+    setSelectedDisciplina({ nome: '', descricao: '' }); // Resetando para um objeto vazio
     setIsEditable(false);
   };
 
@@ -175,8 +175,8 @@ const GerenciaDisciplinas = () => {
       </div>
 
       {isModalOpen && (
-        <div className="caixa-overlay">
-          <div className="caixa-content">
+        <div className="caixa-overlay" onClick={handleModalClose}>
+          <div className="caixa-content" onClick={(e) => e.stopPropagation()}>
             <h2>Visualizar Disciplina</h2>
             <form onSubmit={handleSave}>
               <label>ID</label>
@@ -207,12 +207,12 @@ const GerenciaDisciplinas = () => {
               />
               <div className="botoes">
                 {!isEditable ? (
-                  <button onClick={enableEdit} className="mudar">Editar</button>
+                  <button onClick={(e) => enableEdit(e)} className="mudar">Editar</button>
                 ) : (
                   <button type="submit" className="salvar">Salvar</button>
                 )}
-                <button onClick={handleModalClose} className="fechar">Fechar</button>
-                <button onClick={handleDelete} className="delete">Excluir</button>
+                <button type="button" onClick={handleModalClose} className="fechar">Fechar</button>
+                <button type="button" onClick={handleDelete} className="delete">Excluir</button>
               </div>
             </form>
           </div>
@@ -220,8 +220,8 @@ const GerenciaDisciplinas = () => {
       )}
 
       {isAddModalOpen && (
-        <div className="modal-overlay">
-          <div className="modal-content">
+        <div className="modal-overlay" onClick={handleAddModalClose}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
             <h2>Adicionar Nova Disciplina</h2>
             <form onSubmit={handleAddDisciplina}>
               <label>Matéria</label>
@@ -242,7 +242,7 @@ const GerenciaDisciplinas = () => {
               />
               <div className="modalbt">
                 <button type="submit" className="salvar">Adicionar</button>
-                <button onClick={handleAddModalClose} className="fechar">Fechar</button>
+                <button type="button" onClick={handleAddModalClose} className="cancelar">Cancelar</button>
               </div>
             </form>
           </div>

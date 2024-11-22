@@ -1,30 +1,29 @@
 import React, { useState, useEffect } from 'react';
 import './CoordHome.css';
 import SidebarCoord from '../sidebar/sidebarCoord';
-import { createComunicado, getUsuariosPorTipo, getComunicados, updateComunicado, deleteComunicado } from '../../Service/APIServices'; // Importando as funções de API
+import { createComunicado, getComunicados, updateComunicado, deleteComunicado } from '../../Service/APIServices';
 
 const CoordHome = () => {
   const [isModalOpen, setModalOpen] = useState(false);
-  const [isEditMode, setEditMode] = useState(false); // Para gerenciar se está editando um comunicado
-  const [selectedComunicado, setSelectedComunicado] = useState(null); // Para armazenar o comunicado selecionado para edição
+  const [isEditMode, setEditMode] = useState(false);
+  const [selectedComunicado, setSelectedComunicado] = useState(null);
   const [fileName, setFileName] = useState('Nenhum arquivo selecionado');
   const [formData, setFormData] = useState({
-    destinatario: '',
     descricao: '',
     arquivo: null,
   });
-  const [comunicados, setComunicados] = useState([]); // Lista de comunicados enviados
-  const [loading, setLoading] = useState(false); // Para gerenciar o estado de carregamento
+  const [comunicados, setComunicados] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    // Carregar comunicados no início
     const fetchComunicados = async () => {
       setLoading(true);
       try {
-        const response = await getComunicados(); // Função que busca os comunicados
-        setComunicados(response.data);
+        const response = await getComunicados();
+        setComunicados(Array.isArray(response.data) ? response.data : []);
       } catch (error) {
         console.error('Erro ao buscar comunicados:', error);
+        setComunicados([]);
       } finally {
         setLoading(false);
       }
@@ -34,17 +33,16 @@ const CoordHome = () => {
 
   const handleModalOpen = (comunicado = null) => {
     if (comunicado) {
-      setEditMode(true); // Entrando no modo de edição
+      setEditMode(true);
       setSelectedComunicado(comunicado);
       setFormData({
-        destinatario: comunicado.destinatarios[0].tipo, // Tipo do destinatário (exemplo: 'alunos')
         descricao: comunicado.conteudo,
-        arquivo: null, // Se for necessário editar o arquivo, pode ser ajustado
+        arquivo: null,
       });
     } else {
-      setEditMode(false); // Modo de criação
+      setEditMode(false);
       setSelectedComunicado(null);
-      setFormData({ destinatario: '', descricao: '', arquivo: null });
+      setFormData({ descricao: '', arquivo: null });
     }
     setModalOpen(true);
   };
@@ -70,30 +68,26 @@ const CoordHome = () => {
     event.preventDefault();
     try {
       setLoading(true);
-      const destinatarios = await getUsuariosPorTipo(formData.destinatario);
-      const destinatariosIds = destinatarios.map((d) => d.id);
 
       const comunicadoData = {
         titulo: formData.descricao.substring(0, 50),
         conteudo: formData.descricao,
-        autorId: 1, // ID do coordenador ou usuário logado
-        destinatariosIds: destinatariosIds,
+        autorId: 1, // ID do autor (usuário logado, neste caso, o coordenador)
+        destinatariosIds: [], // Lista vazia para indicar que o comunicado é para todos
         arquivo: formData.arquivo,
       };
 
       let response;
       if (isEditMode && selectedComunicado) {
-        // Atualizar comunicado
         response = await updateComunicado(selectedComunicado.id, comunicadoData);
       } else {
-        // Criar novo comunicado
         response = await createComunicado(comunicadoData);
       }
 
       if (response.status === 200 || response.status === 201) {
-        setComunicados(prevComunicados => {
+        setComunicados((prevComunicados) => {
           if (isEditMode) {
-            return prevComunicados.map(comunicado => 
+            return prevComunicados.map((comunicado) =>
               comunicado.id === selectedComunicado.id ? response.data : comunicado
             );
           } else {
@@ -117,7 +111,7 @@ const CoordHome = () => {
         setLoading(true);
         const response = await deleteComunicado(id);
         if (response.status === 204) {
-          setComunicados(comunicados.filter(comunicado => comunicado.id !== id));
+          setComunicados(comunicados.filter((comunicado) => comunicado.id !== id));
           alert('Comunicado excluído com sucesso!');
         }
       } catch (error) {
@@ -152,7 +146,11 @@ const CoordHome = () => {
 
         <div className="comunicados-list">
           <h2>Comunicados Enviados</h2>
-          {loading ? <p>Carregando...</p> : (
+          {loading ? (
+            <p>Carregando...</p>
+          ) : comunicados.length === 0 ? (
+            <p>Nenhum comunicado encontrado.</p>
+          ) : (
             <ul>
               {comunicados.map((comunicado) => (
                 <li key={comunicado.id}>
@@ -167,7 +165,6 @@ const CoordHome = () => {
         </div>
       </div>
 
-      {/* Modal */}
       {isModalOpen && (
         <div className="modal-overlay">
           <div className="modal-content">
@@ -177,23 +174,6 @@ const CoordHome = () => {
             <h2>{isEditMode ? 'Editar Comunicado' : 'Criar Novo Comunicado'}</h2>
 
             <form onSubmit={handleSubmit}>
-              <div className="form-group">
-                <label htmlFor="toEmail">Para:</label>
-                <select
-                  id="toEmail"
-                  name="destinatario"
-                  value={formData.destinatario}
-                  onChange={handleInputChange}
-                  required
-                  className="form-input"
-                >
-                  <option value="">Selecione o destinatário</option>
-                  <option value="alunos">Alunos</option>
-                  <option value="professores">Professores</option>
-                  <option value="coordenadores">Coordenadores</option>
-                </select>
-              </div>
-
               <div className="form-group">
                 <label htmlFor="description">Descrição:</label>
                 <textarea
@@ -208,7 +188,6 @@ const CoordHome = () => {
                 />
               </div>
 
-              {/* Campo de arquivo */}
               <div className="form-group">
                 <label htmlFor="attachment" className="custom-file-label">
                   Anexar Arquivo
@@ -225,8 +204,8 @@ const CoordHome = () => {
                 />
               </div>
 
-              <button type="submit" className="send-button" disabled={loading}>
-                {loading ? 'Enviando...' : isEditMode ? 'Atualizar' : 'Enviar'}
+              <button type="submit" className="submit-button" disabled={loading}>
+                {loading ? 'Enviando...' : isEditMode ? 'Atualizar Comunicado' : 'Enviar Comunicado'}
               </button>
             </form>
           </div>
