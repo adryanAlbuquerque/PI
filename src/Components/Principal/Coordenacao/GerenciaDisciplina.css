@@ -152,12 +152,16 @@
     color: white;
   }
   
-  .fechar:hover, .delete:hover {
-    background-color: #C62828;
+  .fechar:hover {
+    background-color: #2125a0;
   }
   
+  .delete:hover {
+    background-color: #a02121;
+  }
+
   .salvar:hover {
-    background-color: #3F18C0;
+    background-color: #1ec018;
   }
   
   .mudar {

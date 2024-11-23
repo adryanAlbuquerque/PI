@@ -1,13 +1,12 @@
 import axios from 'axios';
 
-// URLs das APIs
 const API_URL = 'http://localhost:8080/usuarios';
 const API_URL_DISCIPLINA = 'http://localhost:8080/disciplinas';
 const API_URL_TURMAS = 'http://localhost:8080/turmas'; 
-const API_URL_CONCEITOS = 'http://localhost:8080/conceitos'; // URL para a rota de conceitos
+const API_URL_CONCEITOS = 'http://localhost:8080/conceitos';
 const API_URL_COMUNICADOS = 'http://localhost:8080/comunicados'
 
-// Funções para gerenciar alunos
+
 export const getAlunos = () => {
   return axios.get(API_URL);
 };
@@ -41,7 +40,7 @@ export const deleteProfessor = (id) => {
   return axios.delete(`${API_URL}/${id}`);
 };
 
-// Função para obter todas as disciplinas
+
 export const getDisciplina = () => {
   return axios.get(API_URL_DISCIPLINA);
 };
@@ -58,9 +57,8 @@ export const deleteDisciplina = (id) => {
   return axios.delete(`${API_URL_DISCIPLINA}/${id}`);
 };
 
-// Funções para gerenciar coordenadores
 export const getCoordenadores = () => {
-  return axios.get(API_URL); // Assumindo que os coordenadores também estão na mesma rota
+  return axios.get(API_URL); 
 };
 
 export const createCoordenador = (coordenador) => {
@@ -75,7 +73,7 @@ export const deleteCoordenador = (id) => {
   return axios.delete(`${API_URL}/${id}`);
 };
 
-// Funções para gerenciar turmas
+
 export const getTurmas = () => {
   return axios.get(API_URL_TURMAS);
 };
@@ -92,7 +90,7 @@ export const deleteTurma = (id) => {
   return axios.delete(`${API_URL_TURMAS}/${id}`);
 };
 
-// Funções para gerenciar conceitos
+
 export const getConceitos = () => {
   return axios.get(API_URL_CONCEITOS);
 };
