@@ -8,7 +8,7 @@ const GerenciaDisciplinas = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-  const [selectedDisciplina, setSelectedDisciplina] = useState({ nome: '', descricao: '' }); // Inicialização segura
+  const [selectedDisciplina, setSelectedDisciplina] = useState({ nome: '', descricao: '' });
   const [newDisciplina, setNewDisciplina] = useState({ nome: '', descricao: '' });
   const [isEditable, setIsEditable] = useState(false);
   const [disciplinas, setDisciplinas] = useState([]);
@@ -36,13 +36,18 @@ const GerenciaDisciplinas = () => {
     }
 
     try {
-      const response = await updateDisciplina(selectedDisciplina.id, selectedDisciplina);
-      const updatedDisciplinas = disciplinas.map(disciplina =>
+      const response = await updateDisciplina(selectedDisciplina.id, {
+        nome: selectedDisciplina.nome,
+        descricao: selectedDisciplina.descricao,
+      });
+
+      const updatedDisciplinas = disciplinas.map((disciplina) =>
         disciplina.id === selectedDisciplina.id ? response.data : disciplina
       );
-      setDisciplinas(updatedDisciplinas);
-      setIsModalOpen(false);
-      setIsEditable(false);
+
+      setDisciplinas(updatedDisciplinas); // Atualiza a tabela com a disciplina atualizada
+      setIsModalOpen(false); // Fecha o modal
+      setIsEditable(false); // Sai do modo de edição
       console.log('Disciplina atualizada:', response.data);
     } catch (error) {
       console.error('Erro ao atualizar disciplina:', error);
@@ -52,7 +57,7 @@ const GerenciaDisciplinas = () => {
   const handleDelete = async () => {
     try {
       await deleteDisciplina(selectedDisciplina.id);
-      setDisciplinas(disciplinas.filter(disciplina => disciplina.id !== selectedDisciplina.id));
+      setDisciplinas(disciplinas.filter((disciplina) => disciplina.id !== selectedDisciplina.id));
       setIsModalOpen(false);
       console.log('Disciplina excluída');
     } catch (error) {
@@ -96,7 +101,7 @@ const GerenciaDisciplinas = () => {
 
   const handleModalClose = () => {
     setIsModalOpen(false);
-    setSelectedDisciplina({ nome: '', descricao: '' }); // Resetando para um objeto vazio
+    setSelectedDisciplina({ nome: '', descricao: '' });
     setIsEditable(false);
   };
 
@@ -240,9 +245,9 @@ const GerenciaDisciplinas = () => {
                 onChange={handleNewInputChange}
                 required
               />
-              <div className="modalbt">
-                <button type="submit" className="salvar">Adicionar</button>
-                <button type="button" onClick={handleAddModalClose} className="cancelar">Cancelar</button>
+              <div className="modal-buttons">
+                <button type="submit" className="salvar">Salvar</button>
+                <button type="button" onClick={handleAddModalClose} className="fechar">Fechar</button>
               </div>
             </form>
           </div>
