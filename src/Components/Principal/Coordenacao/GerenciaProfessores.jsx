@@ -127,7 +127,7 @@ updateProfessor(selectedProfessor.id, professorData)
       <SidebarCoord />
       <div className="TabelasProf">
         <Link to="/CadastroGeral" id="CadastrarProf">
-          CADASTRO
+          CADASTRO PROFESSOR
         </Link>
         <div className="search-filter">
           <input
@@ -145,43 +145,46 @@ updateProfessor(selectedProfessor.id, professorData)
         </div>
 
         <table className="professores-table">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Nome</th>
-              <th>Disciplina</th>
-              <th>Turma</th>
-              <th>Status</th>
-              <th>Ações</th>
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nome</th>
+          <th>Disciplina</th>
+          <th>Turma</th>
+          <th>Turno</th> {/* Novo cabeçalho */}
+          <th>Status</th>
+          <th>Ações</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {filteredProfessores.length > 0 ? (
+          filteredProfessores.map((professor) => (
+            <tr key={professor.id}>
+              <td>{professor.matricula || professor.id}</td>
+              <td>{professor.nome}</td>
+              <td>{professor.disciplina ? professor.disciplina.join(', ') : 'Nenhuma'}</td>
+              <td>{professor.turma}</td>
+              <td>{professor.turno}</td> 
+              <td>{professor.status}</td>
+              <td>
+                <button onClick={() => handleView(professor)} className="view-button">Editar</button>
+              </td>
             </tr>
-          </thead>
-          <tbody>
-            {filteredProfessores.length > 0 ? (
-              filteredProfessores.map((professor) => (
-                <tr key={professor.id}>
-                  <td>{professor.matricula || professor.id}</td>
-                  <td>{professor.nome}</td>
-                  <td>{professor.disciplina ? professor.disciplina.join(', ') : 'Nenhuma'}</td>
-                  <td>{professor.turma}</td>
-                  <td>{professor.status}</td>
-                  <td>
-                    <button onClick={() => handleView(professor)} className="view-button">Visualizar</button>
-                  </td>
-                </tr>
-              ))
-            ) : (
-              <tr>
-                <td colSpan="6" className="no-results">Nenhum professor encontrado.</td>
-              </tr>
-            )}
-          </tbody>
+          ))
+        ) : (
+          <tr>
+            <td colSpan="7" className="no-results">Nenhum professor encontrado.</td>
+          </tr>
+        )}
+       </tbody>
         </table>
       </div>
 
       {isModalOpen && (
         <div className="modal-overlay">
           <div className="modal-content">
-            <h2>Visualizar Professor</h2>
+            <h2>Editar Professor</h2>
             <form onSubmit={handleSave}>
               <label>Nome</label>
               <input
@@ -192,21 +195,29 @@ updateProfessor(selectedProfessor.id, professorData)
                 readOnly={!isEditable}
               />
               <label>Turma</label>
-              <input
-                type="text"
+              <select
                 name="turma"
                 value={selectedProfessor?.turma || ''}
                 onChange={handleInputChange}
-                readOnly={!isEditable}
-              />
+                disabled={!isEditable}
+              >
+                <option value="">Selecione uma turma</option>
+                <option value="Turma A">Turma A</option>
+                <option value="Turma B">Turma B</option>
+              </select>
+
               <label>Turno</label>
-              <input
-                type="text"
+              <select
                 name="turno"
                 value={selectedProfessor?.turno || ''}
                 onChange={handleInputChange}
-                readOnly={!isEditable}
-              />
+                disabled={!isEditable}
+              >
+                <option value="">Selecione um turno</option>
+                <option value="Manhã">Manhã</option>
+                <option value="Tarde">Tarde</option>
+              </select>
+
               <label>Status</label>
               <select
                 name="status"

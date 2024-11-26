@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import './GerenciaAlunos.css';
 import { useState, useEffect } from 'react';
-import { getAlunos, updateAluno, deleteAluno } from '../../../Service/APIServices';
+import { getAlunos, updateAluno, deleteAluno, getTurmas } from '../../../Service/APIServices';
 import SidebarCoord from '../../sidebar/sidebarCoord';
 
 const GerenciaAlunos = () => {
@@ -10,24 +10,40 @@ const GerenciaAlunos = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedAluno, setSelectedAluno] = useState(null);
   const [alunos, setAlunos] = useState([]);
+  const [turmas, setTurmas] = useState([]);
 
   useEffect(() => {
+    // Fetching students
     getAlunos()
       .then(response => {
         console.log('Alunos recebidos:', response.data);
-        // Filtra apenas os usuários que são alunos
         const filteredAlunos = response.data.filter(aluno => aluno.tipoUsuario === 'ALUNO');
         setAlunos(filteredAlunos);
       })
       .catch(error => {
         console.error('Erro ao buscar alunos:', error);
       });
+
+    // Fetching turmas dynamically
+    getTurmas()
+      .then(response => {
+        console.log('Turmas recebidas:', response.data);
+        setTurmas(response.data);
+      })
+      .catch(error => {
+        console.error('Erro ao buscar turmas:', error);
+      });
   }, []);
 
   const handleSave = (event) => {
     event.preventDefault();
+
+    if (!selectedAluno) return;
+
+    // Atualizar aluno na API
     updateAluno(selectedAluno.id, selectedAluno)
       .then(response => {
+        // Atualizando a lista de alunos na tabela
         const updatedAlunos = alunos.map(aluno =>
           aluno.id === selectedAluno.id ? response.data : aluno
         );
@@ -99,7 +115,7 @@ const GerenciaAlunos = () => {
       {/* Main content */}
       <div id="DashboardAluno">
         <Link to="/CadastroGeral" id="Cadastrar">
-          CADASTRO
+          CADASTRO ALUNO
         </Link>
         <div className="search-filter">
           <input
@@ -111,8 +127,9 @@ const GerenciaAlunos = () => {
           />
           <select value={filtroTurma} onChange={handleFiltroTurma} className="filter-select">
             <option value="">Filtrar por turma</option>
-            <option value="Turma A">Turma A</option>
-            <option value="Turma B">Turma B</option>
+            {turmas.map((turma) => (
+              <option key={turma.id} value={turma.nome}>{turma.nome}</option>
+            ))}
           </select>
         </div>
 
@@ -152,7 +169,6 @@ const GerenciaAlunos = () => {
         </table>
       </div>
 
-      {/* Modal for Editing */}
       {isModalOpen && (
         <div className="modal-overlay">
           <div className="modal-content">
@@ -163,9 +179,9 @@ const GerenciaAlunos = () => {
                 type="text"
                 name="matricula"
                 value={selectedAluno?.matricula || selectedAluno?.id || ''}
-                onChange={handleInputChange}
-                readOnly // Se desejar que o ID não seja editável
+                readOnly
               />
+              
               <label>Nome</label>
               <input
                 type="text"
@@ -173,20 +189,28 @@ const GerenciaAlunos = () => {
                 value={selectedAluno?.nome || ''}
                 onChange={handleInputChange}
               />
+
               <label>Turma</label>
-              <input
-                type="text"
+              <select
                 name="turma"
                 value={selectedAluno?.turma || ''}
                 onChange={handleInputChange}
-              />
+              >
+                {turmas.map((turma) => (
+                  <option key={turma.id} value={turma.nome}>{turma.nome}</option>
+                ))}
+              </select>
+
               <label>Turno</label>
-              <input
-                type="text"
+              <select
                 name="turno"
                 value={selectedAluno?.turno || ''}
                 onChange={handleInputChange}
-              />
+              >
+                <option value="Manhã">Manhã</option>
+                <option value="Tarde">Tarde</option>
+              </select>
+
               <label>Status</label>
               <select
                 name="status"
@@ -196,6 +220,7 @@ const GerenciaAlunos = () => {
                 <option value="Ativo">Ativo</option>
                 <option value="Inativo">Inativo</option>
               </select>
+
               <div className="modal-buttons">
                 <button type="button" onClick={handleModalClose} className="cancel-button">Cancelar</button>
                 <button type="submit" className="save-button">Salvar</button>

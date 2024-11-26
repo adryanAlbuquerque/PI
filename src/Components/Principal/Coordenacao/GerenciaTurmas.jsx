@@ -36,22 +36,18 @@ const GerenciaTurmas = () => {
   const handleSave = (event) => {
     event.preventDefault();
   
-    // Preparando os dados da turma com as disciplinas atualizadas
     const turmaData = {
       ...selectedTurma,
-      disciplinas: selectedTurma.disciplinas, // Certificando-se de que estamos enviando as disciplinas selecionadas
+      disciplinas: selectedTurma.disciplinas,
     };
   
-    // Enviando os dados para a API para atualizar a turma
-    updateTurma(selectedTurma.turma_id, turmaData)
+    updateTurma(selectedTurma.id, turmaData)
       .then(response => {
-        // Atualizando a lista de turmas com os dados atualizados
         const updatedTurmas = turmas.map(turma =>
-          turma.turma_id === selectedTurma.turma_id ? response.data : turma
+          turma.id === selectedTurma.id ? response.data : turma
         );
         setTurmas(updatedTurmas);
   
-        // Fechando o modal e desabilitando a edição
         setIsModalOpen(false);
         setIsEditable(false);
   
@@ -63,9 +59,9 @@ const GerenciaTurmas = () => {
   };
 
   const handleDelete = () => {
-    deleteTurma(selectedTurma.turma_id)
+    deleteTurma(selectedTurma.id)
       .then(() => {
-        setTurmas(turmas.filter(turma => turma.turma_id !== selectedTurma.turma_id));
+        setTurmas(turmas.filter(turma => turma.id !== selectedTurma.id));
         setIsModalOpen(false);
         console.log('Turma excluída');
       })
@@ -92,7 +88,7 @@ const GerenciaTurmas = () => {
 
   const handleModalClose = () => {
     setIsModalOpen(false);
-    setSelectedTurma({ disciplinas: [] }); // Resetando para o estado inicial
+    setSelectedTurma({ disciplinas: [] }); 
     setIsEditable(false);
   };
 
@@ -161,32 +157,33 @@ const GerenciaTurmas = () => {
               <th>Nome</th>
               <th>Ano</th>
               <th>Semestre</th>
+              <th>Disciplinas</th>
               <th>Ações</th>
             </tr>
           </thead>
           <tbody>
             {filteredTurmas.length > 0 ? (
               filteredTurmas.map((turma) => (
-                <tr key={turma.turma_id}>
-                  <td>{turma.turma_id}</td>
+                <tr key={turma.id}>
+                  <td>{turma.id}</td>
                   <td>{turma.nome}</td>
                   <td>{turma.ano}</td>
                   <td>{turma.semestre}</td>
+                  <td>{turma.disciplina}</td>
                   <td>
-                    <button onClick={() => handleView(turma)} className="view-button">Visualizar</button>
+                    <button onClick={() => handleView(turma)} className="view-button">Editar</button>
                   </td>
                 </tr>
               ))
             ) : (
               <tr>
-                <td colSpan="5" className="no-results">Nenhuma turma encontrada.</td>
+                <td colSpan="6" className="no-results">Nenhuma turma encontrada.</td>
               </tr>
             )}
           </tbody>
         </table>
       </div>
 
-      {/* Modal para Visualização/ Edição */}
       {isModalOpen && (
         <div className="modal-overlay">
           <div className="modal-content">
@@ -195,8 +192,8 @@ const GerenciaTurmas = () => {
               <label>ID</label>
               <input
                 type="text"
-                name="turma_id"
-                value={selectedTurma.turma_id || ''}
+                name="id"
+                value={selectedTurma.id || ''}
                 readOnly
               />
               <label>Nome</label>
@@ -251,7 +248,7 @@ const GerenciaTurmas = () => {
         </div>
       )}
 
-      {/* Modal para Criar uma Nova Turma */}
+     
       {isCreateModalOpen && (
         <div className="modal-overlay">
           <div className="modal-content">
