@@ -23,7 +23,6 @@ export const deleteAluno = (id) => {
   return axios.delete(`${API_URL}/${id}`);
 };
 
-// Funções para gerenciar professores
 export const getProfessores = () => {
   return axios.get(API_URL);
 };
@@ -38,23 +37,6 @@ export const updateProfessor = (id, professor) => {
 
 export const deleteProfessor = (id) => {
   return axios.delete(`${API_URL}/${id}`);
-};
-
-
-export const getDisciplina = () => {
-  return axios.get(API_URL_DISCIPLINA);
-};
-
-export const createDisciplina = (disciplina) => {
-  return axios.post(API_URL_DISCIPLINA, disciplina);
-};
-
-export const updateDisciplina = (id, disciplina) => {
-  return axios.put(`${API_URL_DISCIPLINA}/${id}`, disciplina);
-};
-
-export const deleteDisciplina = (id) => {
-  return axios.delete(`${API_URL_DISCIPLINA}/${id}`);
 };
 
 export const getCoordenadores = () => {
@@ -73,6 +55,21 @@ export const deleteCoordenador = (id) => {
   return axios.delete(`${API_URL}/${id}`);
 };
 
+export const getDisciplina = () => {
+  return axios.get(API_URL_DISCIPLINA);
+};
+
+export const createDisciplina = (disciplina) => {
+  return axios.post(API_URL_DISCIPLINA, disciplina);
+};
+
+export const updateDisciplina = (id, disciplina) => {
+  return axios.put(`${API_URL_DISCIPLINA}/${id}`, disciplina);
+};
+
+export const deleteDisciplina = (id) => {
+  return axios.delete(`${API_URL_DISCIPLINA}/${id}`);
+};
 
 export const getTurmas = () => {
   return axios.get(API_URL_TURMAS);
@@ -90,7 +87,6 @@ export const deleteTurma = (id) => {
   return axios.delete(`${API_URL_TURMAS}/${id}`);
 };
 
-
 export const getConceitos = () => {
   return axios.get(API_URL_CONCEITOS);
 };
@@ -107,7 +103,6 @@ export const deleteConceito = (id) => {
   return axios.delete(`${API_URL_CONCEITOS}/${id}`);
 };
 
-// Funções para gerenciar comunicados
 export const updateComunicado = (id, comunicado) => {
   return axios.put(`${API_URL_COMUNICADOS}/${id}`, comunicado);
 };
@@ -148,7 +143,6 @@ export const getUsuariosPorTipo = async (tipo) => {
   }
 };
 
-// Função para buscar comunicados (caso precise)
 export const getComunicados = async () => {
   try {
     const response = await axios.get('http://localhost:8080/comunicados');

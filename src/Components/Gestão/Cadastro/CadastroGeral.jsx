@@ -4,16 +4,14 @@ import { createAluno, createProfessor, createCoordenador } from '../../../Servic
 import './CadastroGeral.css';
 
 const CadastroGeral = () => {
-  // Estados para os campos do formulário
   const [nomeCompleto, setNomeCompleto] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
-  const [grupo, setGrupo] = useState(""); // Deixa vazio inicialmente para o placeholder
+  const [grupo, setGrupo] = useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     
-    // Lógica para enviar os dados do formulário
     if (!grupo) {
       alert("Por favor, selecione um tipo de usuário.");
       return;
@@ -23,12 +21,11 @@ const CadastroGeral = () => {
       nome: nomeCompleto,
       email,
       senha,
-      tipoUsuario: grupo.toUpperCase(), // Transforma para uppercase para corresponder ao seu formato
+      tipoUsuario: grupo.toUpperCase(),
     };
 
     try {
       let response;
-      // Chama a função correspondente ao tipo de usuário selecionado
       if (grupo === "aluno") {
         response = await createAluno(dadosUsuario);
       } else if (grupo === "professor") {
@@ -49,13 +46,12 @@ const CadastroGeral = () => {
   };
 
   const handleGoBack = () => {
-    window.location.href = '/GerenciamentoAlunos'; // Redireciona para a página principal
+    window.location.href = '/GerenciamentoAlunos';
   };
 
   return (
     <div className="Container">
       <div id="CadGeralBox">
-        {/* Botão para voltar à página inicial */}
         <FaTimes className="closeIcon" onClick={handleGoBack} />
 
         <div id="LogoCadGeral">
@@ -65,7 +61,6 @@ const CadastroGeral = () => {
         <form onSubmit={handleSubmit}>
           <h1 id="NomeCadastro">CADASTRO GERAL</h1>
 
-          {/* Dropdown com placeholder "Usuário" */}
           <div className="input-field">
             <select
               value={grupo}
@@ -78,7 +73,6 @@ const CadastroGeral = () => {
             </select>
           </div>
 
-          {/* Campos de dados gerais */}
           <div className="input-field">
             <input
               type="text"
@@ -111,7 +105,6 @@ const CadastroGeral = () => {
 
           <button id="button">CADASTRAR</button>
 
-          {/* Botão para voltar à Home */}
           <button type="button" id="homeButton" onClick={handleGoBack}>
             Voltar
           </button>
