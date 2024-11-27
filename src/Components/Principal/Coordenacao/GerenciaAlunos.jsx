@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import './GerenciaAlunos.css';
 import { useState, useEffect } from 'react';
-import { getAlunos, updateAluno, deleteAluno, getTurmas } from '../../../Service/APIServices';
+import { getAlunos, updateAluno, deleteAluno, getTurmas, getTurnos, getStatus } from '../../../Service/APIServices';
 import SidebarCoord from '../../sidebar/sidebarCoord';
 
 const GerenciaAlunos = () => {
@@ -11,72 +11,60 @@ const GerenciaAlunos = () => {
   const [selectedAluno, setSelectedAluno] = useState(null);
   const [alunos, setAlunos] = useState([]);
   const [turmas, setTurmas] = useState([]);
+  const [turnos, setTurnos] = useState([]); 
+  const [statusOptions, setStatusOptions] = useState([]); 
 
   useEffect(() => {
     // Fetching students
     getAlunos()
       .then(response => {
-        console.log('Alunos recebidos:', response.data);
         const filteredAlunos = response.data.filter(aluno => aluno.tipoUsuario === 'ALUNO');
         setAlunos(filteredAlunos);
       })
-      .catch(error => {
-        console.error('Erro ao buscar alunos:', error);
-      });
+      .catch(error => console.error('Erro ao buscar alunos:', error));
 
     // Fetching turmas dynamically
     getTurmas()
-      .then(response => {
-        console.log('Turmas recebidas:', response.data);
-        setTurmas(response.data);
-      })
-      .catch(error => {
-        console.error('Erro ao buscar turmas:', error);
-      });
+      .then(response => setTurmas(response.data))
+      .catch(error => console.error('Erro ao buscar turmas:', error));
+
+    // Fetching turnos dynamically
+    getTurnos()
+      .then(response => setTurnos(response.data))
+      .catch(error => console.error('Erro ao buscar turnos:', error));
+
+    // Fetching status dynamically
+    getStatus()
+      .then(response => setStatusOptions(response.data))
+      .catch(error => console.error('Erro ao buscar status:', error));
+      console.log(turmas);
   }, []);
 
   const handleSave = (event) => {
     event.preventDefault();
-
     if (!selectedAluno) return;
-
-    // Atualizar aluno na API
+  
     updateAluno(selectedAluno.id, selectedAluno)
       .then(response => {
-        // Atualizando a lista de alunos na tabela
         const updatedAlunos = alunos.map(aluno =>
           aluno.id === selectedAluno.id ? response.data : aluno
         );
         setAlunos(updatedAlunos);
         setIsModalOpen(false);
-        console.log('Aluno atualizado:', response.data);
       })
-      .catch(error => {
-        console.error('Erro ao atualizar aluno:', error);
-      });
-  };
+      .catch(error => console.error('Erro ao atualizar aluno:', error));
+  };  
 
   const handleDelete = (id) => {
     deleteAluno(id)
-      .then(() => {
-        setAlunos(alunos.filter(aluno => aluno.id !== id));
-        console.log('Aluno excluído');
-      })
-      .catch(error => {
-        console.error('Erro ao excluir aluno:', error);
-      });
+      .then(() => setAlunos(alunos.filter(aluno => aluno.id !== id)))
+      .catch(error => console.error('Erro ao excluir aluno:', error));
   };
 
-  const handleSearch = (event) => {
-    setSearchTerm(event.target.value);
-  };
-
-  const handleFiltroTurma = (event) => {
-    setFiltroTurma(event.target.value);
-  };
+  const handleSearch = (event) => setSearchTerm(event.target.value);
+  const handleFiltroTurma = (event) => setFiltroTurma(event.target.value);
 
   const handleEdit = (aluno) => {
-    console.log('Aluno selecionado para edição:', aluno);
     setSelectedAluno({ ...aluno });
     setIsModalOpen(true);
   };
@@ -104,19 +92,11 @@ const GerenciaAlunos = () => {
     );
   });
 
-  console.log('Alunos filtrados:', filteredAlunos);
-
   return (
     <div className="gerencia-aluno">
-
-      {/* Sidebar */}
       <SidebarCoord />
-
-      {/* Main content */}
       <div id="DashboardAluno">
-        <Link to="/CadastroGeral" id="Cadastrar">
-          CADASTRO ALUNO
-        </Link>
+        <Link to="/CadastroGeral" id="Cadastrar">CADASTRO ALUNO</Link>
         <div className="search-filter">
           <input
             type="text"
@@ -132,8 +112,6 @@ const GerenciaAlunos = () => {
             ))}
           </select>
         </div>
-
-        {/* Students table */}
         <table className="alunos-table">
           <thead>
             <tr>
@@ -168,7 +146,6 @@ const GerenciaAlunos = () => {
           </tbody>
         </table>
       </div>
-
       {isModalOpen && (
         <div className="modal-overlay">
           <div className="modal-content">
@@ -181,7 +158,6 @@ const GerenciaAlunos = () => {
                 value={selectedAluno?.matricula || selectedAluno?.id || ''}
                 readOnly
               />
-              
               <label>Nome</label>
               <input
                 type="text"
@@ -189,7 +165,6 @@ const GerenciaAlunos = () => {
                 value={selectedAluno?.nome || ''}
                 onChange={handleInputChange}
               />
-
               <label>Turma</label>
               <select
                 name="turma"
@@ -200,25 +175,25 @@ const GerenciaAlunos = () => {
                   <option key={turma.id} value={turma.nome}>{turma.nome}</option>
                 ))}
               </select>
-
               <label>Turno</label>
               <select
                 name="turno"
                 value={selectedAluno?.turno || ''}
                 onChange={handleInputChange}
               >
-                <option value="Manhã">Manhã</option>
-                <option value="Tarde">Tarde</option>
+                {turnos.map((turno) => (
+                  <option key={turno} value={turno}>{turno}</option>
+                ))}
               </select>
-
               <label>Status</label>
               <select
                 name="status"
                 value={selectedAluno?.status || ''}
                 onChange={handleInputChange}
               >
-                <option value="Ativo">Ativo</option>
-                <option value="Inativo">Inativo</option>
+                {statusOptions.map((status) => (
+                  <option key={status} value={status}>{status}</option>
+                ))}
               </select>
 
               <div className="modal-buttons">

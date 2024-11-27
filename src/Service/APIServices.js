@@ -103,6 +103,14 @@ export const deleteConceito = (id) => {
   return axios.delete(`${API_URL_CONCEITOS}/${id}`);
 };
 
+export const getComunicados = () => {
+  return axios.get(API_URL_COMUNICADOS);
+};
+
+export const createComunicado = (comunicado) => {
+  return axios.post(API_URL_COMUNICADOS, comunicado);
+};
+
 export const updateComunicado = (id, comunicado) => {
   return axios.put(`${API_URL_COMUNICADOS}/${id}`, comunicado);
 };
@@ -111,44 +119,10 @@ export const deleteComunicado = (id) => {
   return axios.delete(`${API_URL_COMUNICADOS}/${id}`);
 };
 
-export const createComunicado = async (comunicadoData) => {
-  try {
-    const response = await axios.post(
-      'http://localhost:8080/comunicados',
-      comunicadoData,
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          // 'Authorization': `Bearer ${token}`,
-        },
-      }
-    );
-    return response;
-  } catch (error) {
-    console.error('Erro ao criar comunicado:', error);
-    throw error;
-  }
+export const getTurnos = () => {
+  return axios.get(`${API_URL}/turnos`);
 };
 
-// Função para buscar usuários por tipo
-export const getUsuariosPorTipo = async (tipo) => {
-  try {
-    const response = await axios.get(
-      `http://localhost:8080/usuarios/tipo/${tipo}`
-    );
-    return response.data;
-  } catch (error) {
-    console.error('Erro ao buscar usuários por tipo:', error);
-    throw error;
-  }
-};
-
-export const getComunicados = async () => {
-  try {
-    const response = await axios.get('http://localhost:8080/comunicados');
-    return response.data;
-  } catch (error) {
-    console.error('Erro ao buscar comunicados:', error);
-    throw error;
-  }
+export const getStatus = () => {
+  return axios.get(`${API_URL}/status`);
 };
