@@ -12,7 +12,8 @@ export const getAlunos = () => {
 };
 
 export const createAluno = (aluno) => {
-  return axios.post(API_URL, aluno);
+  console.log(aluno)
+  return axios.post(`${API_URL}/criar`, aluno);
 };
 
 export const updateAluno = (id, aluno) => {
@@ -28,7 +29,8 @@ export const getProfessores = () => {
 };
 
 export const createProfessor = (professor) => {
-  return axios.post(API_URL, professor);
+  console.log(professor)
+  return axios.post(`${API_URL}/criar`, professor);
 };
 
 export const updateProfessor = (id, professor) => {
@@ -44,7 +46,7 @@ export const getCoordenadores = () => {
 };
 
 export const createCoordenador = (coordenador) => {
-  return axios.post(API_URL, coordenador);
+  return axios.post(`${API_URL}/criar`, coordenador);
 };
 
 export const updateCoordenador = (id, coordenador) => {
