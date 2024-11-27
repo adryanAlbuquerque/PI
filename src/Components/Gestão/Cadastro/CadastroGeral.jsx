@@ -1,13 +1,13 @@
 import { FaTimes } from 'react-icons/fa';
 import { useState } from 'react';
-import { createAluno, createProfessor, createCoordenador } from '../../../Service/APIServices'; // Importar funções de criação
+import { createAluno, createProfessor, createCoordenador } from '../../../Service/APIServices'; 
 import './CadastroGeral.css';
 
 const CadastroGeral = () => {
   const [nomeCompleto, setNomeCompleto] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
-  const [grupo, setGrupo] = useState(""); // Valor padrão vazio
+  const [grupo, setGrupo] = useState(""); 
   const [status, setStatus] = useState("");
   const [turno, setTurno] = useState("");
 
@@ -40,7 +40,6 @@ const CadastroGeral = () => {
 
       console.log('Usuário cadastrado:', response.data);
       alert("Usuário cadastrado com sucesso!");
-      // Resetar os campos após o envio
       setNomeCompleto("");
       setEmail("");
       setSenha("");
@@ -54,7 +53,7 @@ const CadastroGeral = () => {
   };
 
   const handleGoBack = () => {
-    window.location.href = '/GerenciamentoAlunos'; // Alterar para usar navigate caso esteja usando React Router
+    window.location.href = '/GerenciamentoAlunos'; 
   };
 
   return (

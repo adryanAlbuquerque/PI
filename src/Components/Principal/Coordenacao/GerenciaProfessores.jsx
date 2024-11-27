@@ -41,26 +41,26 @@ const GerenciaProfessores = () => {
       disciplina: selectedDisciplinaIds,
     };
 
-updateProfessor(selectedProfessor.id, professorData)
-  .then(response => {
-    const updatedDisciplinaNomes = disciplina
-      .filter(disc => selectedDisciplinaIds.includes(disc.id))
-      .map(d => d.nome); // Garante que estamos obtendo os nomes das disciplinas corretas
+    updateProfessor(selectedProfessor.id, professorData)
+      .then(response => {
+        const updatedDisciplinaNomes = disciplina
+          .filter(disc => selectedDisciplinaIds.includes(disc.id))
+          .map(d => d.nome);
 
-    const updatedProfessores = professores.map(professor =>
-      professor.id === selectedProfessor.id
-        ? { ...response.data, disciplina: updatedDisciplinaNomes }
-        : professor
-    );
+        const updatedProfessores = professores.map(professor =>
+          professor.id === selectedProfessor.id
+            ? { ...response.data, disciplina: updatedDisciplinaNomes }
+            : professor
+        );
 
-    setProfessores(updatedProfessores);
-    setIsModalOpen(false);
-    setIsEditable(false); 
-  })
-  .catch(error => {
-    console.error('Erro ao atualizar professor:', error);
-  });
-}
+        setProfessores(updatedProfessores);
+        setIsModalOpen(false);
+        setIsEditable(false); 
+      })
+      .catch(error => {
+        console.error('Erro ao atualizar professor:', error);
+      });
+  };
 
   const handleDelete = () => {
     deleteProfessor(selectedProfessor.id)
@@ -145,39 +145,39 @@ updateProfessor(selectedProfessor.id, professorData)
         </div>
 
         <table className="professores-table">
-        <thead>
-        <tr>
-          <th>ID</th>
-          <th>Nome</th>
-          <th>Disciplina</th>
-          <th>Turma</th>
-          <th>Turno</th> {/* Novo cabeçalho */}
-          <th>Status</th>
-          <th>Ações</th>
-        </tr>
-        </thead>
-
-        <tbody>
-        {filteredProfessores.length > 0 ? (
-          filteredProfessores.map((professor) => (
-            <tr key={professor.id}>
-              <td>{professor.matricula || professor.id}</td>
-              <td>{professor.nome}</td>
-              <td>{professor.disciplina ? professor.disciplina.join(', ') : 'Nenhuma'}</td>
-              <td>{professor.turma}</td>
-              <td>{professor.turno}</td> 
-              <td>{professor.status}</td>
-              <td>
-                <button onClick={() => handleView(professor)} className="view-button">Editar</button>
-              </td>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nome</th>
+              <th>Disciplina</th>
+              <th>Turma</th>
+              <th>Turno</th>
+              <th>Status</th>
+              <th>Ações</th>
             </tr>
-          ))
-        ) : (
-          <tr>
-            <td colSpan="7" className="no-results">Nenhum professor encontrado.</td>
-          </tr>
-        )}
-       </tbody>
+          </thead>
+
+          <tbody>
+            {filteredProfessores.length > 0 ? (
+              filteredProfessores.map((professor) => (
+                <tr key={professor.id}>
+                  <td>{professor.matricula || professor.id}</td>
+                  <td>{professor.nome}</td>
+                  <td>{professor.disciplina ? professor.disciplina.join(', ') : 'Nenhuma'}</td>
+                  <td>{professor.turma}</td>
+                  <td>{professor.turno}</td> 
+                  <td>{professor.status}</td>
+                  <td>
+                    <button onClick={() => handleView(professor)} className="view-button">Editar</button>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="7" className="no-results">Nenhum professor encontrado.</td>
+              </tr>
+            )}
+          </tbody>
         </table>
       </div>
 
@@ -214,8 +214,8 @@ updateProfessor(selectedProfessor.id, professorData)
                 disabled={!isEditable}
               >
                 <option value="">Selecione um turno</option>
-                <option value="Manhã">Manhã</option>
-                <option value="Tarde">Tarde</option>
+                <option value="MANHA">Manhã</option>
+                <option value="TARDE">Tarde</option>
               </select>
 
               <label>Status</label>
@@ -225,9 +225,10 @@ updateProfessor(selectedProfessor.id, professorData)
                 onChange={handleInputChange}
                 disabled={!isEditable}
               >
-                <option value="Ativo">Ativo</option>
-                <option value="Inativo">Inativo</option>
+                <option value="ATIVO">Ativo</option>
+                <option value="INATIVO">Inativo</option>
               </select>
+
               <label>Disciplinas</label>
               <select
                 name="disciplina"
@@ -242,14 +243,19 @@ updateProfessor(selectedProfessor.id, professorData)
                   </option>
                 ))}
               </select>
+
               <div className="modal-buttons">
                 {isEditable ? (
                   <button type="submit" className="save-button">Salvar</button>
                 ) : (
-                  <button type="button" onClick={enableEdit} className="edit-button">Editar</button>
+                  <button onClick={enableEdit} className="edit-button">Editar</button>
                 )}
-                <button type="button" onClick={handleDelete} className="delete-button">Excluir</button>
-                <button type="button" onClick={handleModalClose} className="cancelar-button">Fechar</button>
+                <button type="button" onClick={handleModalClose} className="cancel-button">Cancelar</button>
+                {isEditable && (
+                  <button type="button" onClick={handleDelete} className="delete-button">
+                    Excluir
+                  </button>
+                )}
               </div>
             </form>
           </div>

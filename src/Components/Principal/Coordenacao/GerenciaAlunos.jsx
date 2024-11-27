@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import './GerenciaAlunos.css';
 import { useState, useEffect } from 'react';
-import { getAlunos, updateAluno, deleteAluno, getTurmas, getTurnos, getStatus } from '../../../Service/APIServices';
+import { getAlunos, updateAluno, deleteAluno, getTurmas } from '../../../Service/APIServices';
 import SidebarCoord from '../../sidebar/sidebarCoord';
 
 const GerenciaAlunos = () => {
@@ -11,11 +11,8 @@ const GerenciaAlunos = () => {
   const [selectedAluno, setSelectedAluno] = useState(null);
   const [alunos, setAlunos] = useState([]);
   const [turmas, setTurmas] = useState([]);
-  const [turnos, setTurnos] = useState([]); 
-  const [statusOptions, setStatusOptions] = useState([]); 
 
   useEffect(() => {
-    // Fetching students
     getAlunos()
       .then(response => {
         const filteredAlunos = response.data.filter(aluno => aluno.tipoUsuario === 'ALUNO');
@@ -23,27 +20,16 @@ const GerenciaAlunos = () => {
       })
       .catch(error => console.error('Erro ao buscar alunos:', error));
 
-    // Fetching turmas dynamically
     getTurmas()
       .then(response => setTurmas(response.data))
       .catch(error => console.error('Erro ao buscar turmas:', error));
-
-    // Fetching turnos dynamically
-    getTurnos()
-      .then(response => setTurnos(response.data))
-      .catch(error => console.error('Erro ao buscar turnos:', error));
-
-    // Fetching status dynamically
-    getStatus()
-      .then(response => setStatusOptions(response.data))
-      .catch(error => console.error('Erro ao buscar status:', error));
-      console.log(turmas);
   }, []);
 
   const handleSave = (event) => {
     event.preventDefault();
     if (!selectedAluno) return;
-  
+
+    // Atualiza o aluno com os novos dados de status e turno
     updateAluno(selectedAluno.id, selectedAluno)
       .then(response => {
         const updatedAlunos = alunos.map(aluno =>
@@ -53,7 +39,7 @@ const GerenciaAlunos = () => {
         setIsModalOpen(false);
       })
       .catch(error => console.error('Erro ao atualizar aluno:', error));
-  };  
+  };
 
   const handleDelete = (id) => {
     deleteAluno(id)
@@ -147,63 +133,63 @@ const GerenciaAlunos = () => {
         </table>
       </div>
       {isModalOpen && (
-        <div className="modal-overlay">
-          <div className="modal-content">
-            <h2>Editar Aluno</h2>
-            <form onSubmit={handleSave}>
-              <label>Matrícula</label>
-              <input
-                type="text"
-                name="matricula"
-                value={selectedAluno?.matricula || selectedAluno?.id || ''}
-                readOnly
-              />
-              <label>Nome</label>
-              <input
-                type="text"
-                name="nome"
-                value={selectedAluno?.nome || ''}
-                onChange={handleInputChange}
-              />
-              <label>Turma</label>
-              <select
-                name="turma"
-                value={selectedAluno?.turma || ''}
-                onChange={handleInputChange}
-              >
-                {turmas.map((turma) => (
-                  <option key={turma.id} value={turma.nome}>{turma.nome}</option>
-                ))}
-              </select>
-              <label>Turno</label>
-              <select
-                name="turno"
-                value={selectedAluno?.turno || ''}
-                onChange={handleInputChange}
-              >
-                {turnos.map((turno) => (
-                  <option key={turno} value={turno}>{turno}</option>
-                ))}
-              </select>
-              <label>Status</label>
-              <select
-                name="status"
-                value={selectedAluno?.status || ''}
-                onChange={handleInputChange}
-              >
-                {statusOptions.map((status) => (
-                  <option key={status} value={status}>{status}</option>
-                ))}
-              </select>
+      <div className="modal-overlay">
+        <div className="modal-content">
+          <h2>Editar Aluno</h2>
+          <form onSubmit={handleSave}>
+            <label>Matrícula</label>
+            <input
+              type="text"
+              name="matricula"
+              value={selectedAluno?.matricula || selectedAluno?.id || ''}
+              readOnly
+            />
+            <label>Nome</label>
+            <input
+              type="text"
+              name="nome"
+              value={selectedAluno?.nome || ''}
+              onChange={handleInputChange}
+            />
+            <label>Turma</label>
+            <select
+              name="turma"
+              value={selectedAluno?.turma || ''}
+              onChange={handleInputChange}
+            >
+              {turmas.map((turma) => (
+                <option key={turma.id} value={turma.nome}>{turma.nome}</option>
+              ))}
+            </select>
+            <label>Turno</label>
+            <select
+              name="turno"
+              value={selectedAluno?.turno || ''}
+              onChange={handleInputChange}
+            >
+              <option value="">Selecione o turno</option>
+              <option value="MANHA">Manhã</option>
+              <option value="TARDE">Tarde</option>
+            </select>
+            <label>Status</label>
+            <select
+              name="status"
+              value={selectedAluno?.status || ''}
+              onChange={handleInputChange}
+            >
+              <option value="">Selecione o status</option>
+              <option value="ATIVO">Ativo</option>
+              <option value="INATIVO">Inativo</option>
+            </select>
 
-              <div className="modal-buttons">
-                <button type="button" onClick={handleModalClose} className="cancel-button">Cancelar</button>
-                <button type="submit" className="save-button">Salvar</button>
-              </div>
-            </form>
-          </div>
+            <div className="modal-buttons">
+              <button type="button" onClick={handleModalClose} className="cancel-button">Cancelar</button>
+              <button type="submit" className="save-button">Salvar</button>
+            </div>
+          </form>
         </div>
-      )}
+      </div>
+    )}
     </div>
   );
 };

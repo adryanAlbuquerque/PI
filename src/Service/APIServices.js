@@ -120,11 +120,3 @@ export const updateComunicado = (id, comunicado) => {
 export const deleteComunicado = (id) => {
   return axios.delete(`${API_URL_COMUNICADOS}/${id}`);
 };
-
-export const getTurnos = () => {
-  return axios.get(`${API_URL}/turnos`);
-};
-
-export const getStatus = () => {
-  return axios.get(`${API_URL}/status`);
-};

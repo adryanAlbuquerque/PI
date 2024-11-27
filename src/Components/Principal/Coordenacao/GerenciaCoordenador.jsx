@@ -39,6 +39,7 @@ const GerenciaCoordenadores = () => {
       ...selectedCoordenador,
       disciplina: selectedCoordenador.disciplina, 
     };
+
     updateCoordenador(selectedCoordenador.id, coordenadorData)
       .then(response => {
         const updatedCoordenadores = coordenadores.map(coordenador =>
@@ -89,9 +90,13 @@ const GerenciaCoordenadores = () => {
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
+    
+    // Caso o campo seja o 'status', garantimos que o valor seja em maiúsculas
+    const updatedValue = name === "status" ? value.toUpperCase() : value;
+
     setSelectedCoordenador((prevCoordenador) => ({
       ...prevCoordenador,
-      [name]: value,
+      [name]: updatedValue,
     }));
   };
 
@@ -156,7 +161,6 @@ const GerenciaCoordenadores = () => {
               </tr>
             )}
           </tbody>
-
         </table>
       </div>
 
@@ -188,8 +192,8 @@ const GerenciaCoordenadores = () => {
                 onChange={handleInputChange}
                 disabled={!isEditable}
               >
-                <option value="Ativo">Ativo</option>
-                <option value="Inativo">Inativo</option>
+                <option value="ATIVO">Ativo</option>
+                <option value="INATIVO">Inativo</option>
               </select>
               <label>Disciplinas</label>
               <select
