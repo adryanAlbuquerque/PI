@@ -1,0 +1,71 @@
+.turmas-prof {
+    display: flex;
+    height: 100vh;
+    background-color: #F5F5FB;
+    overflow-x: hidden;
+    padding: 20px;
+}
+  
+.registro-turma {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.registro-turma h1 {
+    font-size: 30px;
+    color: #0B429D;
+    margin: 20px 0;
+    text-align: center;
+    font-weight: bold;
+}
+  
+.turmas-tables {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    border-collapse: collapse;
+}
+
+.turmas-tables th, .turmas-tables td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ccc;
+}
+
+.turmas-tables th {
+    background-color: #0B429D;
+    color: white;
+    font-weight: bold;
+}
+
+.turmas-tables tr:hover {
+    background-color: #f1f1f1;
+}
+
+.no-results {
+    text-align: center;
+    color: #999;
+    padding: 20px;
+}
+
+@media (max-width: 768px) {
+    .registro-turma {
+        padding: 10px;
+    }
+  
+    .registro-turma h1 {
+        font-size: 24px;
+    }
+  
+    .turmas-tables th, .turmas-tables td {
+        padding: 8px;
+    }
+}
+

@@ -20,11 +20,10 @@ const SidebarProf = () => {
       <div className={`sidebar-prof ${isSidebarOpen ? 'open' : 'closed'}`}>
         <img id="MedioTecprof" src="/img/LogoProf.png" alt="Logo" />
         <ul>
-          <li><Link to="/">Home</Link></li>
-          <li><Link to="/">Turma</Link></li>
+          <li><Link to="/ProfHome">Home</Link></li>
+          <li><Link to="/TurmaProf">Turmas</Link></li>
           <li><Link to="/">Lançar Notas</Link></li>
           <li><Link to="/">Relatórios</Link></li>
-          <li><Link to="/">Professores</Link></li>
           <li><Link to="/">Biblioteca Digital</Link></li>
           <li><Link to="/">Configurações</Link></li>
         </ul>

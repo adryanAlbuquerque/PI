@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import './CoordHome.css';
 import SidebarCoord from '../sidebar/sidebarCoord';
 import { createComunicado, getComunicados, updateComunicado, deleteComunicado } from '../../Service/APIServices';
