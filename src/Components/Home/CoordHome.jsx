@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react';
 import './CoordHome.css';
 import SidebarCoord from '../sidebar/sidebarCoord';
-import { createComunicado, getComunicados, updateComunicado, deleteComunicado } from '../../Service/APIServices';
+import { createComunicado, getComunicados, updateComunicado, deleteComunicado, getAlunos } from '../../Service/APIServices';
 
 const CoordHome = () => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [isEditMode, setEditMode] = useState(false);
   const [selectedComunicado, setSelectedComunicado] = useState(null);
-  const [fileName, setFileName] = useState('Nenhum arquivo selecionado');
   const [formData, setFormData] = useState({
-    descricao: '',
-    arquivo: null,
+    titulo: '', // Título
+    conteudo: '', // Conteúdo
+    destinatarios: [], // Destinatários
   });
   const [comunicados, setComunicados] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -36,27 +36,21 @@ const CoordHome = () => {
       setEditMode(true);
       setSelectedComunicado(comunicado);
       setFormData({
-        descricao: comunicado.conteudo,
-        arquivo: null,
+        titulo: comunicado.titulo,
+        conteudo: comunicado.conteudo,
+        destinatarios: comunicado.destinatarios || [],
       });
     } else {
       setEditMode(false);
       setSelectedComunicado(null);
-      setFormData({ descricao: '', arquivo: null });
+      setFormData({ titulo: '', conteudo: '', destinatarios: [] });
     }
     setModalOpen(true);
   };
 
   const handleModalClose = () => {
     setModalOpen(false);
-    setFileName('Nenhum arquivo selecionado');
     setSelectedComunicado(null);
-  };
-
-  const handleFileChange = (event) => {
-    const selectedFile = event.target.files[0];
-    setFileName(selectedFile ? selectedFile.name : 'Nenhum arquivo selecionado');
-    setFormData({ ...formData, arquivo: selectedFile });
   };
 
   const handleInputChange = (event) => {
@@ -69,14 +63,27 @@ const CoordHome = () => {
     try {
       setLoading(true);
 
+      // Obter todos os alunos
+      const responseAlunos = await getAlunos();  // Certifique-se de que o `getAlunos` está implementado
+      const alunosIds = responseAlunos.data.map(aluno => aluno.id);  // Supondo que o `id` é o identificador de aluno
+
+      // Obter o ID do coordenador logado
+      const autorId = localStorage.getItem('userId'); // Aqui você pega o ID do usuário logado no localStorage (ajuste conforme necessário)
+
+      if (!autorId) {
+        alert('Erro: coordenador não autenticado!');
+        return;
+      }
+
       const comunicadoData = {
-        titulo: formData.descricao.substring(0, 50),
-        conteudo: formData.descricao,
-        autorId: 1, // ID do autor (usuário logado, neste caso, o coordenador)
-        destinatariosIds: [], // Lista vazia para indicar que o comunicado é para todos
-        arquivo: formData.arquivo,
+        titulo: formData.titulo, // Título
+        conteudo: formData.conteudo, // Conteúdo
+        autorId: autorId, // ID do autor (usuário logado, neste caso, o coordenador)
+        destinatariosIds: alunosIds, // Destinatários (todos os alunos)
       };
 
+      console.log("Comunicado enviado:", comunicadoData);
+    
       let response;
       if (isEditMode && selectedComunicado) {
         response = await updateComunicado(selectedComunicado.id, comunicadoData);
@@ -175,32 +182,30 @@ const CoordHome = () => {
 
             <form onSubmit={handleSubmit}>
               <div className="form-group">
-                <label htmlFor="description">Descrição:</label>
+                <label htmlFor="titulo">Título:</label>
+                <input
+                  type="text"
+                  id="titulo"
+                  name="titulo"
+                  value={formData.titulo}
+                  onChange={handleInputChange}
+                  placeholder="Título do comunicado"
+                  required
+                  className="form-input"
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="conteudo">Conteúdo:</label>
                 <textarea
-                  id="description"
-                  name="descricao"
-                  value={formData.descricao}
+                  id="conteudo"
+                  name="conteudo"
+                  value={formData.conteudo}
                   onChange={handleInputChange}
                   rows="4"
                   placeholder="Faça seu comunicado aqui"
                   required
                   className="form-textarea"
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="attachment" className="custom-file-label">
-                  Anexar Arquivo
-                </label>
-                <span id="file-chosen" className="file-chosen">
-                  {fileName}
-                </span>
-                <input
-                  type="file"
-                  id="attachment"
-                  className="custom-file-input"
-                  style={{ display: 'none' }}
-                  onChange={handleFileChange}
                 />
               </div>
 
