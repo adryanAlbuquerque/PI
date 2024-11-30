@@ -16,6 +16,7 @@ import GerenciaDisciplina from './Components/Principal/Coordenacao/GerenciaDisci
 import ConceitoAluno from './Components/Principal/Alunos/ConceitoAluno' ;
 import FaltasAluno from './Components/Principal/Alunos/FaltasAluno';
 import TurmaProf from './Components/Principal/Professores/TurmaProf' ;
+import LancarNotas from './Components/Principal/Professores/LancarNotas';
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
         <Route path="/ConceitoAluno" element={<ConceitoAluno />} /> 
         <Route path="/FaltasAluno" element={<FaltasAluno />} />
         <Route path="/TurmaProf" element={<TurmaProf />} />
+        <Route path="/LancarNotas" element={<LancarNotas />} />
         
       </Routes>
     </Router>

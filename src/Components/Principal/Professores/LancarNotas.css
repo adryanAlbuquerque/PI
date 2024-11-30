@@ -1,0 +1,70 @@
+.LancarNotaContainer {
+    display: flex;
+    height: 100vh; 
+    background-color: #F5F5FB;
+    overflow-x: hidden;
+    padding: 25px; 
+}
+
+.selecao-turma {
+    margin-bottom: 20px;
+  }
+  
+  .selecao-turma label {
+    margin-right: 10px;
+    font-weight: bold;
+  }
+  
+  .selecao-turma select {
+    width: 10%;
+    padding: 8px;
+    border-radius: 5px;
+    border: 1.5px solid #825cff;
+    height: 40px;
+  }
+  
+.lancar-notas {
+    margin-top: 40px;
+    margin-left: 35px;
+    background-color: #f4f4f9;
+    padding: 20px;
+    max-width: 1200px;
+    min-width: 300px;
+    width: 100%;
+  }
+  
+  .conteudo {
+    margin-left: 250px;
+    padding: 20px;
+    width: calc(100% - 250px);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+  
+  .turma-select {
+    margin-bottom: 20px;
+  }
+  
+  .alunos-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .alunos-table th, .alunos-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .salvar-notas-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+  

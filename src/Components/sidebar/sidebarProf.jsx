@@ -22,7 +22,7 @@ const SidebarProf = () => {
         <ul>
           <li><Link to="/ProfHome">Home</Link></li>
           <li><Link to="/TurmaProf">Turmas</Link></li>
-          <li><Link to="/">Lançar Notas</Link></li>
+          <li><Link to="/LancarNotas">Lançar Notas</Link></li>
           <li><Link to="/">Relatórios</Link></li>
           <li><Link to="/">Biblioteca Digital</Link></li>
           <li><Link to="/">Configurações</Link></li>
