@@ -8,8 +8,8 @@ const CoordHome = () => {
   const [isEditMode, setEditMode] = useState(false);
   const [selectedComunicado, setSelectedComunicado] = useState(null);
   const [formData, setFormData] = useState({
-    titulo: '', // Título
-    conteudo: '', // Conteúdo
+    titulo: '', 
+    conteudo: '',
     destinatarios: [], // Destinatários
   });
   const [comunicados, setComunicados] = useState([]);
