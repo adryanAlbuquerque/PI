@@ -1,17 +1,16 @@
 import { Link } from 'react-router-dom';
-import './GerenciaProfessores.css'; 
+import './GerenciaProfessores.css';
 import { useState, useEffect } from 'react';
 import { getProfessores, updateProfessor, deleteProfessor, getDisciplina } from '../../../Service/APIServices';
 import SidebarCoord from '../../sidebar/sidebarCoord';
 
 const GerenciaProfessores = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [filtroTurma, setFiltroTurma] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedProfessor, setSelectedProfessor] = useState(null);
-  const [isEditable, setIsEditable] = useState(false); 
+  const [isEditable, setIsEditable] = useState(false);
   const [professores, setProfessores] = useState([]);
-  const [disciplina, setDisciplina] = useState([]); 
+  const [disciplinas, setDisciplinas] = useState([]);
   const [selectedDisciplinaIds, setSelectedDisciplinaIds] = useState([]);
 
   useEffect(() => {
@@ -26,8 +25,7 @@ const GerenciaProfessores = () => {
 
     getDisciplina()
       .then(response => {
-        setDisciplina(response.data); 
-        console.log('Disciplinas carregadas:', response.data);
+        setDisciplinas(response.data);
       })
       .catch(error => {
         console.error('Erro ao buscar disciplinas:', error);
@@ -38,24 +36,24 @@ const GerenciaProfessores = () => {
     event.preventDefault();
     const professorData = {
       ...selectedProfessor,
-      disciplina: selectedDisciplinaIds,
+      disciplinas: selectedDisciplinaIds,
     };
 
     updateProfessor(selectedProfessor.id, professorData)
       .then(response => {
-        const updatedDisciplinaNomes = disciplina
+        const updatedDisciplinaNomes = disciplinas
           .filter(disc => selectedDisciplinaIds.includes(disc.id))
           .map(d => d.nome);
 
         const updatedProfessores = professores.map(professor =>
           professor.id === selectedProfessor.id
-            ? { ...response.data, disciplina: updatedDisciplinaNomes }
+            ? { ...response.data, disciplinas: updatedDisciplinaNomes }
             : professor
         );
 
         setProfessores(updatedProfessores);
         setIsModalOpen(false);
-        setIsEditable(false); 
+        setIsEditable(false);
       })
       .catch(error => {
         console.error('Erro ao atualizar professor:', error);
@@ -77,14 +75,10 @@ const GerenciaProfessores = () => {
     setSearchTerm(event.target.value);
   };
 
-  const handleFiltroTurma = (event) => {
-    setFiltroTurma(event.target.value);
-  };
-
   const handleView = (professor) => {
     setSelectedProfessor({ ...professor });
-    setSelectedDisciplinaIds(professor.disciplina?.map(d => d.id) || []);
-    setIsEditable(false); 
+    setSelectedDisciplinaIds(professor.disciplinas?.map(d => d.id) || []);
+    setIsEditable(false);
     setIsModalOpen(true);
   };
 
@@ -116,10 +110,7 @@ const GerenciaProfessores = () => {
     const nome = professor.nome ? professor.nome.toLowerCase() : '';
     const matricula = professor.matricula ? professor.matricula : '';
 
-    return (
-      (nome.includes(searchTerm.toLowerCase()) || matricula.includes(searchTerm)) &&
-      (filtroTurma === '' || professor.turma === filtroTurma)
-    );
+    return nome.includes(searchTerm.toLowerCase()) || matricula.includes(searchTerm);
   });
 
   return (
@@ -137,11 +128,6 @@ const GerenciaProfessores = () => {
             onChange={handleSearch}
             className="search-input"
           />
-          <select value={filtroTurma} onChange={handleFiltroTurma} className="filter-select">
-            <option value="">Filtrar por turma</option>
-            <option value="Turma A">Turma A</option>
-            <option value="Turma B">Turma B</option>
-          </select>
         </div>
 
         <table className="professores-table">
@@ -150,7 +136,6 @@ const GerenciaProfessores = () => {
               <th>ID</th>
               <th>Nome</th>
               <th>Disciplina</th>
-              <th>Turma</th>
               <th>Turno</th>
               <th>Status</th>
               <th>Ações</th>
@@ -163,9 +148,8 @@ const GerenciaProfessores = () => {
                 <tr key={professor.id}>
                   <td>{professor.matricula || professor.id}</td>
                   <td>{professor.nome}</td>
-                  <td>{professor.disciplina ? professor.disciplina.join(', ') : 'Nenhuma'}</td>
-                  <td>{professor.turma}</td>
-                  <td>{professor.turno}</td> 
+                  <td>{professor.disciplinas ? professor.disciplinas.join(', ') : 'Nenhuma'}</td>
+                  <td>{professor.turno}</td>
                   <td>{professor.status}</td>
                   <td>
                     <button onClick={() => handleView(professor)} className="view-button">Editar</button>
@@ -174,7 +158,7 @@ const GerenciaProfessores = () => {
               ))
             ) : (
               <tr>
-                <td colSpan="7" className="no-results">Nenhum professor encontrado.</td>
+                <td colSpan="6" className="no-results">Nenhum professor encontrado.</td>
               </tr>
             )}
           </tbody>
@@ -194,17 +178,6 @@ const GerenciaProfessores = () => {
                 onChange={handleInputChange}
                 readOnly={!isEditable}
               />
-              <label>Turma</label>
-              <select
-                name="turma"
-                value={selectedProfessor?.turma || ''}
-                onChange={handleInputChange}
-                disabled={!isEditable}
-              >
-                <option value="">Selecione uma turma</option>
-                <option value="Turma A">Turma A</option>
-                <option value="Turma B">Turma B</option>
-              </select>
 
               <label>Turno</label>
               <select
@@ -237,7 +210,7 @@ const GerenciaProfessores = () => {
                 multiple
                 disabled={!isEditable}
               >
-                {disciplina.map(disc => (
+                {disciplinas.map(disc => (
                   <option key={disc.id} value={disc.id}>
                     {disc.nome}
                   </option>

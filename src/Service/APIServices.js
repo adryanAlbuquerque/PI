@@ -4,7 +4,8 @@ const API_URL = 'http://localhost:8080/usuarios';
 const API_URL_DISCIPLINA = 'http://localhost:8080/disciplinas';
 const API_URL_TURMAS = 'http://localhost:8080/turmas'; 
 const API_URL_CONCEITOS = 'http://localhost:8080/conceitos';
-const API_URL_COMUNICADOS = 'http://localhost:8080/comunicados'
+const API_URL_COMUNICADOS = 'http://localhost:8080/comunicados';
+const API_URL_PROFESSORDISCIPLINA = 'http://localhost:8080/professor-disciplinas';
 
 
 export const getAlunos = () => {
@@ -39,6 +40,26 @@ export const updateProfessor = (id, professor) => {
 
 export const deleteProfessor = (id) => {
   return axios.delete(`${API_URL}/${id}`);
+};
+
+export const getProfessorDisciplinas = () => {
+  return axios.get(API_URL_PROFESSORDISCIPLINA);
+};
+
+export const getProfessorDisciplinaById = (professorId, disciplinaId) => {
+  return axios.get(`${API_URL_PROFESSORDISCIPLINA}/${professorId}/${disciplinaId}`);
+};
+
+export const createProfessorDisciplina = (professorDisciplina) => {
+  return axios.post(API_URL_PROFESSORDISCIPLINA, professorDisciplina);
+};
+
+export const updateProfessorDisciplina = (professorId, disciplinaId, professorDisciplina) => {
+  return axios.put(`${API_URL_PROFESSORDISCIPLINA}/${professorId}/${disciplinaId}`, professorDisciplina);
+};
+
+export const deleteProfessorDisciplina = (professorId, disciplinaId) => {
+  return axios.delete(`${API_URL_PROFESSORDISCIPLINA}/${professorId}/${disciplinaId}`);
 };
 
 export const getCoordenadores = () => {
