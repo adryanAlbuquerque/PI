@@ -21,7 +21,7 @@ const SidebarProf = () => {
         <img id="MedioTecprof" src="/img/LogoProf.png" alt="Logo" />
         <ul>
           <li><Link to="/HomeProf">Home</Link></li>
-          <li><Link to="/TurmaProf">Turmas</Link></li>
+          <li><Link to="/DisciplinasProf">Turmas</Link></li>
           <li><Link to="/LancarNotas">Lançar Notas</Link></li>
           <li><Link to="/">Relatórios</Link></li>
           <li><Link to="/">Biblioteca Digital</Link></li>

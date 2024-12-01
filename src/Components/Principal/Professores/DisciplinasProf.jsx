@@ -1,4 +1,4 @@
-import './TurmaProf.css';
+import './DisciplinasProf.css';
 import SidebarProf from '../../sidebar/sidebarProf';
 import { useState, useEffect } from 'react';
 import { getTurmas } from '../../../Service/APIServices'; 
