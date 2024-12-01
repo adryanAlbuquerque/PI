@@ -1,23 +1,23 @@
 import './DisciplinasProf.css';
 import SidebarProf from '../../sidebar/sidebarProf';
 import { useState, useEffect } from 'react';
-import { getTurmas } from '../../../Service/APIServices'; 
+import { getProfessorDisciplinas } from '../../../Service/APIServices'; // Função para buscar disciplinas do professor
 
-const TurmaProf = () => {
-    const [turmas, setTurmas] = useState([]);  // Estado para armazenar as turmas
+const DisciplinasProf = () => {
+    const [disciplinas, setDisciplinas] = useState([]);  // Estado para armazenar as disciplinas
 
     useEffect(() => {
-        // Buscar turmas do professor ao montar o componente
-        const fetchTurmas = async () => {
+        // Buscar disciplinas do professor ao montar o componente
+        const fetchDisciplinas = async () => {
             try {
-                const data = await getTurmas(); // Função para buscar turmas da API
-                setTurmas(data);
+                const data = await getProfessorDisciplinas(); // Função para buscar disciplinas associadas ao professor
+                setDisciplinas(data);  // Armazenar as disciplinas no estado
             } catch (error) {
-                console.error('Erro ao buscar turmas:', error);
+                console.error('Erro ao buscar disciplinas:', error);
             }
         };
 
-        fetchTurmas();
+        fetchDisciplinas();
     }, []);  // Executa apenas uma vez, ao montar o componente
 
     return (
@@ -25,26 +25,28 @@ const TurmaProf = () => {
             <SidebarProf />
 
             <div className="registro-turma">
-                <h1>Turmas</h1>
+                <h1>Disciplinas</h1>
 
                 <table className="turmas-tables">
                     <thead>
                         <tr>
-                            <th>Turma</th>
                             <th>Disciplina</th>
+                            <th>Descrição</th>
+                            <th>Turma</th>  {/* Nova coluna para turma */}
                         </tr>
                     </thead>
                     <tbody>
-                        {turmas.length > 0 ? (
-                            turmas.map((turma, index) => (
+                        {disciplinas.length > 0 ? (
+                            disciplinas.map((disciplina, index) => (
                                 <tr key={index}>
-                                    <td>{turma.nomeTurma}</td>  {/* Ajuste conforme os dados da API */}
-                                    <td>{turma.nomeDisciplina}</td> {/* Ajuste conforme os dados da API */}
+                                    <td>{disciplina.nome}</td> {/* Exibe o nome da disciplina */}
+                                    <td>{disciplina.descricao}</td> {/* Exibe a descrição da disciplina */}
+                                    <td>{disciplina.nomeTurma}</td> {/* Exibe o nome da turma vinculada */}
                                 </tr>
                             ))
                         ) : (
                             <tr>
-                                <td colSpan="2" className="no-results">Nenhuma turma encontrada.</td>
+                                <td colSpan="3" className="no-results">Nenhuma disciplina encontrada.</td> {/* Mensagem de resultado vazio */}
                             </tr>
                         )}
                     </tbody>
@@ -54,4 +56,4 @@ const TurmaProf = () => {
     );
 }
 
-export default TurmaProf;
+export default DisciplinasProf;
