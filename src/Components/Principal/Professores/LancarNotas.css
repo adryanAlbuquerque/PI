@@ -1,70 +1,110 @@
 .LancarNotaContainer {
-    display: flex;
-    height: 100vh; 
-    background-color: #F5F5FB;
-    overflow-x: hidden;
-    padding: 25px; 
+  display: flex;
+  height: 100vh;
+  background-color: #F5F5FB;
+  overflow-x: hidden;
+  padding: 20px;
+}
+
+.lancar-notas {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.lancar-notas h2 {
+  font-size: 30px;
+  color: #0B429D;
+  margin: 20px 0;
+  text-align: center;
+  font-weight: bold;
 }
 
 .selecao-turma {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
+  width: 100%;
+  max-width: 400px;
+}
+
+.selecao-turma label {
+  margin-right: 10px;
+  font-weight: bold;
+  color: #333;
+}
+
+.selecao-turma select {
+  width: 100%;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1.5px solid #825cff;
+  height: 40px;
+}
+
+.alunos-table {
+  width: 100%;
+  max-width: 1200px;
+  margin: 20px 0;
+  border-collapse: collapse;
+}
+
+.alunos-table th,
+.alunos-table td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ccc;
+}
+
+.alunos-table th {
+  background-color: #0B429D;
+  color: white;
+  font-weight: bold;
+}
+
+.alunos-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.no-alunos {
+  text-align: center;
+  color: #999;
+  padding: 20px;
+}
+
+.salvar-notas-button {
+  padding: 10px 20px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+  border-radius: 5px;
+}
+
+.salvar-notas-button:hover {
+  background-color: #45a049;
+}
+
+@media (max-width: 768px) {
+  .lancar-notas {
+      padding: 15px;
   }
-  
-  .selecao-turma label {
-    margin-right: 10px;
-    font-weight: bold;
+
+  .lancar-notas h2 {
+      font-size: 24px;
   }
-  
+
+  .alunos-table th,
+  .alunos-table td {
+      padding: 8px;
+  }
+
   .selecao-turma select {
-    width: 10%;
-    padding: 8px;
-    border-radius: 5px;
-    border: 1.5px solid #825cff;
-    height: 40px;
+      width: 100%;
   }
-  
-.lancar-notas {
-    margin-top: 40px;
-    margin-left: 35px;
-    background-color: #f4f4f9;
-    padding: 20px;
-    max-width: 1200px;
-    min-width: 300px;
-    width: 100%;
-  }
-  
-  .conteudo {
-    margin-left: 250px;
-    padding: 20px;
-    width: calc(100% - 250px);
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    flex-direction: column;
-  }
-  
-  .turma-select {
-    margin-bottom: 20px;
-  }
-  
-  .alunos-table {
-    width: 100%;
-    border-collapse: collapse;
-  }
-  
-  .alunos-table th, .alunos-table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: left;
-  }
-  
-  .salvar-notas-button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    cursor: pointer;
-  }
-  
-  
+}

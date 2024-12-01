@@ -1,6 +1,7 @@
 import './LancarNotas.css';
 import SidebarProf from '../../sidebar/sidebarProf';
 import { useState, useEffect } from 'react';
+import { getTurmas, getAlunos, createConceito } from '../../../Service/APIServices'; 
 
 const LancarNotas = () => {
   const [turmas, setTurmas] = useState([]);
@@ -9,27 +10,23 @@ const LancarNotas = () => {
   const [turmaSelecionada, setTurmaSelecionada] = useState('');
 
   useEffect(() => {
-    // Simulação de uma API para carregar turmas
-    const mockTurmas = [
-      { id: 1, nome: 'Turma A' },
-      { id: 2, nome: 'Turma B' },
-      { id: 3, nome: 'Turma C' },
-    ];
-    setTurmas(mockTurmas);
+    // Carregar turmas da API
+    getTurmas()
+      .then((response) => setTurmas(response.data))
+      .catch((error) => console.error('Erro ao carregar turmas:', error));
   }, []);
 
   useEffect(() => {
     if (turmaSelecionada) {
-      // Simulação de uma API para carregar alunos da turma selecionada
-      const mockAlunos = [
-        { id: 1, nome: 'João Silva', turmaId: 1 },
-        { id: 2, nome: 'Maria Oliveira', turmaId: 1 },
-        { id: 3, nome: 'Carlos Souza', turmaId: 2 },
-      ];
-      const alunosFiltrados = mockAlunos.filter(
-        (aluno) => aluno.turmaId === Number(turmaSelecionada)
-      );
-      setAlunos(alunosFiltrados);
+      // Carregar alunos da turma selecionada
+      getAlunos()
+        .then((response) => {
+          const alunosFiltrados = response.data.filter(
+            (aluno) => aluno.turmaId === Number(turmaSelecionada)
+          );
+          setAlunos(alunosFiltrados);
+        })
+        .catch((error) => console.error('Erro ao carregar alunos:', error));
     } else {
       setAlunos([]);
     }
@@ -47,14 +44,25 @@ const LancarNotas = () => {
     }));
   };
 
-  const handleSaveNotas = (event) => {
+  const handleSaveNotas = async (event) => {
     event.preventDefault();
-    const notasParaEnviar = alunos.map((aluno) => ({
+
+    // Criar conceito para cada aluno com a respectiva nota
+    const notasParaSalvar = alunos.map((aluno) => ({
       alunoId: aluno.id,
-      nota: notas[aluno.id] || 0,
+      conceito: notas[aluno.id] || 0,
     }));
-    console.log('Notas para salvar:', notasParaEnviar);
-    alert('Notas salvas com sucesso!');
+
+    try {
+      for (let i = 0; i < notasParaSalvar.length; i++) {
+        const { alunoId, conceito } = notasParaSalvar[i];
+        await createConceito({ alunoId, conceito });
+      }
+      alert('Notas salvas com sucesso!');
+    } catch (error) {
+      console.error('Erro ao salvar conceitos:', error);
+      alert('Ocorreu um erro ao salvar as notas.');
+    }
   };
 
   return (
