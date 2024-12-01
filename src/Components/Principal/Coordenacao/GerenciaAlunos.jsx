@@ -98,7 +98,7 @@ const GerenciaAlunos = () => {
             ))}
           </select>
         </div>
-        <table className="alunos-table">
+        <table className="alunos-tables">
           <thead>
             <tr>
               <th>Matrícula</th>
