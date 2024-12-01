@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import './GerenciaCoordenador.css'; 
 import { useState, useEffect } from 'react';
-import { getCoordenadores, updateCoordenador, deleteCoordenador, getDisciplina } from '../../../Service/APIServices';
+import { getCoordenadores, updateCoordenador, deleteCoordenador } from '../../../Service/APIServices';
 import SidebarCoord from '../../sidebar/sidebarCoord';
 
 const GerenciaCoordenadores = () => {
@@ -10,7 +10,6 @@ const GerenciaCoordenadores = () => {
   const [selectedCoordenador, setSelectedCoordenador] = useState(null);
   const [isEditable, setIsEditable] = useState(false); 
   const [coordenadores, setCoordenadores] = useState([]);
-  const [disciplina, setDisciplina] = useState([]); 
 
   useEffect(() => {
     getCoordenadores()
@@ -22,22 +21,12 @@ const GerenciaCoordenadores = () => {
       .catch(error => {
         console.error('Erro ao buscar coordenadores:', error);
       });
-
-    getDisciplina()
-      .then(response => {
-        console.log('Disciplinas recebidas:', response.data);
-        setDisciplina(response.data);
-      })
-      .catch(error => {
-        console.error('Erro ao buscar disciplinas:', error);
-      });
   }, []);
 
   const handleSave = (event) => {
     event.preventDefault();
     const coordenadorData = {
       ...selectedCoordenador,
-      disciplina: selectedCoordenador.disciplina, 
     };
 
     updateCoordenador(selectedCoordenador.id, coordenadorData)
@@ -91,20 +80,11 @@ const GerenciaCoordenadores = () => {
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     
-    // Caso o campo seja o 'status', garantimos que o valor seja em maiúsculas
     const updatedValue = name === "status" ? value.toUpperCase() : value;
 
     setSelectedCoordenador((prevCoordenador) => ({
       ...prevCoordenador,
       [name]: updatedValue,
-    }));
-  };
-
-  const handleDisciplinaChange = (event) => {
-    const selectedDisciplina = Array.from(event.target.selectedOptions, option => option.value);
-    setSelectedCoordenador((prevCoordenador) => ({
-      ...prevCoordenador,
-      disciplina: selectedDisciplina,
     }));
   };
 
@@ -137,7 +117,6 @@ const GerenciaCoordenadores = () => {
             <tr>
               <th>ID</th>
               <th>Nome</th>
-              <th>Disciplinas</th>
               <th>Status</th>
               <th>Ações</th>
             </tr>
@@ -148,7 +127,6 @@ const GerenciaCoordenadores = () => {
                 <tr key={coordenador.id}>
                   <td>{coordenador.matricula || coordenador.id}</td>
                   <td>{coordenador.nome}</td>
-                  <td>{(coordenador.disciplina || []).join(', ')}</td>
                   <td>{coordenador.status}</td>
                   <td>
                     <button onClick={() => handleView(coordenador)} className="view-button">Editar</button>
@@ -157,7 +135,7 @@ const GerenciaCoordenadores = () => {
               ))
             ) : (
               <tr>
-                <td colSpan="5" className="no-results">Nenhum coordenador encontrado.</td>
+                <td colSpan="4" className="no-results">Nenhum coordenador encontrado.</td>
               </tr>
             )}
           </tbody>
@@ -194,20 +172,6 @@ const GerenciaCoordenadores = () => {
               >
                 <option value="ATIVO">Ativo</option>
                 <option value="INATIVO">Inativo</option>
-              </select>
-              <label>Disciplinas</label>
-              <select
-                name="disciplina"
-                value={selectedCoordenador?.disciplina || []}
-                onChange={handleDisciplinaChange}
-                multiple
-                disabled={!isEditable}
-              >
-                {disciplina.map(disciplina => (
-                  <option key={disciplina.disciplina_id} value={disciplina.disciplina_id}>
-                    {disciplina.nome}
-                  </option>
-                ))}
               </select>
               <div className="modalbt">
                 {!isEditable ? (
