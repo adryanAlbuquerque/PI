@@ -1,4 +1,3 @@
-/* Estilo geral da página */
 .home-page {
   display: flex;
   flex-direction: column;
@@ -16,7 +15,6 @@
   padding-left: 30px;
   margin-top: 6px;
 }
-/* Navbar */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -73,7 +71,6 @@
   color: white;
 }
 
-/* Contêiner principal com imagem de fundo */
 #Fundo {
   flex: 1;
   background-position: center;
@@ -90,7 +87,6 @@
   color: white;
 }
 
-/* Responsividade */
 @media (max-width: 768px) {
 
   .logo img {
@@ -98,7 +94,6 @@
   }
 }
 
-/* Barra Informações */
 #Infos {
   display: flex;              
   list-style-type: none;      

@@ -2,28 +2,27 @@
     display: flex;
     height: 100vh; 
     background-color: #F5F5FB;
-    overflow-x: hidden; /* Evita que o conteúdo ultrapasse o container */
-    padding: 25px; /* Espaçamento interno */
+    overflow-x: hidden;
+    padding: 25px; 
 }
 
 .novo-comunicado-button {
     display: flex;
-    background-color: #4F20EC; /* Cor do botão */
-    color: white; /* Cor do texto */
-    padding: 10px 40px; /* Espaçamento interno */
-    border: none; /* Remove a borda */
-    border-radius: 5px; /* Cantos arredondados */
-    text-decoration: none; /* Remove sublinhado */
+    background-color: #4F20EC; 
+    color: white; 
+    padding: 10px 40px; 
+    border: none;
+    border-radius: 5px;
+    text-decoration: none; 
     text-align: center;
     font-size: 14px; 
     margin: 30px 63% 10px 0;
-    cursor: pointer; /* Adiciona o cursor pointer */
+    cursor: pointer; 
 }
   
-/* Adicionando hover para o botão */
 .novo-comunicado-button:hover {
-    background-color: #3D1ABF; /* Cor de fundo ao passar o mouse */
-    transition: background-color 0.3s; /* Transição suave */
+    background-color: #3D1ABF; 
+    transition: background-color 0.3s; 
 }
 
 .BemvindoCoord {
@@ -57,45 +56,43 @@
 
 
 .modal-overlay {
-    position: fixed; /* Posiciona o modal fixamente */
+    position: fixed; 
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
-    display: flex; /* Flexbox para centralizar o conteúdo */
-    justify-content: center; /* Centraliza horizontalmente */
-    align-items: center; /* Centraliza verticalmente */
-    z-index: 1000; /* Garante que o modal esteja acima de outros elementos */
+    background-color: rgba(0, 0, 0, 0.5); 
+    display: flex; 
+    justify-content: center; 
+    align-items: center; 
+    z-index: 1000;
 }
 
-/* Conteúdo do modal */
 .modal-content {
-    background-color: white; /* Fundo branco */
-    padding: 20px; /* Espaço interno */
-    border-radius: 10px; /* Cantos arredondados */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra */
-    width: 90%; /* Largura padrão do modal */
-    max-width: 500px; /* Largura máxima do modal */
-    margin: 20px; /* Margem para evitar que o modal encoste nas bordas da tela */
+    background-color: white; 
+    padding: 20px; 
+    border-radius: 10px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    width: 90%; 
+    max-width: 500px; 
+    margin: 20px; 
 }
 
-/* Botão de fechar */
 .close-button {
-    background: none; /* Fundo transparente */
-    border: none; /* Sem borda */
-    font-size: 24px; /* Tamanho do ícone de fechar */
-    cursor: pointer; /* Cursor pointer */
-    position: absolute; /* Posicionamento absoluto */
-    top: 10px; /* Distância do topo */
-    right: 10px; /* Distância da direita */
+    background: none; 
+    border: none; 
+    font-size: 24px; 
+    cursor: pointer; 
+    position: absolute;
+    top: 10px; 
+    right: 10px;
 }
 .home-page-coord {
     display: flex;
-    flex-direction: column; /* Alinha os itens verticalmente */
-    flex: 1; /* Permite que este elemento preencha o espaço restante */
-    align-items: center; /* Centraliza horizontalmente */
-    justify-content: flex-start; /* Alinha os itens no topo */
+    flex-direction: column; 
+    flex: 1; 
+    align-items: center;
+    justify-content: flex-start; 
 }
 
 .header-image-coord {
@@ -110,10 +107,9 @@
     object-fit: cover;
 }
 
-/* Estilos para os quadrados abaixo da imagem */
 .Square {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Ajuste responsivo */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 20px;
     padding: 20px;
     margin: 20px auto;
@@ -121,8 +117,8 @@
 }
 
 .Squares {
-    width: 100%; /* Ajuste para caber na grid */
-    max-width: 400px; /* Limite de largura */
+    width: 100%; 
+    max-width: 400px;
     height: 100px;
     background-color: #FF8A00;
     border: 1px solid #ccc;
@@ -174,8 +170,6 @@
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
-/* Estilização do input */
-
 .custom-file-label {
     background-color: #825CFF;
     padding: 10px 20px;
@@ -184,56 +178,56 @@
     cursor: pointer;
     font-size: 14px;
     transition: background-color 0.3s;
-    width: 30%; /* Define uma largura fixa */
-    margin: 0 auto; /* Centraliza o botão */
+    width: 30%; 
+    margin: 0 auto; 
 }
 
 .custom-file-label:hover {
-    background-color: #3D1ABF; /* Cor de fundo ao passar o mouse */
+    background-color: #3D1ABF;
 }
 
 @media (max-width: 768px) {
     .Square {
-        grid-template-columns: 1fr; /* Alinhar os blocos em uma coluna */
-        justify-items: center; /* Centraliza os blocos dentro da grid */
+        grid-template-columns: 1fr;
+        justify-items: center; 
     }
 
     #Fundocoord {
-        width: 100%; /* Mantido conforme solicitado */
+        width: 100%; 
         height: auto;
     }
 
     .BemvindoCoord {
-        font-size: 24px; /* Reduz o tamanho da fonte para telas pequenas */
+        font-size: 24px; 
     }
 
     .novo-comunicado-button {
-        margin: 10px auto; /* Centraliza o botão */
-        display: block; /* Faz o botão ocupar toda a largura disponível */
-        width: 80%; /* Ajusta a largura do botão */
-        max-width: 300px; /* Limita a largura máxima */
+        margin: 10px auto;
+        display: block; 
+        width: 80%; 
+        max-width: 300px;
     }
 
     .modal-content {
-        width: 90%; /* Reduz a largura do modal em telas menores */
-        max-width: 90%; /* Largura máxima para garantir que caiba na tela */
-        margin: 10px; /* Margem menor */
-        padding: 15px; /* Espaçamento interno menor */
+        width: 90%; 
+        max-width: 90%; 
+        margin: 10px; 
+        padding: 15px; 
     }
 
     .form-group {
-        margin-bottom: 15px; /* Espaçamento entre os grupos de formulário */
+        margin-bottom: 15px;
     }
 
     .form-input,
     .form-textarea {
-        width: 100%; /* Largura total para os campos de entrada */
-        font-size: 16px; /* Tamanho da fonte ajustado */
+        width: 100%; 
+        font-size: 16px;
     }
 
     .send-button {
-        width: 100%; /* Botão ocupa toda a largura disponível */
-        padding: 10px; /* Espaçamento interno do botão */
-        font-size: 16px; /* Ajusta o tamanho da fonte do botão */
+        width: 100%; 
+        padding: 10px; 
+        font-size: 16px; 
     }
 }

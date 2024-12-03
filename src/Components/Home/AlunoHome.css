@@ -2,16 +2,16 @@
     display: flex;
     height: 100vh; 
     background-color: #F5F5FB;
-    overflow-x: hidden; /* Evita que o conteúdo ultrapasse o container */
-    padding: 25px; /* Espaçamento interno */
+    overflow-x: hidden; 
+    padding: 25px;
 }
 
 .home-page-aluno {
     display: flex;
-    flex-direction: column; /* Alinha os itens verticalmente */
-    flex: 1; /* Permite que este elemento preencha o espaço restante */
-    align-items: center; /* Centraliza horizontalmente */
-    justify-content: flex-start; /* Alinha os itens no topo */
+    flex-direction: column; 
+    flex: 1; 
+    align-items: center; 
+    justify-content: flex-start;
     
 }
 
@@ -23,8 +23,8 @@
 
 .header-image-aluno img {
     width: 100%;
-    height: auto; /* Mantém a proporção da imagem */
-    object-fit: cover; /* Corta a imagem para manter a proporção */
+    height: auto;
+    object-fit: cover; 
 }
 
 .comunicados {
@@ -79,7 +79,7 @@
 
 .squaresaluno {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Ajuste responsivo */
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
     gap: 20px;
     padding: 20px;
     margin: 20px auto;
@@ -135,8 +135,8 @@
     height: 20px;
     border-radius: 50%;
     background-color: #ffffff;
-    top: 10px; /* Distância do topo */
-    left: 10px; /* Distância da esquerda */
+    top: 10px; 
+    left: 10px; 
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
@@ -202,17 +202,17 @@
 
 @media (max-width: 768px) {
     .squaresaluno {
-        grid-template-columns: 1fr; /* Alinhar os blocos em uma coluna */
-        justify-items: center; /* Centraliza os blocos dentro da grid */
+        grid-template-columns: 1fr;
+        justify-items: center; 
     }
 
     .header-image-aluno {
         width: 100%;
         max-width: 100%;
-        height: 200px; /* Ajuste para telas pequenas, se necessário */
+        height: 200px; 
     }
 
     .BemVindo {
-        font-size: 24px; /* Reduz o tamanho da fonte para telas pequenas */
+        font-size: 24px;
     }
 }

@@ -3,17 +3,14 @@ import { Link } from 'react-router-dom';
 import './AlunoHome.css';
 import SidebarAluno from '../sidebar/sidebarALuno';
 import { FaUserCircle } from 'react-icons/fa';
-import { getAlunos } from '../../Service/APIServices'; // A função para buscar dados do aluno
 import axios from 'axios';
 
 const AlunoHome = () => {
-  // Estados para abrir/fechar o modal e armazenar dados do aluno
   const [isModalOpen, setModalOpen] = useState(false);
   const [alunoData, setAlunoData] = useState({ nome: '', email: '', turma: '' });
   const [comunicados, setComunicados] = useState([]);
-  const [loading, setLoading] = useState(true); // Estado de carregamento
+  const [loading, setLoading] = useState(true); 
 
-  // Função para abrir o modal e buscar dados do aluno via CRUD
   const handleModalOpen = () => {
     // Dados simulados (poderia ser uma chamada API)
     const dadosSimulados = {
@@ -31,14 +28,12 @@ const AlunoHome = () => {
     setModalOpen(false);
   };
 
-  // Carregar os comunicados do backend
   useEffect(() => {
-    // Faz a requisição para o endpoint de comunicados
     const fetchComunicados = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/api/comunicados'); // Ajuste a URL conforme o backend
+        const response = await axios.get('http://localhost:8080/api/comunicados'); 
         setComunicados(response.data);
-        setLoading(false); // Quando os dados forem carregados, definimos como não carregando
+        setLoading(false); 
       } catch (error) {
         console.error('Erro ao carregar os comunicados:', error);
         setLoading(false);
@@ -52,11 +47,9 @@ const AlunoHome = () => {
     <div className="home-aluno-container">
       <SidebarAluno />
 
-      {/* Conteúdo Principal */}
       <div className="home-page-aluno">
         <h1 className="BemVindo">Olá, Bem-vindo ao portal do Aluno!</h1>
 
-        {/* Ícone de perfil no cabeçalho */}
         <div className="profile-container">
           <FaUserCircle onClick={handleModalOpen} className="profile-icon" />
         </div>
@@ -65,15 +58,13 @@ const AlunoHome = () => {
           <img id="FundoAluno" src="/img/Horizonte.png" alt="Fundo" />
         </div>
 
-        {/* Quadrados abaixo da imagem */}
         <div className="squaresaluno">
           <Link to="/HomeAluno" className="Bloco">Acessar Conceitos</Link>
           <Link to="/ConceitosAluno" className="Bloco">Acessar Disciplinas</Link>
-          <Link to="/DocAluno" className="Bloco">Acessar Documentos</Link>
-          <Link to="/BiblioAluno" className="Bloco">Acessar Biblioteca</Link>
+          <Link to="/DocAluno" className="Bloco">Acessar Horários</Link>
+          <Link to="/BiblioAluno" className="Bloco">Acessar Contatos</Link>
         </div>
 
-        {/* Área de comunicados */}
         <div className="comunicados-container">
           <h2 className="comunicados">Comunicados</h2>
           {loading ? (
@@ -90,7 +81,6 @@ const AlunoHome = () => {
         </div>
       </div>
 
-      {/* Modal para exibir os dados do aluno */}
       {isModalOpen && (
         <div className="modal-overlay">
           <div className="modal-content">

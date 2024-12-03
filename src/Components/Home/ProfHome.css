@@ -2,16 +2,16 @@
     display: flex;
     height: 100vh; 
     background-color: #F5F5FB;
-    overflow-x: hidden; /* Evita que o conteúdo ultrapasse o container */
-    padding: 25px; /* Espaçamento interno */
+    overflow-x: hidden;
+    padding: 25px; 
 }
 .home-page-prof {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Mantém itens centralizados horizontalmente */
-    width: 100%; /* Define largura total */
-    max-width: 800px; /* Limita a largura máxima */
-    margin: 0 auto; /* Centraliza horizontalmente */
+    align-items: center; 
+    width: 100%; 
+    max-width: 800px;
+    margin: 0 auto; 
 }
 .header-image-prof {
     width: 100%;
@@ -39,14 +39,14 @@
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
     padding: 20px;
-    margin: 20px auto; /* Centraliza horizontalmente */
-    width: 100%; /* Ajuste para caber no contêiner */
-    max-width: 800px; /* Limite de largura */
+    margin: 20px auto; 
+    width: 100%; 
+    max-width: 800px;
 }
 
 .Quadros {
-    width: 100%; /* Ajuste para caber na grid */
-    max-width: 400px; /* Limite de largura */
+    width: 100%; 
+    max-width: 400px;
     height: 100px;
     background-color: #FF8A00;
     border: 1px solid #ccc;
@@ -100,13 +100,13 @@
 
 @media (max-width: 768px) {
     .Quadro {
-        grid-template-columns: 1fr; /* Alinhar os blocos em uma coluna */
-        justify-items: center; /* Centraliza os blocos dentro da grid */
+        grid-template-columns: 1fr; 
+        justify-items: center; 
     }
 
 
     #Fundocoord {
-        width: 100%; /* Mantido conforme solicitado */
+        width: 100%; 
         height: auto;
     }
 

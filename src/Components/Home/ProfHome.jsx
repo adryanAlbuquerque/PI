@@ -72,8 +72,8 @@ const ProfHome = () => {
       const comunicadoData = {
         titulo: formData.descricao.substring(0, 50),
         conteudo: formData.descricao,
-        autorId: 1, // ID do autor (usuário logado, neste caso, o coordenador)
-        destinatariosIds: [], // Lista vazia para indicar que o comunicado é para todos
+        autorId: 1,
+        destinatariosIds: [], 
         arquivo: formData.arquivo,
       };
 

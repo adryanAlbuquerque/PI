@@ -63,23 +63,20 @@ const CoordHome = () => {
     try {
       setLoading(true);
 
-      // Obter todos os alunos
-      const responseAlunos = await getAlunos();  // Certifique-se de que o `getAlunos` está implementado
-      const alunosIds = responseAlunos.data.map(aluno => aluno.id);  // Supondo que o `id` é o identificador de aluno
+      const responseAlunos = await getAlunos();  
+      const alunosIds = responseAlunos.data.map(aluno => aluno.id); 
 
-      // Obter o ID do coordenador logado
-      const autorId = localStorage.getItem('userId'); // Aqui você pega o ID do usuário logado no localStorage (ajuste conforme necessário)
-
+      const autorId = localStorage.getItem('userId'); 
       if (!autorId) {
         alert('Erro: coordenador não autenticado!');
         return;
       }
 
       const comunicadoData = {
-        titulo: formData.titulo, // Título
-        conteudo: formData.conteudo, // Conteúdo
-        autorId: autorId, // ID do autor (usuário logado, neste caso, o coordenador)
-        destinatariosIds: alunosIds, // Destinatários (todos os alunos)
+        titulo: formData.titulo, 
+        conteudo: formData.conteudo, 
+        autorId: autorId, 
+        destinatariosIds: alunosIds, 
       };
 
       console.log("Comunicado enviado:", comunicadoData);
