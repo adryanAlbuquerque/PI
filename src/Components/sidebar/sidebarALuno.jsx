@@ -25,7 +25,6 @@ const SidebarAluno = () => {
           <li><Link to="/">Disciplinas</Link></li>
           <li><Link to="/HorarioAluno">Horários</Link></li>
           <li><Link to="/Contatos">Contatos</Link></li>
-          <li><Link to="/">Financeiro</Link></li>
           <li><Link to="/">Configurações</Link></li>
         </ul>
         <div>

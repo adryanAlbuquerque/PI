@@ -27,6 +27,12 @@ const Contatos = () => {
             <p>Telefone: 0800 081 1688</p>
           </div>
 
+          <div className="contact-item">
+            <h3>Financeiro</h3>
+            <p>Email: financeiro@mediotec.senac.com</p>
+            <p>Telefone: 0800 030 2245</p>
+          </div>
+
         </div>
       </div>
     </div>
