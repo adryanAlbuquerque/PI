@@ -5,9 +5,9 @@ import { FaBars, FaTimes } from 'react-icons/fa'; // Ícones para abrir/fechar
 
 
 const SidebarAluno = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Sidebar fechada por padrão
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false); 
 
-  const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen); // Alterna a sidebar
+  const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
 
   return (
     <div className="sidebar-container-aluno">
@@ -22,11 +22,11 @@ const SidebarAluno = () => {
         <ul>
           <li><Link to="/HomeAluno">Home</Link></li>
           <li><Link to="/ConceitoAluno">Conceitos</Link></li>
-          <li><Link to="/FaltasAluno">Faltas</Link></li>
-          <li><Link to="/DocAluno">Documentos</Link></li>
-          <li><Link to="/RequeAluno">Requerimentos</Link></li>
-          <li><Link to="/BiblioAluno">Biblioteca Digital</Link></li>
-          <li><Link to="/ConfigAluno">Configurações</Link></li>
+          <li><Link to="/">Disciplinas</Link></li>
+          <li><Link to="/HorarioAluno">Horários</Link></li>
+          <li><Link to="/Contatos">Contatos</Link></li>
+          <li><Link to="/">Financeiro</Link></li>
+          <li><Link to="/">Configurações</Link></li>
         </ul>
         <div>
           <button type="button" className="SairAluno" onClick={() => window.location.href = '/'}>

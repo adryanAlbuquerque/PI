@@ -1,4 +1,4 @@
-import './ConceitoAluno.css';
+import '../../Themes/themesAlunos.css';
 import SidebarAluno from '../../sidebar/sidebarALuno';
 import { useState, useEffect } from 'react';
 import { getConceitos } from '../../../Service/APIServices'; 
@@ -14,7 +14,7 @@ const ConceitoAluno = () => {
         .then(response => {
             console.log('Conceitos recebidos:', response.data);
             setConceitos(response.data);
-            setTurma(response.data.turma); // Ajuste conforme a estrutura de dados
+            setTurma(response.data.turma); 
         })
         .catch(error => {
             console.error('Erro ao buscar conceitos:', error);
@@ -33,14 +33,14 @@ const ConceitoAluno = () => {
     };
 
     return (
-        <div className="conceitos-aluno">
+        <div className="container-principal">
         <SidebarAluno />
 
-        <div className="RegistroAluno">
+        <div className="card-principal">
             <h1>Conceitos</h1>
             <h2>Turma: {turma}</h2>
 
-            <table className="conceitos-table">
+            <table className="card-table">
             <thead>
                 <tr>
                 <th>Disciplina</th>

@@ -17,6 +17,8 @@ import ConceitoAluno from './Components/Principal/Alunos/ConceitoAluno' ;
 import FaltasAluno from './Components/Principal/Alunos/FaltasAluno';
 import DisciplinasProf from './Components/Principal/Professores/DisciplinasProf' ;
 import LancarNotas from './Components/Principal/Professores/LancarNotas';
+import HorarioAluno from './Components/Principal/Alunos/HoraAluno';
+import Contatos from './Components/Principal/Alunos/ContatosAluno';
 
 function App() {
   return (
@@ -39,6 +41,9 @@ function App() {
         <Route path="/FaltasAluno" element={<FaltasAluno />} />
         <Route path="/DisciplinasProf" element={<DisciplinasProf />} />
         <Route path="/LancarNotas" element={<LancarNotas />} />
+        <Route path="/HorarioAluno" element={<HorarioAluno />} />
+        <Route path="/Contatos" element={<Contatos />} />
+        
         
       </Routes>
     </Router>
@@ -46,10 +51,3 @@ function App() {
 }
 
 export default App;
-
-//<Route path="/Cadastro/CadastroCoordenador" element={<CadastroCoordenador />} />
-/*<Route path="/Principal/Alunos/ConceitoAluno" element={<ConceitoAluno />} />
-<Route path="/Principal/Alunos/DisciplinaAluno" element={<DisciplinaAluno />} />
-<Route path="/Principal/Alunos/DocAluno" element={<DocAluno />} />
-<Route path="/Principal/Alunos/RequeAluno" element={<RequeAluno />} />
-<Route path="/Principal/Alunos/BiblioAluno" element={<BiblioAluno />} />*/

@@ -1,0 +1,95 @@
+.conceitos-aluno {
+    display: flex;
+    height: 100vh; /* Altura total da viewport */
+    background-color: #F5F5FB; /* Cor de fundo */
+    overflow-x: hidden; /* Evita que o conteúdo ultrapasse o container */
+    padding: 20px; /* Espaçamento interno */
+    
+}
+  
+.RegistroAluno {
+    display: flex;
+    flex-direction: column; /* Alinha os itens verticalmente */
+    flex: 1; /* Permite que este elemento preencha o espaço restante */
+    align-items: center; /* Centraliza horizontalmente */
+    justify-content: flex-start; /* Alinha os itens no topo */
+    padding: 20px; /* Espaçamento interno */
+    background-color: #fff; /* Cor de fundo branca */
+    border-radius: 8px; /* Bordas arredondadas */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra leve */
+}
+
+h1 {
+    font-size: 30px; /* Tamanho da fonte do título principal */
+    color: #FF8A00; /* Cor do texto */
+    margin: 20px 0; /* Margem acima e abaixo */
+    text-align: center; /* Centraliza o texto */
+    font-weight: bold; /* Texto em negrito */
+}
+  
+h2 {
+    font-size: 20px; /* Tamanho da fonte do subtítulo */
+    color: #333; /* Cor do texto */
+    margin: 20px 0; /* Margem acima e abaixo */
+}
+
+.conceitos-table {
+    width: 100%; /* Define a largura da tabela como 100% do contêiner pai */
+    max-width: 1200px; /* Define um valor máximo para a largura da tabela */
+    margin: 0 auto; /* Centraliza a tabela horizontalmente */
+    border-collapse: collapse; /* Colapsa as bordas da tabela */
+}
+
+.conceitos-table th, .conceitos-table td {
+    padding: 10px; /* Espaçamento interno nas células */
+    text-align: left; /* Alinhamento do texto à esquerda */
+    border: 1px solid #ccc; /* Adiciona uma borda às células */
+}
+
+.conceitos-table th {
+    background-color: #FF8A00; /* Cor de fundo do cabeçalho */
+    color: white; /* Cor do texto do cabeçalho */
+    font-weight: bold; /* Deixa o texto do cabeçalho em negrito */
+
+}
+
+.conceitos-table tr:hover {
+    background-color: #f1f1f1; /* Cor de fundo ao passar o mouse */
+}
+
+.no-results {
+    text-align: center; /* Centraliza o texto */
+    color: #999; /* Cor do texto */
+    padding: 20px; /* Espaçamento interno */
+}
+
+/* Estilo do Link */
+a {
+    display: inline-block; /* Exibe como bloco inline */
+    margin-bottom: 20px; /* Margem inferior */
+    color: #007bff; /* Cor do texto do link */
+    text-decoration: none; /* Remove o sublinhado */
+}
+
+a:hover {
+    text-decoration: underline; /* Sublinha ao passar o mouse */
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .RegistroAluno {
+      padding: 10px; /* Ajuste do padding para telas menores */
+    }
+  
+    h1 {
+      font-size: 24px; /* Reduz o tamanho da fonte para telas pequenas */
+    }
+  
+    h2 {
+      font-size: 18px; /* Ajusta o tamanho do subtítulo */
+    }
+  
+    .notas-table th, .notas-table td {
+      padding: 8px; /* Reduz o padding das células em telas menores */
+    }
+}
