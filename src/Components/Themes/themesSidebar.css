@@ -1,0 +1,189 @@
+.sidebar-container {
+    display: flex;
+    height: 100vh; /* Ocupa toda a altura da tela */
+    background-color: #F5F5FB;
+    position: relative; /* Garantindo que o botão flutue corretamente */
+}
+
+/* toggle aluno */
+.sidebar-toggle-aluno:focus {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1000; /* Coloca o botão acima da sidebar */
+    color: #FF8A00; /* Cor do ícone */
+}
+
+.sidebar-toggle-aluno:focus:focus {
+    outline: none; /* Remove o outline ao focar */
+}
+
+/* toggle prof */
+.sidebar-toggle-prof:focus {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1000; /* Coloca o botão acima da sidebar */
+    color: #0B429D; /* Cor do ícone */
+}
+
+.sidebar-toggle-prof:focus:focus {
+    outline: none; /* Remove o outline ao focar */
+}
+/* toggle prof */ 
+
+.sidebar-list-aluno {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px; /* Largura da sidebar */
+    height: 100%; /* Altura total */
+    background-color: #ffffff;
+    transition: transform 0.3s ease;
+    transform: translateX(-100%); /* Escondida por padrão */
+    padding: 20px;
+    overflow-y: auto;
+    z-index: 999; /* Garante que a sidebar fique acima do conteúdo */
+}
+
+.sidebar-list-aluno.open {
+    transform: translateX(0); /* Mostra a sidebar quando aberta */
+}
+
+.sidebar-list-aluno ul {
+    list-style: none;
+    margin-left: 25px;
+}
+
+.sidebar-list-aluno ul li:first-child {
+    margin-top: 50px;
+}
+
+.sidebar-list-aluno li {
+    margin: 10px 0;
+    padding: 10px;
+}
+
+.sidebar-list-aluno a {
+    color: rgba(0, 0, 0, 0.5);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.sidebar-list-aluno a:hover {
+    color: #FF8A00; 
+}
+
+/**/
+
+.sidebar-list-prof {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px; /* Largura da sidebar */
+    height: 100%; /* Altura total */
+    background-color: #ffffff;
+    transition: transform 0.3s ease;
+    transform: translateX(-100%); /* Escondida por padrão */
+    padding: 20px;
+    overflow-y: auto;
+    z-index: 999; /* Garante que a sidebar fique acima do conteúdo */
+}
+
+.sidebar-list-prof.open {
+    transform: translateX(0); /* Mostra a sidebar quando aberta */
+}
+
+.sidebar-list-prof ul {
+    list-style: none;
+    margin-left: 25px;
+}
+
+.sidebar-list-prof ul li:first-child {
+    margin-top: 50px;
+}
+
+.sidebar-list-prof li {
+    margin: 10px 0;
+    padding: 10px;
+}
+
+.sidebar-list-prof a {
+    color: rgba(0, 0, 0, 0.5);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.sidebar-list-prof a:hover {
+    color: #0B429D; 
+}
+/**/
+
+#MedioTecSidebar {
+    height: 50px;
+    margin-left: 40px;
+}
+
+.Sairbutton-Aluno {
+    width: 100%;
+    max-width: 100px;
+    height: 35px;
+    background-color: #f4f4f9;
+    border: 1.5px solid #FF8A00;
+    outline: none;
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 15px;
+    color: #FF8A00;
+    margin-top: 90px;
+    margin-left: 55px;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+/**/
+.Sairbutton-Prof {
+    width: 100%;
+    max-width: 100px;
+    height: 35px;
+    background-color: #f4f4f9;
+    border: 1.5px solid #0B429D;
+    outline: none;
+    border-radius: 7px;
+    cursor: pointer;
+    font-size: 15px;
+    color: #0B429D;
+    margin-top: 90px;
+    margin-left: 55px;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+
+/* Responsividade */
+@media (max-width: 641px) {
+    .sidebar-list-aluno {
+        width: 80%; /* Sidebar ocupa toda a largura da tela em dispositivos móveis */
+    }
+
+    .sidebar-list-prof {
+        width: 80%; /* Sidebar ocupa toda a largura da tela em dispositivos móveis */
+    }
+
+    .sidebar-toggle-aluno:focus {
+        top: 10px;
+        left: 10px;
+    }
+    .sidebar-toggle-prof:focus {
+        top: 10px;
+        left: 10px;
+    }
+}
+
+
