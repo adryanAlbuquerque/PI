@@ -14,11 +14,12 @@ import GerenciaCoordenador from './Components/Principal/Coordenacao/GerenciaCoor
 import GerenciaTurmas from './Components/Principal/Coordenacao/GerenciaTurmas';
 import GerenciaDisciplina from './Components/Principal/Coordenacao/GerenciaDisciplina';
 import ConceitoAluno from './Components/Principal/Alunos/ConceitoAluno' ;
-import FaltasAluno from './Components/Principal/Alunos/FaltasAluno';
 import DisciplinasProf from './Components/Principal/Professores/DisciplinasProf' ;
 import LancarNotas from './Components/Principal/Professores/LancarNotas';
 import HorarioAluno from './Components/Principal/Alunos/HoraAluno';
 import Contatos from './Components/Principal/Alunos/ContatosAluno';
+import DisciplinasAluno from './Components/Principal/Alunos/DisciplinasAluno'; 
+import ConfiguracoesAluno from './Components/Principal/Alunos/ConfigAluno';
 
 function App() {
   return (
@@ -38,13 +39,12 @@ function App() {
         <Route path="/GerenciamentoTurmas" element={<GerenciaTurmas />} />
         <Route path="/GerenciamentoDisciplina" element={<GerenciaDisciplina />} />
         <Route path="/ConceitoAluno" element={<ConceitoAluno />} /> 
-        <Route path="/FaltasAluno" element={<FaltasAluno />} />
         <Route path="/DisciplinasProf" element={<DisciplinasProf />} />
         <Route path="/LancarNotas" element={<LancarNotas />} />
         <Route path="/HorarioAluno" element={<HorarioAluno />} />
         <Route path="/Contatos" element={<Contatos />} />
-        
-        
+        <Route path="/DisciplinasAluno" element={<DisciplinasAluno />} />
+        <Route path="/ConfiguraçãoAluno" element={<ConfiguracoesAluno />} />
       </Routes>
     </Router>
   );

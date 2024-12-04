@@ -11,21 +11,19 @@ const SidebarAluno = () => {
 
   return (
     <div className="sidebar-container-aluno">
-      {/* Botão para abrir/fechar a sidebar */}
       <button className="sidebar-toggle-aluno" onClick={toggleSidebar}>
       {isSidebarOpen ? <FaTimes /> : <FaBars />}
       </button>
 
-      {/* Sidebar */}
       <div className={`sidebar-Aluno ${isSidebarOpen ? 'open' : 'closed'}`}>
         <img id="MedioTecAluno" src="/img/LogoAluno.png" alt="Logo" />
         <ul>
           <li><Link to="/HomeAluno">Home</Link></li>
           <li><Link to="/ConceitoAluno">Conceitos</Link></li>
-          <li><Link to="/">Disciplinas</Link></li>
+          <li><Link to="/DisciplinasAluno">Disciplinas</Link></li>
           <li><Link to="/HorarioAluno">Horários</Link></li>
           <li><Link to="/Contatos">Contatos</Link></li>
-          <li><Link to="/">Configurações</Link></li>
+          <li><Link to="/ConfiguraçãoAluno">Configurações</Link></li>
         </ul>
         <div>
           <button type="button" className="SairAluno" onClick={() => window.location.href = '/'}>

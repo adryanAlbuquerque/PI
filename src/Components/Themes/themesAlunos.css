@@ -106,6 +106,32 @@ a:hover {
     margin: 5px 0;
 }
 
+.config-section {
+    margin-bottom: 20px;
+}
+
+.config-section h2 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.config-select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.config-toggle {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+}
+
+.config-toggle input {
+    margin-right: 10px;
+}
+
+
 @media (max-width: 768px) {
     .RegistroAluno {
         padding: 10px;
