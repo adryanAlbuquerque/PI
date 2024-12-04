@@ -1,23 +1,27 @@
-.coord-container {
+.login-container {
   display: flex;
-  align-items: center; /* Centraliza verticalmente */
-  justify-content: center; /* Centraliza horizontalmente */
-  min-height: 100vh; /* Define a altura mínima como 100% da altura da viewport */
-  margin: 0; /* Remove margens externas */
-  padding: 0 20px; /* Pode ajustar conforme necessário */
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0 20px;
   color: #825CFF;
 }
 
-.coord-login-box {
+.login-box {
   background-color: #f8f6ff;
   padding: 40px 20px;
   box-shadow: 0 7px 12px rgba(0, 0, 0, 0.1);
   max-width: 450px;
   width: 100%;
-  position: relative; /* Para que o ícone de fechar fique posicionado corretamente */
+  position: relative;
 }
 
-.coord-close-icon {
+.close-icon:hover {
+  color: #3f18c0;
+}
+
+.close-icon {
   position: absolute;
   top: 15px;
   right: 15px;
@@ -26,24 +30,20 @@
   cursor: pointer;
 }
 
-.coord-close-icon:hover {
-  color: #3f18c0;
+.logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
 }
 
-.coord-logo {
-  display: flex; /* Usar flexbox para centralizar */
-  justify-content: center; /* Centraliza horizontalmente */
-  align-items: center; /* Centraliza verticalmente se o contêiner tiver altura definida */
-  margin: 0 auto; /* Garante que o contêiner também esteja centralizado */
-}
-
-.coord-logo img {
+.logo-container img {
   width: 170px;
   margin-bottom: 30px;
-  display: block; /* Faz a imagem ser um bloco */
+  display: block;
 }
 
-.coord-title {
+.login-title {
   text-align: center;
   margin-top: 10px;
   margin-bottom: -20px;
@@ -53,7 +53,7 @@
   font-weight: 700;
 }
 
-.coord-input-field {
+.input-field {
   position: relative;
   width: 100%;
   max-width: 400px;
@@ -61,7 +61,7 @@
   margin: 30px auto;
 }
 
-.coord-input-field input {
+.input-field input {
   width: 100%;
   height: 100%;
   background-color: white;
@@ -72,11 +72,11 @@
   padding: 15px 20px;
 }
 
-.coord-input-field input::placeholder {
+.input-field input::placeholder {
   color: rgb(145, 128, 160);
 }
 
-.coord-icon {
+.input-icon {
   position: absolute;
   right: 15px;
   top: 50%;
@@ -85,7 +85,7 @@
   color: #825CFF;
 }
 
-.coord-recall-forget {
+.recall-forget {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -95,31 +95,41 @@
   width: 100%;
 }
 
-.coord-label {
+.checkbox-label {
   display: flex;
   align-items: center;
   color: #825CFF;
 }
 
-.coord-checkbox {
+.checkbox-label input {
   margin-right: 5px;
 }
 
-.coord-remember {
+.checkbox {
+  margin-left: 5px;
+  cursor: pointer;
   margin-top: -12px;
 }
 
-.coord-forgot {
+.checkbox-label {
+  margin-right: 5px;
+}
+
+.remember {
+  margin-top: -12px;
+}
+
+.forgot {
   margin-top: -13px;
   color: #825CFF;
   text-decoration: none;
 }
 
-.coord-forgot:hover {
+.forgot:hover {
   color: rgb(71, 32, 108);
 }
 
-.coord-button {
+.login-button {
   width: 100%;
   max-width: 400px;
   height: 45px;
@@ -134,11 +144,11 @@
   transition: background-color 0.3s ease;
 }
 
-.coord-button:hover {
+.login-button:hover {
   background-color: #3F18C0;
 }
 
-.coord-home-button {
+.home-button {
   width: 100%;
   max-width: 100px;
   height: 35px;
@@ -154,19 +164,13 @@
   transition: background-color 0.3s ease;
 }
 
-.coord-home-button:hover {
+.home-button:hover {
   background-color: #d9d4e8;
   color: #4f20ec;
 }
 
-.coord-checkbox {
-  margin-left: 5px;
-  cursor: pointer;
-  margin-top: -12px;
-}
-
 @media (max-width: 500px) {
-  .coord-login-box {
-      padding: 20px 10px;
+  .login-box {
+    padding: 20px 10px;
   }
 }

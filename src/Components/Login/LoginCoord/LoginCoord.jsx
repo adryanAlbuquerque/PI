@@ -1,7 +1,7 @@
 import { FaUser, FaLock, FaTimes } from 'react-icons/fa'; // Importando FaTimes para o ícone de X
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Importando useNavigate para redirecionamento
-import './LoginCoord.css';
+import '../../Themes/themesLogin.css';
 
 const LoginCoordenador = () => {
   const [username, setUsername] = useState('');
@@ -23,57 +23,57 @@ const LoginCoordenador = () => {
   };
 
   return (
-    <div className="coord-container">
-      <div className="coord-login-box">
+    <div className="login-container">
+      <div className="login-box">
         {/* Ícone X no canto superior direito */}
-        <FaTimes className="coord-close-icon" onClick={handleGoHome} />
+        <FaTimes className="close-icon" onClick={handleGoHome} />
 
-        <div className="coord-logo">
+        <div className="logo-container">
           <img src="/img/logo.png" alt="Logo" />
         </div>
 
         <form onSubmit={handleSubmit}>
-          <h1 className="coord-title">LOGIN DO COORDENADOR</h1>
+          <h1 className="login-title">LOGIN DO COORDENADOR</h1>
 
-          <div className="coord-input-field">
+          <div className="input-field">
             <input
               type="email"
               placeholder="Digite seu Email"
               onChange={(e) => setUsername(e.target.value)}
               required // Adicionando required para validar o campo
             />
-            <FaUser className="coord-icon" />
+            <FaUser className="input-icon" />
           </div>
 
-          <div className="coord-input-field">
+          <div className="input-field">
             <input
               type="password"
               placeholder="Digite sua senha"
               onChange={(e) => setPassword(e.target.value)}
               required // Adicionando required para validar o campo
             />
-            <FaLock className="coord-icon" />
+            <FaLock className="input-icon" />
           </div>
 
-          <div className="coord-recall-forget">
-            <label className="coord-label">
-              <input className="coord-checkbox" type="checkbox" />
-              <p className="coord-remember">Lembre-se de mim</p>
+          <div className="recall-forget">
+            <label className="checkbox-label">
+              <input className="checkbox" type="checkbox" />
+              <p className="remember">Lembre-se de mim</p>
             </label>
-            <a href="#" className="coord-forgot">
+            <a href="#" className="forgot">
               Esqueci minha senha
             </a>
           </div>
 
           {/* Botão de login */}
-          <button type="submit" className="coord-button">
+          <button type="submit" className="login-button">
             LOGIN
           </button>
 
           {/* Botão para voltar à Home */}
           <button
             type="button"
-            className="coord-home-button"
+            className="home-button"
             onClick={handleGoHome}
           >
             Voltar

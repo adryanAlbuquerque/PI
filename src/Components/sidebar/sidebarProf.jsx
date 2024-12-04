@@ -23,8 +23,6 @@ const SidebarProf = () => {
           <li><Link to="/HomeProf">Home</Link></li>
           <li><Link to="/DisciplinasProf">Disciplinas</Link></li>
           <li><Link to="/LancarNotas">Lançar Notas</Link></li>
-          <li><Link to="/">Relatórios</Link></li>
-          <li><Link to="/">Biblioteca Digital</Link></li>
           <li><Link to="/">Configurações</Link></li>
         </ul>
         <div>

@@ -132,6 +132,7 @@ a:hover {
 }
 
 
+/*Responsividades*/
 @media (max-width: 768px) {
     .RegistroAluno {
         padding: 10px;

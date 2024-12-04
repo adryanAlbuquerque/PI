@@ -26,7 +26,6 @@ const SidebarCoord = () => {
           <li><Link to="/GerenciamentoCoordenador">Coordenadores</Link></li>
           <li><Link to="/GerenciamentoTurmas">Turmas</Link></li>
           <li><Link to="/GerenciamentoDisciplina">Disciplinas</Link></li>
-          <li><Link to="/Relatorios">Relatórios</Link></li>
           <li><Link to="">Configurações</Link></li>
         </ul>
         <div>

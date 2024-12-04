@@ -1,39 +1,48 @@
-import { FaUser, FaLock, FaTimes } from 'react-icons/fa'; // Importando FaTimes para o ícone de X
+import { FaUser, FaLock, FaTimes } from 'react-icons/fa';
 import { useState } from 'react';
-import './LoginAluno.css';
+import { useNavigate } from 'react-router-dom'; // Importando useNavigate para redirecionamento
+import '../../Themes/themesLogin.css';
 
 const LoginAluno = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const navigate = useNavigate(); // Inicializando useNavigate
 
-  const handleGoHome = () => {
-    window.location.href = '/';  
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    // Lógica para autenticar
+    alert('Login Aluno: ' + username + ' - ' + password);
+
+    // Se a autenticação for bem-sucedida, redireciona
+    navigate('/HomeAluno');
   };
 
-  const handleLogin = () => {
-    window.location.href = '/HomeAluno';  
+  const handleGoHome = () => {
+    // Lógica para redirecionar para a página inicial
+    navigate('/'); // Usando useNavigate para redirecionar
   };
 
   return (
-    <div className="Container">
-      <div id="LoginBox">
+    <div className="login-container">
+      <div className="login-box">
         {/* Ícone X no canto superior direito */}
-        <FaTimes className="closeIcon" onClick={handleGoHome} />
+        <FaTimes className="close-icon" onClick={handleGoHome} />
 
-        <div id="LogoAluno">
+        <div className="logo-container">
           <img src="/img/logo.png" alt="Logo" />
         </div>
 
-        <form>
-          <h1 id="MedioTec">LOGIN DO ALUNO</h1>
+        <form onSubmit={handleSubmit}>
+          <h1 className="login-title">LOGIN DO ALUNO</h1>
 
           <div className="input-field">
             <input
               type="email"
               placeholder="Digite seu Email"
               onChange={(e) => setUsername(e.target.value)}
+              required // Adicionando required para validar o campo
             />
-            <FaUser className="icon" />
+            <FaUser className="input-icon" />
           </div>
 
           <div className="input-field">
@@ -41,27 +50,32 @@ const LoginAluno = () => {
               type="password"
               placeholder="Digite sua senha"
               onChange={(e) => setPassword(e.target.value)}
+              required // Adicionando required para validar o campo
             />
-            <FaLock className="icon" />
+            <FaLock className="input-icon" />
           </div>
 
-          <div id="recal-forget">
-            <label id="label">
-              <input id="Checkbox" type="checkbox" />
-              <p id="Lembre">Lembre-se de mim</p>
+          <div className="recall-forget">
+            <label className="checkbox-label">
+              <input className="checkbox" type="checkbox" />
+              <p className="remember">Lembre-se de mim</p>
             </label>
-            <a href="#" id="Esqueceu">
+            <a href="#" className="forgot">
               Esqueci minha senha
             </a>
           </div>
 
-          {/* Transformar o botão de login em um link para outra aba */}
-          <button type="button" id="button" onClick={handleLogin}>
+          {/* Botão de login */}
+          <button type="submit" className="login-button">
             LOGIN
           </button>
 
           {/* Botão para voltar à Home */}
-          <button type="button" id="homeButton" onClick={handleGoHome}>
+          <button
+            type="button"
+            className="home-button"
+            onClick={handleGoHome}
+          >
             Voltar
           </button>
         </form>
