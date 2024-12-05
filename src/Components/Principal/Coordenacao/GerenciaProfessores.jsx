@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import './GerenciaProfessores.css';
 import { useState, useEffect } from 'react';
-import { getProfessores, updateProfessor, deleteProfessor, getDisciplina } from '../../../Service/APIServices';
+import { getProfessores, updateProfessor, deleteProfessor } from '../../../Service/APIServices';
 import SidebarCoord from '../../sidebar/sidebarCoord';
 
 const GerenciaProfessores = () => {
@@ -23,13 +23,8 @@ const GerenciaProfessores = () => {
         console.error('Erro ao buscar professores:', error);
       });
 
-    getDisciplina()
-      .then(response => {
-        setDisciplinas(response.data);
-      })
-      .catch(error => {
-        console.error('Erro ao buscar disciplinas:', error);
-      });
+    // Disciplina fixa
+    setDisciplinas([{ id: '1', nome: 'Matemática' }]);  // Disciplina fixa para exibição
   }, []);
 
   const handleSave = (event) => {
@@ -108,9 +103,8 @@ const GerenciaProfessores = () => {
 
   const filteredProfessores = professores.filter((professor) => {
     const nome = professor.nome ? professor.nome.toLowerCase() : '';
-    const matricula = professor.matricula ? professor.matricula : '';
 
-    return nome.includes(searchTerm.toLowerCase()) || matricula.includes(searchTerm);
+    return nome.includes(searchTerm.toLowerCase());
   });
 
   return (
@@ -148,7 +142,7 @@ const GerenciaProfessores = () => {
                 <tr key={professor.id}>
                   <td>{professor.matricula || professor.id}</td>
                   <td>{professor.nome}</td>
-                  <td>{professor.disciplinas ? professor.disciplinas.join(', ') : 'Nenhuma'}</td>
+                  <td>{"Matemática"}</td> {/* Disciplina fixa */}
                   <td>{professor.turno}</td>
                   <td>{professor.status}</td>
                   <td>
@@ -210,11 +204,7 @@ const GerenciaProfessores = () => {
                 multiple
                 disabled={!isEditable}
               >
-                {disciplinas.map(disc => (
-                  <option key={disc.id} value={disc.id}>
-                    {disc.nome}
-                  </option>
-                ))}
+                <option value="1">Matemática</option> {/* Disciplina fixa */}
               </select>
 
               <div className="modal-buttons">

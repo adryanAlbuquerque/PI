@@ -29,7 +29,6 @@ const GerenciaAlunos = () => {
     event.preventDefault();
     if (!selectedAluno) return;
 
-    // Atualiza o aluno com os novos dados de status e turno
     updateAluno(selectedAluno.id, selectedAluno)
       .then(response => {
         const updatedAlunos = alunos.map(aluno =>
