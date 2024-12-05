@@ -1,17 +1,16 @@
 import { Link } from 'react-router-dom';
 import './GerenciaTurmas.css';
 import { useState, useEffect } from 'react';
-import { getTurmas, updateTurma, deleteTurma, getDisciplina, createTurma } from '../../../Service/APIServices';
+import { getTurmas, updateTurma, deleteTurma, createTurma } from '../../../Service/APIServices';
 import SidebarCoord from '../../sidebar/sidebarCoord';
 
 const GerenciaTurmas = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false); // Modal de criação
-  const [selectedTurma, setSelectedTurma] = useState({ disciplinas: [] });
+  const [selectedTurma, setSelectedTurma] = useState({});
   const [isEditable, setIsEditable] = useState(false);
   const [turmas, setTurmas] = useState([]);
-  const [disciplinas, setDisciplinas] = useState([]);
 
   useEffect(() => {
     getTurmas()
@@ -22,15 +21,6 @@ const GerenciaTurmas = () => {
       .catch(error => {
         console.error('Erro ao buscar turmas:', error);
       });
-
-    getDisciplina()
-      .then(response => {
-        console.log('Disciplinas recebidas:', response.data);
-        setDisciplinas(response.data);
-      })
-      .catch(error => {
-        console.error('Erro ao buscar disciplinas:', error);
-      });
   }, []);
 
   const handleSave = (event) => {
@@ -38,7 +28,6 @@ const GerenciaTurmas = () => {
   
     const turmaData = {
       ...selectedTurma,
-      disciplinas: selectedTurma.disciplinas,
     };
   
     updateTurma(selectedTurma.id, turmaData)
@@ -88,7 +77,7 @@ const GerenciaTurmas = () => {
 
   const handleModalClose = () => {
     setIsModalOpen(false);
-    setSelectedTurma({ disciplinas: [] }); 
+    setSelectedTurma({}); 
     setIsEditable(false);
   };
 
@@ -100,21 +89,12 @@ const GerenciaTurmas = () => {
     }));
   };
 
-  const handleDisciplinaChange = (event) => {
-    const selectedDisciplina = Array.from(event.target.selectedOptions, option => option.value);
-    setSelectedTurma((prevTurma) => ({
-      ...prevTurma,
-      disciplinas: selectedDisciplina,
-    }));
-  };
-
   const handleCreateTurma = (event) => {
     event.preventDefault();
     const newTurma = {
       nome: selectedTurma.nome,
       ano: selectedTurma.ano,
       semestre: selectedTurma.semestre,
-      disciplinas: selectedTurma.disciplinas,
     };
 
     createTurma(newTurma)
@@ -157,7 +137,6 @@ const GerenciaTurmas = () => {
               <th>Nome</th>
               <th>Ano</th>
               <th>Semestre</th>
-              <th>Disciplinas</th>
               <th>Ações</th>
             </tr>
           </thead>
@@ -169,7 +148,6 @@ const GerenciaTurmas = () => {
                   <td>{turma.nome}</td>
                   <td>{turma.ano}</td>
                   <td>{turma.semestre}</td>
-                  <td>{turma.disciplina}</td>
                   <td>
                     <button onClick={() => handleView(turma)} className="view-button">Editar</button>
                   </td>
@@ -177,7 +155,7 @@ const GerenciaTurmas = () => {
               ))
             ) : (
               <tr>
-                <td colSpan="6" className="no-results">Nenhuma turma encontrada.</td>
+                <td colSpan="5" className="no-results">Nenhuma turma encontrada.</td>
               </tr>
             )}
           </tbody>
@@ -220,20 +198,6 @@ const GerenciaTurmas = () => {
                 onChange={handleInputChange}
                 readOnly={!isEditable}
               />
-              <label>Disciplinas</label>
-              <select
-                name="disciplinas"
-                value={selectedTurma.disciplinas || []}
-                onChange={handleDisciplinaChange}
-                multiple
-                disabled={!isEditable}
-              >
-                {disciplinas.map(disciplina => (
-                  <option key={disciplina.disciplina_id} value={disciplina.disciplina_id}>
-                    {disciplina.nome}
-                  </option>
-                ))}
-              </select>
               <div className="modal-buttons">
                 {isEditable ? (
                   <button type="submit" className="save-button">Salvar</button>
@@ -248,7 +212,6 @@ const GerenciaTurmas = () => {
         </div>
       )}
 
-     
       {isCreateModalOpen && (
         <div className="modal-overlay">
           <div className="modal-content">
@@ -275,19 +238,6 @@ const GerenciaTurmas = () => {
                 value={selectedTurma.semestre || ''}
                 onChange={handleInputChange}
               />
-              <label>Disciplinas</label>
-              <select
-                name="disciplinas"
-                value={selectedTurma.disciplinas || []}
-                onChange={handleDisciplinaChange}
-                multiple
-              >
-                {disciplinas.map(disciplina => (
-                  <option key={disciplina.disciplina_id} value={disciplina.disciplina_id}>
-                    {disciplina.nome}
-                  </option>
-                ))}
-              </select>
               <div className="modal-buttons">
                 <button type="submit" className="save-button">Criar</button>
                 <button type="button" onClick={() => setIsCreateModalOpen(false)} className="cancelar-button">Fechar</button>
