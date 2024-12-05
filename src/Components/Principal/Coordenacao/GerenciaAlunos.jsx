@@ -70,10 +70,9 @@ const GerenciaAlunos = () => {
 
   const filteredAlunos = alunos.filter((aluno) => {
     const nome = aluno.nome ? aluno.nome.toLowerCase() : '';
-    const matricula = aluno.matricula ? aluno.matricula : '';
 
     return (
-      (nome.includes(searchTerm.toLowerCase()) || matricula.includes(searchTerm)) &&
+      (nome.includes(searchTerm.toLowerCase())) &&
       (filtroTurma === '' || aluno.turma === filtroTurma)
     );
   });
@@ -101,7 +100,6 @@ const GerenciaAlunos = () => {
         <table className="alunos-tables">
           <thead>
             <tr>
-              <th>Matrícula</th>
               <th>Nome</th>
               <th>Turma</th>
               <th>Turno</th>
@@ -113,9 +111,8 @@ const GerenciaAlunos = () => {
             {filteredAlunos.length > 0 ? (
               filteredAlunos.map((aluno) => (
                 <tr key={aluno.id}>
-                  <td>{aluno.matricula || aluno.id}</td>
                   <td>{aluno.nome}</td>
-                  <td>{aluno.turma}</td>
+                  <td>{"Turma A"}</td> {/* Turma estática */}
                   <td>{aluno.turno}</td>
                   <td>{aluno.status}</td>
                   <td>
@@ -126,72 +123,65 @@ const GerenciaAlunos = () => {
               ))
             ) : (
               <tr>
-                <td colSpan="6" className="no-results">Nenhum aluno encontrado.</td>
+                <td colSpan="5" className="no-results">Nenhum aluno encontrado.</td>
               </tr>
             )}
           </tbody>
         </table>
       </div>
       {isModalOpen && (
-      <div className="modal-overlay">
-        <div className="modal-content">
-          <h2>Editar Aluno</h2>
-          <form onSubmit={handleSave}>
-            <label>Matrícula</label>
-            <input
-              type="text"
-              name="matricula"
-              value={selectedAluno?.matricula || selectedAluno?.id || ''}
-              readOnly
-            />
-            <label>Nome</label>
-            <input
-              type="text"
-              name="nome"
-              value={selectedAluno?.nome || ''}
-              onChange={handleInputChange}
-            />
-            <label>Turma</label>
-            <select
-              name="turma"
-              value={selectedAluno?.turma || ''}
-              onChange={handleInputChange}
-            >
-              {turmas.map((turma) => (
-                <option key={turma.id} value={turma.nome}>{turma.nome}</option>
-              ))}
-            </select>
-            <label>Turno</label>
-            <select
-              name="turno"
-              value={selectedAluno?.turno || ''}
-              onChange={handleInputChange}
-            >
-              <option value="">Selecione o turno</option>
-              <option value="MANHA">Manhã</option>
-              <option value="TARDE">Tarde</option>
-            </select>
-            <label>Status</label>
-            <select
-              name="status"
-              value={selectedAluno?.status || ''}
-              onChange={handleInputChange}
-            >
-              <option value="">Selecione o status</option>
-              <option value="ATIVO">Ativo</option>
-              <option value="INATIVO">Inativo</option>
-            </select>
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <h2>Editar Aluno</h2>
+            <form onSubmit={handleSave}>
+              <label>Nome</label>
+              <input
+                type="text"
+                name="nome"
+                value={selectedAluno?.nome || ''}
+                onChange={handleInputChange}
+              />
+              <label>Turma</label>
+              <select
+                name="turma"
+                value={selectedAluno?.turma || ''}
+                onChange={handleInputChange}
+              >
+                {turmas.map((turma) => (
+                  <option key={turma.id} value={turma.nome}>{turma.nome}</option>
+                ))}
+              </select>
+              <label>Turno</label>
+              <select
+                name="turno"
+                value={selectedAluno?.turno || ''}
+                onChange={handleInputChange}
+              >
+                <option value="">Selecione o turno</option>
+                <option value="MANHA">Manhã</option>
+                <option value="TARDE">Tarde</option>
+              </select>
+              <label>Status</label>
+              <select
+                name="status"
+                value={selectedAluno?.status || ''}
+                onChange={handleInputChange}
+              >
+                <option value="">Selecione o status</option>
+                <option value="ATIVO">Ativo</option>
+                <option value="INATIVO">Inativo</option>
+              </select>
 
-            <div className="modal-buttons">
-              <button type="button" onClick={handleModalClose} className="cancel-button">Cancelar</button>
-              <button type="submit" className="save-button">Salvar</button>
-            </div>
-          </form>
+              <div className="modal-buttons">
+                <button type="button" onClick={handleModalClose} className="cancel-button">Cancelar</button>
+                <button type="submit" className="save-button">Salvar</button>
+              </div>
+            </form>
+          </div>
         </div>
-      </div>
-    )}
+      )}
     </div>
   );
 };
 
-export default GerenciaAlunos;
+export default GerenciaAlunos
