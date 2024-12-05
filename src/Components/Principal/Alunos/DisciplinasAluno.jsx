@@ -1,25 +1,24 @@
 import '../../Themes/themesAlunos.css';
 import SidebarAluno from '../../sidebar/sidebarALuno';
-import { useState, useEffect } from 'react';
-import { getDisciplina } from '../../../Service/APIServices'; // Ajuste o serviço conforme necessário
 
 const DisciplinasAluno = () => {
-    const [disciplinas, setDisciplinas] = useState([]);
-    const [turma, setTurma] = useState('');
-
-    useEffect(() => {
-        getDisciplina()
-            .then(response => {
-                console.log('Disciplinas recebidas:', response.data);
-                setDisciplinas(response.data);
-                if (response.data.length > 0) {
-                    setTurma(response.data[0].turma); // Ajuste conforme a estrutura dos dados
-                }
-            })
-            .catch(error => {
-                console.error('Erro ao buscar disciplinas:', error);
-            });
-    }, []);
+    // Dados estáticos de disciplinas
+    const disciplinas = [
+        {
+            nome: 'Matemática',
+            professor: 'Prof. João Silva',
+        },
+        {
+            nome: 'Português',
+            professor: 'Prof. Maria Oliveira',
+        },
+        {
+            nome: 'História',
+            professor: 'Prof. Carlos Souza',
+        },
+    ];
+    
+    const turma = '3 Turma A'; // Dados estáticos para a turma
 
     return (
         <div className="container-principal">
@@ -27,7 +26,7 @@ const DisciplinasAluno = () => {
 
             <div className="card-principal">
                 <h1>Disciplinas</h1>
-                <h2>Turma: {turma}</h2>
+                <h2>{turma}</h2>
 
                 <table className="card-table">
                     <thead>
@@ -40,8 +39,8 @@ const DisciplinasAluno = () => {
                         {disciplinas.length > 0 ? (
                             disciplinas.map((disciplina, index) => (
                                 <tr key={index}>
-                                    <td>{disciplina.nome}</td> {/* Ajuste conforme o campo retornado pela API */}
-                                    <td>{disciplina.professor}</td> {/* Ajuste conforme o campo retornado pela API */}
+                                    <td>{disciplina.nome}</td>
+                                    <td>{disciplina.professor}</td>
                                 </tr>
                             ))
                         ) : (

@@ -1,18 +1,39 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './AlunoHome.css';
 import SidebarAluno from '../sidebar/sidebarALuno';
 import { FaUserCircle } from 'react-icons/fa';
-import axios from 'axios';
 
 const AlunoHome = () => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [alunoData, setAlunoData] = useState({ nome: '', email: '', turma: '' });
-  const [comunicados, setComunicados] = useState([]);
-  const [loading, setLoading] = useState(true); 
+
+  // Dados estáticos de comunicados
+  const comunicados = [
+    {
+      id: 1,
+      titulo: 'Bem-vindo ao Portal',
+      conteudo: 'Lembre-se de revisar suas turmas e alunos regularmente.',
+      dataCriacao: '2024-12-05',
+    },
+    {
+      id: 2,
+      titulo: 'Atualização do Sistema',
+      conteudo: 'O sistema estará em manutenção amanhã das 22h às 2h.',
+      dataCriacao: '2024-12-04',
+    },
+    {
+      id: 3,
+      titulo: 'Aviso Importante',
+      conteudo: 'Por favor, enviem os relatórios mensais até o dia 15 deste mês.',
+      dataCriacao: '2024-12-03',
+    },
+  ];
+
+  const [loading, setLoading] = useState(false);
 
   const handleModalOpen = () => {
-    // Dados simulados (poderia ser uma chamada API)
+    // Dados simulados (poderiam ser dados de perfil do aluno)
     const dadosSimulados = {
       nome: 'João da Silva',
       email: 'joao.silva@gmail.com',
@@ -27,21 +48,6 @@ const AlunoHome = () => {
   const handleModalClose = () => {
     setModalOpen(false);
   };
-
-  useEffect(() => {
-    const fetchComunicados = async () => {
-      try {
-        const response = await axios.get('http://localhost:8080/api/comunicados'); 
-        setComunicados(response.data);
-        setLoading(false); 
-      } catch (error) {
-        console.error('Erro ao carregar os comunicados:', error);
-        setLoading(false);
-      }
-    };
-
-    fetchComunicados();
-  }, []);
 
   return (
     <div className="home-aluno-container">
