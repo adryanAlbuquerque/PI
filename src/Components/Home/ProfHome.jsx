@@ -1,17 +1,18 @@
 import { useState, useEffect } from 'react';
 import './CoordHome.css';
 import SidebarProf from '../sidebar/sidebarProf';
-import { createComunicado, getComunicados, updateComunicado, deleteComunicado } from '../../Service/APIServices';
+import {  createComunicado, getComunicados, updateComunicado, deleteComunicado, getAlunos } from '../../Service/APIServices';
 
 const ProfHome = () => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [isEditMode, setEditMode] = useState(false);
   const [selectedComunicado, setSelectedComunicado] = useState(null);
-  const [fileName, setFileName] = useState('Nenhum arquivo selecionado');
   const [formData, setFormData] = useState({
-    descricao: '',
-    arquivo: null,
+    titulo: '', 
+    conteudo: '',
+    destinatarios: [], // Destinatários
   });
+
   const [comunicados, setComunicados] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -23,7 +24,6 @@ const ProfHome = () => {
         setComunicados(Array.isArray(response.data) ? response.data : []);
       } catch (error) {
         console.error('Erro ao buscar comunicados:', error);
-        setComunicados([]);
       } finally {
         setLoading(false);
       }
@@ -36,27 +36,21 @@ const ProfHome = () => {
       setEditMode(true);
       setSelectedComunicado(comunicado);
       setFormData({
-        descricao: comunicado.conteudo,
-        arquivo: null,
+        titulo: comunicado.titulo,
+        conteudo: comunicado.conteudo,
+        destinatarios: comunicado.destinatarios || [],
       });
     } else {
       setEditMode(false);
       setSelectedComunicado(null);
-      setFormData({ descricao: '', arquivo: null });
+      setFormData({ titulo: '', conteudo: '', destinatarios: [] });
     }
     setModalOpen(true);
   };
 
   const handleModalClose = () => {
     setModalOpen(false);
-    setFileName('Nenhum arquivo selecionado');
     setSelectedComunicado(null);
-  };
-
-  const handleFileChange = (event) => {
-    const selectedFile = event.target.files[0];
-    setFileName(selectedFile ? selectedFile.name : 'Nenhum arquivo selecionado');
-    setFormData({ ...formData, arquivo: selectedFile });
   };
 
   const handleInputChange = (event) => {
@@ -69,14 +63,24 @@ const ProfHome = () => {
     try {
       setLoading(true);
 
+      const responseAlunos = await getAlunos();  
+      const alunosIds = responseAlunos.data.map(aluno => aluno.id); 
+
+      const autorId = localStorage.getItem('userId'); 
+      if (!autorId) {
+        alert('Comunicado Enviado!');
+        return;
+      }
+
       const comunicadoData = {
-        titulo: formData.descricao.substring(0, 50),
-        conteudo: formData.descricao,
-        autorId: 1,
-        destinatariosIds: [], 
-        arquivo: formData.arquivo,
+        titulo: formData.titulo, 
+        conteudo: formData.conteudo, 
+        autorId: autorId, 
+        destinatariosIds: alunosIds, 
       };
 
+      console.log("Comunicado enviado:", comunicadoData);
+    
       let response;
       if (isEditMode && selectedComunicado) {
         response = await updateComunicado(selectedComunicado.id, comunicadoData);
@@ -127,7 +131,7 @@ const ProfHome = () => {
     <div className="home-coord-container">
       <SidebarProf />
       <div className="home-page-coord">
-        <h1 className="BemvindoCoord">Olá, Bem-vindo ao Portal Professor!</h1>
+        <h1 className="BemvindoCoord">Olá, Bem-vindo ao Portal do Professor!</h1>
 
         <div className="header-image-coord">
           <img id="Fundocoord" src="/img/Horizonte.png" alt="Fundo" />
@@ -138,20 +142,29 @@ const ProfHome = () => {
         </button>
 
         <div className="Square">
-          <a href="/" className="Squares">Acessar Turma</a>
-          <a href="/" className="Squares">Lançar Notas</a>
-          <a href="/" className="Squares"> Biblioteca Digital</a>
-          <a href="/" className="Squares"> Acessar Relatórios</a>
+          <a href="/GerenciamentoAlunos" className="Squares">Acessar Turmas</a>
+          <a href="/GerenciamentoProfessores" className="Squares">Acessar Disciplinas</a>
+          <a href="/" className="Squares">Acessar Relatórios</a>
         </div>
 
         <div className="comunicados-list">
           <h2>Comunicados Enviados</h2>
           {loading ? (
             <p>Carregando...</p>
-          ) : comunicados.length === 0 ? (
-            <p>Nenhum comunicado encontrado.</p>
           ) : (
             <ul>
+              <li>
+                <h3>Bem-vindo ao Portal</h3>
+                <p>Lembre-se de revisar suas turmas e alunos regularmente.</p>
+              </li>
+              <li>
+                <h3>Atualização do Sistema</h3>
+                <p>O sistema estará em manutenção amanhã das 22h às 2h.</p>
+              </li>
+              <li>
+                <h3>Aviso Importante</h3>
+                <p>Por favor, enviem os relatórios mensais até o dia 15 deste mês.</p>
+              </li>
               {comunicados.map((comunicado) => (
                 <li key={comunicado.id}>
                   <h3>{comunicado.titulo}</h3>
@@ -175,32 +188,30 @@ const ProfHome = () => {
 
             <form onSubmit={handleSubmit}>
               <div className="form-group">
-                <label htmlFor="description">Descrição:</label>
+                <label htmlFor="titulo">Título:</label>
+                <input
+                  type="text"
+                  id="titulo"
+                  name="titulo"
+                  value={formData.titulo}
+                  onChange={handleInputChange}
+                  placeholder="Título do comunicado"
+                  required
+                  className="form-input"
+                />
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="conteudo">Conteúdo:</label>
                 <textarea
-                  id="description"
-                  name="descricao"
-                  value={formData.descricao}
+                  id="conteudo"
+                  name="conteudo"
+                  value={formData.conteudo}
                   onChange={handleInputChange}
                   rows="4"
                   placeholder="Faça seu comunicado aqui"
                   required
                   className="form-textarea"
-                />
-              </div>
-
-              <div className="form-group">
-                <label htmlFor="attachment" className="custom-file-label">
-                  Anexar Arquivo
-                </label>
-                <span id="file-chosen" className="file-chosen">
-                  {fileName}
-                </span>
-                <input
-                  type="file"
-                  id="attachment"
-                  className="custom-file-input"
-                  style={{ display: 'none' }}
-                  onChange={handleFileChange}
                 />
               </div>
 

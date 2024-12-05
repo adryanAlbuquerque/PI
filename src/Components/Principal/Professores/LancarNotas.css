@@ -48,16 +48,16 @@
 
 .alunos-table {
   width: 100%;
-  max-width: 1200px;
   margin: 20px 0;
   border-collapse: collapse;
 }
 
 .alunos-table th,
 .alunos-table td {
-  padding: 10px;
+  padding: 15px; 
   text-align: left;
   border: 1px solid #ccc;
+  font-size: 16px; 
 }
 
 .alunos-table th {
@@ -92,19 +92,19 @@
 
 @media (max-width: 768px) {
   .lancar-notas {
-      padding: 15px;
+    padding: 15px;
   }
 
   .lancar-notas h2 {
-      font-size: 24px;
+    font-size: 24px;
   }
 
   .alunos-table th,
   .alunos-table td {
-      padding: 8px;
+    padding: 12px; /* Ajustando o padding para maior espaçamento */
   }
 
   .selecao-turma select {
-      width: 100%;
+    width: 100%;
   }
 }

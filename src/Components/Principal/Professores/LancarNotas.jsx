@@ -1,36 +1,25 @@
 import './LancarNotas.css';
 import SidebarProf from '../../sidebar/sidebarProf';
-import { useState, useEffect } from 'react';
-import { getTurmas, getAlunos, createConceito } from '../../../Service/APIServices'; 
+import { useState } from 'react'; // Importando o useState
 
 const LancarNotas = () => {
-  const [turmas, setTurmas] = useState([]);
-  const [alunos, setAlunos] = useState([]);
-  const [notas, setNotas] = useState({});
+  // Dados estáticos de turmas e alunos
+  const turmas = [
+    { id: 1, nome: 'Turma A' },
+    { id: 2, nome: 'Turma B' },
+    { id: 3, nome: 'Turma C' },
+  ];
+
+  const alunos = [
+    { id: 1, nome: 'João', turmaId: 1 },
+    { id: 2, nome: 'Maria', turmaId: 1 },
+    { id: 3, nome: 'José', turmaId: 2 },
+    { id: 4, nome: 'Ana', turmaId: 2 },
+    { id: 5, nome: 'Carlos', turmaId: 3 },
+  ];
+
+  const [notas, setNotas] = useState({}); // Estado para armazenar as notas
   const [turmaSelecionada, setTurmaSelecionada] = useState('');
-
-  useEffect(() => {
-    // Carregar turmas da API
-    getTurmas()
-      .then((response) => setTurmas(response.data))
-      .catch((error) => console.error('Erro ao carregar turmas:', error));
-  }, []);
-
-  useEffect(() => {
-    if (turmaSelecionada) {
-      // Carregar alunos da turma selecionada
-      getAlunos()
-        .then((response) => {
-          const alunosFiltrados = response.data.filter(
-            (aluno) => aluno.turmaId === Number(turmaSelecionada)
-          );
-          setAlunos(alunosFiltrados);
-        })
-        .catch((error) => console.error('Erro ao carregar alunos:', error));
-    } else {
-      setAlunos([]);
-    }
-  }, [turmaSelecionada]);
 
   const handleTurmaChange = (event) => {
     setTurmaSelecionada(event.target.value);
@@ -44,26 +33,24 @@ const LancarNotas = () => {
     }));
   };
 
-  const handleSaveNotas = async (event) => {
+  const handleSaveNotas = (event) => {
     event.preventDefault();
 
     // Criar conceito para cada aluno com a respectiva nota
-    const notasParaSalvar = alunos.map((aluno) => ({
-      alunoId: aluno.id,
-      conceito: notas[aluno.id] || 0,
-    }));
+    const notasParaSalvar = alunos
+      .filter((aluno) => aluno.turmaId === Number(turmaSelecionada))
+      .map((aluno) => ({
+        alunoId: aluno.id,
+        conceito: notas[aluno.id] || 0,
+      }));
 
-    try {
-      for (let i = 0; i < notasParaSalvar.length; i++) {
-        const { alunoId, conceito } = notasParaSalvar[i];
-        await createConceito({ alunoId, conceito });
-      }
-      alert('Notas salvas com sucesso!');
-    } catch (error) {
-      console.error('Erro ao salvar conceitos:', error);
-      alert('Ocorreu um erro ao salvar as notas.');
-    }
+    // Simulação do salvamento
+    console.log('Notas salvas:', notasParaSalvar);
+    alert('Notas salvas com sucesso!');
   };
+
+  // Filtra alunos pela turma selecionada
+  const alunosFiltrados = alunos.filter((aluno) => aluno.turmaId === Number(turmaSelecionada));
 
   return (
     <div className="LancarNotaContainer">
@@ -88,7 +75,7 @@ const LancarNotas = () => {
           </select>
         </div>
 
-        {alunos.length > 0 ? (
+        {alunosFiltrados.length > 0 ? (
           <form onSubmit={handleSaveNotas}>
             <table className="alunos-table">
               <thead>
@@ -99,7 +86,7 @@ const LancarNotas = () => {
                 </tr>
               </thead>
               <tbody>
-                {alunos.map((aluno) => (
+                {alunosFiltrados.map((aluno) => (
                   <tr key={aluno.id}>
                     <td>{aluno.id}</td>
                     <td>{aluno.nome}</td>
