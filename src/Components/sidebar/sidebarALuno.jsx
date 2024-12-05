@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import '../Themes/themesSidebar.css';
+import './sidebarAluno.css';
 import { useState } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa'; // Ícones para abrir/fechar
 
@@ -10,13 +10,13 @@ const SidebarAluno = () => {
   const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
 
   return (
-    <div className="sidebar-container">
+    <div className="sidebar-container-aluno">
       <button className="sidebar-toggle-aluno" onClick={toggleSidebar}>
       {isSidebarOpen ? <FaTimes /> : <FaBars />}
       </button>
 
-      <div className={`sidebar-list-aluno  ${isSidebarOpen ? 'open' : 'closed'}`}>
-        <img id="MedioTecSidebar" src="/img/LogoAluno.png" alt="Logo" />
+      <div className={`sidebar-Aluno ${isSidebarOpen ? 'open' : 'closed'}`}>
+        <img id="MedioTecAluno" src="/img/LogoAluno.png" alt="Logo" />
         <ul>
           <li><Link to="/HomeAluno">Home</Link></li>
           <li><Link to="/ConceitoAluno">Conceitos</Link></li>
@@ -26,7 +26,7 @@ const SidebarAluno = () => {
           <li><Link to="/ConfiguraçãoAluno">Configurações</Link></li>
         </ul>
         <div>
-          <button type="button" className="Sairbutton-Aluno" onClick={() => window.location.href = '/'}>
+          <button type="button" className="SairAluno" onClick={() => window.location.href = '/'}>
             Sair
           </button>
         </div>
