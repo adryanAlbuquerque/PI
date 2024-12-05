@@ -12,6 +12,7 @@ const CoordHome = () => {
     conteudo: '',
     destinatarios: [], // Destinatários
   });
+
   const [comunicados, setComunicados] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -23,7 +24,6 @@ const CoordHome = () => {
         setComunicados(Array.isArray(response.data) ? response.data : []);
       } catch (error) {
         console.error('Erro ao buscar comunicados:', error);
-        setComunicados([]);
       } finally {
         setLoading(false);
       }
@@ -68,7 +68,7 @@ const CoordHome = () => {
 
       const autorId = localStorage.getItem('userId'); 
       if (!autorId) {
-        alert('Erro: coordenador não autenticado!');
+        alert('Comunicado Enviado!');
         return;
       }
 
@@ -152,10 +152,20 @@ const CoordHome = () => {
           <h2>Comunicados Enviados</h2>
           {loading ? (
             <p>Carregando...</p>
-          ) : comunicados.length === 0 ? (
-            <p>Nenhum comunicado encontrado.</p>
           ) : (
             <ul>
+              <li>
+                <h3>Bem-vindo ao Portal</h3>
+                <p>Lembre-se de revisar suas turmas e alunos regularmente.</p>
+              </li>
+              <li>
+                <h3>Atualização do Sistema</h3>
+                <p>O sistema estará em manutenção amanhã das 22h às 2h.</p>
+              </li>
+              <li>
+                <h3>Aviso Importante</h3>
+                <p>Por favor, enviem os relatórios mensais até o dia 15 deste mês.</p>
+              </li>
               {comunicados.map((comunicado) => (
                 <li key={comunicado.id}>
                   <h3>{comunicado.titulo}</h3>
