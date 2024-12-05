@@ -1,22 +1,24 @@
 import { Link } from 'react-router-dom';
-import '../Themes/themesSidebar.css';
+import './sidebarProf.css';
 import { useState } from 'react';
 import { FaBars, FaTimes } from 'react-icons/fa'; // Ícones para abrir/fechar
 
 
 const SidebarProf = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false); 
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Sidebar fechada por padrão
 
-  const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen); 
+  const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen); // Alterna a sidebar
 
   return (
-    <div className="sidebar-container">
+    <div className="sidebar-container-prof">
+      {/* Botão para abrir/fechar a sidebar */}
       <button className="sidebar-toggle-prof" onClick={toggleSidebar}>
       {isSidebarOpen ? <FaTimes /> : <FaBars />}
       </button>
 
-      <div className={`sidebar-list-prof ${isSidebarOpen ? 'open' : 'closed'}`}>
-        <img id="MedioTecSidebar" src="/img/LogoProf.png" alt="Logo" />
+      {/* Sidebar */}
+      <div className={`sidebar-prof ${isSidebarOpen ? 'open' : 'closed'}`}>
+        <img id="MedioTecprof" src="/img/LogoProf.png" alt="Logo" />
         <ul>
           <li><Link to="/HomeProf">Home</Link></li>
           <li><Link to="/DisciplinasProf">Disciplinas</Link></li>
@@ -24,7 +26,7 @@ const SidebarProf = () => {
           <li><Link to="/">Configurações</Link></li>
         </ul>
         <div>
-          <button type="button" className="Sairbutton-Prof" onClick={() => window.location.href = '/'}>
+          <button type="button" className="Sairprof" onClick={() => window.location.href = '/'}>
             Sair
           </button>
         </div>
