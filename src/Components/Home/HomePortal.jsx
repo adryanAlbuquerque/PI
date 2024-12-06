@@ -14,7 +14,7 @@ const HomePortal = () => {
 
       <nav className="navbar">
         <div className="logo">
-          <img src="/img/logo.png" alt="Logo" />
+          <img src="../img/logo.png" alt="Logo" />
         </div>
 
         <div>

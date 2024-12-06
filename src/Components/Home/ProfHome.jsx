@@ -134,7 +134,7 @@ const ProfHome = () => {
         <h1 className="BemvindoCoord">Olá, Bem-vindo ao Portal do Professor!</h1>
 
         <div className="header-image-coord">
-          <img id="Fundocoord" src="/img/Horizonte.png" alt="Fundo" />
+          <img id="Fundocoord" src="../img/Horizonte.png" alt="Fundo" />
         </div>
 
         <button onClick={() => handleModalOpen()} className="novo-comunicado-button">
