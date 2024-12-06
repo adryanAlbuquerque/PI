@@ -1,22 +1,21 @@
 import { Link } from 'react-router-dom';
 import './sidebarCoord.css';
 import { useState } from 'react';
-import { FaBars, FaTimes } from 'react-icons/fa'; // Ícones para abrir/fechar
+import { FaBars, FaTimes } from 'react-icons/fa'; 
 
 
 const SidebarCoord = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Sidebar fechada por padrão
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false); 
 
-  const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen); // Alterna a sidebar
+  const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
 
   return (
     <div className="sidebar-container-Coord">
-      {/* Botão para abrir/fechar a sidebar */}
+
       <button className="sidebar-toggle-coord" onClick={toggleSidebar}>
       {isSidebarOpen ? <FaTimes /> : <FaBars />}
       </button>
 
-      {/* Sidebar */}
       <div className={`sidebar-Coord ${isSidebarOpen ? 'open' : 'closed'}`}>
         <img id="MedioTecCoord" src="/img/logo.png" alt="Logo" />
         <ul>

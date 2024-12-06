@@ -58,7 +58,7 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Títulos dos comunicados */
+
 .comunicados-list h3 {
     font-size: 18px;
     font-weight: bold;
@@ -66,7 +66,7 @@
     margin-bottom: 10px;
 }
 
-/* Conteúdo dos comunicados */
+
 .comunicados-list p {
     font-size: 14px;
     color: #555;
@@ -74,7 +74,7 @@
     margin: 10px 0;
 }
 
-/* Botões de ação */
+
 .edit-button,
 .delete-button {
     background-color: #4F20EC;
@@ -100,7 +100,7 @@
     background-color: #C53030;
 }
 
-/* Modal */
+
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -124,7 +124,6 @@
     position: relative;
 }
 
-/* Botão de fechar modal */
 .close-button {
     position: absolute;
     top: 10px;
@@ -141,7 +140,7 @@
     color: #333;
 }
 
-/* Formulário */
+
 .form-group {
     margin-bottom: 15px;
 }
@@ -174,7 +173,7 @@
     resize: none;
 }
 
-/* Botões no modal */
+
 button[type="submit"] {
     background-color: #4F20EC;
     color: #FFFFFF;

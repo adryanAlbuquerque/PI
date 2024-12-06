@@ -3,7 +3,6 @@ import SidebarAluno from '../../sidebar/sidebarALuno';
 
 const ConceitoAluno = () => {
 
-    // Dados estáticos
     const conceitos = [
         {
             disciplina: 'Matemática',

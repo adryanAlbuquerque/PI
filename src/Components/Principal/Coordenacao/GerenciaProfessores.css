@@ -68,7 +68,6 @@
   background-color: #3F18C0;
 }
 
-/* Estilos da barra de pesquisa e filtro */
 .search-filter {
   display: flex;
   justify-content: space-between;
@@ -92,7 +91,6 @@
   height: 40px;
 }
 
-/* Estilos da tabela */
 .professores-table {
   width: 100%;
   border-collapse: collapse;
@@ -134,7 +132,6 @@
   background-color: #3F18C0;
 }
 
-/* Estilos do modal */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -150,23 +147,23 @@
 
 .modal-content {
   background-color: #fff;
-  padding: 20px; /* Reduzido para menos espaço interno */
+  padding: 20px;
   border-radius: 10px;
-  width: 600px; /* Aumentado para mais largura */
-  max-width: 90%; /* Adicionado para responsividade */
+  width: 600px;
+  max-width: 90%;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   text-align: center;
 }
 
 .modal-content h2 {
-  margin-bottom: 15px; /* Ajustado para menos espaço abaixo do título */
+  margin-bottom: 15px;
   font-size: 24px;
   color: #4F20EC;
 }
 
 .modal-content label {
   display: block;
-  margin-bottom: 8px; /* Ajustado para menos espaço abaixo dos rótulos */
+  margin-bottom: 8px;
   text-align: left;
   font-size: 14px;
   color: #333;
@@ -174,14 +171,13 @@
 
 .modal-content input, .modal-content select {
   width: 100%;
-  padding: 8px; /* Ajustado para menos espaço interno nos campos */
+  padding: 8px;
   border: 1.5px solid #825cff;
   border-radius: 5px;
-  margin-bottom: 15px; /* Ajustado para menos espaço abaixo dos campos */
+  margin-bottom: 15px;
   outline: none;
 }
 
-/* Botões no modal */
 .modal-buttons {
   display: flex;
   justify-content: space-between;
@@ -220,12 +216,12 @@
 }
 
 .edit-mode input, .edit-mode select {
-  background-color: #f0f0f0; /* Cor de fundo diferente para modo visualização */
+  background-color: #f0f0f0;
   border: none;
 }
 
 .edit-mode .save-button {
-  display: none; /* Esconde o botão de salvar no modo visualização */
+  display: none;
 }
 
 .edit-mode .edit-button {

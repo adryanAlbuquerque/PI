@@ -1,11 +1,10 @@
 .sidebar-container {
     display: flex;
-    height: 100vh; /* Ocupa toda a altura da tela */
+    height: 100vh;
     background-color: #F5F5FB;
-    position: relative; /* Garantindo que o botão flutue corretamente */
+    position: relative;
 }
 
-/* toggle aluno */
 .sidebar-toggle-aluno:focus {
     position: absolute;
     top: 10px;
@@ -14,15 +13,14 @@
     border: none;
     font-size: 24px;
     cursor: pointer;
-    z-index: 1000; /* Coloca o botão acima da sidebar */
-    color: #FF8A00; /* Cor do ícone */
+    z-index: 1000;
+    color: #FF8A00;
 }
 
 .sidebar-toggle-aluno:focus:focus {
-    outline: none; /* Remove o outline ao focar */
+    outline: none;
 }
 
-/* toggle prof */
 .sidebar-toggle-prof:focus {
     position: absolute;
     top: 10px;
@@ -31,31 +29,30 @@
     border: none;
     font-size: 24px;
     cursor: pointer;
-    z-index: 1000; /* Coloca o botão acima da sidebar */
-    color: #0B429D; /* Cor do ícone */
+    z-index: 1000;
+    color: #0B429D;
 }
 
 .sidebar-toggle-prof:focus:focus {
-    outline: none; /* Remove o outline ao focar */
+    outline: none;
 }
-/* toggle prof */ 
 
 .sidebar-list-aluno {
     position: fixed;
     top: 0;
     left: 0;
-    width: 250px; /* Largura da sidebar */
-    height: 100%; /* Altura total */
+    width: 250px;
+    height: 100%;
     background-color: #ffffff;
     transition: transform 0.3s ease;
-    transform: translateX(-100%); /* Escondida por padrão */
+    transform: translateX(-100%);
     padding: 20px;
     overflow-y: auto;
-    z-index: 999; /* Garante que a sidebar fique acima do conteúdo */
+    z-index: 999;
 }
 
 .sidebar-list-aluno.open {
-    transform: translateX(0); /* Mostra a sidebar quando aberta */
+    transform: translateX(0);
 }
 
 .sidebar-list-aluno ul {
@@ -79,27 +76,25 @@
 }
 
 .sidebar-list-aluno a:hover {
-    color: #FF8A00; 
+    color: #FF8A00;
 }
-
-/**/
 
 .sidebar-list-prof {
     position: fixed;
     top: 0;
     left: 0;
-    width: 250px; /* Largura da sidebar */
-    height: 100%; /* Altura total */
+    width: 250px;
+    height: 100%;
     background-color: #ffffff;
     transition: transform 0.3s ease;
-    transform: translateX(-100%); /* Escondida por padrão */
+    transform: translateX(-100%);
     padding: 20px;
     overflow-y: auto;
-    z-index: 999; /* Garante que a sidebar fique acima do conteúdo */
+    z-index: 999;
 }
 
 .sidebar-list-prof.open {
-    transform: translateX(0); /* Mostra a sidebar quando aberta */
+    transform: translateX(0);
 }
 
 .sidebar-list-prof ul {
@@ -123,9 +118,8 @@
 }
 
 .sidebar-list-prof a:hover {
-    color: #0B429D; 
+    color: #0B429D;
 }
-/**/
 
 #MedioTecSidebar {
     height: 50px;
@@ -148,7 +142,7 @@
     justify-content: center;
     transition: background-color 0.3s ease;
 }
-/**/
+
 .Sairbutton-Prof {
     width: 100%;
     max-width: 100px;
@@ -166,14 +160,13 @@
     transition: background-color 0.3s ease;
 }
 
-/* Responsividade */
 @media (max-width: 641px) {
     .sidebar-list-aluno {
-        width: 80%; /* Sidebar ocupa toda a largura da tela em dispositivos móveis */
+        width: 80%;
     }
 
     .sidebar-list-prof {
-        width: 80%; /* Sidebar ocupa toda a largura da tela em dispositivos móveis */
+        width: 80%;
     }
 
     .sidebar-toggle-aluno:focus {
@@ -185,5 +178,3 @@
         left: 10px;
     }
 }
-
-

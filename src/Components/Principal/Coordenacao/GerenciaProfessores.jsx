@@ -23,8 +23,8 @@ const GerenciaProfessores = () => {
         console.error('Erro ao buscar professores:', error);
       });
 
-    // Disciplina fixa
-    setDisciplinas([{ id: '1', nome: 'Matemática' }]);  // Disciplina fixa para exibição
+
+    setDisciplinas([{ id: '1', nome: 'Matemática' }]); 
   }, []);
 
   const handleSave = (event) => {
@@ -142,7 +142,7 @@ const GerenciaProfessores = () => {
                 <tr key={professor.id}>
                   <td>{professor.matricula || professor.id}</td>
                   <td>{professor.nome}</td>
-                  <td>{"Matemática"}</td> {/* Disciplina fixa */}
+                  <td>{"Matemática"}</td> 
                   <td>{professor.turno}</td>
                   <td>{professor.status}</td>
                   <td>
@@ -204,7 +204,7 @@ const GerenciaProfessores = () => {
                 multiple
                 disabled={!isEditable}
               >
-                <option value="1">Matemática</option> {/* Disciplina fixa */}
+                <option value="1">Matemática</option> 
               </select>
 
               <div className="modal-buttons">

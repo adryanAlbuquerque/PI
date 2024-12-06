@@ -2,7 +2,7 @@ import '../../Themes/themesAlunos.css';
 import SidebarAluno from '../../sidebar/sidebarALuno';
 
 const DisciplinasAluno = () => {
-    // Dados estáticos de disciplinas
+
     const disciplinas = [
         {
             nome: 'Matemática',
@@ -18,7 +18,7 @@ const DisciplinasAluno = () => {
         },
     ];
     
-    const turma = '3 Turma A'; // Dados estáticos para a turma
+    const turma = '3 Turma A'; 
 
     return (
         <div className="container-principal">
