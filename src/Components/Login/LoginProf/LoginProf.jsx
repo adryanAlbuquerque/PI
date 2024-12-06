@@ -23,7 +23,7 @@ const LoginProf = () => {
       <div className="login-box">
         <FaTimes className="close-icon" onClick={handleGoHome} />
         <div className="logo-container">
-          <img src="/img/logo.png" alt="Logo" />
+          <img src=".././img/logo.png" alt="Logo" />
         </div>
         <form onSubmit={handleSubmit}>
           <h1 className="login-title">LOGIN DO PROFESSOR</h1>

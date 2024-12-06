@@ -60,7 +60,7 @@ const AlunoHome = () => {
         </div>
 
         <div className="header-image-aluno">
-          <img id="FundoAluno" src="/img/Horizonte.png" alt="Fundo" />
+          <img id="FundoAluno" src="../img/Horizonte.png" alt="Fundo" />
         </div>
 
         <div className="squaresaluno">
