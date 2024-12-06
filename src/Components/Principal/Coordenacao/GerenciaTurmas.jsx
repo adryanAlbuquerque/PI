@@ -7,7 +7,7 @@ import SidebarCoord from '../../sidebar/sidebarCoord';
 const GerenciaTurmas = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false); // Modal de criação
+  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false); 
   const [selectedTurma, setSelectedTurma] = useState({});
   const [isEditable, setIsEditable] = useState(false);
   const [turmas, setTurmas] = useState([]);

@@ -1,22 +1,19 @@
 import { Link } from 'react-router-dom';
 import './sidebarProf.css';
 import { useState } from 'react';
-import { FaBars, FaTimes } from 'react-icons/fa'; // Ícones para abrir/fechar
-
+import { FaBars, FaTimes } from 'react-icons/fa';
 
 const SidebarProf = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Sidebar fechada por padrão
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen); // Alterna a sidebar
+  const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
 
   return (
     <div className="sidebar-container-prof">
-      {/* Botão para abrir/fechar a sidebar */}
       <button className="sidebar-toggle-prof" onClick={toggleSidebar}>
-      {isSidebarOpen ? <FaTimes /> : <FaBars />}
+        {isSidebarOpen ? <FaTimes /> : <FaBars />}
       </button>
 
-      {/* Sidebar */}
       <div className={`sidebar-prof ${isSidebarOpen ? 'open' : 'closed'}`}>
         <img id="MedioTecprof" src="/img/LogoProf.png" alt="Logo" />
         <ul>

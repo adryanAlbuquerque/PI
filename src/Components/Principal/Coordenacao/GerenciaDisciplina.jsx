@@ -20,7 +20,6 @@ const GerenciaDisciplinas = () => {
   const fetchDisciplinas = async () => {
     try {
       const response = await getDisciplina();
-      console.log('Disciplinas recebidas:', response.data);
       setDisciplinas(response.data);
     } catch (error) {
       console.error('Erro ao buscar disciplinas:', error);
@@ -45,10 +44,9 @@ const GerenciaDisciplinas = () => {
         disciplina.id === selectedDisciplina.id ? response.data : disciplina
       );
 
-      setDisciplinas(updatedDisciplinas); // Atualiza a tabela com a disciplina atualizada
-      setIsModalOpen(false); // Fecha o modal
-      setIsEditable(false); // Sai do modo de edição
-      console.log('Disciplina atualizada:', response.data);
+      setDisciplinas(updatedDisciplinas);
+      setIsModalOpen(false);
+      setIsEditable(false);
     } catch (error) {
       console.error('Erro ao atualizar disciplina:', error);
     }
@@ -59,7 +57,6 @@ const GerenciaDisciplinas = () => {
       await deleteDisciplina(selectedDisciplina.id);
       setDisciplinas(disciplinas.filter((disciplina) => disciplina.id !== selectedDisciplina.id));
       setIsModalOpen(false);
-      console.log('Disciplina excluída');
     } catch (error) {
       console.error('Erro ao excluir disciplina:', error);
     }
@@ -78,7 +75,6 @@ const GerenciaDisciplinas = () => {
       setDisciplinas([...disciplinas, response.data]);
       setIsAddModalOpen(false);
       setNewDisciplina({ nome: '', descricao: '' });
-      console.log('Nova disciplina adicionada:', response.data);
     } catch (error) {
       console.error('Erro ao adicionar disciplina:', error);
     }

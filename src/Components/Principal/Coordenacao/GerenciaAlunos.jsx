@@ -111,7 +111,7 @@ const GerenciaAlunos = () => {
               filteredAlunos.map((aluno) => (
                 <tr key={aluno.id}>
                   <td>{aluno.nome}</td>
-                  <td>{"Turma A"}</td> {/* Turma estática */}
+                  <td>{"Turma A"}</td> 
                   <td>{aluno.turno}</td>
                   <td>{aluno.status}</td>
                   <td>

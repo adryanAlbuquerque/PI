@@ -6,12 +6,12 @@ const ConfiguracoesAluno = () => {
     const [idioma, setIdioma] = useState('Português');
     const [notificacoes, setNotificacoes] = useState(true);
 
-    // Função para manipular a troca de idioma
+
     const handleIdiomaChange = (event) => {
         setIdioma(event.target.value);
     };
 
-    // Função para alternar notificações
+
     const handleNotificacoesChange = () => {
         setNotificacoes(!notificacoes);
     };
@@ -44,7 +44,7 @@ const ConfiguracoesAluno = () => {
                     </label>
                 </div>
 
-                {/* Mais configurações podem ser adicionadas aqui */}
+
             </div>
         </div>
     );

@@ -132,7 +132,6 @@ a:hover {
 }
 
 
-/*Responsividades*/
 @media (max-width: 768px) {
     .RegistroAluno {
         padding: 10px;
@@ -153,18 +152,18 @@ a:hover {
 
 @media (max-width: 768px) {
     .contact-list {
-      padding: 10px; /* Reduz o padding em telas menores */
+      padding: 10px;
     }
   
     .contact-item {
-      padding: 10px; /* Reduz o espaçamento interno */
+      padding: 10px; 
     }
   
     .contact-item h3 {
-      font-size: 16px; /* Reduz o tamanho do título */
+      font-size: 16px; 
     }
   
     .contact-item p {
-      font-size: 14px; /* Reduz o tamanho do texto */
+      font-size: 14px; 
     }
   }

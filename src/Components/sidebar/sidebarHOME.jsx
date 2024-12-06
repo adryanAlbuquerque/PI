@@ -1,21 +1,19 @@
 import { Link } from 'react-router-dom';
-import './sidebarHome.css'; // Certifique-se de que o caminho está correto
+import './sidebarHome.css';
 import { useState } from 'react';
-import { FaBars, FaTimes } from 'react-icons/fa'; // Ícones para abrir/fechar
+import { FaBars, FaTimes } from 'react-icons/fa';
 
 const SidebarHome = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Sidebar fechada por padrão
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen); // Alterna a sidebar
+  const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
 
   return (
     <div className="sidebar-container-home">
-      {/* Botão para abrir/fechar a sidebar */}
       <button className="sidebar-toggle-home" onClick={toggleSidebar}>
         {isSidebarOpen ? <FaTimes /> : <FaBars />}
       </button>
 
-      {/* Sidebar */}
       <div className={`sidebar-home ${isSidebarOpen ? 'open' : 'closed'}`}>
         <img id="MedioTecHome" src="/img/LogoProf.png" alt="Logo" />
         <ul>

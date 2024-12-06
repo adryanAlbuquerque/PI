@@ -101,7 +101,7 @@
 
   .alunos-table th,
   .alunos-table td {
-    padding: 12px; /* Ajustando o padding para maior espaçamento */
+    padding: 12px; 
   }
 
   .selecao-turma select {

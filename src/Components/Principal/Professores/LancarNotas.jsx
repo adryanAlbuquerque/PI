@@ -1,9 +1,9 @@
 import './LancarNotas.css';
 import SidebarProf from '../../sidebar/sidebarProf';
-import { useState } from 'react'; // Importando o useState
+import { useState } from 'react'; 
 
 const LancarNotas = () => {
-  // Dados estáticos de turmas e alunos
+
   const turmas = [
     { id: 1, nome: 'Turma A' },
     { id: 2, nome: 'Turma B' },
@@ -18,7 +18,7 @@ const LancarNotas = () => {
     { id: 5, nome: 'Carlos', turmaId: 3 },
   ];
 
-  const [notas, setNotas] = useState({}); // Estado para armazenar as notas
+  const [notas, setNotas] = useState({}); 
   const [turmaSelecionada, setTurmaSelecionada] = useState('');
 
   const handleTurmaChange = (event) => {
@@ -36,7 +36,6 @@ const LancarNotas = () => {
   const handleSaveNotas = (event) => {
     event.preventDefault();
 
-    // Criar conceito para cada aluno com a respectiva nota
     const notasParaSalvar = alunos
       .filter((aluno) => aluno.turmaId === Number(turmaSelecionada))
       .map((aluno) => ({
@@ -44,12 +43,12 @@ const LancarNotas = () => {
         conceito: notas[aluno.id] || 0,
       }));
 
-    // Simulação do salvamento
+ 
     console.log('Notas salvas:', notasParaSalvar);
     alert('Notas salvas com sucesso!');
   };
 
-  // Filtra alunos pela turma selecionada
+ 
   const alunosFiltrados = alunos.filter((aluno) => aluno.turmaId === Number(turmaSelecionada));
 
   return (

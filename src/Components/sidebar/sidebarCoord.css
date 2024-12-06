@@ -1,27 +1,26 @@
 .sidebar-container-Coord {
     display: flex;
-    height: 100vh; /* Ocupa toda a altura da tela */
+    height: 100vh;
     background-color: #F5F5FB;
-    position: relative; /* Garantindo que o botão flutue corretamente */
+    position: relative;
 }
   
-/* Sidebar */
 .sidebar-Coord {
     position: fixed;
     top: 0;
     left: 0;
-    width: 250px; /* Largura da sidebar */
-    height: 100%; /* Altura total */
+    width: 250px;
+    height: 100%;
     background-color: #ffffff;
     transition: transform 0.3s ease;
-    transform: translateX(-100%); /* Escondida por padrão */
+    transform: translateX(-100%);
     padding: 20px;
     overflow-y: auto;
-    z-index: 999; /* Garante que a sidebar fique acima do conteúdo */
+    z-index: 999;
 }
 
 .sidebar-Coord.open {
-    transform: translateX(0); /* Mostra a sidebar quando aberta */
+    transform: translateX(0);
 }
 
 #MedioTecCoord {
@@ -50,10 +49,9 @@
 }
 
 .sidebar-Coord a:hover {
-    color: #825cff; 
+    color: #825cff;
 }
 
-/* Botão para abrir/fechar a sidebar */
 .sidebar-toggle-coord {
     position: fixed;
     top: 20px;
@@ -62,15 +60,14 @@
     border: none;
     font-size: 24px;
     cursor: pointer;
-    z-index: 1000; /* Coloca o botão acima da sidebar */
-    color: #825cff; /* Cor do ícone */
+    z-index: 1000;
+    color: #825cff;
 }
 
 .sidebar-toggle-coord:focus {
-    outline: none; /* Remove o outline ao focar */
+    outline: none;
 }
 
-/* Estilos para o botão "Sair" */
 .SairCoord {
     width: 100%;
     max-width: 100px;
@@ -88,10 +85,9 @@
     transition: background-color 0.3s ease;
 }
 
-/* Responsividade */
 @media (max-width: 641px) {
     .sidebar-Coord {
-        width: 80%; /* Sidebar ocupa toda a largura da tela em dispositivos móveis */
+        width: 80%;
     }
 
     .sidebar-toggle-coord {

@@ -63,7 +63,7 @@
     background-color: #3F18C0;
   }
   
-  /* Estilos da barra de pesquisa e filtro */
+
   .search {
     display: flex;
     justify-content: space-between;
@@ -87,7 +87,7 @@
     height: 40px;
   }
   
-  /* Estilos da tabela */
+
   .coordenadores-table {
     width: 100%;
     border-collapse: collapse;
@@ -129,7 +129,7 @@
     background-color: #3F18C0;
   }
   
-  /* Estilos do modal */
+
   .modal-overlay {
     position: fixed;
     top: 0;
@@ -175,7 +175,7 @@
     outline: none;
   }
   
-  /* Botões no modal */
+
   .modalbt {
     display: flex;
     justify-content: space-between;
@@ -214,12 +214,12 @@
   }
   
   .edicao-mode input, .edicao-mode select {
-    background-color: #f0f0f0; /* Cor de fundo diferente para modo visualização */
+    background-color: #f0f0f0;
     border: none;
   }
   
   .edicao-mode .save-button {
-    display: none; /* Esconde o botão de salvar no modo visualização */
+    display: none;
   }
   
   .edicao-mode .edicao-button {

@@ -2,7 +2,6 @@ import './DisciplinasProf.css';
 import SidebarProf from '../../sidebar/sidebarProf';
 
 const DisciplinasProf = () => {
-    // Dados estáticos de disciplinas
     const disciplinas = [
         { nome: 'Matemática', descricao: 'Matéria de Álgebra e Geometria', nomeTurma: 'Turma A' },
         { nome: 'Português', descricao: 'Gramática e Literatura', nomeTurma: 'Turma B' },

@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import './sidebarAluno.css';
 import { useState } from 'react';
-import { FaBars, FaTimes } from 'react-icons/fa'; // Ícones para abrir/fechar
+import { FaBars, FaTimes } from 'react-icons/fa';
 
 
 const SidebarAluno = () => {
