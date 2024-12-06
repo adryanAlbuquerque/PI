@@ -1,114 +1,114 @@
 .Container {
-    text-align: center;              /* Centraliza o texto dentro do container */
-    margin-top: 30px;                /* Margem superior */
-    color: #825CFF;                  /* Cor do texto */
-    padding: 0 20px;                 /* Padding lateral */
-    display: flex;                   /* Utiliza Flexbox para centralização */
-    justify-content: center;          /* Centraliza horizontalmente */
+    text-align: center;              
+    margin-top: 30px;                
+    color: #825CFF;                 
+    padding: 0 20px;                 
+    display: flex;                   
+    justify-content: center;          
 }
 
 #CadGeralBox {
-    background-color: #f8f6ff;       /* Cor de fundo */
-    padding: 40px 20px;              /* Padding interno */
-    box-shadow: 0 7px 12px rgba(0, 0, 0, 0.1); /* Sombra */
-    max-width: 450px;                /* Largura máxima */
-    width: 100%;                     /* Largura total */
+    background-color: #f8f6ff;      
+    padding: 40px 20px;              
+    box-shadow: 0 7px 12px rgba(0, 0, 0, 0.1); 
+    max-width: 450px;                
+    width: 100%;                     
 }
 
 .closeIcon {
-    position: absolute;               /* Posiciona o ícone de fechar */
-    top: 15px;                        /* Distância do topo */
-    right: 15px;                      /* Distância da direita */
-    font-size: 24px;                 /* Tamanho da fonte */
-    color: #825cff;                  /* Cor do ícone */
-    cursor: pointer;                  /* Cursor pointer para interação */
+    position: absolute;               
+    top: 15px;                        
+    right: 15px;                      
+    font-size: 24px;                 
+    color: #825cff;                 
+    cursor: pointer;                  
 }
 
 .closeIcon:hover {
-    color: #3f18c0;                  /* Cor ao passar o mouse */
+    color: #3f18c0;                  
 }
 
 #LogoCadGeral img {
-    width: 170px;                    /* Largura do logo */
-    margin-bottom: 20px;             /* Margem inferior */
+    width: 170px;                   
+    margin-bottom: 20px;             
 }
 
 #NomeCadastro {      
-    margin: 10px auto;               /* Centraliza verticalmente e horizontalmente */
-    font-size: 20px;                 /* Tamanho da fonte */
-    color: #4F20EC;                  /* Cor do texto */
-    letter-spacing: 1px;             /* Espaçamento entre letras */
-    font-weight: 700;                /* Peso da fonte */
-    width: fit-content;              /* Ajusta a largura ao conteúdo */
+    margin: 10px auto;               
+    font-size: 20px;                 
+    color: #4F20EC;                 
+    letter-spacing: 1px;             
+    font-weight: 700;               
+    width: fit-content;              
 }
 
 .input-field {
-    position: relative;               /* Para posicionar os elementos dentro */
-    width: 100%;                     /* Largura total */
-    max-width: 400px;                /* Largura máxima */
-    height: 50px;                    /* Altura do campo */
-    margin: 30px auto;               /* Margem centralizada */
+    position: relative;               
+    width: 100%;                     
+    max-width: 400px;                
+    height: 50px;                    
+    margin: 30px auto;               
 }
 
 .input-field input,
 .input-field select {
-    width: 100%;                     /* Largura total do campo */
-    height: 100%;                    /* Altura total do campo */
-    background-color: white;         /* Cor de fundo */
-    outline: none;                   /* Remove contorno padrão */
-    border: 1px solid #825CFF;       /* Borda */
-    border-radius: 7px;              /* Cantos arredondados */
-    color: black;                    /* Cor do texto */
-    padding: 15px 20px;              /* Padding interno */
+    width: 100%;                     
+    height: 100%;                    
+    background-color: white;         
+    outline: none;                   
+    border: 1px solid #825CFF;       
+    border-radius: 7px;              
+    color: black;                    
+    padding: 15px 20px;              
 }
 
 .input-field input::placeholder,
 .input-field select {
-    color: rgb(145, 128, 160);       /* Cor do placeholder */
+    color: rgb(145, 128, 160);       
 }
 
 #button {
-    width: 100%;                     /* Largura total do botão */
-    max-width: 400px;                /* Largura máxima */
-    height: 45px;                    /* Altura do botão */
-    background-color: #4F20EC;       /* Cor de fundo */
-    border: none;                    /* Remove borda padrão */
-    outline: none;                   /* Remove contorno padrão */
-    border-radius: 7px;              /* Cantos arredondados */
-    cursor: pointer;                  /* Cursor pointer para interação */
-    font-size: 16px;                 /* Tamanho da fonte */
-    color: white;                    /* Cor do texto */
-    margin-top: 10px;                /* Margem superior */
-    transition: background-color 0.3s ease; /* Efeito de transição */
+    width: 100%;                     
+    max-width: 400px;                
+    height: 45px;                    
+    background-color: #4F20EC;       
+    border: none;                    
+    outline: none;                   
+    border-radius: 7px;              
+    cursor: pointer;                  
+    font-size: 16px;                 
+    color: white;                    
+    margin-top: 10px;                
+    transition: background-color 0.3s ease; 
 }
 
 #button:hover {
-    background-color: #3F18C0;       /* Cor ao passar o mouse */
+    background-color: #3F18C0;       
 }
 
 #homeButton {
-    width: 100%;                     /* Largura total do botão */
-    max-width: 100px;                /* Largura máxima */
-    height: 35px;                    /* Altura do botão */
-    background-color: #f4f4f9;       /* Cor de fundo */
-    border: 1.5px solid #825cff;     /* Borda */
-    outline: none;                   /* Remove contorno padrão */
-    border-radius: 7px;              /* Cantos arredondados */
-    cursor: pointer;                  /* Cursor pointer para interação */
-    font-size: 15px;                 /* Tamanho da fonte */
-    color: #825cff;                  /* Cor do texto */
-    margin-top: 20px;                /* Margem superior */
-    margin-bottom: -10px;            /* Margem inferior negativa, se necessário */
-    transition: background-color 0.3s ease; /* Efeito de transição */
+    width: 100%;                    
+    max-width: 100px;               
+    height: 35px;                    
+    background-color: #f4f4f9;       
+    border: 1.5px solid #825cff;     
+    outline: none;                   
+    border-radius: 7px;              
+    cursor: pointer;                  
+    font-size: 15px;                 
+    color: #825cff;                  
+    margin-top: 20px;               
+    margin-bottom: -10px;            
+    transition: background-color 0.3s ease; 
 }
 
 #homeButton:hover {
-    background-color: #d9d4e8;       /* Cor ao passar o mouse */
-    color: #4f20ec;                  /* Cor do texto ao passar o mouse */
+    background-color: #d9d4e8;       
+    color: #4f20ec;                  
 }
 
 @media (max-width: 500px) {
     #CadGeralBox {
-        padding: 20px 10px;          /* Padding reduzido em telas menores */
+        padding: 20px 10px;          
     }
 }

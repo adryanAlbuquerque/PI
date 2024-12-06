@@ -8,7 +8,6 @@ const AlunoHome = () => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [alunoData, setAlunoData] = useState({ nome: '', email: '', turma: '' });
 
-  // Dados estáticos de comunicados
   const comunicados = [
     {
       id: 1,
@@ -33,7 +32,7 @@ const AlunoHome = () => {
   const [loading, setLoading] = useState(false);
 
   const handleModalOpen = () => {
-    // Dados simulados (poderiam ser dados de perfil do aluno)
+
     const dadosSimulados = {
       nome: 'João da Silva',
       email: 'joao.silva@gmail.com',
@@ -44,7 +43,7 @@ const AlunoHome = () => {
     setModalOpen(true);
   };
 
-  // Função para fechar o modal
+  
   const handleModalClose = () => {
     setModalOpen(false);
   };

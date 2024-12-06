@@ -10,7 +10,7 @@ const CoordHome = () => {
   const [formData, setFormData] = useState({
     titulo: '', 
     conteudo: '',
-    destinatarios: [], // Destinatários
+    destinatarios: [],
   });
 
   const [comunicados, setComunicados] = useState([]);
@@ -68,7 +68,7 @@ const CoordHome = () => {
 
       const autorId = localStorage.getItem('userId'); 
       if (!autorId) {
-        alert('Comunicado Enviado!');
+        alert('Erro: Coordenador não autenticado.');
         return;
       }
 
