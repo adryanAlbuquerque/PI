@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import './CoordHome.css';
 import SidebarCoord from '../sidebar/sidebarCoord';
+import Horizonte from '/img/Horizonte.png';
 import { createComunicado, getComunicados, updateComunicado, deleteComunicado, getAlunos } from '../../Service/APIServices';
 
 const CoordHome = () => {
@@ -134,7 +135,7 @@ const CoordHome = () => {
         <h1 className="BemvindoCoord">Olá, Bem-vindo ao Portal do Coordenador!</h1>
 
         <div className="header-image-coord">
-          <img id="Fundocoord" src="../img/Horizonte.png" alt="Fundo" />
+        <img id="Fundocoord" src={Horizonte} alt="Fundo" />
         </div>
 
         <button onClick={() => handleModalOpen()} className="novo-comunicado-button">

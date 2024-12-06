@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom';
 import './HomePortal.css';
 import { useState } from 'react';
+// Importando as imagens corretamente
+import logo from '/img/logo.png';
+import fundo from '/img/image.png';
 
 const HomePortal = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -14,7 +17,7 @@ const HomePortal = () => {
 
       <nav className="navbar">
         <div className="logo">
-          <img src="../img/logo.png" alt="Logo" />
+          <img src={logo} alt="Logo" />
         </div>
 
         <div>
@@ -41,7 +44,7 @@ const HomePortal = () => {
       </nav>
 
       <div className="home-container">
-        <img id="Fundo" src="/img/image.png" alt="Logo" />
+        <img id="Fundo" src={fundo} alt="Fundo" />
       </div>
     </div>
   );
